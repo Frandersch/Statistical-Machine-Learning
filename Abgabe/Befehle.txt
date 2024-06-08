@@ -1,0 +1,10 @@
+um die Wörter zu Zählen gib folgenden Befehl in das Terminal ein
+
+wc -w Abgabe/Hausarbeit.Rmd
+
+\\  -   gibt dir einen Zeilensprung
+\section{NameDesKapitels} - macht ein neues Kapitel auf
+\subsection{NameDesUnterkapitels} - mach ein neues Unterkapitel
+\newpage - öffnet eine neue Seite
+\textbf{FetterText} - macht den Text in den Klammern Fett
+\textif{ItalicText} - macht den Text in den Klammern kursiv
