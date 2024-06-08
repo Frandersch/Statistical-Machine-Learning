@@ -1,0 +1,17 @@
+---
+title: "test"
+author: "Franz Andersch & Niklas Münz"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+\begin{center}
+Bla\newline
+Bla\newline
+Bla\newline
+\end{center}

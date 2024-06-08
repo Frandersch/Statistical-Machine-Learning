@@ -4,11 +4,20 @@ author: "Franz Andersch & Niklas Münz"
 date: "`r Sys.Date()`"
 output: 
   pdf_document:
+    number_sections: true
     keep_tex: true
+    includes:
+      in_header: header.tex
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-\centering
-\includegraphics
+\include{titlepage.tex}
+\newpage
+\tableofcontents
+\thispagestyle{empty}
+\clearpage
+\pagenumbering{arabic}
+\section{Einleitung}
+\blindtext
