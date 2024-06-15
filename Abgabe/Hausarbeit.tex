@@ -54,6 +54,7 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
+\usepackage[german]{babel}
 \usepackage{mathtools}
 \usepackage{tikz}
 \usepackage{pgf}
@@ -66,6 +67,8 @@
 \newcommand{\ecenter}{\end{center}}
 \renewcommand{\contentsname}{Inhalt}
 \usepackage{blindtext}
+\usepackage[backend=biber, style = apa]{biblatex}
+\addbibresource{Literatur.bib}
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -80,7 +83,7 @@
 
 \title{Hausarbeit}
 \author{Franz Andersch \& Niklas Münz}
-\date{2024-06-08}
+\date{2024-06-15}
 
 \begin{document}
 \maketitle
@@ -92,5 +95,8 @@
 \clearpage
 \pagenumbering{arabic}
 \section{Einleitung}
+
+Support Vector Machines sind eine feine Sache
+\parencite{james_introduction_2021s}
 
 \end{document}
