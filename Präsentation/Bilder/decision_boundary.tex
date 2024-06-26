@@ -1,0 +1,29 @@
+\documentclass{standalone}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgf}
+\begin{document}
+	\begin{tikzpicture}
+		\begin{axis}[
+			xmin=0,
+			xmax=10,
+			ymin=0,
+			ymax=10,
+			axis equal,
+			axis x line=center,
+			axis y line=center
+			]
+			%\addplot[no markers, domain=-1:11]{(5/3)*x};
+			\draw[magenta,thick] (axis cs:0,0.05)--(axis cs:3.078235,5.177058);
+			\draw[->,green] (axis cs:0,0)--(axis cs:5,8.333) node[above,pos=1]{\textcolor{green}{$\mathbf{\beta}$}};
+			\draw[->] (axis cs:0,0)--(axis cs:8,2.2);
+			\draw[->] (axis cs:0,0)--(axis cs:4.5,4.3);
+			\draw[->] (axis cs:0,0)--(axis cs:1,6.4);
+			
+			\addplot[no markers,domain=-1:11,thick,blue]{-0.6*x+7};
+			\addplot[no markers, domain=-1:11,dashed]{-0.6*x+8};
+			\addplot[no markers, domain=-1:11,dashed]{-0.6*x+6};
+		\end{axis}
+	\end{tikzpicture}
+\end{document}
