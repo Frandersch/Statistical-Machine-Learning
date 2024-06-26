@@ -1,9 +1,9 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.6.26)  26 JUN 2024 23:07
+This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.6.26)  26 JUN 2024 23:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./decision_boundary.tex
-(decision_boundary.tex
+**./margin.tex
+(margin.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-13>
 
@@ -653,8 +653,8 @@ File: l3backend-xetex.def 2024-01-04 L3 backend support: XeTeX
 \g__pdf_backend_object_int=\count308
 \g__pdf_backend_annotation_int=\count309
 \g__pdf_backend_link_int=\count310
-) (decision_boundary.aux)
-\openout1 = `decision_boundary.aux'.
+) (margin.aux)
+\openout1 = `margin.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
 LaTeX Font Info:    ... okay on input line 6.
@@ -685,12 +685,12 @@ ick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into
 your preamble.
  on input line 6.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 27.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 28.
 
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 27.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 28.
 
 
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -698,19 +698,19 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 [1
 
-] (decision_boundary.aux)
+] (margin.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-13>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 24204 strings out of 409592
- 623489 string characters out of 5773120
- 1925650 words of memory out of 5000000
- 45975 multiletter control sequences out of 15000+600000
+ 24225 strings out of 409592
+ 623855 string characters out of 5773120
+ 1927650 words of memory out of 5000000
+ 45996 multiletter control sequences out of 15000+600000
  560703 words of font info for 48 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 102i,9n,107p,731b,1908s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 102i,9n,107p,720b,1909s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on decision_boundary.pdf (1 page).
+Output written on margin.pdf (1 page).

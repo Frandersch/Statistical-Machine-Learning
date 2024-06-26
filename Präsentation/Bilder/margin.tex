@@ -1,0 +1,30 @@
+\documentclass{standalone}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgf}
+\begin{document}
+	\begin{tikzpicture}
+		\begin{axis}[
+			xmin=0,
+			xmax=10,
+			ymin=0,
+			ymax=10,
+			axis equal,
+			axis x line=center,
+			axis y line=center
+			]
+			%\addplot[no markers, domain=-1:11]{(5/3)*x};
+			\draw[->] (axis cs:0,0)--(axis cs:5,3) node[above,pos=0.5]{$\mathbf{x^-}$};
+			\draw[->] (axis cs:0,0)--(axis cs:8,3.2) node[below,pos=0.5]{$\mathbf{x^+}$};
+			\draw[->] (axis cs:0,0)--(axis cs:5,8.333) node[above,pos=1]{$\beta$};
+			\draw[->,cyan] (axis cs:5,3)--(axis cs:8,3.2) node[above,pos=0.8]{\textcolor{cyan}{$(x^+-x^-)$}};
+			\addplot[only marks, mark=-,draw=green,mark size=0.1cm,thick]coordinates {(5,3)};
+			\addplot[only marks, mark=+,draw=red,mark size=0.1cm,thick]coordinates {(8,3.2)};
+			\addplot[no markers,domain=-1:11,thick,blue]{-0.6*x+7};
+			\addplot[no markers, domain=-1:11,dashed]{-0.6*x+8};
+			\addplot[no markers, domain=-1:11,dashed]{-0.6*x+6};
+			\draw[magenta,thick] (axis cs:2.647058,4.411763)--(axis cs:3.529411,5.882352);
+		\end{axis}
+	\end{tikzpicture}
+\end{document}
