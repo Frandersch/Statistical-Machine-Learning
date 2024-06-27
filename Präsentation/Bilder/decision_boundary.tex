@@ -15,16 +15,21 @@
 			axis x line=center,
 			axis y line=center,
 			xmajorticks=false,
-			ymajorticks=false
+			ymajorticks=false,
+			ylabel style={right,font=\Large},
+			ylabel=$X_2$,
+			xlabel style={above,right,font=\Large},
+			xlabel=$X_1$
 			]
 			%\addplot[no markers, domain=-1:11]{(5/3)*x};
 			\draw[magenta,thick] (axis cs:0,0.05)--(axis cs:3.078235,5.177058);
 			\draw[->,green,line width=1pt] (axis cs:0,0)--(axis cs:5,8.333) node[above,pos=1]{\textcolor{green}{$\mathbf{\beta}$}};
+				\draw[magenta,thick] (axis cs:0,0.05)--(axis cs:3.078235,5.177058);
 			\draw[->,line width=1pt] (axis cs:0,0)--(axis cs:8,2.2);
 			\draw[->,line width=1pt] (axis cs:0,0)--(axis cs:4.5,4.3);
 			\draw[->,line width=1pt] (axis cs:0,0)--(axis cs:1,6.4);
 			
-			\addplot[no markers,domain=-1:11,line width=2pt,blue]{-0.6*x+7};
+			\addplot[no markers,domain=-1:11,line width=1.7pt,blue]{-0.6*x+7};
 			\addplot[no markers, domain=-1:11,line width=1pt,dashed]{-0.6*x+8};
 			\addplot[no markers, domain=-1:11,line width =1pt,dashed]{-0.6*x+6};
 		\end{axis}
