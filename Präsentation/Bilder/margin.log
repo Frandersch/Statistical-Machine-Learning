@@ -1,6 +1,6 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.6.26)  26 JUN 2024 23:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.18)  27 JUN 2024 20:39
 entering extended mode
- restricted \write18 enabled.
+ \write18 enabled.
  %&-line parsing enabled.
 **./margin.tex
 (margin.tex
@@ -13,7 +13,7 @@ Document Class: standalone 2022/10/10 v1.3b Class to compile TeX sub-files stan
 dalone
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/tools\shellesc.sty
 Package: shellesc 2023/07/08 v1.0d unified shell escape interface for LaTeX
-Package shellesc Info: Restricted shell escape enabled on input line 77.
+Package shellesc Info: Unrestricted shell escape enabled on input line 75.
 )
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifluatex.sty
 Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
@@ -30,11 +30,11 @@ Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
 \XKV@tempa@toks=\toks18
 
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\keyval.tex))
-\XKV@depth=\count184
+\XKV@depth=\count188
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
-\sa@internal=\count185
-\c@sapage=\count186
+\sa@internal=\count189
+\c@sapage=\count190
 
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/standalone\standalone.c
 fg
@@ -45,14 +45,14 @@ Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
 File: size10.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 )
-\c@part=\count187
-\c@section=\count188
-\c@subsection=\count189
-\c@subsubsection=\count190
-\c@paragraph=\count191
-\c@subparagraph=\count192
-\c@figure=\count193
-\c@table=\count194
+\c@part=\count191
+\c@section=\count192
+\c@subsection=\count193
+\c@subsubsection=\count194
+\c@paragraph=\count195
+\c@subparagraph=\count196
+\c@figure=\count197
+\c@table=\count198
 \abovecaptionskip=\skip48
 \belowcaptionskip=\skip49
 \bibindent=\dimen140
@@ -79,14 +79,14 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count195
+\inf@bad=\count199
 LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count196
-\leftroot@=\count197
+\uproot@=\count266
+\leftroot@=\count267
 LaTeX Info: Redefining \overline on input line 399.
 LaTeX Info: Redefining \colon on input line 410.
-\classnum@=\count198
-\DOTSCASE@=\count199
+\classnum@=\count268
+\DOTSCASE@=\count269
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
@@ -99,20 +99,20 @@ LaTeX Info: Redefining \Bigg on input line 725.
 \big@size=\dimen143
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count266
+\macc@depth=\count270
 LaTeX Info: Redefining \bmod on input line 905.
 LaTeX Info: Redefining \pmod on input line 910.
 LaTeX Info: Redefining \smash on input line 940.
 LaTeX Info: Redefining \relbar on input line 970.
 LaTeX Info: Redefining \Relbar on input line 971.
-\c@MaxMatrixCols=\count267
+\c@MaxMatrixCols=\count271
 \dotsspace@=\muskip16
-\c@parentequation=\count268
-\dspbrk@lvl=\count269
+\c@parentequation=\count272
+\dspbrk@lvl=\count273
 \tag@help=\toks20
-\row@=\count270
-\column@=\count271
-\maxfields@=\count272
+\row@=\count274
+\column@=\count275
+\maxfields@=\count276
 \andhelp@=\toks21
 \eqnshift@=\dimen144
 \alignsep@=\dimen145
@@ -142,21 +142,21 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 Package: mathtools 2022/06/29 v1.29 mathematical typesetting tools
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/tools\calc.sty
 Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count273
-\calc@Bcount=\count274
+\calc@Acount=\count277
+\calc@Bcount=\count278
 \calc@Adimen=\dimen150
 \calc@Bdimen=\dimen151
 \calc@Askip=\skip53
 \calc@Bskip=\skip54
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count275
+\calc@Ccount=\count279
 \calc@Cskip=\skip55
 )
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/mathtools\mhsetup.sty
 Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
 )
-\g_MT_multlinerow_int=\count276
+\g_MT_multlinerow_int=\count280
 \l_MT_multwidth_dim=\dimen152
 \origjot=\skip56
 \l_MT_shortvdotswithinadjustabove_dim=\dimen153
@@ -205,10 +205,10 @@ Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
 fg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: xetex.def on input line 107.
+Package graphics Info: Driver file: pdftex.def on input line 107.
 
-(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\xetex.def
-File: xetex.def 2022/09/22 v5.0n Graphics/color driver for xetex
+(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
+File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen162
 \Gin@req@width=\dimen163
@@ -240,40 +240,34 @@ libraryfiltered.code.tex
 \pgf@yd=\dimen173
 \w@pgf@writea=\write3
 \r@pgf@reada=\read2
-\c@pgf@counta=\count277
-\c@pgf@countb=\count278
-\c@pgf@countc=\count279
-\c@pgf@countd=\count280
+\c@pgf@counta=\count281
+\c@pgf@countb=\count282
+\c@pgf@countc=\count283
+\c@pgf@countd=\count284
 \t@pgf@toka=\toks28
 \t@pgf@tokb=\toks29
 \t@pgf@tokc=\toks30
-\pgf@sys@id@count=\count281
+\pgf@sys@id@count=\count285
 
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf.c
 fg
 File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
 )
-Driver file for pgf: pgfsys-xetex.def
+Driver file for pgf: pgfsys-pdftex.def
 
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
-s-xetex.def
-File: pgfsys-xetex.def 2023-01-15 v3.1.10 (3.1.10)
-
-(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
-s-dvipdfmx.def
-File: pgfsys-dvipdfmx.def 2023-01-15 v3.1.10 (3.1.10)
+s-pdftex.def
+File: pgfsys-pdftex.def 2023-01-15 v3.1.10 (3.1.10)
 
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
 s-common-pdf.def
 File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
-)
-\pgfsys@objnum=\count282
 )))
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
 ssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfsyssoftpath@smallbuffer@items=\count283
-\pgfsyssoftpath@bigbuffer@items=\count284
+\pgfsyssoftpath@smallbuffer@items=\count286
+\pgfsyssoftpath@bigbuffer@items=\count287
 )
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
 sprotocol.code.tex
@@ -285,9 +279,10 @@ Package: xcolor 2023/11/15 v3.01 LaTeX color extensions (UK)
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
-Package xcolor Info: Driver file: xetex.def on input line 274.
+Package xcolor Info: Driver file: pdftex.def on input line 274.
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx)
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1350.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1354.
 Package xcolor Info: Model `RGB' extended on input line 1366.
 Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1368.
 Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1369.
@@ -307,7 +302,7 @@ code.tex)
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathparse
 r.code.tex
 \pgfmath@dimen=\dimen174
-\pgfmath@count=\count285
+\pgfmath@count=\count288
 \pgfmath@box=\box56
 \pgfmath@toks=\toks31
 \pgfmath@stack@operand=\toks32
@@ -335,7 +330,7 @@ ions.integerarithmetics.code.tex)
 code.tex)
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfloat
 .code.tex
-\c@pgfmathroundto@lastzeros=\count286
+\c@pgfmathroundto@lastzeros=\count289
 ))
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfint.code.
 tex)
@@ -375,7 +370,7 @@ File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgfpic=\box57
 \pgf@hbox=\box58
 \pgf@layerbox@main=\box59
-\pgf@picture@serial@count=\count287
+\pgf@picture@serial@count=\count290
 )
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
 egraphicstate.code.tex
@@ -410,8 +405,8 @@ File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
 eshade.code.tex
 File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@max=\dimen198
-\pgf@sys@shading@range@num=\count288
-\pgf@shadingcount=\count289
+\pgf@sys@shading@range@num=\count291
+\pgf@shadingcount=\count292
 )
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
 eimage.code.tex
@@ -481,7 +476,7 @@ Package: tikz 2023-01-15 v3.1.10 (3.1.10)
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibr
 aryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@plot@mark@count=\count290
+\pgf@plot@mark@count=\count293
 \pgfplotmarksize=\dimen259
 )
 \tikz@lastx=\dimen260
@@ -496,19 +491,19 @@ File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \tikz@figbox@bg=\box63
 \tikz@tempbox=\box64
 \tikz@tempbox@bg=\box65
-\tikztreelevel=\count291
-\tikznumberofchildren=\count292
-\tikznumberofcurrentchild=\count293
-\tikz@fig@count=\count294
+\tikztreelevel=\count294
+\tikznumberofchildren=\count295
+\tikznumberofcurrentchild=\count296
+\tikz@fig@count=\count297
 
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodule
 matrix.code.tex
 File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfmatrixcurrentrow=\count295
-\pgfmatrixcurrentcolumn=\count296
-\pgf@matrix@numberofcolumns=\count297
+\pgfmatrixcurrentrow=\count298
+\pgfmatrixcurrentcolumn=\count299
+\pgf@matrix@numberofcolumns=\count300
 )
-\tikz@expandcount=\count298
+\tikz@expandcount=\count301
 
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
 z/libraries\tikzlibrarytopaths.code.tex
@@ -527,8 +522,8 @@ e.tex
 \t@pgfplots@tokb=\toks37
 \t@pgfplots@tokc=\toks38
 \pgfplots@tmpa=\dimen268
-\c@pgfplots@coordindex=\count299
-\c@pgfplots@scanlineindex=\count300
+\c@pgfplots@coordindex=\count302
+\c@pgfplots@scanlineindex=\count303
 
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/sys\pgfplots
 sysgeneric.code.tex))
@@ -553,13 +548,13 @@ e\pgfplotsliststructure.code.tex)
 e\pgfplotsliststructureext.code.tex)
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructur
 e\pgfplotsarray.code.tex
-\c@pgfplotsarray@tmp=\count301
+\c@pgfplotsarray@tmp=\count304
 )
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructur
 e\pgfplotsmatrix.code.tex)
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/numtable\pgf
 plotstableshared.code.tex
-\c@pgfplotstable@counta=\count302
+\c@pgfplotstable@counta=\count305
 \t@pgfplotstable@a=\toks42
 )
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructur
@@ -572,14 +567,10 @@ sbinary.data.code.tex))
 sutil.verb.code.tex)
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/libs\pgflibr
 arypgfplots.surfshading.code.tex
-\c@pgfplotslibrarysurf@no=\count303
+\c@pgfplotslibrarysurf@no=\count306
 
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/sys\pgflibra
-rypgfplots.surfshading.pgfsys-xetex.def
-(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/sys\pgflibra
-rypgfplots.surfshading.pgfsys-dvipdfmx.def
-\c@pgfplotslibrarysurf@streamlen=\count304
-))))
+rypgfplots.surfshading.pgfsys-pdftex.def)))
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplot
 scolormap.code.tex
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplot
@@ -613,7 +604,7 @@ decorations.code.tex
 \pgfdecoratedinputsegmentcompleteddistance=\dimen271
 \pgfdecoratedinputsegmentremainingdistance=\dimen272
 \pgf@decorate@distancetomove=\dimen273
-\pgf@decorate@repeatstate=\count305
+\pgf@decorate@repeatstate=\count307
 \pgfdecorationsegmentamplitude=\dimen274
 \pgfdecorationsegmentlength=\dimen275
 )
@@ -629,7 +620,7 @@ z/libraries\tikzlibrarydecorations.pathreplacing.code.tex
 ions\pgflibrarydecorations.pathreplacing.code.tex))
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/libs\tikzlib
 rarypgfplots.contourlua.code.tex)
-\pgfplots@numplots=\count306
+\pgfplots@numplots=\count308
 \pgfplots@xmin@reg=\dimen276
 \pgfplots@xmax@reg=\dimen277
 \pgfplots@ymin@reg=\dimen278
@@ -645,14 +636,11 @@ File: tikzlibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
 aryplotmarks.code.tex
 File: pgflibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )))
-(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-xet
-ex.def
-File: l3backend-xetex.def 2024-01-04 L3 backend support: XeTeX
-\g__graphics_track_int=\count307
+(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
+tex.def
+File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count309
 \l__pdf_internal_box=\box67
-\g__pdf_backend_object_int=\count308
-\g__pdf_backend_annotation_int=\count309
-\g__pdf_backend_link_int=\count310
 ) (margin.aux)
 \openout1 = `margin.aux'.
 
@@ -665,32 +653,49 @@ LaTeX Font Info:    ... okay on input line 6.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 6.
 LaTeX Font Info:    ... okay on input line 6.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 6.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 6
-.
-
-(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmr.fd
-File: ts1cmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
-)
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 6.
 LaTeX Font Info:    ... okay on input line 6.
 LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 6.
 LaTeX Font Info:    ... okay on input line 6.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
 LaTeX Font Info:    ... okay on input line 6.
 
+(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
+ii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count310
+\scratchdimen=\dimen282
+\scratchbox=\box68
+\nofMPsegments=\count311
+\nofMParguments=\count312
+\everyMPshowfont=\toks43
+\MPscratchCnt=\count313
+\MPscratchDim=\dimen283
+\MPnumerator=\count314
+\makeMPintoPDFobject=\count315
+\everyMPtoPDFconversion=\toks44
+)
+(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
+ase.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.c
+fg
+File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+))
 
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into 
 your preamble.
  on input line 6.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 28.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 33.
 
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 28.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 33.
 
 
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -698,19 +703,30 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 [1
 
-] (margin.aux)
+{C:/Users/Franz/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+(margin.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-13>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 24225 strings out of 409592
- 623855 string characters out of 5773120
- 1927650 words of memory out of 5000000
- 45996 multiletter control sequences out of 15000+600000
- 560703 words of font info for 48 fonts, out of 8000000 for 9000
- 1348 hyphenation exceptions out of 8191
- 102i,9n,107p,720b,1909s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 24587 strings out of 474461
+ 639914 string characters out of 5742862
+ 1931998 words of memory out of 5000000
+ 46523 multiletter control sequences out of 15000+600000
+ 561593 words of font info for 50 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 102i,10n,107p,720b,1914s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/Franz/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmbx12.pfb><C:/Users/Franz/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmmi12.pfb><C:/Users/Franz/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/amsfonts/cm/cmr10.pfb><C:/Users/Franz/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Franz/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on margin.pdf (1 page, 45892 bytes).
+PDF statistics:
+ 34 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
-Output written on margin.pdf (1 page).
