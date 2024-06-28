@@ -1,4 +1,4 @@
-\documentclass[border=5pt]{standalone}
+\documentclass[border=15pt]{standalone}
 \usepackage{amsmath,amssymb,mathtools}
 \usepackage{tikz}
 \usepackage{pgfplots}
@@ -7,9 +7,9 @@
 	\begin{tikzpicture}
 		\begin{axis}[
 			xmin=0,
-			xmax=10,
+			xmax=9,
 			ymin=0,
-			ymax=10,
+			ymax=9,
 			axis equal,
 			width=15cm,
 			axis x line=center,
@@ -23,7 +23,7 @@
 			]
 			%\addplot[no markers, domain=-1:11]{(5/3)*x};
 			\draw[magenta,thick] (axis cs:0,0.05)--(axis cs:3.078235,5.177058);
-			\draw[->,green,line width=1pt] (axis cs:0,0)--(axis cs:5,8.333) node[above,pos=1]{\textcolor{green}{$\mathbf{\beta}$}};
+			\draw[->,green,line width=1pt] (axis cs:0,0)--(axis cs:5,8.333) node[above,pos=1,font=\Large]{\textcolor{green}{$\mathbf{\beta}$}};
 				\draw[magenta,thick] (axis cs:0,0.05)--(axis cs:3.078235,5.177058);
 			\draw[->,line width=1pt] (axis cs:0,0)--(axis cs:8,2.2);
 			\draw[->,line width=1pt] (axis cs:0,0)--(axis cs:4.5,4.3);
