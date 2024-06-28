@@ -19,3 +19,4 @@ po/*~
 rsconnect/
 .log
 .aux
+.synctex.gz
