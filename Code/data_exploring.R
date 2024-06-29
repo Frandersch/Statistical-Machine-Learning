@@ -87,7 +87,8 @@ accuracy <- sum(diag(confusion_matrix))/sum(confusion_matrix)
 
 #verschiedene Cost-Budgets
 tuning_c <- function(costs) {
-  for (i in costs) {
+ matrixcosts <- matrix(rep(NA,2*length(costs)),nrow = length(costs),ncol=2)
+   for (i in costs) {
     svc_model <-
       svm(dg10 ~ .,
           data = allb_train,
@@ -97,8 +98,10 @@ tuning_c <- function(costs) {
     confusion_matrix <-
       table(predicted = predictions, real = allb_test$dg10)
     accuracy <- sum(diag(confusion_matrix)) / sum(confusion_matrix)
-    cat("Cost of ", i, " has an accuracy of ", accuracy, "\n", sep = "")
-  }
+    matrixcosts[i,1] <- costs[i]
+    matrixcosts[i,2] <- accuracy
+   }
+ return(matrixcosts)
 }
 
 tuning_c(c(0.1, 1, 10))
