@@ -88,12 +88,12 @@ accuracy <- sum(diag(confusion_matrix))/sum(confusion_matrix)
 #verschiedene Cost-Budgets
 tuning_c <- function(costs) {
  matrixcosts <- matrix(rep(NA,2*length(costs)),nrow = length(costs),ncol=2)
-   for (i in costs) {
+   for (i in 1:length(costs)) {
     svc_model <-
       svm(dg10 ~ .,
           data = allb_train,
           kernel = "linear",
-          cost = i)
+          cost = costs[i])
     predictions <- predict(svc_model, allb_test)
     confusion_matrix <-
       table(predicted = predictions, real = allb_test$dg10)
@@ -101,47 +101,48 @@ tuning_c <- function(costs) {
     matrixcosts[i,1] <- costs[i]
     matrixcosts[i,2] <- accuracy
    }
+ colnames(matrixcosts) <- c("cost","accuracy")
  return(matrixcosts)
 }
 
-tuning_c(c(0.1, 1, 10))
+tuning_c(c(0.1, 1,10))
 #best for cost of 1
 
 #support vector machine mit polynomial Kernel
 svm_model_polynomial <- svm(dg10 ~ ., data = allb_train, kernel = "polynomial")
-summary(svm_model)
+summary(svm_model_polynomial)
 
-predictions <- predict(svm_model, allb_test)
+predictions <- predict(svm_model_polynomial, allb_test)
 
 confusion_matrix <- table(predicted = predictions, real = allb_test$dg10)
 accuracy <- sum(diag(confusion_matrix))/sum(confusion_matrix)
 
 #verschiedene C und degree für polynomial Kernel
 tuning_c_degree <- function(costs, degree) {
-  for (i in costs) {
-    for (j in degree) {
+  tuning_grid <- matrix(rep(NA,length(costs)*length(degree)*3),
+                        nrow = length(costs)*length(degree),
+                        ncol =3)
+  for (i in 1:length(costs)) {
+    for (j in 1:length(degree)) {
       svm_model <-
         svm(
           dg10 ~ .,
           data = allb_train,
           kernel = "polynomial",
-          cost = i,
-          degree = j
+          cost = costs[i],
+          degree = degree[j]
         )
       predictions <- predict(svm_model, allb_test)
       confusion_matrix <-
         table(predicted = predictions, real = allb_test$dg10)
       accuracy <- sum(diag(confusion_matrix)) / sum(confusion_matrix)
-      cat("Cost of ",
-          i,
-          " and degree of ",
-          j,
-          " has an accuracy of ",
-          accuracy,
-          "\n",
-          sep = "")
+      tuning_grid[(i-1)*length(degree)+j,1] <-costs[i]
+      tuning_grid[(i-1)*length(degree)+j,2] <- degree[j]
+      tuning_grid[(i-1)*length(degree)+j,3] <- accuracy
     }
   }
+  colnames(tuning_grid) <- c("cost","degree","accuracy")
+  return(tuning_grid)
 }
 
 tuning_c_degree(c(1, 10, 20), c(2, 3, 4))
@@ -149,39 +150,39 @@ tuning_c_degree(c(1, 10, 20), c(2, 3, 4))
 
 #support vector machine mit radial Kernel
 svm_model_radial <- svm(dg10 ~ ., data = allb_train, kernel = "radial")
-summary(svm_model)
+summary(svm_model_radial)
 
-predictions <- predict(svm_model, allb_test)
+predictions <- predict(svm_model_radial, allb_test)
 
 confusion_matrix <- table(predicted = predictions, real = allb_test$dg10)
 accuracy <- sum(diag(confusion_matrix))/sum(confusion_matrix)
 
 #verschiedene C und Gamma für radial Kernel
 tuning_c_gamma <- function(costs, gammas) {
-  for (i in costs) {
-    for (j in gammas) {
+  tuning_grid <- matrix(rep(NA,length(costs)*length(gammas)*3),
+                        nrow = length(costs)*length(gammas),
+                        ncol =3)
+  for (i in 1:length(costs)) {
+    for (j in 1:length(gammas)) {
       svm_model <-
         svm(
           dg10 ~ .,
           data = allb_train,
           kernel = "radial",
-          cost = i,
-          gamma = j
+          cost = costs[i],
+          gamma = gammas[j]
         )
       predictions <- predict(svm_model, allb_test)
       confusion_matrix <-
         table(predicted = predictions, real = allb_test$dg10)
       accuracy <- sum(diag(confusion_matrix)) / sum(confusion_matrix)
-      cat("Cost of ",
-          i,
-          " and gamma of ",
-          j,
-          " has an accuracy of ",
-          accuracy,
-          "\n",
-          sep = "")
+      tuning_grid[(i-1)*length(gammas)+j,1] <-costs[i]
+      tuning_grid[(i-1)*length(gammas)+j,2] <- gammas[j]
+      tuning_grid[(i-1)*length(gammas)+j,3] <- accuracy
     }
   }
+  colnames(tuning_grid) <- c("cost","gamma","accuracy")
+  return(tuning_grid)
 }
 
 tuning_c_gamma(c(1, 10), c(0.001, 0.01, 0.1, 2))
