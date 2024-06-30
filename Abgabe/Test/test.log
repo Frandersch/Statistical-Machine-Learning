@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.18)  15 JUN 2024 20:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.18)  30 JUN 2024 19:02
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -403,15 +403,7 @@ Package biblatex Info: ... file 'test.bbl' found.
  (test.bbl)
 Package biblatex Info: Reference section=0 on input line 6.
 Package biblatex Info: Reference segment=0 on input line 6.
-
-
-LaTeX Warning: Citation 'james_introduction_2021' on page 1 undefined on input 
-line 7.
-
-
-LaTeX Warning: Empty bibliography on input line 8.
-
-[1
+ [1
 
 {C:/Users/Franz/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] (test.aux)
  ***********
@@ -419,31 +411,27 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-13>
  ***********
 
-LaTeX Warning: There were undefined references.
 
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                test
-(biblatex)                and rerun LaTeX afterwards.
+Package biblatex Warning: Please rerun LaTeX.
+(biblatex)                Page breaks have changed.
 
 Package logreq Info: Writing requests to 'test.run.xml'.
 \openout1 = `test.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 9462 strings out of 474461
- 185488 string characters out of 5742862
+ 9492 strings out of 474461
+ 186311 string characters out of 5742862
  1925998 words of memory out of 5000000
- 31740 multiletter control sequences out of 15000+600000
- 559907 words of font info for 39 fonts, out of 8000000 for 9000
+ 31771 multiletter control sequences out of 15000+600000
+ 559131 words of font info for 38 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  66i,5n,81p,679b,5050s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Franz\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx
-1200.pk> <C:\Users\Franz\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
-0\ecrm1200.pk>
-Output written on test.pdf (1 page, 8339 bytes).
+ <C:\Users\Franz\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm
+1200.pk>
+Output written on test.pdf (1 page, 5919 bytes).
 PDF statistics:
- 34 PDF objects out of 1000 (max. 8388607)
+ 24 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

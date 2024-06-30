@@ -8,6 +8,8 @@ output:
     keep_tex: true
     includes:
       in_header: header.tex
+    citation_package: biblatex
+bibliography: Literatur.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -20,7 +22,9 @@ knitr::opts_chunk$set(echo = TRUE)
 \clearpage
 \pagenumbering{arabic}
 \section{Einleitung}
-Support Vector Machines sind eine feine Sache \parencite{james_introduction_2021s}
+Support Vector Machines sind eine feine Sache \parencite{james_introduction_2021}
+\newpage
+\addcontentsline{toc}{section}{Literatur}
 
 
 
