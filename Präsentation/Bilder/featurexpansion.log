@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.18)  29 JUN 2024 14:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.18)  30 JUN 2024 16:26
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -167,31 +167,12 @@ Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
 \l_MT_below_shortintertext_sep=\dimen158
 \xmathstrut@box=\box54
 \xmathstrut@dim=\dimen159
-)
-(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/pgf/frontendlayer\tikz.
-sty
-(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\pgf.sty
-(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfrcs.st
-y
-(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil
--common.tex
-\pgfutil@everybye=\toks24
-\pgfutil@tempdima=\dimen160
-\pgfutil@tempdimb=\dimen161
-)
-(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil
--latex.def
-\pgfutil@abb=\box55
-)
-(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfrcs.
-code.tex
-(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgf\pgf.revision.tex)
-Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
-))
-Package: pgf 2023-01-15 v3.1.10 (3.1.10)
+) (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/pgfplots\pgfplots.sty
 
-(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\pgfcore.
-sty
+(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.rev
+ision.tex)
+Package: pgfplots 2021/05/15 v1.18.1 Data Visualization (1.18.1)
+
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
 
@@ -210,9 +191,33 @@ Package graphics Info: Driver file: pdftex.def on input line 107.
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
 File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen162
-\Gin@req@width=\dimen163
+\Gin@req@height=\dimen160
+\Gin@req@width=\dimen161
 )
+(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/pgf/frontendlayer\tikz.
+sty
+(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\pgf.sty
+(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfrcs.st
+y
+(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil
+-common.tex
+\pgfutil@everybye=\toks24
+\pgfutil@tempdima=\dimen162
+\pgfutil@tempdimb=\dimen163
+)
+(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil
+-latex.def
+\pgfutil@abb=\box55
+)
+(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfrcs.
+code.tex
+(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgf\pgf.revision.tex)
+Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
+))
+Package: pgf 2023-01-15 v3.1.10 (3.1.10)
+
+(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\pgfcore.
+sty
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/pgf/systemlayer\pgfsys.
 sty
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
@@ -509,11 +514,6 @@ File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
 z/libraries\tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )))
-(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/pgfplots\pgfplots.sty
-(C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.rev
-ision.tex)
-Package: pgfplots 2021/05/15 v1.18.1 Data Visualization (1.18.1)
-
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.cod
 e.tex
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotscore
@@ -684,29 +684,23 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
+Package pgfplots notification 'compat/show suggested version=true': you might b
+enefit from \pgfplotsset{compat=1.18} (current compat level: 1.11).
 
-Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
-ick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into 
-your preamble.
- on input line 7.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 25.
+Package pgf Warning: No path specified that can be filled on input line 48.
+
+LaTeX Font Info:    Trying to load font information for U+msa on input line 48.
 
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 25.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 48.
 
 
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-
-Package pgf Warning: No path specified that can be filled on input line 25.
-
-
-Package pgf Warning: No path specified that can be filled on input line 25.
-
 [1
 
 {C:/Users/Franz/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
@@ -717,21 +711,20 @@ L3 programming layer <2024-02-13>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 24629 strings out of 474461
- 641462 string characters out of 5742862
- 1977998 words of memory out of 5000000
- 46568 multiletter control sequences out of 15000+600000
+ 24643 strings out of 474461
+ 641603 string characters out of 5742862
+ 1976998 words of memory out of 5000000
+ 46582 multiletter control sequences out of 15000+600000
  559768 words of font info for 44 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 102i,10n,107p,729b,2064s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,10n,107p,738b,2170s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Franz/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmmi10.pfb><C:/Users/Franz/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmmi7.pfb><C:/Users/Franz/AppData/Local/Programs/MiKTeX/fonts/type1/pu
-blic/amsfonts/cm/cmr10.pfb><C:/Users/Franz/AppData/Local/Programs/MiKTeX/fonts/
-type1/public/amsfonts/cm/cmr7.pfb>
-Output written on featurexpansion.pdf (1 page, 48867 bytes).
+blic/amsfonts/cm/cmr7.pfb>
+Output written on featurexpansion.pdf (1 page, 37632 bytes).
 PDF statistics:
- 33 PDF objects out of 1000 (max. 8388607)
+ 28 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  25 words of extra memory for PDF output out of 10000 (max. 10000000)
 
