@@ -3,6 +3,8 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 \usepackage{pgf}
+\usepackage{xcolor}
+\definecolor{darkgreen}{RGB}{89,134,50}
 \begin{document}
 	\begin{tikzpicture}
 		\begin{axis}[
@@ -16,24 +18,25 @@
 			xmajorticks=false,
 			ymajorticks=false,
 			width=15cm,
-			ylabel style={right,font=\Large},
+			ylabel style={right,font=\huge},
 			ylabel=$X_2$,
-			xlabel style={above,right,font=\Large},
-			xlabel=$X_1$
+			xlabel style={above,right,font=\huge},
+			xlabel=$X_1$,
+			line width=1.5pt
 			]
 			%\addplot[no markers, domain=-1:11]{(5/3)*x};
 			
-			\addplot[only marks, mark=-,draw=green,mark size=0.2cm,thick]coordinates {(5,3)};
-			\addplot[only marks, mark=+,draw=red,mark size=0.2cm,thick]coordinates {(8,3.2)};
-			\addplot[no markers,domain=-1:11,thick,blue,line width=1.7pt]{-0.6*x+7};
-			\addplot[no markers, domain=-1:11,dashed,line width=1pt]{-0.6*x+8};
-			\addplot[no markers, domain=-1:11,dashed,line width=1pt]{-0.6*x+6};
+			\addplot[only marks, mark=-,draw=green,mark size=0.3cm,line width=2pt]coordinates {(5,3)};
+			\addplot[only marks, mark=+,draw=red,mark size=0.3cm,line width=2pt]coordinates {(8,3.2)};
+			\addplot[no markers,domain=-1:11,thick,blue,line width=2.8pt]{-0.6*x+7};
+			\addplot[no markers, domain=-1:11,dashed,line width=1.5pt]{-0.6*x+8};
+			\addplot[no markers, domain=-1:11,dashed,line width=1.5pt]{-0.6*x+6};
 			
-			\draw[->,line width=1pt] (axis cs:0,0)--(axis cs:5,3) node[above,pos=0.5, font=\Large]{$\mathbf{x^-}$};
-			\draw[->,line width=1pt] (axis cs:0,0)--(axis cs:8,3.2) node[below,pos=0.5, font=\Large]{$\mathbf{x^+}$};
-			\draw[->,line width=1pt] (axis cs:0,0)--(axis cs:5,8.333) node[above,pos=1, font=\Large]{$\beta$};
-			\draw[->,cyan,line width=1pt] (axis cs:5,3)--(axis cs:8,3.2) node[above,pos=0.8, font=\Large]{\colorbox{white}{\textcolor{cyan}{$(x^+-x^-)$}}};
-			\draw[magenta,thick,line width=1.5pt] (axis cs:2.647058,4.411763)--(axis cs:3.529411,5.882352);
+			\draw[->,line width=2.5pt] (axis cs:0,0)--(axis cs:5,3) node[above,pos=0.5, font=\huge]{$\mathbf{x^-}$};
+			\draw[->,line width=2.5pt] (axis cs:0,0)--(axis cs:8,3.2) node[below,pos=0.5, font=\huge]{$\mathbf{x^+}$};
+			\draw[->,line width=2.5pt] (axis cs:0,0)--(axis cs:5,8.333) node[above,pos=1, font=\huge]{$\beta$};
+			\draw[->,cyan,line width=2.5pt] (axis cs:5,3)--(axis cs:8,3.2) node[above,pos=0.9, font=\huge]{\colorbox{white}{\textcolor{cyan}{$(x^+-x^-)$}}};
+			\draw[magenta,line width=2.5pt] (axis cs:2.647058,4.411763)--(axis cs:3.529411,5.882352);
 		\end{axis}
 	\end{tikzpicture}
 \end{document}

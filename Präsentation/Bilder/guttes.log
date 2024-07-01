@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.18)  28 JUN 2024 22:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.18)  1 JUL 2024 15:48
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -690,12 +690,12 @@ ick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into
 your preamble.
  on input line 6.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 42.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 35.
 
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 42.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 35.
 
 
 (C:\Users\Franz\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -711,17 +711,17 @@ L3 programming layer <2024-02-13>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 24592 strings out of 474461
- 640246 string characters out of 5742862
- 1931998 words of memory out of 5000000
- 46531 multiletter control sequences out of 15000+600000
- 560668 words of font info for 47 fonts, out of 8000000 for 9000
+ 24597 strings out of 474461
+ 640360 string characters out of 5742862
+ 1930998 words of memory out of 5000000
+ 46538 multiletter control sequences out of 15000+600000
+ 562705 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 102i,10n,107p,720b,1924s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 102i,10n,107p,720b,1934s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Franz/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmmi12.pfb><C:/Users/Franz/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmr10.pfb>
-Output written on guttes.pdf (1 page, 20924 bytes).
+fonts/cm/cmr12.pfb>
+Output written on guttes.pdf (1 page, 20432 bytes).
 PDF statistics:
  19 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
