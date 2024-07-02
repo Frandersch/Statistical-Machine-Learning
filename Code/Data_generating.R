@@ -105,6 +105,7 @@ sum(diag(confusion_matrix_linear_nonsep))/sum(confusion_matrix_linear_nonsep)
 confusion_matrix_radial_sep <- table(prediction_radial_sep, linear_testdata_sep$y)
 sum(diag(confusion_matrix_radial_sep))/sum(confusion_matrix_radial_sep)
 
+
 ##############################################################################
 ####################### nichtlineare Daten, für Radial #######################
 ##############################################################################
