@@ -1,0 +1,14 @@
+---
+title: "Einleitung"
+author: "Franz Andersch & Niklas Münz"
+date: "`r Sys.Date()`"
+output: 
+  pdf_document:
+    number_sections: true
+    keep_tex: true
+    includes:
+      in_header: header.tex
+    citation_package: biblatex
+bibliography: Literatur.bib
+---
+Wenn es darum geht sinvoll Daten in zwei Gruppen einzuteilen, dann mag Idee eine gerade Linie durchzuziehen nicht sonderlich einfallsreich klingen. Allerdings ist zu bedenken, dass ein solcher Ansatz sehr praktische Vorteile bietet, die hier im späteren noch ausgeführt werden sollen. Bereits früh wurde im Kontext von Machine Learning über Klassifikationsmethoden gesprochen, die über eine lineare Entscheidungsgrenze funktionieren.\\
