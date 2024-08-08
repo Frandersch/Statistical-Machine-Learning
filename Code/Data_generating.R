@@ -201,3 +201,36 @@ sum(diag(confusion_matrix_linear))/sum(confusion_matrix_linear)
 
 confusion_matrix_radial <- table(prediction_radial, testdata$y)
 sum(diag(confusion_matrix_radial))/sum(confusion_matrix_radial)
+
+#radial structured data
+#äußerere sphäre
+azimutalw <- runif(500,0,2*pi)
+polarw <- runif(500,0,2*pi)
+r <- 2+rnorm(500,0,0.2)
+x1 <- r*sin(polarw)*cos(azimutalw)
+y1 <- r*sin(polarw)*sin(azimutalw)
+z1 <- r*cos(polarw)
+
+#innerer sphäre
+azimutalw <- runif(500,0,2*pi)
+polarw <- runif(500,0,2*pi)
+r2 <- 0.7+rnorm(500,0,0.2)
+x2 <- r2*sin(polarw)*cos(azimutalw)
+y2 <- r2*sin(polarw)*sin(azimutalw)
+z2 <- r2*cos(polarw)
+
+group <- c(rep(1,500),rep(2,500))
+df <- data.frame(x=c(x1,x2),y=c(y1,y2),z=c(z1,z2),group = group)
+cor(df)
+library(rgl)
+plot3d(df$x,df$y,df$z,col = df$group)
+
+#erweiterung in mehrere Dimensionen
+
+#für einen Vektor
+winkel <- runif(499,0,2*pi)
+radius <- 2+rnorm(1,0,02)
+x <- vector(mode="numeric",length=length(winkel)+1)
+for(i in 1:length(winkel)){
+  x[i]
+}
