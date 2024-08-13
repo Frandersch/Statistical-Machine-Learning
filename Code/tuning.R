@@ -166,3 +166,7 @@ tuning_c_gamma_coef0 <- function(costs, gammas,coef0s) {
 }
 
 tuning_c_gamma_coef0(c(0.1, 1, 10),c(0.001, 0.01, 0.1),c(0.001, 0.01, 0.1))
+
+#iterative tuning
+
+#adaptive tuning
