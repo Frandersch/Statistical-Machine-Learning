@@ -1,0 +1,111 @@
+---
+title: "Funktionsweise"
+author: "Franz Andersch & Niklas Münz"
+date: "`r Sys.Date()`"
+output: 
+  pdf_document:
+    number_sections: true
+    keep_tex: true
+    includes:
+      in_header: header.tex
+    citation_package: biblatex
+bibliography: Literatur.bib
+---
+
+\subsection{Hard Margin Classifier}
+
+Um das grundlegende Prinzip der SVMs darzustellen gehen wir zuerst von einer Datensituation aus, in der sich zwei gruppen optimal durch eine lineare entscheidungsgrenze trennen lassen. Das endgültige Ziel ist es eine sogenannte Hyperplane zu finden die diese Daten möglichst gut seperiert und als Entscheidungsgrenze funktioniert. Die allgemeine Form einer solchen hyperplain lautet
+\begin{align}
+\beta_0+ \beta_1 X_1+\beta_2 X_2+...+\beta_n X_n=0
+\end{align}
+oder in Vektorschreibweise
+\begin{align}
+\overline{\beta}\cdot\overline{x}+\beta_0=0 \label{eq:hyperplanevec}
+\end{align}
+Die geometrische Interpretation des Vektors $\beta$ und des Skalars $\beta_0$ wird in Abbildung \ref{fig:Ebene} im zwei dimensionalen Fall dargestellt.
+
+\begin{figure}[h]
+    \centering
+    \begin{minipage}{0.45\textwidth} 
+        \centering
+        \includegraphics[width=\textwidth,trim=0.5cm 0.5cm 0.5cm 0.5cm]{Images/decision_boundary.pdf} 
+        \caption{Konstruktion der Hyperebene}
+        \label{fig:Ebene}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth} 
+        \centering
+        \includegraphics[width=\textwidth,trim=0.5cm 0.5cm 0.5cm 0.5cm]{Images/guttes.pdf}
+        \caption{Konstruktion der Margins}
+        \label{fig:Margin}
+    \end{minipage}
+\end{figure}
+
+Die blaue Linie soll die Hyperplain darstellen. Im zweidiemnsionalen handelt es sich hier um eine Linie. Der $2 \times 1$ Vektor $\overline{\beta}$ liegt immer senkrecht zur konstruierten Hyperplane. Würde man alle Vektoren, die auf der Hyperplane landen, auf den $\overline{\beta}$-Vektor Projezieren, dann hätten alle diese Projektionen die selbe Länge $c$. Also gilt für alle Punkte, die auf der Ebene liegen.
+\begin{align}
+\frac{\overline \beta}{||\overline{\beta}||}\cdot \overline{x}=c \Leftrightarrow \overline{\beta}\cdot \overline{x}=c \cdot ||\overline{\beta}||\label{eq:betanull}
+\end{align}
+ersetzet man in Formel \ref{eq:betanull} $c \cdot ||\overline{\beta}||$ mit $-\beta_0$ und zieht dies dann auf die andere Seite, kommen man wieder bei der ursprünglichen Form aus Formel \ref{eq:hyperplanevec} raus. 
+
+Als nächstes stellt sich jetzt die Frage, welches $\overline{\beta}$ und $\beta_0$ die optimale Hyperplane darstellen. Betrachtet man die Abbildung \ref{fig:Margin}, dann ist zu erkennen, dass die Datenpunkte durch die blaue Linie getrennt werden. Allerdings könnte man theorethisch undendlich viele andere Hyperplains durch rotation oder verschiebung konstruieren, die trotzdem die Daten in ihren Ausprägungen trennen. Um eine eindeutige Lösung zu finden, wird als nächstes ein bereich um die Hperplane abgesteck. In Abbildung \ref{fig:Margin} dargestell durch die gestrichelten scharzen linien, welche man als Schranken bezeichnen könnte. In diesem Bereich sollen keine Datenpunkte liegen und die Schranken sollen immer parallel zur Hyperplain seien und den gleichen Abstand zu ihr haben. Außerdem dürfen keine positiven Samples unterhalb der oberen Schranke liegen und keine negativen unterhalb. Das gegenteil gilt dementsprechend für die untere Schranke. Als Definition für die beiden Schranken wird festgelegt
+\begin{align}
+\overline{\beta}\cdot \overline{x}+\beta_0=1\label{eq:posSV}
+\end{align}
+für die Schranke in richtung der grünen Datenpunkte und
+\begin{align}
+\overline{\beta}\cdot \overline{x}+\beta_0=-1\label{eq:negSV}
+\end{align}
+für die Schranke in Richting der roten Datenpunkte. Aus dieser Beschränkung für die Hyperplane können wir auch ableiten, dass für die positiven Samples $\overline{x}^+$ immer gilt $\overline{\beta}\cdot \overline{x}^++\beta_0\ge 1$ und für negative Samples $\overline{x}^-$ immer gilt $\overline{\beta}\cdot \overline{x}^-+\beta_0\le -1$. Durch einführen einer weiteren Variable $y$, welche die eigenschaft hat, dass die den Wert 1 bei einem positiven und den Wert -1 bei einem negativen Sample annimmt, können diese zwei Beschränkungen zu einer zusammengefasst werden
+\begin{align}
+y(\overline{\beta}\cdot \overline{x}+\beta_0)\ge 1\label{eq:Nebenbedingung}
+\end{align}
+Da das Verfahren auch maximum Margin Classifier gennant wird, gilt es jetzt noch eine Definition für den Margin also den Abstand zwischen den zwei Schranken zu finden, der schließlich maximiert werden soll. Damit diese Schranken, maximal weit auseinander liegen, muss es zwangsläufig Datenpunkte geben, die genau auf den Schranken liegen. Diese Datenpunkte haben eine wichtige Rolle für die Konstruktion des Margins. Es sind ausschließlich diese Datenpunkte, die einen Einfluss auf die finalen werte von $\overline{\beta}$ und $\beta_0$ haben werden. Sie werden \textbf{Support-Vektoren} genannt und geben den SVMs ihren Namen.
+\begin{figure}[h]
+\centering
+ \includegraphics[width=0.5\textwidth,trim=0.5cm 0.5cm 0.5cm 0.5cm]{Images/margin.pdf} 
+        \caption{Abhängigkeit des Margins von den Support-Vektoren}
+        \label{fig:SupVecs}
+\end{figure}
+In Abbildung \ref{fig:SupVecs} sind zwei solcher Support-Vektoren zu einem negativen und positiven Sample dargestellt. Der Margin kann dann dargestellt werden als eine Projektion dieser Differenz ($\overline{x}^+-\overline{x}^+$) auf den $\overline{\beta}$-Vektor. Damit am Ende die Länge dieses Margin $M$ rauskommt muss $\overline{\beta}$ noch durch seine Länge geteilt werden.
+\begin{align}
+M=\frac{\overline{\beta}}{||\overline{\beta}||}\cdot \left(\overline{x}^+-\overline{x}^+\right)=\frac{\overline{\beta}\cdot\overline{x}^- -\overline{\beta}\cdot\overline{x}^+}{||\overline{\beta}||}\label{eq:maring1}
+\end{align}
+Es ist bekannt, dass für postive Supportvektoren gilt $\overline\beta \overline{x}^+ +\beta_0 = 1 \Leftrightarrow \overline\beta \overline{x}^+=1-\beta_0$ und für negative $\overline\beta \overline{x}^- +\beta_0 = -1 \Leftrightarrow \overline\beta \overline{x}^-=-1-\beta_0$. Setzt man dies ein in Formel \ref{eq:maring1} erhält man als Maximisierungsziel
+\begin{align}
+M=\frac{1-\beta_0-(-1-\beta_0)}{||\overline\beta||}=\frac{2}{||\overline\beta||}\label{eq:margin2}
+\end{align}
+Um diesen Maximierungsschritt angenehmer zu gestalten, wird an der Stelle versucht den Ausdruck $\frac{1}{2}||\overline \beta||^2=\frac{1}{2}\overline \beta '\cdot \overline \beta$ zu minimieren. Was im Endeffekt ebenfalls dazu führt das der Ausdruck in Formel \ref{eq:margin2} maximiert wird.
+
+Dieses Optimierungsproblem mit der Nebenbedingung aus Formel \ref{eq:Nebenbedingung} lässt sich am besten über Lagrange-Multiplier lösen
+\begin{align}
+\mathcal{L}(\overline\beta,\beta_0,\overline \alpha)=\frac{1}{2}\overline \beta ' \overline \beta-\sum \alpha_i[y_i(\overline \beta \cdot \overline{x_i}+\beta_0)-1]\label{eq:Lagrange}
+\end{align}
+Wird dieser Ausdruck partiell abgeleitet und gleich null gesetzt erhält man als zwischen ergebnis \begin{align}
+\frac{\partial \mathcal{L}}{\partial \beta}=\beta-\sum \alpha_i y_i \overline{x_i}\overset{!}{=}0 \Rightarrow \beta=\sum \alpha_i y_i \overline{x_i}\label{eq:solutbeta}
+\end{align}
+somit zeigt sich, dass $\overline{\beta}$ als linearkombination der Inputvektoren dargestellt werden kann. Weiterhin gilt für $\beta_0$
+\begin{align}
+\frac{\partial \mathcal{L}}{\partial \beta_0}=\sum \alpha_i y_i \overline{x_i}\overset{!}{=}0\label{eq:solutbeta0}
+\end{align}
+Setzt man dies in \eqref{eq:Lagrange} ein erhält man einen neuen Ausdruck, denn es gilt zu minimieren
+\begin{align}
+\mathcal{L}(\overline \alpha)=-\frac{1}{2}\sum \sum \alpha_i \alpha_j y_i y_j \overline{x}_i \cdot \overline{x}_j+\sum \alpha_i
+\end{align}
+Die Lösung für diesen Ausdruck erfolgt dann über sogenannte \enquote{standard non linear optimization algorithms for quadratic forms} \parencite{boserTrainingAlgorithmOptimal1992}. Nachem für $\overline \alpha$ gelöst wurde, kann dies in \eqref{eq:solutbeta} eingesetzt werden um das optimale $\overline{\beta}$ zu erhalten. Es kann gezeigt werden, dass die gelösten $\alpha_i$ lediglich für die Supportvektoren werte ungelich Null annehmen. Somit ist der Koeffizientenvektor $\overline{\beta}$ sogar eine Linearkombination von nur den Supportvektoren \parencite{boserTrainingAlgorithmOptimal1992}. Die letzte unbekannte $\beta_0$ kann gelöst werden, indem man mithilfe von einem positiven/negativen Support Vektor \eqref{eq:posSV}/ \eqref{eq:negSV} nach $\beta_0$ löst.
+
+Mit den gelösten Werten zur optimalen Hyperplane kann jetzt auch eine Entscheidungsregel für ungelabelte Datenvektoren $\overline{x}_u$ konstruiert werden. Bedenkt man also wenn man einen Vektor der nicht auf der Hypeplane liegt in \eqref{eq:betanull} einsetzt erhält man also $\frac{\overline \beta}{||\overline{\beta}||}\cdot \overline{x}_u=c+k$. Wenn $k$ positiv ist, liegt der neue Datenpunkt oberhalb der Hyperplane liegt und somit als positives Sample gewertet wird. Wenn $k$ negativ ist, dann liegt der Datenpunkt unterhalb der Hyperplane und wird als negativ gewertet. Mit der gleichen Umformung wie weiter oben schon beschrieben kommt man zu folgender Entscheidungsregel
+\begin{align}
+f(\overline{x}_u)=\begin{cases}\mathrm{positiv}&\text{wenn } \overline{\beta}\cdot \overline{x}_u+\beta_0 > 0\\
+\mathrm{negativ} & \text{wenn }\overline{\beta}\cdot \overline{x}_u+\beta_0<0
+\end{cases}
+\end{align}
+
+\subsection{Soft Margin Classifier}
+Dass die Daten sich perfekt linear trennen lassen ist zwar ein gut um die Vorgehensweise zu veranschaulichen, tritt aber in realen Situationen so gut wie nie auf. Falls sich postitive und negative Samples im Raum überlappen, ist die Konstruktion einer Hyperplane wie beim Hard Margin Classifier unmöglich. Man müsste also entweder auf eine nicht lineare Hypeplane ausweichen oder man erweicht die vorgaben für die Konstruktion der Hyperplane. Zweiteres ist genau das, was durch die Soft Margin Classifier erreicht wird. Die Vorgabe für die Konstruktion der Schranken ermöglicht es einzelnen Datenpunkten auf der falschen Seite der Schranke, ja sogar der Entscheidungsgrenzen zu liegen. Dafür wird für die Einschränkungen eine sogennannte Slackvariable $\varepsilon$ eingeführt \parencite{jamesIntroductionStatisticalLearning2021}. Setzt man diese in diese in \eqref{eq:Nebenbedingung} lautet die neuen Nebenbedingung
+\begin{align}
+y_i(\beta \cdot \overline{x}_i-\beta_0)>1- \varepsilon_i \label{eq:nebbedsfm}
+\end{align}
+Jetzt könnte man versuchen diese neue Nebenbedingung einfach in das zuvor angewandte Optimisierungsverfahren einzufügen. Allerdings besteht hier das Problem, dass $\varepsilon$ einfach immer maximal groß gewählt wird und so die Bedingung immer erfüllt wird. Um das Ausmaß der Verletzung der usptünglichen Annahmen zu begrenzen, aber trotzdem noch gewisse Abweichung zuzulassen, wird ein weitere Parameter $C$ eingeführt, als regularisierender Parameter für $\varepsilon$. Leitet daraus zusammen mit der Restriktion $\varepsilon\ge0$ wieder einen Lagrangefunktion her erhält man
+\begin{align}
+\mathcal{L}(\overline\beta,\beta_0,\overline\alpha,\overline\varepsilon,\overline\lambda)=\frac{1}{2}\overline\beta'\cdot \overline\beta + C \sum_{i=1}^{n}\varepsilon_i-\underbrace{\sum \alpha_i[y_i(\overline\beta \cdot \overline{x_i}+\beta_0)-1+\varepsilon_i]}_{\text{für }y_i(\overline\beta \cdot \overline{x}_i-\beta_0)>1- \varepsilon_i}-\underbrace{\sum \lambda_i \varepsilon_i }_{\substack{\text{für}\\ \varepsilon_i \ge 0}}
+\end{align}
+Wenn dieser Ausdruck wie beim Hardmargin Classifier gelöst wird und 
