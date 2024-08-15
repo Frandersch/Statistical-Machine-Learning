@@ -6,7 +6,7 @@
 x <- rnorm(100,0,2)
 y <- rnorm(100,0,2)
 z <- rep(2,100)
-#find vector perpendicular to the palin#
+#find vector perpendicular to the plane
 #crossproduct of unity vectors c(1,0,0) and c(0,1,0)
 # so (0,0,1)
 #meaning for each z value add a scalar value

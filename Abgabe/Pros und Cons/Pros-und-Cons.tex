@@ -75,7 +75,7 @@
 \fi
 \usepackage[]{biblatex}
 \addbibresource{Literatur.bib}
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
@@ -93,7 +93,19 @@
 
 \subsection{Pros}
 
+effective in high-dimensional spaces; versatile through kernels (Seite
+347, extremely flexible decision boundaries); robustness to overfitting
+(Seite 347, da man den cost parameter wählen kann)
+\parencite{kuhnAppliedPredictiveModeling2013}
+
 \subsection{Cons}
+
+computation time polynomial and radial
+\parencite{scholzComparisonClassificationMethods2021}
+
+computationally intensive; sensitive to parameter tuning (Seite 347,
+kernel function parameters and cost value control complexity and control
+the over-fit) \parencite{kuhnAppliedPredictiveModeling2013}
 
 \subsection{Hypothesen}
 
@@ -106,19 +118,23 @@ sowie das Verhältnis zwischen der Anzahl an Dimensionen (p) und der
 Anzahl an Beobachtungen (n).Dabei werden ausschließlich binäre
 Klassifikationen untersucht. Es ergibt sich folgende Aufteilung:
 
+\begin{table}[h]
 \begin{center}
 \begin{tabular}{ |c|c|c|c| }
  \hline
   & linear & polynomial & radial \\
  \hline
- p << n & S1 & S2 & S3 \\
+ p $\ll$ n & S1 & S2 & S3 \\
  \hline
- p = n & S4 & S5 & S6 \\
+ p $=$ n & S4 & S5 & S6 \\
  \hline
- p >> n & S7 & S8 & S9 \\
+ p $\gg$ n & S7 & S8 & S9 \\
  \hline
 \end{tabular}
 \end{center}
+\caption{Datensituationen}
+\label{tab:datensituationen}
+\end{table}
 
 Im Folgenden werden Studien hinzugezogen, um eine Einschätzung der
 Performance in den verschiedenen Szenarien vorzunehmen und Hypothesen
@@ -158,9 +174,7 @@ die lineare SVM voraussichtlich weniger gut abschneiden wird. Es scheint
 so, dass auch k-NN und LogR in hochdimensionalen Szenarien zumindest
 mittelmäßig abschneiden. Hier ist jedoch zu beachten, dass nur eine
 lineare Entscheidungsgrenze betrachtet wurde und in den Szenarien S8 und
-S9 andere Ergebnisse möglich sind.\newline \begin{align}
-H1: Hypothese 1
-\end{align}
+S9 andere Ergebnisse möglich sind.\newline
 
 \printbibliography
 
