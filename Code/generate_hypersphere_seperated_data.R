@@ -59,5 +59,5 @@ generate_dataset <- function(obs,variables,distance,jitter=0.2){
   return(as.data.frame(dat))
 }
 
-dat <- generate_dataset(20,20,3,correl = 0.5)
+dat <- generate_dataset(20,20,3)
 cov(dat)
