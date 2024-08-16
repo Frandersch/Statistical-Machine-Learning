@@ -58,8 +58,10 @@ df5 <- data.frame(x=c(df3$x,df4$x),y=c(df3$y,df4$y),z=c(df3$z,df4$z),group=c(rep
 plot3d(x=df5$x,y=df5$y,z=df5$z,col = df5$group)
 
 #sampling in n dimensions(intercept of hyperplain is zero)
-generate_dataset <- function(obs,variables,distance,jitter,coef_min=-100,coef_max=100,center=0,range=3){
+generate_subdatasets <- function(obs,variables,distance,jitter,seed,coef_min=-100,coef_max=100,center=0,range=3){
+  set.seed(seed)
   coefficients <- runif(variables,coef_min,coef_max)
+  set.seed(NULL)
   points_on_plane <- matrix(rnorm(obs,center,range),nrow = obs,ncol=1)
   for(i in 2:(length(coefficients)-1)){
     points_on_plane <- cbind(points_on_plane,rnorm(obs,center,range))
@@ -73,3 +75,11 @@ generate_dataset <- function(obs,variables,distance,jitter,coef_min=-100,coef_ma
   }
   return(as.data.frame(points_next_to_plane)) 
 }
+
+generate_dataset <- function()
+
+hyperplane_seperated_data_train <- generate_dataset(1000, 10, 5, 0)
+hyperplane_seperated_data_test <- generate_dataset(1000, 10, 5, 0)
+save(hyperplane_seperated_data_train, file = "Code/Daten/hyperplane_seperated_data_train.RData")
+save(hyperplane_seperated_data_test, file = "Code/Daten/hyperplane_seperated_data_test.RData")
+
