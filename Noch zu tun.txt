@@ -1,0 +1,2 @@
+die geschriebenen Funktionen reproduzierbar machen, (set.seed sinnvoll einsetzen)
+tuning optimieren
