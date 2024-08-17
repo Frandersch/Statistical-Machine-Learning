@@ -2,7 +2,7 @@
 library(e1071)
 library(class)
 
-## Szenario 1: p << n (p = 1000, n = 10)
+## Szenario 1: p << n (n = 1000, p = 10)
 
 # Datengenerierung
 
