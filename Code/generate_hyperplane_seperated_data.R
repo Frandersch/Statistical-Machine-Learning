@@ -88,4 +88,3 @@ generate_dataset <- function(obs,variables,distance,jitter,seed,coef_min=-100,co
 }
 
 save(generate_dataset, generate_subdatasets, file = "Code/Funktionen/hyperplane_seperated.RData")
-

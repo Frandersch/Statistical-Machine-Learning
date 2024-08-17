@@ -49,9 +49,8 @@ generate_observation <- function(n, distance, jitter = 0.5) {
   
   return(x)
 }
-generate_observation(20,3)
 
-generate_dataset <- function(obs,variables,distance,jitter=0.2){
+generate_subdatasets <- function(obs,variables,distance,jitter=0.2){
   dat <- matrix(0,nrow = obs,ncol = variables)
   for(i in 1:obs){
     dat[i,] <- generate_observation(variables,distance,jitter = jitter)
@@ -59,5 +58,15 @@ generate_dataset <- function(obs,variables,distance,jitter=0.2){
   return(as.data.frame(dat))
 }
 
-dat <- generate_dataset(20,20,3)
-cov(dat)
+generate_dataset <- function(obs,variables,distance,jitter = 0.2){
+  group1 <- generate_subdatasets(obs = obs/2, variables = variables, distance = distance, jitter = jitter)
+  group1_y <- rep(1, times = obs/2)
+  group1 <- cbind(group1, y = as.factor(group1_y))
+  group2 <- generate_subdatasets(obs = obs/2, variables = variables, distance = (2 * distance), jitter = jitter)
+  group2_y <- rep(2, times = obs/2)
+  group2 <- cbind(group2, y = as.factor(group2_y))
+  dataset <- rbind(group1, group2)
+  dataset
+}
+
+save(generate_dataset, generate_subdatasets, generate_observation, file = "Code/Funktionen/hypersphere_seperated.RData")

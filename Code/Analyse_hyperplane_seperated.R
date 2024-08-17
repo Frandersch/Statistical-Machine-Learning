@@ -8,7 +8,7 @@ library(class)
 
 load(file = "Code/Funktionen/hyperplane_seperated.RData")
 
-# geringe Distance, da sonst alle perfekt klassifizieren
+# geringe Distance, da sonst alle Algorithmen perfekt klassifizieren
 S1_data_train <- generate_dataset(1000, 10, 0.5, 0.3, 2024)
 S1_data_test <- generate_dataset(1000, 10, 0.5, 0.3, 2024)
 
@@ -77,6 +77,7 @@ legend("bottomright",
 
 load(file = "Code/Funktionen/hyperplane_seperated.RData")
 
+# weitere Distance, da sonst bei allen sehr schlechte Klassifizierung
 S4_data_train <- generate_dataset(50, 50, 3, 0.5, 2024)
 S4_data_test <- generate_dataset(50, 50, 3, 0.5, 2024)
 
@@ -129,7 +130,7 @@ S4_roc_radial <- roc(response = S4_data_test$y, predictor = as.numeric(S4_predic
 S4_roc_logR <- roc(response = S4_data_test$y, predictor = as.numeric(S4_prediction_logR))
 S4_roc_k_NN <- roc(response = S4_data_test$y, predictor = as.numeric(S4_k_NN))
 
-plot(S4_roc_linear, col = "blue", main = "ROC-Kurven Szenario 1")
+plot(S4_roc_linear, col = "blue", main = "ROC-Kurven Szenario 4")
 plot(S4_roc_polynomial, col = "red", add = TRUE)
 plot(S4_roc_radial, col = "green", add = TRUE)
 plot(S4_roc_logR, col = "violet", add = TRUE)
@@ -190,6 +191,7 @@ S7_accuracy_k_NN <- sum(diag(S7_confusion_matrix_k_NN))/sum(S7_confusion_matrix_
 data.frame(linear = S7_accuracy_linear, polynomial = S7_accuracy_polynomial, radial = S7_accuracy_radial, logR = S7_accuracy_logR, k_NN = S7_accuracy_k_NN, row.names = "S7_Accuracy")
 
 # ROC/AUC
+
 library(pROC)
 S7_roc_linear <- roc(response = S7_data_test$y, predictor = as.numeric(S7_prediction_linear))
 S7_roc_polynomial <- roc(response = S7_data_test$y, predictor = as.numeric(S7_prediction_polynomial))
@@ -197,7 +199,7 @@ S7_roc_radial <- roc(response = S7_data_test$y, predictor = as.numeric(S7_predic
 S7_roc_logR <- roc(response = S7_data_test$y, predictor = as.numeric(S7_prediction_logR))
 S7_roc_k_NN <- roc(response = S7_data_test$y, predictor = as.numeric(S7_k_NN))
 
-plot(S7_roc_linear, col = "blue", main = "ROC-Kurven Szenario 1")
+plot(S7_roc_linear, col = "blue", main = "ROC-Kurven Szenario 7")
 plot(S7_roc_polynomial, col = "red", add = TRUE)
 plot(S7_roc_radial, col = "green", add = TRUE)
 plot(S7_roc_logR, col = "violet", add = TRUE)
