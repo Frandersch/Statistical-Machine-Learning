@@ -76,10 +76,16 @@ generate_subdatasets <- function(obs,variables,distance,jitter,seed,coef_min=-10
   return(as.data.frame(points_next_to_plane)) 
 }
 
-generate_dataset <- function()
+generate_dataset <- function(obs,variables,distance,jitter,seed,coef_min=-100,coef_max=100,center=0,range=3){
+  group1 <- generate_subdatasets(obs = obs/2, variables = variables, distance = distance, jitter = jitter, seed = seed, coef_min=coef_min,coef_max=coef_max,center=center,range=range)
+  group1_y <- rep(1, times = obs/2)
+  group1 <- cbind(group1, y = as.factor(group1_y))
+  group2 <- generate_subdatasets(obs = obs/2, variables = variables, distance = (-distance), jitter = jitter, seed = seed, coef_min=coef_min,coef_max=coef_max,center=center,range=range)
+  group2_y <- rep(2, times = obs/2)
+  group2 <- cbind(group2, y = as.factor(group2_y))
+  dataset <- rbind(group1, group2)
+  dataset
+}
 
-hyperplane_seperated_data_train <- generate_dataset(1000, 10, 5, 0)
-hyperplane_seperated_data_test <- generate_dataset(1000, 10, 5, 0)
-save(hyperplane_seperated_data_train, file = "Code/Daten/hyperplane_seperated_data_train.RData")
-save(hyperplane_seperated_data_test, file = "Code/Daten/hyperplane_seperated_data_test.RData")
+save(generate_dataset, generate_subdatasets, file = "Code/Funktionen/hyperplane_seperated.RData")
 
