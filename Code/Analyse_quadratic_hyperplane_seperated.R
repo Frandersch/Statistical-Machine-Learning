@@ -8,12 +8,12 @@ library(class)
 
 load(file = "Code/Funktionen/quadratic_hyperplane_seperated.RData")
 
-# geringe Distance, da sonst alle Algorithmen perfekt klassifizieren
-S2_data_train <- generate_dataset(1000, 10, 5, 0.5, 2024)
-S2_data_test <- generate_dataset(1000, 10, 5, 0.5, 2024)
+S2_data_train <- generate_dataset(1000, 3, 10, 2, 2024)
+S2_data_test <- generate_dataset(1000, 3, 10, 2, 2024)
+
+plot3d(S2_data_train$V1, S2_data_train$V2, S2_data_train$V3, col = S2_data_train$y)
 
 # hier noch: Modelle tunen
-
 
 # Modelle fitten
 
@@ -78,9 +78,8 @@ legend("bottomright",
 
 load(file = "Code/Funktionen/quadratic_hyperplane_seperated.RData")
 
-# geringe Distance, da sonst alle Algorithmen perfekt klassifizieren
-S5_data_train <- generate_dataset(200, 200, 3, 0.5, 2024)
-S5_data_test <- generate_dataset(200, 200, 3, 0.5, 2024)
+S5_data_train <- generate_dataset(200, 200, 20, 2, 2024)
+S5_data_test <- generate_dataset(200, 200, 20, 2, 2024)
 
 # hier noch: Modelle tunen
 
@@ -147,9 +146,8 @@ legend("bottomright",
 
 load(file = "Code/Funktionen/quadratic_hyperplane_seperated.RData")
 
-# geringe Distance, da sonst alle Algorithmen perfekt klassifizieren
-S8_data_train <- generate_dataset(50, 200, 3, 0.5, 2024)
-S8_data_test <- generate_dataset(50, 200, 3, 0.5, 2024)
+S8_data_train <- generate_dataset(50, 200, 20, 2, 2024)
+S8_data_test <- generate_dataset(50, 200, 20, 2, 2024)
 
 # hier noch: Modelle tunen
 

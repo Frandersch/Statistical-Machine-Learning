@@ -8,7 +8,6 @@ library(class)
 
 load(file = "Code/Funktionen/hypersphere_seperated.RData")
 
-# geringe Distance, da sonst alle Algorithmen perfekt klassifizieren
 S3_data_train <- generate_dataset(1000, 10, 2)
 S3_data_test <- generate_dataset(1000, 10, 2)
 
@@ -77,7 +76,6 @@ legend("bottomright",
 
 load(file = "Code/Funktionen/hypersphere_seperated.RData")
 
-# geringe Distance, da sonst alle Algorithmen perfekt klassifizieren
 S6_data_train <- generate_dataset(200, 200, 2)
 S6_data_test <- generate_dataset(200, 200, 2)
 
@@ -146,27 +144,10 @@ legend("bottomright",
 
 load(file = "Code/Funktionen/hypersphere_seperated.RData")
 
-# geringe Distance, da sonst alle Algorithmen perfekt klassifizieren
 S9_data_train <- generate_dataset(50, 200, 2)
 S9_data_test <- generate_dataset(50, 200, 2)
 
-# anzupassen: Modelle tunen
-
-library("rBayesianOptimization")
-optimize_function <- function(C, gamma) {
-  model <- svm(y ~ ., data = S9_data_train, kernel = "radial", cost = C, gamma = gamma)
-  prediction <- predict(model, S9_data_test)
-  accuracy <- mean(prediction == S9_data_test$y)
-  list(Score = accuracy, Pred = 0)
-}
-
-bayes_opt_result <- BayesianOptimization(
-  FUN = optimize_function,
-  bounds = list(C = c(0.01, 50), gamma = c(0.01, 10)),
-  init_points = 5,
-  n_iter = 20,
-  acq = "ucb"
-)
+# Modelle tunen
 
 # Modelle fitten
 

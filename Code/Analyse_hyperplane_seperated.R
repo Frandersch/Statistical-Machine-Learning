@@ -1,6 +1,8 @@
 # Pakete
 library(e1071)
+library(glmnet)
 library(class)
+library("rBayesianOptimization")
 
 ## Szenario 1: p << n (n = 1000, p = 10)
 
@@ -9,28 +11,108 @@ library(class)
 load(file = "Code/Funktionen/hyperplane_seperated.RData")
 
 # geringe Distance, da sonst alle Algorithmen perfekt klassifizieren
+set.seed(11)
 S1_data_train <- generate_dataset(1000, 10, 0.5, 0.3, 2024)
 S1_data_test <- generate_dataset(1000, 10, 0.5, 0.3, 2024)
 
 # hier noch: Modelle tunen
 
+S1_tune_linear <- function(cost) {
+  model <- svm(y ~ ., data = S1_data_train, kernel = "linear", cost = cost)
+  prediction <- predict(model, S1_data_test)
+  accuracy <- mean(prediction == S1_data_test$y)
+  list(Score = accuracy, Pred = 0)
+}
+
+S1_opt_param_linear <- BayesianOptimization(
+  FUN = S1_tune_linear,
+  bounds = list(cost = c(0.01, 50)),
+  init_points = 5,
+  n_iter = 20,
+  acq = "ucb"
+)
+
+S1_tune_polynomial <- function(cost, gamma, degree) {
+  model <- svm(y ~ ., data = S1_data_train, kernel = "polynomial", cost = cost, gamma = gamma, degree = degree)
+  prediction <- predict(model, S1_data_test)
+  accuracy <- mean(prediction == S1_data_test$y)
+  list(Score = accuracy, Pred = 0)
+}
+
+S1_opt_param_polynomial <- BayesianOptimization(
+  FUN = S1_tune_polynomial,
+  bounds = list(cost = c(0.01, 50), gamma = c(0.01, 10), degree = c(1, 10)),
+  init_points = 5,
+  n_iter = 20,
+  acq = "ucb"
+)
+
+S1_tune_radial <- function(cost, gamma) {
+  model <- svm(y ~ ., data = S1_data_train, kernel = "radial", cost = cost, gamma = gamma)
+  prediction <- predict(model, S1_data_test)
+  accuracy <- mean(prediction == S1_data_test$y)
+  list(Score = accuracy, Pred = 0)
+}
+
+S1_opt_param_radial <- BayesianOptimization(
+  FUN = S1_tune_radial,
+  bounds = list(cost = c(0.01, 50), gamma = c(0.01, 10)),
+  init_points = 5,
+  n_iter = 20,
+  acq = "ucb"
+)
+
+S1_tune_logR <- function(alpha, lambda) {
+  model <- glmnet(as.matrix(S1_data_train[, setdiff(names(S1_data_train), "y")]), S1_data_train[, "y"], family = "binomial", alpha = alpha, lambda = lambda)
+  probabilities <- predict(model, as.matrix(S1_data_test[, setdiff(names(S1_data_test), "y")]), s = lambda, type = "response")
+  prediction <- ifelse(probabilities > 0.5, 2, 1)
+  accuracy <- mean(prediction == S1_data_test$y)
+  list(Score = accuracy, Pred = 0)
+}
+
+S1_opt_param_logR <- BayesianOptimization(
+  FUN = S1_tune_logR,
+  bounds = list(alpha = c(0, 1), lambda = c(0.0001, 1)),
+  init_points = 5,
+  n_iter = 20,
+  acq = "ucb"
+)
+
+S1_tune_k_NN <- function(k) {
+  prediction <-
+    knn(S1_data_train[, setdiff(names(S1_data_train), "y")],
+        S1_data_test[, setdiff(names(S1_data_test), "y")],
+        S1_data_train[, "y"],
+        k = k)
+  accuracy <- mean(prediction == S1_data_test$y)
+  list(Score = accuracy, Pred = 0)
+}
+
+S1_opt_param_k_NN<- BayesianOptimization(
+  FUN = S1_tune_k_NN,
+  bounds = list(k = c(1, 100)),
+  init_points = 5,
+  n_iter = 20,
+  acq = "ucb"
+)
+
 # Modelle fitten
 
-S1_svm_linear <- svm(y ~., data = S1_data_train, kernel = "linear")
-S1_svm_polynomial <- svm(y ~., data = S1_data_train, kernel = "polynomial")
-S1_svm_radial <- svm(y ~., data = S1_data_train, kernel = "radial")
-S1_logR <- glm(y ~., data = S1_data_train, family = binomial())
+S1_svm_linear <- svm(y ~., data = S1_data_train, kernel = "linear", cost = S1_opt_param_linear$Best_Par)
+S1_svm_polynomial <- svm(y ~., data = S1_data_train, kernel = "polynomial", cost = S1_opt_param_polynomial$Best_Par["cost"], gamma = S1_opt_param_polynomial$Best_Par["gamma"], degree = S1_opt_param_polynomial$Best_Par["degree"])
+S1_svm_radial <- svm(y ~., data = S1_data_train, kernel = "radial", cost = S1_opt_param_radial$Best_Par["cost"], gamma = S1_opt_param_radial$Best_Par["gamma"])
+S1_logR <- glmnet(as.matrix(S1_data_train[, setdiff(names(S1_data_train), "y")]), S1_data_train[, "y"], family = "binomial", alpha = S1_opt_param_logR$Best_Par["alpha"], lambda = S1_opt_param_logR$Best_Par["lambda"])
 S1_k_NN <- knn(S1_data_train[, setdiff(names(S1_data_train), "y")],
             S1_data_test[, setdiff(names(S1_data_test), "y")],
             S1_data_train[, "y"],
-            k = 10)
+            k = S1_opt_param_k_NN$Best_Par["k"])
 
 # Predictions
 
 S1_prediction_linear <- predict(S1_svm_linear, S1_data_test)
 S1_prediction_polynomial <- predict(S1_svm_polynomial, S1_data_test)
 S1_prediction_radial <- predict(S1_svm_radial, S1_data_test)
-S1_probabilities_logR <- predict(S1_logR, S1_data_test, type = "response")
+S1_probabilities_logR <- predict(S1_logR, as.matrix(S1_data_test[, setdiff(names(S1_data_test), "y")]), s = S1_opt_param_logR$Best_Par["lambda"], type = "response")
 S1_prediction_logR <- ifelse(S1_probabilities_logR > 0.5, 2, 1)
 # für k_NN wird direkt beim Model-fit predicted
 
@@ -51,9 +133,15 @@ S1_accuracy_logR <- sum(diag(S1_confusion_matrix_logR))/sum(S1_confusion_matrix_
 S1_confusion_matrix_k_NN <- table(S1_k_NN, S1_data_test$y)
 S1_accuracy_k_NN <- sum(diag(S1_confusion_matrix_k_NN))/sum(S1_confusion_matrix_k_NN)
 
-data.frame(linear = S1_accuracy_linear, polynomial = S1_accuracy_polynomial, radial = S1_accuracy_radial, logR = S1_accuracy_logR, k_NN = S1_accuracy_k_NN, row.names = "S1_Accuracy")
+round(data.frame(linear = c(S1_accuracy_linear, S1_opt_param_linear$Best_Par["cost"], NA, NA, NA, NA, NA),
+           polynomial = c(S1_accuracy_polynomial, S1_opt_param_polynomial$Best_Par["cost"], S1_opt_param_polynomial$Best_Par["gamma"], S1_opt_param_polynomial$Best_Par["degree"], NA, NA, NA),
+           radial = c(S1_accuracy_radial, S1_opt_param_radial$Best_Par["cost"], S1_opt_param_radial$Best_Par["gamma"], NA, NA, NA, NA),
+           logR = c(S1_accuracy_logR, NA, NA, NA, S1_opt_param_logR$Best_Par["alpha"], S1_opt_param_logR$Best_Par["lambda"], NA),
+           k_NN = c(S1_accuracy_k_NN, NA, NA, NA, NA, NA, S1_opt_param_k_NN$Best_Par["k"]),
+           row.names = c("Accuracy", "Cost", "Gamma", "Degree", "Alpha", "Lambda", "K")), 4)
 
 # ROC/AUC
+
 library(pROC)
 S1_roc_linear <- roc(response = S1_data_test$y, predictor = as.numeric(S1_prediction_linear))
 S1_roc_polynomial <- roc(response = S1_data_test$y, predictor = as.numeric(S1_prediction_polynomial))
