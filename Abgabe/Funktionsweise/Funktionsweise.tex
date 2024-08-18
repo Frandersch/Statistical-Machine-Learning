@@ -86,7 +86,7 @@
 
 \title{Funktionsweise}
 \author{Franz Andersch \& Niklas Münz}
-\date{2024-08-14}
+\date{2024-08-18}
 
 \begin{document}
 \maketitle
@@ -217,7 +217,7 @@ gilt für \(\beta_0\) \begin{align}
 \frac{\partial \mathcal{L}}{\partial \beta_0}=\sum \alpha_i y_i \overline{x_i}\overset{!}{=}0\label{eq:solutbeta0}
 \end{align} Setzt man dies in \eqref{eq:Lagrange} ein erhält man einen
 neuen Ausdruck, denn es gilt zu minimieren \begin{align}
-\mathcal{L}(\overline \alpha)=-\frac{1}{2}\sum \sum \alpha_i \alpha_j y_i y_j \overline{x}_i \cdot \overline{x}_j+\sum \alpha_i
+\mathcal{L}(\overline \alpha)=-\frac{1}{2}\sum \sum \alpha_i \alpha_j y_i y_j \overline{x}_i \cdot \overline{x}_j+\sum \alpha_i\label{eq:dualproblem}
 \end{align} Die Lösung für diesen Ausdruck erfolgt dann über sogenannte
 \enquote{standard non linear optimization algorithms for quadratic forms}
 \parencite{boserTrainingAlgorithmOptimal1992}. Nachem für
@@ -265,18 +265,33 @@ eingeführt \parencite{jamesIntroductionStatisticalLearning2021}. Setzt
 man diese in diese in \eqref{eq:Nebenbedingung} lautet die neuen
 Nebenbedingung \begin{align}
 y_i(\beta \cdot \overline{x}_i-\beta_0)>1- \varepsilon_i \label{eq:nebbedsfm}
-\end{align} Jetzt könnte man versuchen diese neue Nebenbedingung einfach
-in das zuvor angewandte Optimisierungsverfahren einzufügen. Allerdings
-besteht hier das Problem, dass \(\varepsilon\) einfach immer maximal
-groß gewählt wird und so die Bedingung immer erfüllt wird. Um das Ausmaß
-der Verletzung der usptünglichen Annahmen zu begrenzen, aber trotzdem
-noch gewisse Abweichung zuzulassen, wird ein weitere Parameter \(C\)
+\end{align}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth,trim=0.5cm 0.5cm 0.5cm 0.5cm]{Images/slackvariable.pdf} 
+        \caption{Funktion der Slack Variable}
+        \label{fig:slackvariable}
+\end{figure}
+
+Jetzt könnte man versuchen diese neue Nebenbedingung einfach in das
+zuvor angewandte Optimisierungsverfahren einzufügen. Allerdings besteht
+hier das Problem, dass \(\varepsilon\) einfach immer maximal groß
+gewählt wird und so die Bedingung immer erfüllt wird. Um das Ausmaß der
+Verletzung der usptünglichen Annahmen zu begrenzen, aber trotzdem noch
+gewisse Abweichung zuzulassen, wird ein weitere Parameter \(C\)
 eingeführt, als regularisierender Parameter für \(\varepsilon\). Leitet
 daraus zusammen mit der Restriktion \(\varepsilon\ge0\) wieder einen
 Lagrangefunktion her erhält man \begin{align}
 \mathcal{L}(\overline\beta,\beta_0,\overline\alpha,\overline\varepsilon,\overline\lambda)=\frac{1}{2}\overline\beta'\cdot \overline\beta + C \sum_{i=1}^{n}\varepsilon_i-\underbrace{\sum \alpha_i[y_i(\overline\beta \cdot \overline{x_i}+\beta_0)-1+\varepsilon_i]}_{\text{für }y_i(\overline\beta \cdot \overline{x}_i-\beta_0)>1- \varepsilon_i}-\underbrace{\sum \lambda_i \varepsilon_i }_{\substack{\text{für}\\ \varepsilon_i \ge 0}}
 \end{align} Wenn dieser Ausdruck wie beim Hardmargin Classifier gelöst
-wird und
+wird und die Ergebnisse eingesetzt werden erhält man wieder den Ausruck
+aus \eqref{eq:dualproblem} mit der zusätzlichen Einschränkung
+\(0\le \alpha_i \le C\). Dieses Maximierungsproblem wird dann genauso
+aufgelöst wie bei dem Hard Margin Classifier und die Entscheidungsregel
+ist ebenfalls gleich.
+
+\subsection{The Kernel Trick}
 
 \printbibliography
 

@@ -1,0 +1,13 @@
+---
+title: "Funktionsweise"
+author: "Franz Andersch & Niklas Münz"
+date: "`r Sys.Date()`"
+output: 
+  pdf_document:
+    number_sections: true
+    keep_tex: true
+    includes:
+      in_header: header.tex
+    citation_package: biblatex
+bibliography: Literatur.bib
+---
