@@ -87,4 +87,17 @@ generate_dataset <- function(obs,variables,distance,jitter,seed,coef_min=-100,co
   dataset
 }
 
-save(generate_dataset, generate_subdatasets, file = "Code/Funktionen/hyperplane_seperated.RData")
+# geringe Distance, da sonst alle Algorithmen perfekt klassifizieren
+S1_data_train <- generate_dataset(1000, 10, 0.5, 0.3, 2024)
+S1_data_test <- generate_dataset(1000, 10, 0.5, 0.3, 2024)
+
+# weitere Distance, da sonst bei allen sehr schlechte Klassifizierung
+S4_data_train <- generate_dataset(50, 50, 3, 1, 2024)
+S4_data_test <- generate_dataset(50, 50, 3, 1, 2024)
+
+S7_data_train <- generate_dataset(50, 200, 3, 1, 2024)
+S7_data_test <- generate_dataset(50, 200, 3, 1, 2024)
+
+save(S1_data_train, S1_data_test, file = "Code/Daten/Data_S1.RData")
+save(S4_data_train, S4_data_test, file = "Code/Daten/Data_S4.RData")
+save(S7_data_train, S7_data_test, file = "Code/Daten/Data_S7.RData")

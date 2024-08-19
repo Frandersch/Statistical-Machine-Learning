@@ -86,7 +86,7 @@
 
 \title{Pros und Cons}
 \author{Franz Andersch \& Niklas Münz}
-\date{2024-08-16}
+\date{2024-08-19}
 
 \begin{document}
 \maketitle
@@ -159,7 +159,8 @@ gesagt, wird in neun verschiedene Szenarien unterschieden, welche sich
 durch zwei Unterteilungen ergeben: die Form der Entscheidungsgrenze
 sowie das Verhältnis zwischen der Anzahl an Dimensionen (p) und der
 Anzahl an Beobachtungen (n).Dabei werden ausschließlich binäre
-Klassifikationen untersucht. Es ergibt sich folgende Aufteilung:
+Klassifikationen untersucht. Es ergibt sich folgende Aufteilung in
+Tabelle 1.
 
 \begin{table}[h]
 \begin{center}
@@ -181,43 +182,56 @@ Klassifikationen untersucht. Es ergibt sich folgende Aufteilung:
 
 Im Folgenden werden Studien hinzugezogen, um eine Einschätzung der
 Performance in den verschiedenen Szenarien vorzunehmen und Hypothesen
-abzuleiten.\newline Es konnte gezeigt werden, dass in einem Szenario,
-indem erheblich mehr Beobachtungen als Dimensionen und eine lineare
-Entscheidungsgrenze vorliegen (S1), deutliche Unterschiede zwischen SVM,
-k-NN und LogR bei der Diskriminationsfähigkeit auftreten
+abzuleiten. Vorab ist zu erwähnen, dass die Evaluation von
+Klassifikationsmethoden anhand synthetischer Datensätze in der Literatur
+begrenzt ist. Da für diese Arbeit die Form der Entscheidungsgrenze
+entscheidend ist, werden dennoch auschließlich Arbeiten mit
+synthetischen Datensätzen zu Rate gezogen.\newline Es konnte gezeigt
+werden, dass in einem Szenario, indem erheblich mehr Beobachtungen als
+Dimensionen und eine lineare Entscheidungsgrenze vorliegen (S1),
+deutliche Unterschiede zwischen SVM, k-NN und logistischer Regression
+bei der Diskriminationsfähigkeit auftreten
 \parencite{entezari-malekiComparisonClassificationMethods2009}. k-NN und
 lineare SVM zeigen AUC-Werte nahe 1 auf, was für eine nahezu perfekte
-Differenzierung der Klassen spricht. LogR hingegen hat einen Wert knapp
-über 0.5, was nur etwas besser als eine Zufallsauswahl ist. Darüber
-hinaus ist festzustellen, dass die Unterschiede deutlicher werden, je
-höher die Anzahl an Beobachtungen ist.\newline Für den Fall einer
-radialen Entscheidungsgrenze (S3) sind die Ergebnisse ähnlich. So
-erreicht in diesem Beispiel eine SVM mit radialem Kernel im Vergleich zu
-einer LogR eine um 34\% höhere Genauigkeit
+Differenzierung der Klassen spricht. Die logistische Regression hingegen
+hat einen Wert knapp über 0.5, was nur etwas besser als eine
+Zufallsauswahl ist. Darüber hinaus ist festzustellen, dass die
+Unterschiede deutlicher werden, je höher die Anzahl an Beobachtungen
+ist.\newline Für den Fall einer radialen Entscheidungsgrenze (S3) sind
+die Ergebnisse ähnlich. So erreicht in diesem Beispiel eine SVM mit
+radialem Kernel im Vergleich zu einer logistischen Regression eine um
+34\% höhere Genauigkeit
 \parencite{faveroClassificationPerformanceEvaluation2022}.
 
-Liegt ein Szenario vor, indem die Anzahl der Dimensionen erheblich
-größer ist, als die Anzahl der Beobachtungen, mit einer linearen
-Entscheidungsgrenze (S7), sind die Ergebnisse differenzierter zu
-betrachten. So schneidet die SVM mit polynomialem Kern am besten unter
-den genannten Algorithmen ab, jedoch die lineare SVM am schlechtesten
-(als Kriterium wurde die mittlere Performance über 100 Datensätze
-evaluiert) \parencite{scholzComparisonClassificationMethods2021}.
-Während k-NN auch in diesem Szenario eine gute Performance hat,
-schneiden LogR und SVM mit radialem Kern mittelmäßig ab.
+Die Szenarien S4 bis S6 finden in der Literatur kaum Beachtung, weshalb
+hier keine Studien herangezogen werden können. Liegt ein Szenario vor,
+indem die Anzahl der Dimensionen erheblich größer ist, als die Anzahl
+der Beobachtungen, mit einer linearen Entscheidungsgrenze (S7), sind die
+Ergebnisse differenzierter zu betrachten. So schneidet die SVM mit
+polynomialem Kern am besten unter den genannten Algorithmen ab, jedoch
+die lineare SVM am schlechtesten (als Kriterium wurde die mittlere
+Performance über 100 Datensätze evaluiert)
+\parencite{scholzComparisonClassificationMethods2021}. Während k-NN auch
+in diesem Szenario eine gute Performance hat, schneiden logistische
+Regression und SVM mit radialem Kern mittelmäßig ab. Hierbei ist wichtig
+zu erwähnen, dass in der Studie keine Ergebnisse über die genaue
+Performance präsentiert wurden, sondern lediglich die Ranks der 25
+behandelten Klassifikationsmethoden. Somit können nur eingeschränkte
+Schlussfolgerungen gezogen werden.
 
 Basierend auf den Ergebnissen der genannten Studien können
 Schlussfolgerungen gezogen werden. Es ist anzunehmen, dass in
-niedrigdimensionalen Szenarien k-NN und SVM´s besser performen als LogR.
-Jedoch ist zu vermuten, dass die Wahl des Kerns bei SVM´s einen großen
-Einfluss auf die Performance hat.\newline In hochdimensionalen Szenarien
-zeigt vermutlich die SVM mit polynomialem oder radialem Kern eine gute
-Performance, unabhängig von der Form der Entscheidungsgrenze, während
-die lineare SVM voraussichtlich weniger gut abschneiden wird. Es scheint
-so, dass auch k-NN und LogR in hochdimensionalen Szenarien zumindest
-mittelmäßig abschneiden. Hier ist jedoch zu beachten, dass nur eine
-lineare Entscheidungsgrenze betrachtet wurde und in den Szenarien S8 und
-S9 andere Ergebnisse möglich sind.
+niedrigdimensionalen Szenarien k-NN und SVM´s besser performen als eine
+logistische Regression. Jedoch ist zu vermuten, dass die Wahl des Kerns
+bei SVM´s einen großen Einfluss auf die Performance hat.\newline In
+hochdimensionalen Szenarien zeigt vermutlich die SVM mit polynomialem
+oder radialem Kern eine gute Performance, unabhängig von der Form der
+Entscheidungsgrenze, während die lineare SVM voraussichtlich weniger gut
+abschneiden wird. Es scheint so, dass auch k-NN und logistische
+Regression in hochdimensionalen Szenarien zumindest mittelmäßig
+abschneiden. Hier ist jedoch zu beachten, dass nur eine lineare
+Entscheidungsgrenze betrachtet wurde und in den Szenarien S8 und S9
+andere Ergebnisse möglich sind.
 
 \printbibliography
 
