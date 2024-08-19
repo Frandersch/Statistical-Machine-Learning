@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.12.13)  19 AUG 2024 17:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.12.13)  19 AUG 2024 18:12
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
-**./decision_boundary.tex
-(decision_boundary.tex
+**./radial_kernel.tex
+(radial_kernel.tex
 LaTeX2e <2023-11-01>
 L3 programming layer <2023-11-09>
 
@@ -641,8 +641,8 @@ tex.def
 File: l3backend-pdftex.def 2023-11-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count307
 \l__pdf_internal_box=\box67
-) (decision_boundary.aux)
-\openout1 = `decision_boundary.aux'.
+) (radial_kernel.aux)
+\openout1 = `radial_kernel.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
 LaTeX Font Info:    ... okay on input line 6.
@@ -690,40 +690,28 @@ ick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into
 your preamble.
  on input line 6.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 38.
-
-(C:\Users\49152\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 38.
+! Incomplete \ifx; all text was ignored after line 29.
+<inserted text> 
+                \fi 
+<*> ./radial_kernel.tex
+                       
+The file ended while I was skipping conditional text.
+This kind of error happens when you say `\if...' and forget
+the matching `\fi'. I've inserted a `\fi'; this might work.
 
+! Emergency stop.
+<*> ./radial_kernel.tex
+                       
+*** (job aborted, no legal \end found)
 
-(C:\Users\49152\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-[1
-
-{C:/Users/49152/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-(decision_boundary.aux)
- ***********
-LaTeX2e <2023-11-01>
-L3 programming layer <2023-11-09>
- ***********
- ) 
+ 
 Here is how much of TeX's memory you used:
- 24605 strings out of 474586
- 640408 string characters out of 5745680
- 1929558 words of memory out of 5000000
- 46420 multiletter control sequences out of 15000+600000
- 563626 words of font info for 57 fonts, out of 8000000 for 9000
+ 24302 strings out of 474586
+ 632498 string characters out of 5745680
+ 1923558 words of memory out of 5000000
+ 46133 multiletter control sequences out of 15000+600000
+ 558069 words of font info for 36 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 102i,10n,107p,731b,1968s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/49152/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmmi12.pfb><C:/Users/49152/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmr12.pfb>
-Output written on decision_boundary.pdf (1 page, 20683 bytes).
-PDF statistics:
- 19 PDF objects out of 1000 (max. 8388607)
- 0 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+ 102i,2n,107p,727b,1354s stack positions out of 10000i,1000n,20000p,200000b,200000s
+!  ==> Fatal error occurred, no output PDF file produced!
