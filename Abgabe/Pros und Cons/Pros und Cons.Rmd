@@ -23,18 +23,18 @@ Ein weiterer Nachteil ist, dass die Methode weniger intuitiv und aufwendiger anz
 Zuletzt ist zu erwähnen, dass die Methode bei einer hohen Anzahl an Beobachtungen besonders rechenintensiv ist. So konnte beispielsweise gezeigt werden, dass insbesondere die SVM mit polynomialem und radialem Kern eine hohe Rechenzeit aufweisen \parencite{scholzComparisonClassificationMethods2021}. Dabei konnten andere Methoden wie die logistische Regression oder k-nearest Neighbour deutlich besser abschneiden. Dies liegt daran, dass die Lösung des SVM-Optimierungsproblems die Behebung eines quadratischen Programmierungsproblems erfordert. Da die Anzahl der zu optimierenden Parameter mit der Anzahl der Daten quadratisch zunimmt, führt dies zu einer hohen Rechenkomplexität \parencite{kecmanSupportVectorMachines2005}.
 
 \subsection{Hypothesen}
-Die Performance von Support Vector Machines wird anhand verschiedener Datenszenarien untersucht. Dabei werden Logistic Regression und k-nearest Neighbour als Vergleichsalgorithmen hinzugezogen. Genauer gesagt, wird in neun verschiedene Szenarien unterschieden, welche sich durch zwei Unterteilungen ergeben: die Form der Entscheidungsgrenze sowie das Verhältnis zwischen der Anzahl an Dimensionen (p) und der Anzahl an Beobachtungen (n).Dabei werden ausschließlich binäre Klassifikationen untersucht. Es ergibt sich folgende Aufteilung in Tabelle 1.
+Die Performance von Support Vector Machines wird anhand verschiedener Datenszenarien untersucht. Dabei werden Logistic Regression und k-nearest Neighbour als Vergleichsalgorithmen hinzugezogen. Genauer gesagt, wird in neun verschiedene Szenarien unterschieden, welche sich durch zwei Unterteilungen ergeben: die Form der Entscheidungsgrenze sowie das Verhältnis zwischen der Anzahl an Dimensionen $p$ und der Anzahl an Beobachtungen $n$.Dabei werden ausschließlich binäre Klassifikationen untersucht. Es ergibt sich folgende Aufteilung in Tabelle 1.
 \begin{table}[h]
 \begin{center}
 \begin{tabular}{ |c|c|c|c| }
  \hline
   & linear & polynomial & radial \\
  \hline
- p $\ll$ n & S1 & S2 & S3 \\
+ $p \ll n$ & S1 & S2 & S3 \\
  \hline
- p $=$ n & S4 & S5 & S6 \\
+ $p = n$ & S4 & S5 & S6 \\
  \hline
- p $\gg$ n & S7 & S8 & S9 \\
+ $p \gg n$ & S7 & S8 & S9 \\
  \hline
 \end{tabular}
 \end{center}

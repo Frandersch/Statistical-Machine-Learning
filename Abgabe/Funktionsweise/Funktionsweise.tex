@@ -86,7 +86,7 @@
 
 \title{Funktionsweise}
 \author{Franz Andersch \& Niklas Münz}
-\date{2024-08-18}
+\date{2024-08-19}
 
 \begin{document}
 \maketitle
@@ -99,7 +99,7 @@ lineare entscheidungsgrenze trennen lassen. Das endgültige Ziel ist es
 eine sogenannte Hyperplane zu finden die diese Daten möglichst gut
 seperiert und als Entscheidungsgrenze funktioniert. Die allgemeine Form
 einer solchen hyperplain lautet \begin{align}
-\beta_0+ \beta_1 X_1+\beta_2 X_2+...+\beta_n X_n=0
+\beta_0+ \beta_1 X_1+\beta_2 X_2+...+\beta_n X_n=0\label{eq:hyperebene}
 \end{align} oder in Vektorschreibweise \begin{align}
 \overline{\beta}\cdot\overline{x}+\beta_0=0 \label{eq:hyperplanevec}
 \end{align} Die geometrische Interpretation des Vektors \(\beta\) und
@@ -245,7 +245,7 @@ oben schon beschrieben kommt man zu folgender Entscheidungsregel
 \begin{align}
 f(\overline{x}_u)=\begin{cases}\mathrm{positiv}&\text{wenn } \overline{\beta}\cdot \overline{x}_u+\beta_0 > 0\\
 \mathrm{negativ} & \text{wenn }\overline{\beta}\cdot \overline{x}_u+\beta_0<0
-\end{cases}
+\end{cases}\label{eq:decisionf}
 \end{align}
 
 \subsection{Soft Margin Classifier}
@@ -291,7 +291,83 @@ aus \eqref{eq:dualproblem} mit der zusätzlichen Einschränkung
 aufgelöst wie bei dem Hard Margin Classifier und die Entscheidungsregel
 ist ebenfalls gleich.
 
-\subsection{The Kernel Trick}
+\subsection{Der Kernel Trick}
+
+Auch wenn eine lineare Entscheidungsgrenze Vorteile in Sachen
+Generalisierbarkeit bietet, ist sie doch nicht für jede Datensituation
+geeignet.In Abbildung \ref{fig:nonlinearsep} ist es sehr gut zu
+erkennen, dass in diesem Fall eine lineare Grenze zwischen den Klassen
+keinen Sinn Ergeben würde und eine elliptische Form wahrscheinlich
+besser geeignet wäre. Eine Lösung für dieses Problem, wäre den
+Merkmalsraum zu erweitern. So könnte die angenommene Formel für die
+lineare Hyperebene in \eqref{eq:hyperebene} durch polynomterme der
+Merkmale \(X_i\) oder durch Interaktionstherme erweitert werden. Dies
+führt dazu, dass die Entscheidungsgreze in diesem vergrößerten
+Merkmalsraum immer noch linear ist, aber die Trennung möglich ist (siehe
+Abbildung \ref{fig:featurexten}). Transformiert man diese dann wieder in
+den ursprünglichen Merkmalsraum ist die Entscheidungsgrenze dann nicht
+mehr linear. Allerdings führt diese Herangehensweise zu eine starken
+Anstieg des Rechenaufwands, da die Möglichkeiten der Merkmalserweiterung
+endlos sind \parencite{jamesIntroductionStatisticalLearning2021}.
+
+Die Lösung für das Problem sind sogenannte Kernel Funktionen. Betrachtet
+man die entscheidungsfunktion \eqref{eq:decisionf} und setzt für
+\(\overline{\beta}\) die Gleichung aus \eqref{eq:solutbeta} erhält man
+\begin{align}
+f(x_u)= \sum \alpha_i y_i x_i \cdot x_u +\beta_0
+\end{align} Es zeigt sich also, dass die Entscheidungsfunktion im
+Wesentlichen aus einer Linearkombiantion von Punktprodukten aus dem
+Vektor \(x_u\) mit allen Trainingsvektoren \(x_i\) ergibt. Diese
+Punktprodukt kann als Ähnlichkeitsmaß zwischen dem neuen Datenpunkt und
+dem jeweiligen Trainingsdatenpunkt interpretiert werden. Es ist nun
+Möglich auf diese Produkte eine Funktion anzuwenden, welche die
+Ähnlichkeiten von Datenpunkten anders bewertet. Diese sogenannte Kernel
+Funktion \(K(x_i,x_j)\) ermöglicht es eine flexiblere
+Entscheidungsgrenze zu implementieren. Der Vorteil ist dabei, dass die
+Kernel Funktion nur auf alle Punktprodukte angewndet wird und es dabei
+nicht nötig ist den Merkmalsraum zu Erweitern, was wiederum Rechenzeit
+spart\parencite{jamesIntroductionStatisticalLearning2021}. Die
+Entscheidungsfunktion wird dann mithilfe dieser Kernelfunktionen
+berechnet: \begin{align}
+  f(x_u)=\sum \alpha_i y_i K(x_i,x_u)+\beta_0
+\end{align}
+
+\begin{figure}[h]
+    \centering
+    \begin{minipage}{0.45\textwidth} 
+        \centering
+        \includegraphics[width=\textwidth,trim=0.5cm 0.5cm 0.5cm 0.5cm]{Images/nonlinearseperable.pdf} 
+        \caption{nicht linear getrennte Daten}
+        \label{fig:nonlinearsep}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth} 
+        \centering
+        \includegraphics[width=\textwidth,trim=0.5cm 0.5cm 0.5cm 0.5cm]{Images/featurexpansion.pdf}
+        \caption{Feature Erweiterung}
+        \label{fig:featurexten}
+    \end{minipage}
+\end{figure}
+
+Es gibt eine ganze Reihe an Kernelfunktionen, die bei SVMs Anwedung
+finden. Die Grundlage ist der lineare Kernel, wobei dieser lediglich das
+Punktprodukt beschreibt, also praktisch genau das macht, was bei einer
+linearen Entscheidungsgrenze gemacht wird. Deweiteren gibt es den
+Polynomial Kernel. Dieser hat die Form \begin{align}
+K(x_i,x_u) = (1+x_i\cdot x_u)^d
+\end{align} wobei \(d\) ein Integer Die Verwendung von diesem Kernel
+fuührt dazu, dass die Entscheidungsgrenze sich ähnlich Verhält, wie als
+würde man zu Beginn eine Merkmalserweiterung mit Polynomen vom Grad
+\(d\) durchführen. Eine weitere Kernel Funktion ist der Radiale Kernel
+mit der Form \begin{align}
+K(x_i,x_u)=\exp\left(-\gamma ||x_i-x_u||^2\right)
+\end{align} Für diesen Kernel wird die quadrierte euklidische Distanz
+als Ähnlichkeitsmaß verwendet, was dazu führt, dass für diejenigen
+\(x_i\) die näher an \(x_u\) liegen, in der Entscheidungsfunktion einen
+größeren Einfluss haben. Es gibt noch einen Reihe wietere Kernel, die
+auf unterschiedlichen Ähnlichkeitsmaßen beruhen, aber eher seltener oder
+nur in speziellen Zusammenhänge angewendet werden.
+
+overfitting Problem
 
 \printbibliography
 

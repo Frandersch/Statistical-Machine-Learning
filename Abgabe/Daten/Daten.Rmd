@@ -1,5 +1,5 @@
 ---
-title: "Funktionsweise"
+title: "Zielsetzung und Datengenerierung"
 author: "Franz Andersch & Niklas Münz"
 date: "`r Sys.Date()`"
 output: 
@@ -11,3 +11,4 @@ output:
     citation_package: biblatex
 bibliography: Literatur.bib
 ---
+Das Ziel dieser Arbeit soll es sein bestimmte Datensituationen zu generieren und die Vorhersagekraft von SVMs für diese zu evaluieren

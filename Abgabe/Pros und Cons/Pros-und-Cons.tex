@@ -75,7 +75,7 @@
 \fi
 \usepackage[]{biblatex}
 \addbibresource{Literatur.bib}
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
@@ -86,7 +86,7 @@
 
 \title{Pros und Cons}
 \author{Franz Andersch \& Niklas Münz}
-\date{2024-08-16}
+\date{2024-08-19}
 
 \begin{document}
 \maketitle
@@ -157,9 +157,10 @@ Datenszenarien untersucht. Dabei werden Logistic Regression und
 k-nearest Neighbour als Vergleichsalgorithmen hinzugezogen. Genauer
 gesagt, wird in neun verschiedene Szenarien unterschieden, welche sich
 durch zwei Unterteilungen ergeben: die Form der Entscheidungsgrenze
-sowie das Verhältnis zwischen der Anzahl an Dimensionen (p) und der
-Anzahl an Beobachtungen (n).Dabei werden ausschließlich binäre
-Klassifikationen untersucht. Es ergibt sich folgende Aufteilung:
+sowie das Verhältnis zwischen der Anzahl an Dimensionen \(p\) und der
+Anzahl an Beobachtungen \(n\).Dabei werden ausschließlich binäre
+Klassifikationen untersucht. Es ergibt sich folgende Aufteilung in
+Tabelle 1.
 
 \begin{table}[h]
 \begin{center}
@@ -167,11 +168,11 @@ Klassifikationen untersucht. Es ergibt sich folgende Aufteilung:
  \hline
   & linear & polynomial & radial \\
  \hline
- p $\ll$ n & S1 & S2 & S3 \\
+ $p \ll n$ & S1 & S2 & S3 \\
  \hline
- p $=$ n & S4 & S5 & S6 \\
+ $p = n$ & S4 & S5 & S6 \\
  \hline
- p $\gg$ n & S7 & S8 & S9 \\
+ $p \gg n$ & S7 & S8 & S9 \\
  \hline
 \end{tabular}
 \end{center}
