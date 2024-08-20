@@ -1,0 +1,24 @@
+---
+title: "Ergebnisse"
+author: "Franz Andersch & Niklas Münz"
+date: "`r Sys.Date()`"
+output: 
+  pdf_document:
+    number_sections: true
+    keep_tex: true
+    includes:
+      in_header: header.tex
+    citation_package: biblatex
+bibliography: Literatur.bib
+---
+\subsection{Analyse}
+Bevor die Ergebnisse dargelegt werden, wird kurz auf die Vorgehensweise bei der Analyse eingegangen. In die Analyse werden fünf Modelle einbezogen: SVM mit linearem, polynomialem und radialem Kern, sowie regularisierte logistische Regression und k-nearest neighbours.\newline
+Vor dem erstellen der Modelle wird ein Tuning der Hyperparameter je Modell durchgeführt. Dafür wird die Bayesian Optimization Methode genutzt, welche ein iterativer Algorithmus ist. Hierbei werden die nächsten Evaluierungspunkte basierend auf zuvor beobachteten Ergebnissen bestimmt \parencite{yangHyperparameterOptimizationMachine2020}. Der Algorithmus basiert auf zwei Hauptkomponenten: einem Surrogatmodell und einer Akqusitionsfunktion. Das Surrogatmodell, wofür hier ein Gaussian Process genutzt wird, passt die bisher beobachteten Punkte an die Zielfunktion an. Die Akquisitionsfunktion wählt dann die nächsten Punkte aus, wobei ein Gleichgewicht zwischen der Erkundung neuer Bereiche und der Nutzung vielversprechender Regionen angestrebt wird. Dafür wird hier der Ansatz des Upper-Confidence-Bound genutzt, welcher obere Konfidenzgrenzen nutzt um den Verlust gegenüber der besten möglichen Entscheidung, während der Optimierung zu minimieren \parencite{snoekPracticalBayesianOptimization2012}. Die Bayesian Optimization wird genutzt, da sie eine schnelle Konvergenz für stetige Hyperparameter aufweist \parencite{yangHyperparameterOptimizationMachine2020}. Als Evaluierungskriterium wird die Genauigkeit der Modelle, welche durch den Anteil der korrekt klassifizierten Beobachtungen wiedergegeben wird,  verwendet.\newline
+Basierend auf den Ergebnissen des Tuning werden die oben genannten Modelle erstellt. Daraufhin werden die Genauigkeit und die Receiver Operating Characteristic Kurve (ROC-Kurve) bzw. der Area Under The Curve Wert (AUC-Wert) für jedes Modell bestimmt. Die ROC-Kurve ist eine grafische Darstellung der Leistungsfähigkeit eines Klassifikationsmodells, wobei die Sensitivität gegen die Spezifität abgetragen wird \parencite{fawcettIntroductionROCAnalysis2006}. Die Sensitivität gibt den Anteil der korrekt als positiv (hier gleichbedeutend mit Klasse 1) klassifizierten Beobachtungen an während die Spezifität den Anteil der korrekt als negativ (hier gleichbedeutend mit Klasse 2) klassifizierten Beobachtungen angibt. Der AUC-Wert bezieht sich auf die Fläche unterhalb die Kurve und liegt somit im Intervall [0,1], wobei ein Wert von 1 für eine perfekte Klassifikation spricht, während ein Wert von 0.5 für eine rein zufällige Zuordnung der Klassen spricht.
+
+\subsection{Auswertung}
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+```
+

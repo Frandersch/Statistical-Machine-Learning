@@ -1,0 +1,140 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage[german]{babel}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage{pgf}
+\usepackage{csquotes}
+\AtBeginDocument{
+\renewcommand{\maketitle}{}
+}
+\PassOptionsToPackage{a4paper,margin = 2.5cm}{geometry}
+\usepackage{geometry}
+\newcommand{\bcenter}{\begin{center}}
+\newcommand{\ecenter}{\end{center}}
+\renewcommand{\contentsname}{Inhalt}
+\usepackage{blindtext}
+\usepackage[backend=biber, style = apa]{biblatex}
+\addbibresource{Literatur.bib}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{biblatex}
+\addbibresource{Literatur.bib}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Ergebnisse},
+  pdfauthor={Franz Andersch \& Niklas Münz},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Ergebnisse}
+\author{Franz Andersch \& Niklas Münz}
+\date{2024-08-20}
+
+\begin{document}
+\maketitle
+
+\subsection{Analyse}
+
+Bevor die Ergebnisse dargelegt werden, wird kurz auf die Vorgehensweise
+bei der Analyse eingegangen. In die Analyse werden fünf Modelle
+einbezogen: SVM mit linearem, polynomialem und radialem Kern, sowie
+regularisierte logistische Regression und k-nearest neighbours.\newline
+Vor dem erstellen der Modelle wird ein Tuning der Hyperparameter je
+Modell durchgeführt. Dafür wird die Bayesian Optimization Methode
+genutzt, welche ein iterativer Algorithmus ist. Hierbei werden die
+nächsten Evaluierungspunkte basierend auf zuvor beobachteten Ergebnissen
+bestimmt \parencite{yangHyperparameterOptimizationMachine2020}. Der
+Algorithmus basiert auf zwei Hauptkomponenten: einem Surrogatmodell und
+einer Akqusitionsfunktion. Das Surrogatmodell, wofür hier ein Gaussian
+Process genutzt wird, passt die bisher beobachteten Punkte an die
+Zielfunktion an. Die Akquisitionsfunktion wählt dann die nächsten Punkte
+aus, wobei ein Gleichgewicht zwischen der Erkundung neuer Bereiche und
+der Nutzung vielversprechender Regionen angestrebt wird. Dafür wird hier
+der Ansatz des Upper-Confidence-Bound genutzt, welcher obere
+Konfidenzgrenzen nutzt um den Verlust gegenüber der besten möglichen
+Entscheidung, während der Optimierung zu minimieren
+\parencite{snoekPracticalBayesianOptimization2012}. Die Bayesian
+Optimization wird genutzt, da sie eine schnelle Konvergenz für stetige
+Hyperparameter aufweist
+\parencite{yangHyperparameterOptimizationMachine2020}. Als
+Evaluierungskriterium wird die Genauigkeit der Modelle, welche durch den
+Anteil der korrekt klassifizierten Beobachtungen wiedergegeben wird,
+verwendet.\newline Basierend auf den Ergebnissen des Tuning werden die
+oben genannten Modelle erstellt. Daraufhin werden die Genauigkeit und
+die Receiver Operating Characteristic Kurve (ROC-Kurve) bzw. der Area
+Under The Curve Wert (AUC-Wert) für jedes Modell bestimmt. Die ROC-Kurve
+ist eine grafische Darstellung der Leistungsfähigkeit eines
+Klassifikationsmodells, wobei die Sensitivität gegen die Spezifität
+abgetragen wird \parencite{fawcettIntroductionROCAnalysis2006}. Die
+Sensitivität gibt den Anteil der korrekt als positiv (hier
+gleichbedeutend mit Klasse 1) klassifizierten Beobachtungen an während
+die Spezifität den Anteil der korrekt als negativ (hier gleichbedeutend
+mit Klasse 2) klassifizierten Beobachtungen angibt. Der AUC-Wert bezieht
+sich auf die Fläche unterhalb die Kurve und liegt somit im Intervall
+{[}0,1{]}, wobei ein Wert von 1 für eine perfekte Klassifikation
+spricht, während ein Wert von 0.5 für eine rein zufällige Zuordnung der
+Klassen spricht.
+
+\subsection{Auswertung}
+
+\printbibliography
+
+\end{document}
