@@ -5,7 +5,6 @@ library(class)
 library(rBayesianOptimization)
 library(gridExtra)
 library(pROC)
-library(ggplot2)
 
 ## Szenario 1: p << n (n = 1000, p = 10)
 
@@ -24,9 +23,9 @@ S1_tune_linear <- function(cost) {
 
 S1_opt_param_linear <- BayesianOptimization(
   FUN = S1_tune_linear,
-  bounds = list(cost = c(0.01, 50)),
-  init_points = 5,
-  n_iter = 20,
+  bounds = list(cost = c(0.01, 100)),
+  init_points = 10,
+  n_iter = 15,
   acq = "ucb",
 )
 
@@ -39,9 +38,9 @@ S1_tune_polynomial <- function(cost, gamma, degree) {
 
 S1_opt_param_polynomial <- BayesianOptimization(
   FUN = S1_tune_polynomial,
-  bounds = list(cost = c(0.01, 50), gamma = c(0.01, 10), degree = c(1, 10)),
-  init_points = 5,
-  n_iter = 20,
+  bounds = list(cost = c(0.01, 100), gamma = c(0.001, 10), degree = c(1, 5)),
+  init_points = 10,
+  n_iter = 15,
   acq = "ucb"
 )
 
@@ -54,9 +53,9 @@ S1_tune_radial <- function(cost, gamma) {
 
 S1_opt_param_radial <- BayesianOptimization(
   FUN = S1_tune_radial,
-  bounds = list(cost = c(0.01, 50), gamma = c(0.01, 10)),
-  init_points = 5,
-  n_iter = 20,
+  bounds = list(cost = c(0.01, 100), gamma = c(0.001, 10)),
+  init_points = 10,
+  n_iter = 15,
   acq = "ucb"
 )
 
@@ -89,8 +88,8 @@ S1_tune_k_NN <- function(k) {
 S1_opt_param_k_NN <- BayesianOptimization(
   FUN = S1_tune_k_NN,
   bounds = list(k = c(1, 100)),
-  init_points = 5,
-  n_iter = 20,
+  init_points = 10,
+  n_iter = 15,
   acq = "ucb"
 )
 
@@ -131,7 +130,7 @@ S1_accuracy_logR <- sum(diag(S1_confusion_matrix_logR))/sum(S1_confusion_matrix_
 S1_confusion_matrix_k_NN <- table(S1_k_NN, S1_data_test$y)
 S1_accuracy_k_NN <- sum(diag(S1_confusion_matrix_k_NN))/sum(S1_confusion_matrix_k_NN)
 
-S1_Accuracy <- data.frame(linear = c(as.character(round(S1_accuracy_linear), 4), as.character(round(S1_opt_param_linear$Best_Par["cost"], 4)), "/", "/", "/", "/", "/"),
+S1_Accuracy <- data.frame(linear = c(as.character(round(S1_accuracy_linear, 4)), as.character(round(S1_opt_param_linear$Best_Par["cost"], 4)), "/", "/", "/", "/", "/"),
            polynomial = c(as.character(round(S1_accuracy_polynomial, 4)), as.character(round(S1_opt_param_polynomial$Best_Par["cost"], 4)), as.character(round(S1_opt_param_polynomial$Best_Par["gamma"], 4)), as.character(round(S1_opt_param_polynomial$Best_Par["degree"], 4)), "/", "/", "/"),
            radial = c(as.character(round(S1_accuracy_radial, 4)), as.character(round(S1_opt_param_radial$Best_Par["cost"], 4)), as.character(round(S1_opt_param_radial$Best_Par["gamma"], 4)), "/", "/", "/", "/"),
            logR = c(as.character(round(S1_accuracy_logR, 4)), "/", "/", "/", as.character(round(S1_opt_param_logR$Best_Par["alpha"], 4)), as.character(round(S1_opt_param_logR$Best_Par["lambda"], 4)), "/"),
@@ -143,32 +142,45 @@ grid.arrange(S1_Accuracy_Tabelle)
 
 # ROC/AUC
 
-S1_roc_linear <- roc(response = S1_data_test$y, predictor = as.numeric(S1_prediction_linear))
-S1_roc_polynomial <- roc(response = S1_data_test$y, predictor = as.numeric(S1_prediction_polynomial))
-S1_roc_radial <- roc(response = S1_data_test$y, predictor = as.numeric(S1_prediction_radial))
-S1_roc_logR <- roc(response = S1_data_test$y, predictor = as.numeric(S1_prediction_logR))
-S1_roc_k_NN <- roc(response = S1_data_test$y, predictor = as.numeric(S1_k_NN))
+S1_svm_linear_probs <- svm(y ~., data = S1_data_train, kernel = "linear", cost = S1_opt_param_linear$Best_Par, probability = TRUE)
+S1_prob_svm_linear <- predict(S1_svm_linear_probs, S1_data_test, probability = TRUE)
+S1_prediction_probs_linear <- attr(S1_prob_svm_linear, "probabilities")[, 1]
+S1_roc_linear <- roc(S1_data_test$y, S1_prediction_probs_linear, levels = rev(levels(S1_data_test$y)))
 
-ggplot() +
-  geom_line(aes(x = S1_roc_linear$specificities, y = S1_roc_linear$sensitivities, color = "linear"), linewidth = 1) +
-  geom_line(aes(x = S1_roc_polynomial$specificities, y = S1_roc_polynomial$sensitivities, color = "polynomial"), linewidth = 1) +
-  geom_line(aes(x = S1_roc_radial$specificities, y = S1_roc_radial$sensitivities, color = "radial"), linewidth = 1) +
-  geom_line(aes(x = S1_roc_logR$specificities, y = S1_roc_logR$sensitivities, color = "logR"), linewidth = 1) +
-  geom_line(aes(x = S1_roc_k_NN$specificities, y = S1_roc_k_NN$sensitivities, color = "k_NN"), linewidth = 1) +
-  geom_abline(slope = 1, intercept = 1, color = "black", linewidth = 0.5) +
-  labs(title = "ROC-Kurven Szenario 1", x = "Spezifität", y = "Sensitivität") +
-  scale_color_manual(name = "Modelle",
-                     values = c("linear" = "blue", "polynomial" = "red", "radial" = "green", "logR" = "violet", "k_NN" = "orange"),
-                     labels = c("linear" = paste("linear (AUC:", round(auc(S1_roc_linear), 4), ")"),
-                                "polynomial" = paste("polynomial (AUC:", round(auc(S1_roc_polynomial), 4), ")"),
-                                "radial" = paste("radial (AUC:", round(auc(S1_roc_radial), 4), ")"),
-                                "logR" = paste("logR (AUC:", round(auc(S1_roc_logR), 4), ")"),
-                                "k_NN" = paste("k_NN (AUC:", round(auc(S1_roc_k_NN), 4), ")")),
-                     breaks = c("linear", "polynomial", "radial", "logR", "k_NN")) +
-  scale_x_reverse() +
-  theme_minimal()
+S1_svm_polynomial_probs <- svm(y ~., data = S1_data_train, kernel = "polynomial", cost = S1_opt_param_polynomial$Best_Par["cost"], gamma = S1_opt_param_polynomial$Best_Par["gamma"], degree = S1_opt_param_polynomial$Best_Par["degree"], probability = TRUE)
+S1_prob_svm_polynomial <- predict(S1_svm_polynomial_probs, S1_data_test, probability = TRUE)
+S1_prediction_probs_polynomial <- attr(S1_prob_svm_polynomial, "probabilities")[, 1]
+S1_roc_polynomial <- roc(S1_data_test$y, S1_prediction_probs_polynomial, levels = rev(levels(S1_data_test$y)))
 
-## Szenario 4: p = n (p = 200, n = 200)
+S1_svm_radial_probs <- svm(y ~., data = S1_data_train, kernel = "radial", cost = S1_opt_param_radial$Best_Par["cost"], gamma = S1_opt_param_radial$Best_Par["gamma"], probability = TRUE)
+S1_prob_svm_radial <- predict(S1_svm_radial_probs, S1_data_test, probability = TRUE)
+S1_prediction_probs_radial <- attr(S1_prob_svm_radial, "probabilities")[, 1]
+S1_roc_radial <- roc(S1_data_test$y, S1_prediction_probs_radial, levels = rev(levels(S1_data_test$y)))
+
+S1_prob_logR <- predict(S1_logR, as.matrix(S1_data_test[, setdiff(names(S1_data_test), "y")]), type = "response")
+S1_prediction_probs_logR <- S1_prob_logR[, 1]
+S1_roc_logR <- roc(S1_data_test$y, S1_prediction_probs_logR, levels = rev(levels(S1_data_test$y)))
+
+S1_k_NN_probs <- knn(S1_data_train[, setdiff(names(S1_data_train), "y")],
+                     S1_data_test[, setdiff(names(S1_data_test), "y")],
+                     S1_data_train[, "y"],
+                     k = S1_opt_param_k_NN$Best_Par["k"],
+                     prob = TRUE)
+S1_prediction_probs_k_NN <- attr(S1_k_NN_probs, "prob")
+S1_prediction_probs_k_NN <- ifelse(S1_k_NN_probs == levels(S1_data_train$y)[1], S1_prediction_probs_k_NN, 1 - S1_prediction_probs_k_NN)
+S1_roc_k_NN <- roc(S1_data_test$y, S1_prediction_probs_k_NN, levels = rev(levels(S1_data_test$y)))
+
+plot(S1_roc_linear, col = "blue", main = "ROC-Kurven Szenario 1")
+plot(S1_roc_polynomial, col = "red", add = TRUE)
+plot(S1_roc_radial, col = "green", add = TRUE)
+plot(S1_roc_logR, col = "violet", add = TRUE)
+plot(S1_roc_k_NN, col = "orange", add = TRUE)
+legend("bottomright",
+       legend = c(paste("linear (AUC:", auc(S1_roc_linear), ")"), paste("polynomial (AUC:", auc(S1_roc_polynomial), ")"), paste("radial (AUC:", auc(S1_roc_radial), ")"), paste("logR (AUC:", auc(S1_roc_logR), ")"), paste("k_NN (AUC:", auc(S1_roc_k_NN), ")")),
+       col = c("blue", "red", "green", "violet", "orange"),
+       lwd = 2)
+
+## Szenario 4: p = n (p = 50, n = 50)
 
 # Datengenerierung
 
@@ -185,7 +197,7 @@ S4_tune_linear <- function(cost) {
 
 S4_opt_param_linear <- BayesianOptimization(
   FUN = S4_tune_linear,
-  bounds = list(cost = c(0.01, 50)),
+  bounds = list(cost = c(0.01, 100)),
   init_points = 10,
   n_iter = 15,
   acq = "ucb",
@@ -201,7 +213,7 @@ S4_tune_polynomial <- function(cost, gamma, degree) {
 
 S4_opt_param_polynomial <- BayesianOptimization(
   FUN = S4_tune_polynomial,
-  bounds = list(cost = c(0.01, 50), gamma = c(0.01, 10), degree = c(1, 10)),
+  bounds = list(cost = c(0.01, 100), gamma = c(0.001, 10), degree = c(1, 5)),
   init_points = 10,
   n_iter = 15,
   acq = "ucb"
@@ -216,7 +228,7 @@ S4_tune_radial <- function(cost, gamma) {
 
 S4_opt_param_radial <- BayesianOptimization(
   FUN = S4_tune_radial,
-  bounds = list(cost = c(0.01, 50), gamma = c(0.01, 10)),
+  bounds = list(cost = c(0.01, 100), gamma = c(0.001, 10)),
   init_points = 10,
   n_iter = 15,
   acq = "ucb"
@@ -306,30 +318,44 @@ grid.arrange(S4_Accuracy_Tabelle)
 
 # ROC/AUC
 
-S4_roc_linear <- roc(response = S4_data_test$y, predictor = as.numeric(S4_prediction_linear))
-S4_roc_polynomial <- roc(response = S4_data_test$y, predictor = as.numeric(S4_prediction_polynomial))
-S4_roc_radial <- roc(response = S4_data_test$y, predictor = as.numeric(S4_prediction_radial))
-S4_roc_logR <- roc(response = S4_data_test$y, predictor = as.numeric(S4_prediction_logR))
-S4_roc_k_NN <- roc(response = S4_data_test$y, predictor = as.numeric(S4_k_NN))
+# default Werte für linear, da kein optimaler Parameter vorhanden
+S4_svm_linear_probs <- svm(y ~., data = S4_data_train, kernel = "linear", probability = TRUE)
+S4_prob_svm_linear <- predict(S4_svm_linear_probs, S4_data_test, probability = TRUE)
+S4_prediction_probs_linear <- attr(S4_prob_svm_linear, "probabilities")[, 1]
+S4_roc_linear <- roc(S4_data_test$y, S4_prediction_probs_linear, levels = rev(levels(S4_data_test$y)))
 
-ggplot() +
-  geom_line(aes(x = S4_roc_linear$specificities, y = S4_roc_linear$sensitivities, color = "linear"), linewidth = 1) +
-  geom_line(aes(x = S4_roc_polynomial$specificities, y = S4_roc_polynomial$sensitivities, color = "polynomial"), linewidth = 1) +
-  geom_line(aes(x = S4_roc_radial$specificities, y = S4_roc_radial$sensitivities, color = "radial"), linewidth = 1) +
-  geom_line(aes(x = S4_roc_logR$specificities, y = S4_roc_logR$sensitivities, color = "logR"), linewidth = 1) +
-  geom_line(aes(x = S4_roc_k_NN$specificities, y = S4_roc_k_NN$sensitivities, color = "k_NN"), linewidth = 1) +
-  geom_abline(slope = 1, intercept = 1, color = "black", linewidth = 0.5) +
-  labs(title = "ROC-Kurven Szenario 4", x = "Spezifität", y = "Sensitivität") +
-  scale_color_manual(name = "Modelle",
-                     values = c("linear" = "blue", "polynomial" = "red", "radial" = "green", "logR" = "violet", "k_NN" = "orange"),
-                     labels = c("linear" = paste("linear (AUC:", round(auc(S4_roc_linear), 4), ")"),
-                                "polynomial" = paste("polynomial (AUC:", round(auc(S4_roc_polynomial), 4), ")"),
-                                "radial" = paste("radial (AUC:", round(auc(S4_roc_radial), 4), ")"),
-                                "logR" = paste("logR (AUC:", round(auc(S4_roc_logR), 4), ")"),
-                                "k_NN" = paste("k_NN (AUC:", round(auc(S4_roc_k_NN), 4), ")")),
-                     breaks = c("linear", "polynomial", "radial", "logR", "k_NN")) +
-  scale_x_reverse() +
-  theme_minimal()
+S4_svm_polynomial_probs <- svm(y ~., data = S4_data_train, kernel = "polynomial", cost = S4_opt_param_polynomial$Best_Par["cost"], gamma = S4_opt_param_polynomial$Best_Par["gamma"], degree = S4_opt_param_polynomial$Best_Par["degree"], probability = TRUE)
+S4_prob_svm_polynomial <- predict(S4_svm_polynomial_probs, S4_data_test, probability = TRUE)
+S4_prediction_probs_polynomial <- attr(S4_prob_svm_polynomial, "probabilities")[, 1]
+S4_roc_polynomial <- roc(S4_data_test$y, S4_prediction_probs_polynomial, levels = rev(levels(S4_data_test$y)))
+
+S4_svm_radial_probs <- svm(y ~., data = S4_data_train, kernel = "radial", cost = S4_opt_param_radial$Best_Par["cost"], gamma = S4_opt_param_radial$Best_Par["gamma"], probability = TRUE)
+S4_prob_svm_radial <- predict(S4_svm_radial_probs, S4_data_test, probability = TRUE)
+S4_prediction_probs_radial <- attr(S4_prob_svm_radial, "probabilities")[, 1]
+S4_roc_radial <- roc(S4_data_test$y, S4_prediction_probs_radial, levels = rev(levels(S4_data_test$y)))
+
+S4_prob_logR <- predict(S4_logR, as.matrix(S4_data_test[, setdiff(names(S4_data_test), "y")]), type = "response")
+S4_prediction_probs_logR <- S4_prob_logR[, 1]
+S4_roc_logR <- roc(S4_data_test$y, S4_prediction_probs_logR, levels = rev(levels(S4_data_test$y)))
+
+S4_k_NN_probs <- knn(S4_data_train[, setdiff(names(S4_data_train), "y")],
+                     S4_data_test[, setdiff(names(S4_data_test), "y")],
+                     S4_data_train[, "y"],
+                     k = S4_opt_param_k_NN$Best_Par["k"],
+                     prob = TRUE)
+S4_prediction_probs_k_NN <- attr(S4_k_NN_probs, "prob")
+S4_prediction_probs_k_NN <- ifelse(S4_k_NN_probs == levels(S4_data_train$y)[1], S4_prediction_probs_k_NN, 1 - S4_prediction_probs_k_NN)
+S4_roc_k_NN <- roc(S4_data_test$y, S4_prediction_probs_k_NN, levels = rev(levels(S4_data_test$y)))
+
+plot(S4_roc_linear, col = "blue", main = "ROC-Kurven Szenario 4")
+plot(S4_roc_polynomial, col = "red", add = TRUE)
+plot(S4_roc_radial, col = "green", add = TRUE)
+plot(S4_roc_logR, col = "violet", add = TRUE)
+plot(S4_roc_k_NN, col = "orange", add = TRUE)
+legend("bottomright",
+       legend = c(paste("linear (AUC:", auc(S4_roc_linear), ")"), paste("polynomial (AUC:", auc(S4_roc_polynomial), ")"), paste("radial (AUC:", auc(S4_roc_radial), ")"), paste("logR (AUC:", auc(S4_roc_logR), ")"), paste("k_NN (AUC:", auc(S4_roc_k_NN), ")")),
+       col = c("blue", "red", "green", "violet", "orange"),
+       lwd = 2)
 
 ## Szenario 7: p >> n (p = 200, n = 50)
 
@@ -348,7 +374,7 @@ S7_tune_linear <- function(cost) {
 
 S7_opt_param_linear <- BayesianOptimization(
   FUN = S7_tune_linear,
-  bounds = list(cost = c(0.01, 50)),
+  bounds = list(cost = c(0.01, 100)),
   init_points = 10,
   n_iter = 15,
   acq = "ucb",
@@ -364,7 +390,7 @@ S7_tune_polynomial <- function(cost, gamma, degree) {
 
 S7_opt_param_polynomial <- BayesianOptimization(
   FUN = S7_tune_polynomial,
-  bounds = list(cost = c(0.01, 50), gamma = c(0.01, 10), degree = c(1, 10)),
+  bounds = list(cost = c(0.01, 100), gamma = c(0.001, 10), degree = c(1, 5)),
   init_points = 10,
   n_iter = 15,
   acq = "ucb"
@@ -379,7 +405,7 @@ S7_tune_radial <- function(cost, gamma) {
 
 S7_opt_param_radial <- BayesianOptimization(
   FUN = S7_tune_radial,
-  bounds = list(cost = c(0.01, 50), gamma = c(0.01, 10)),
+  bounds = list(cost = c(0.01, 100), gamma = c(0.001, 10)),
   init_points = 10,
   n_iter = 15,
   acq = "ucb"
@@ -457,7 +483,7 @@ S7_accuracy_logR <- sum(diag(S7_confusion_matrix_logR))/sum(S7_confusion_matrix_
 S7_confusion_matrix_k_NN <- table(S7_k_NN, S7_data_test$y)
 S7_accuracy_k_NN <- sum(diag(S7_confusion_matrix_k_NN))/sum(S7_confusion_matrix_k_NN)
 
-S7_Accuracy <- data.frame(linear = c(as.character(round(S7_accuracy_linear, 4)), "/", "/", "/", "/", "/", "/"),
+S7_Accuracy <- data.frame(linear = c(as.character(round(S7_accuracy_linear, 4)), "no opt.", "/", "/", "/", "/", "/"),
                           polynomial = c(as.character(round(S7_accuracy_polynomial, 4)), as.character(round(S7_opt_param_polynomial$Best_Par["cost"], 4)), as.character(round(S7_opt_param_polynomial$Best_Par["gamma"], 4)), as.character(round(S7_opt_param_polynomial$Best_Par["degree"], 4)), "/", "/", "/"),
                           radial = c(as.character(round(S7_accuracy_radial, 4)), as.character(round(S7_opt_param_radial$Best_Par["cost"], 4)), as.character(round(S7_opt_param_radial$Best_Par["gamma"], 4)), "/", "/", "/", "/"),
                           logR = c(as.character(round(S7_accuracy_logR, 4)), "/", "/", "/", as.character(round(S7_opt_param_logR$Best_Par["alpha"], 4)), as.character(round(S7_opt_param_logR$Best_Par["lambda"], 4)), "/"),
@@ -469,27 +495,41 @@ grid.arrange(S7_Accuracy_Tabelle)
 
 # ROC/AUC
 
-S7_roc_linear <- roc(response = S7_data_test$y, predictor = as.numeric(S7_prediction_linear))
-S7_roc_polynomial <- roc(response = S7_data_test$y, predictor = as.numeric(S7_prediction_polynomial))
-S7_roc_radial <- roc(response = S7_data_test$y, predictor = as.numeric(S7_prediction_radial))
-S7_roc_logR <- roc(response = S7_data_test$y, predictor = as.numeric(S7_prediction_logR))
-S7_roc_k_NN <- roc(response = S7_data_test$y, predictor = as.numeric(S7_k_NN))
+# default Werte für linear, da kein optimaler Parameter vorhanden
+S7_svm_linear_probs <- svm(y ~., data = S7_data_train, kernel = "linear", probability = TRUE)
+S7_prob_svm_linear <- predict(S7_svm_linear_probs, S7_data_test, probability = TRUE)
+S7_prediction_probs_linear <- attr(S7_prob_svm_linear, "probabilities")[, 1]
+S7_roc_linear <- roc(S7_data_test$y, S7_prediction_probs_linear, levels = rev(levels(S7_data_test$y)))
 
-ggplot() +
-  geom_line(aes(x = S7_roc_linear$specificities, y = S7_roc_linear$sensitivities, color = "linear"), linewidth = 1) +
-  geom_line(aes(x = S7_roc_polynomial$specificities, y = S7_roc_polynomial$sensitivities, color = "polynomial"), linewidth = 1) +
-  geom_line(aes(x = S7_roc_radial$specificities, y = S7_roc_radial$sensitivities, color = "radial"), linewidth = 1) +
-  geom_line(aes(x = S7_roc_logR$specificities, y = S7_roc_logR$sensitivities, color = "logR"), linewidth = 1) +
-  geom_line(aes(x = S7_roc_k_NN$specificities, y = S7_roc_k_NN$sensitivities, color = "k_NN"), linewidth = 1) +
-  geom_abline(slope = 1, intercept = 1, color = "black", linewidth = 0.5) +
-  labs(title = "ROC-Kurven Szenario 7", x = "Spezifität", y = "Sensitivität") +
-  scale_color_manual(name = "Modelle",
-                     values = c("linear" = "blue", "polynomial" = "red", "radial" = "green", "logR" = "violet", "k_NN" = "orange"),
-                     labels = c("linear" = paste("linear (AUC:", round(auc(S7_roc_linear), 4), ")"),
-                                "polynomial" = paste("polynomial (AUC:", round(auc(S7_roc_polynomial), 4), ")"),
-                                "radial" = paste("radial (AUC:", round(auc(S7_roc_radial), 4), ")"),
-                                "logR" = paste("logR (AUC:", round(auc(S7_roc_logR), 4), ")"),
-                                "k_NN" = paste("k_NN (AUC:", round(auc(S7_roc_k_NN), 4), ")")),
-                     breaks = c("linear", "polynomial", "radial", "logR", "k_NN")) +
-  scale_x_reverse() +
-  theme_minimal()
+S7_svm_polynomial_probs <- svm(y ~., data = S7_data_train, kernel = "polynomial", cost = S7_opt_param_polynomial$Best_Par["cost"], gamma = S7_opt_param_polynomial$Best_Par["gamma"], degree = S7_opt_param_polynomial$Best_Par["degree"], probability = TRUE)
+S7_prob_svm_polynomial <- predict(S7_svm_polynomial_probs, S7_data_test, probability = TRUE)
+S7_prediction_probs_polynomial <- attr(S7_prob_svm_polynomial, "probabilities")[, 1]
+S7_roc_polynomial <- roc(S7_data_test$y, S7_prediction_probs_polynomial, levels = rev(levels(S7_data_test$y)))
+
+S7_svm_radial_probs <- svm(y ~., data = S7_data_train, kernel = "radial", cost = S7_opt_param_radial$Best_Par["cost"], gamma = S7_opt_param_radial$Best_Par["gamma"], probability = TRUE)
+S7_prob_svm_radial <- predict(S7_svm_radial_probs, S7_data_test, probability = TRUE)
+S7_prediction_probs_radial <- attr(S7_prob_svm_radial, "probabilities")[, 1]
+S7_roc_radial <- roc(S7_data_test$y, S7_prediction_probs_radial, levels = rev(levels(S7_data_test$y)))
+
+S7_prob_logR <- predict(S7_logR, as.matrix(S7_data_test[, setdiff(names(S7_data_test), "y")]), type = "response")
+S7_prediction_probs_logR <- S7_prob_logR[, 1]
+S7_roc_logR <- roc(S7_data_test$y, S7_prediction_probs_logR, levels = rev(levels(S7_data_test$y)))
+
+S7_k_NN_probs <- knn(S7_data_train[, setdiff(names(S7_data_train), "y")],
+                     S7_data_test[, setdiff(names(S7_data_test), "y")],
+                     S7_data_train[, "y"],
+                     k = S7_opt_param_k_NN$Best_Par["k"],
+                     prob = TRUE)
+S7_prediction_probs_k_NN <- attr(S7_k_NN_probs, "prob")
+S7_prediction_probs_k_NN <- ifelse(S7_k_NN_probs == levels(S7_data_train$y)[1], S7_prediction_probs_k_NN, 1 - S7_prediction_probs_k_NN)
+S7_roc_k_NN <- roc(S7_data_test$y, S7_prediction_probs_k_NN, levels = rev(levels(S7_data_test$y)))
+
+plot(S7_roc_linear, col = "blue", main = "ROC-Kurven Szenario 7")
+plot(S7_roc_polynomial, col = "red", add = TRUE)
+plot(S7_roc_radial, col = "green", add = TRUE)
+plot(S7_roc_logR, col = "violet", add = TRUE)
+plot(S7_roc_k_NN, col = "orange", add = TRUE)
+legend("bottomright",
+       legend = c(paste("linear (AUC:", auc(S7_roc_linear), ")"), paste("polynomial (AUC:", auc(S7_roc_polynomial), ")"), paste("radial (AUC:", auc(S7_roc_radial), ")"), paste("logR (AUC:", auc(S7_roc_logR), ")"), paste("k_NN (AUC:", auc(S7_roc_k_NN), ")")),
+       col = c("blue", "red", "green", "violet", "orange"),
+       lwd = 2)

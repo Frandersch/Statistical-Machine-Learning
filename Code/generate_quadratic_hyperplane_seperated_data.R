@@ -49,4 +49,15 @@ generate_dataset <- function(obs,variables,distance,jitter,seed,scaling_factor=1
   dataset
 }
 
-save(generate_dataset, generate_subdatasets, file = "Code/Funktionen/quadratic_hyperplane_seperated.RData")
+S2_data_train <- generate_dataset(1000, 10, 20, 2, 2024)
+S2_data_test <- generate_dataset(1000, 10, 20, 2, 2024)
+
+S5_data_train <- generate_dataset(50, 50, 20, 2, 2024)
+S5_data_test <- generate_dataset(50, 50, 20, 2, 2024)
+
+S8_data_train <- generate_dataset(50, 200, 20, 2, 2024)
+S8_data_test <- generate_dataset(50, 200, 20, 2, 2024)
+
+save(S2_data_train, S2_data_test, file = "Code/Daten/Data_S2.RData")
+save(S5_data_train, S5_data_test, file = "Code/Daten/Data_S5.RData")
+save(S8_data_train, S8_data_test, file = "Code/Daten/Data_S8.RData")
