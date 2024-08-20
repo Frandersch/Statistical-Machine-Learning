@@ -64,6 +64,7 @@
 }
 \PassOptionsToPackage{a4paper,margin = 2.5cm}{geometry}
 \usepackage{geometry}
+\usepackage{float}
 \newcommand{\bcenter}{\begin{center}}
 \newcommand{\ecenter}{\end{center}}
 \renewcommand{\contentsname}{Inhalt}
@@ -86,7 +87,7 @@
 
 \title{Funktionsweise}
 \author{Franz Andersch \& Niklas Münz}
-\date{2024-08-19}
+\date{2024-08-20}
 
 \begin{document}
 \maketitle
@@ -353,19 +354,50 @@ finden. Die Grundlage ist der lineare Kernel, wobei dieser lediglich das
 Punktprodukt beschreibt, also praktisch genau das macht, was bei einer
 linearen Entscheidungsgrenze gemacht wird. Deweiteren gibt es den
 Polynomial Kernel. Dieser hat die Form \begin{align}
-K(x_i,x_u) = (1+x_i\cdot x_u)^d
-\end{align} wobei \(d\) ein Integer Die Verwendung von diesem Kernel
-fuührt dazu, dass die Entscheidungsgrenze sich ähnlich Verhält, wie als
+  f(x_u)=\sum \alpha_i y_i K(x_i,x_u)+\beta_0
+\end{align}
+
+wobei \(d\) ein Integer \(>0\) ist. Die Verwendung von diesem Kernel
+führt dazu, dass die Entscheidungsgrenze sich ähnlich Verhält, wie als
 würde man zu Beginn eine Merkmalserweiterung mit Polynomen vom Grad
-\(d\) durchführen. Eine weitere Kernel Funktion ist der Radiale Kernel
-mit der Form \begin{align}
+\(d\) durchführen (siehe Abbildung \ref{fig:polykernel}. Eine weitere
+Kernel Funktion ist der Radial Basis Function Kernel(RBF) mit der Form
+\begin{align}
 K(x_i,x_u)=\exp\left(-\gamma ||x_i-x_u||^2\right)
 \end{align} Für diesen Kernel wird die quadrierte euklidische Distanz
 als Ähnlichkeitsmaß verwendet, was dazu führt, dass für diejenigen
 \(x_i\) die näher an \(x_u\) liegen, in der Entscheidungsfunktion einen
-größeren Einfluss haben. Es gibt noch einen Reihe wietere Kernel, die
-auf unterschiedlichen Ähnlichkeitsmaßen beruhen, aber eher seltener oder
-nur in speziellen Zusammenhänge angewendet werden.
+größeren Einfluss haben. Der Parameter \(\gamma\) legt dann fest, wie
+stark der Einfluss der Distanz sein soll. Die projektion die der Kernel
+hier macht ist eine, in einen uendlich großen Merkmalsraum . Daher
+könnte man selbst durch vorgeriges Erweitern des Merkmalsraums nicht das
+Ergebnis eines RBF Kernel replizieren und dies führt auch zu einer sehr
+flexiblen Entscheidungsgrenze (siehe Abbildung \ref{fig:radialkernel})\\
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.45\textwidth} 
+        \centering
+        \includegraphics[width=\textwidth,trim=0.5cm 0.5cm 0.5cm 0.5cm]{Images/ploynomial kernel.pdf} 
+        \caption{Mögliche Entscheidungsgrenze für polynomial Kernel}
+        \label{fig:polykernel}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth} 
+        \centering
+        \includegraphics[width=\textwidth,trim=0.5cm 0.5cm 0.5cm 0.5cm]{Images/radial_kernel.pdf}
+        \caption{Mögliche Entscheidungsgrenze für RBF Kernel}
+        \label{fig:radialkernel}
+    \end{minipage}
+\end{figure}
+
+Es gibt noch einen Reihe wietere Kernel, die auf unterschiedlichen
+Ähnlichkeitsmaßen beruhen, aber eher seltener oder nur in speziellen
+Zusammenhänge angewendet werden. Wichtig ist anzumerken, dass die
+Verwendung von Kernels zwar die Flexibilität der Entscheidungsgrenze
+erhöht, damit aber auch die Gefahr von overfitting einhergeht.
+Zusätzlich werden mit den Kernels auch neue Hyperparameter wie \(d\)
+oder \(\gamma\) eingeführt, die bei der Model selektion ebenfalls
+beachtet werden müssen.
 
 overfitting Problem
 

@@ -14,8 +14,8 @@
 			width=15cm,
 			axis x line=center,
 			axis y line=center,
-			%xmajorticks=false,
-			%ymajorticks=false,
+			xmajorticks=false,
+			ymajorticks=false,
 			ylabel style={right,font=\huge},
 			ylabel=$X_2$,
 			xlabel style={above,right,font=\huge},
@@ -31,8 +31,8 @@
 			\addplot[no markers,domain=-1:11,thick,blue,line width=2.8pt]{-0.6*x+7};
 			\addplot[no markers, domain=-1:11,dashed,line width=1.5pt]{-0.6*x+8};
 			\addplot[no markers, domain=-1:11,dashed,line width=1.5pt]{-0.6*x+6};
-			\draw[black,thick,orange,line width=2.8pt] (axis cs:2.3,6.2)--(axis cs:1.603,5.0382)node[right,pos=0.8,font=\huge]{$\bm{\varepsilon_j}$};
-			\draw[black,thick,orange,line width=2.8pt] (axis cs:3.6,3)--(axis cs:4.853,5.0882) node[left,pos=0.5,font=\huge]{$\bm{\varepsilon_i}$};
+			\draw[black,thick,orange,<->,line width=2.8pt] (axis cs:2.3,6.2)--(axis cs:1.603,5.0382)node[right,pos=0.8,font=\huge]{$\bm{\varepsilon_j}$};
+			\draw[black,thick,orange,<->,line width=2.8pt] (axis cs:3.6,3)--(axis cs:4.853,5.0882) node[left,pos=0.5,font=\huge]{$\bm{\varepsilon_i}$};
 		\end{axis}
 	\end{tikzpicture}
 \end{document}
