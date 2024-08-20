@@ -64,6 +64,7 @@
 }
 \PassOptionsToPackage{a4paper,margin = 2.5cm}{geometry}
 \usepackage{geometry}
+\usepackage{float}
 \newcommand{\bcenter}{\begin{center}}
 \newcommand{\ecenter}{\end{center}}
 \renewcommand{\contentsname}{Inhalt}
@@ -86,7 +87,7 @@
 
 \title{Hausarbeit}
 \author{Franz Andersch \& Niklas Münz}
-\date{2024-07-31}
+\date{2024-08-20}
 
 \begin{document}
 \maketitle
@@ -98,9 +99,526 @@
 \clearpage
 \pagenumbering{arabic}
 \section{Einleitung}
+\section{Funktionsweise}
 
-Support Vector Machines sind eine feine Sache
-\parencite{james_introduction_2021} \newpage
+\subsection{Hard Margin Classifier}
+
+Um das grundlegende Prinzip der SVMs darzustellen gehen wir zuerst von
+einer Datensituation aus, in der sich zwei gruppen optimal durch eine
+lineare entscheidungsgrenze trennen lassen. Das endgültige Ziel ist es
+eine sogenannte Hyperplane zu finden die diese Daten möglichst gut
+seperiert und als Entscheidungsgrenze funktioniert. Die allgemeine Form
+einer solchen hyperplain lautet \begin{align}
+\beta_0+ \beta_1 X_1+\beta_2 X_2+...+\beta_n X_n=0\label{eq:hyperebene}
+\end{align} oder in Vektorschreibweise \begin{align}
+\overline{\beta}\cdot\overline{x}+\beta_0=0 \label{eq:hyperplanevec}
+\end{align} Die geometrische Interpretation des Vektors \(\beta\) und
+des Skalars \(\beta_0\) wird in Abbildung \ref{fig:Ebene} im zwei
+dimensionalen Fall dargestellt.
+
+\begin{figure}[h]
+    \centering
+    \begin{minipage}{0.45\textwidth} 
+        \centering
+        \includegraphics[width=\textwidth,trim=0.5cm 0.5cm 0.5cm 0.5cm]{Images/decision_boundary.pdf} 
+        \caption{Konstruktion der Hyperebene}
+        \label{fig:Ebene}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth} 
+        \centering
+        \includegraphics[width=\textwidth,trim=0.5cm 0.5cm 0.5cm 0.5cm]{Images/guttes.pdf}
+        \caption{Konstruktion der Margins}
+        \label{fig:Margin}
+    \end{minipage}
+\end{figure}
+
+Die blaue Linie soll die Hyperplain darstellen. Im zweidiemnsionalen
+handelt es sich hier um eine Linie. Der \(2 \times 1\) Vektor
+\(\overline{\beta}\) liegt immer senkrecht zur konstruierten Hyperplane.
+Würde man alle Vektoren, die auf der Hyperplane landen, auf den
+\(\overline{\beta}\)-Vektor Projezieren, dann hätten alle diese
+Projektionen die selbe Länge \(c\). Also gilt für alle Punkte, die auf
+der Ebene liegen. \begin{align}
+\frac{\overline \beta}{||\overline{\beta}||}\cdot \overline{x}=c \Leftrightarrow \overline{\beta}\cdot \overline{x}=c \cdot ||\overline{\beta}||\label{eq:betanull}
+\end{align} ersetzet man in \eqref{eq:betanull}
+\(c \cdot ||\overline{\beta}||\) mit \(-\beta_0\) und zieht dies dann
+auf die andere Seite, kommen man wieder bei der ursprünglichen Form aus
+Formel \eqref{eq:hyperplanevec} raus.
+
+Als nächstes stellt sich jetzt die Frage, welches \(\overline{\beta}\)
+und \(\beta_0\) die optimale Hyperplane darstellen. Betrachtet man die
+Abbildung \ref{fig:Margin}, dann ist zu erkennen, dass die Datenpunkte
+durch die blaue Linie getrennt werden. Allerdings könnte man
+theorethisch undendlich viele andere Hyperplains durch rotation oder
+verschiebung konstruieren, die trotzdem die Daten in ihren Ausprägungen
+trennen. Um eine eindeutige Lösung zu finden, wird als nächstes ein
+bereich um die Hperplane abgesteck. In Abbildung \ref{fig:Margin}
+dargestell durch die gestrichelten scharzen linien, welche man als
+Schranken bezeichnen könnte. In diesem Bereich sollen keine Datenpunkte
+liegen und die Schranken sollen immer parallel zur Hyperplain seien und
+den gleichen Abstand zu ihr haben. Außerdem dürfen keine positiven
+Samples unterhalb der oberen Schranke liegen und keine negativen
+unterhalb. Das gegenteil gilt dementsprechend für die untere Schranke.
+Als Definition für die beiden Schranken wird festgelegt \begin{align}
+\overline{\beta}\cdot \overline{x}+\beta_0=1\label{eq:posSV}
+\end{align} für die Schranke in richtung der grünen Datenpunkte und
+\begin{align}
+\overline{\beta}\cdot \overline{x}+\beta_0=-1\label{eq:negSV}
+\end{align} für die Schranke in Richting der roten Datenpunkte. Aus
+dieser Beschränkung für die Hyperplane können wir auch ableiten, dass
+für die positiven Samples \(\overline{x}^+\) immer gilt
+\(\overline{\beta}\cdot \overline{x}^++\beta_0\ge 1\) und für negative
+Samples \(\overline{x}^-\) immer gilt
+\(\overline{\beta}\cdot \overline{x}^-+\beta_0\le -1\). Durch einführen
+einer weiteren Variable \(y\), welche die eigenschaft hat, dass die den
+Wert 1 bei einem positiven und den Wert -1 bei einem negativen Sample
+annimmt, können diese zwei Beschränkungen zu einer zusammengefasst
+werden \begin{align}
+y(\overline{\beta}\cdot \overline{x}+\beta_0)\ge 1\label{eq:Nebenbedingung}
+\end{align} Da das Verfahren auch maximum Margin Classifier gennant
+wird, gilt es jetzt noch eine Definition für den Margin also den Abstand
+zwischen den zwei Schranken zu finden, der schließlich maximiert werden
+soll. Damit diese Schranken, maximal weit auseinander liegen, muss es
+zwangsläufig Datenpunkte geben, die genau auf den Schranken liegen.
+Diese Datenpunkte haben eine wichtige Rolle für die Konstruktion des
+Margins. Es sind ausschließlich diese Datenpunkte, die einen Einfluss
+auf die finalen werte von \(\overline{\beta}\) und \(\beta_0\) haben
+werden. Sie werden \textbf{Support-Vektoren} genannt und geben den SVMs
+ihren Namen.
+
+\begin{figure}[h]
+\centering
+ \includegraphics[width=0.5\textwidth,trim=0.5cm 0.5cm 0.5cm 0.5cm]{Images/margin.pdf} 
+        \caption{Abhängigkeit des Margins von den Support-Vektoren}
+        \label{fig:SupVecs}
+\end{figure}
+
+In Abbildung \ref{fig:SupVecs} sind zwei solcher Support-Vektoren zu
+einem negativen und positiven Sample dargestellt. Der Margin kann dann
+dargestellt werden als eine Projektion dieser Differenz
+(\(\overline{x}^+-\overline{x}^+\)) auf den \(\overline{\beta}\)-Vektor.
+Damit am Ende die Länge dieses Margins \(M\) rauskommt muss
+\(\overline{\beta}\) noch durch seine Länge geteilt werden.
+\begin{align}
+M=\frac{\overline{\beta}}{||\overline{\beta}||}\cdot \left(\overline{x}^+-\overline{x}^+\right)=\frac{\overline{\beta}\cdot\overline{x}^- -\overline{\beta}\cdot\overline{x}^+}{||\overline{\beta}||}\label{eq:maring1}
+\end{align} Es ist bekannt, dass für postive Supportvektoren gilt
+\(\overline\beta \overline{x}^+ +\beta_0 = 1 \Leftrightarrow \overline\beta \overline{x}^+=1-\beta_0\)
+und für negative
+\(\overline\beta \overline{x}^- +\beta_0 = -1 \Leftrightarrow \overline\beta \overline{x}^-=-1-\beta_0\).
+Setzt man dies ein in \eqref{eq:maring1}, erhält man als
+Maximisierungsziel \begin{align}
+M=\frac{1-\beta_0-(-1-\beta_0)}{||\overline\beta||}=\frac{2}{||\overline\beta||}\label{eq:margin2}
+\end{align} Um diesen Maximierungsschritt angenehmer zu gestalten, wird
+an der Stelle versucht den Ausdruck
+\(\frac{1}{2}||\overline \beta||^2=\frac{1}{2}\overline \beta '\cdot \overline \beta\)
+zu minimieren. Was im Endeffekt ebenfalls dazu führt, dass der Ausdruck
+in \eqref{eq:margin2} maximiert wird.
+
+Dieses Optimierungsproblem mit der Nebenbedingung aus Formel
+\eqref{eq:Nebenbedingung} lässt sich am besten über Lagrange-Multiplier
+lösen \begin{align}
+\mathcal{L}(\overline\beta,\beta_0,\overline \alpha)=\frac{1}{2}\overline \beta ' \overline \beta-\sum \alpha_i[y_i(\overline \beta \cdot \overline{x_i}+\beta_0)-1]\label{eq:Lagrange}
+\end{align} Wird dieser Ausdruck partiell abgeleitet und gleich null
+gesetzt erhält man als zwischen ergebnis \begin{align}
+\frac{\partial \mathcal{L}}{\partial \beta}=\beta-\sum \alpha_i y_i \overline{x_i}\overset{!}{=}0 \Rightarrow \beta=\sum \alpha_i y_i \overline{x_i}\label{eq:solutbeta}
+\end{align} somit zeigt sich, dass \(\overline{\beta}\) als
+linearkombination der Inputvektoren dargestellt werden kann. Weiterhin
+gilt für \(\beta_0\) \begin{align}
+\frac{\partial \mathcal{L}}{\partial \beta_0}=\sum \alpha_i y_i \overline{x_i}\overset{!}{=}0\label{eq:solutbeta0}
+\end{align} Setzt man dies in \eqref{eq:Lagrange} ein erhält man einen
+neuen Ausdruck, denn es gilt zu minimieren \begin{align}
+\mathcal{L}(\overline \alpha)=-\frac{1}{2}\sum \sum \alpha_i \alpha_j y_i y_j \overline{x}_i \cdot \overline{x}_j+\sum \alpha_i\label{eq:dualproblem}
+\end{align} Die Lösung für diesen Ausdruck erfolgt dann über sogenannte
+\enquote{standard non linear optimization algorithms for quadratic forms}
+\parencite{boserTrainingAlgorithmOptimal1992}. Nachem für
+\(\overline \alpha\) gelöst wurde, kann dies in \eqref{eq:solutbeta}
+eingesetzt werden um das optimale \(\overline{\beta}\) zu erhalten. Es
+kann gezeigt werden, dass die gelösten \(\alpha_i\) lediglich für die
+Supportvektoren werte ungelich Null annehmen. Somit ist der
+Koeffizientenvektor \(\overline{\beta}\) sogar eine Linearkombination
+von nur den Supportvektoren
+\parencite{boserTrainingAlgorithmOptimal1992}. Die letzte unbekannte
+\(\beta_0\) kann gelöst werden, indem man mithilfe von einem
+positiven/negativen Support Vektor \eqref{eq:posSV}/ \eqref{eq:negSV}
+nach \(\beta_0\) löst.
+
+Mit den gelösten Werten zur optimalen Hyperplane kann jetzt auch eine
+Entscheidungsregel für ungelabelte Datenvektoren \(\overline{x}_u\)
+konstruiert werden. Bedenkt man also wenn man einen Vektor der nicht auf
+der Hypeplane liegt in \eqref{eq:betanull} einsetzt erhält man also
+\(\frac{\overline \beta}{||\overline{\beta}||}\cdot \overline{x}_u=c+k\).
+Wenn \(k\) positiv ist, liegt der neue Datenpunkt oberhalb der
+Hyperplane liegt und somit als positives Sample gewertet wird. Wenn
+\(k\) negativ ist, dann liegt der Datenpunkt unterhalb der Hyperplane
+und wird als negativ gewertet. Mit der gleichen Umformung wie weiter
+oben schon beschrieben kommt man zu folgender Entscheidungsregel
+\begin{align}
+f(\overline{x}_u)=\begin{cases}\mathrm{positiv}&\text{wenn } \overline{\beta}\cdot \overline{x}_u+\beta_0 > 0\\
+\mathrm{negativ} & \text{wenn }\overline{\beta}\cdot \overline{x}_u+\beta_0<0
+\end{cases}\label{eq:decisionf}
+\end{align}
+
+\subsection{Soft Margin Classifier}
+
+Dass die Daten sich perfekt linear trennen lassen ist zwar ein gut um
+die Vorgehensweise zu veranschaulichen, tritt aber in realen Situationen
+so gut wie nie auf. Falls sich postitive und negative Samples im Raum
+überlappen, ist die Konstruktion einer Hyperplane wie beim Hard Margin
+Classifier unmöglich. Man müsste also entweder auf eine nicht lineare
+Hypeplane ausweichen oder man erweicht die vorgaben für die Konstruktion
+der Hyperplane. Zweiteres ist genau das, was durch die Soft Margin
+Classifier erreicht wird. Die Vorgabe für die Konstruktion der Schranken
+ermöglicht es einzelnen Datenpunkten auf der falschen Seite der
+Schranke, ja sogar der Entscheidungsgrenzen zu liegen. Dafür wird für
+die Einschränkungen eine sogennannte Slackvariable \(\varepsilon\)
+eingeführt \parencite{jamesIntroductionStatisticalLearning2021}. Setzt
+man diese in diese in \eqref{eq:Nebenbedingung} lautet die neuen
+Nebenbedingung \begin{align}
+y_i(\beta \cdot \overline{x}_i-\beta_0)>1- \varepsilon_i \label{eq:nebbedsfm}
+\end{align}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth,trim=0.5cm 0.5cm 0.5cm 0.5cm]{Images/slackvariable.pdf} 
+        \caption{Funktion der Slack Variable}
+        \label{fig:slackvariable}
+\end{figure}
+
+Jetzt könnte man versuchen diese neue Nebenbedingung einfach in das
+zuvor angewandte Optimisierungsverfahren einzufügen. Allerdings besteht
+hier das Problem, dass \(\varepsilon\) einfach immer maximal groß
+gewählt wird und so die Bedingung immer erfüllt wird. Um das Ausmaß der
+Verletzung der usptünglichen Annahmen zu begrenzen, aber trotzdem noch
+gewisse Abweichung zuzulassen, wird ein weitere Parameter \(C\)
+eingeführt, als regularisierender Parameter für \(\varepsilon\). Leitet
+daraus zusammen mit der Restriktion \(\varepsilon\ge0\) wieder einen
+Lagrangefunktion her erhält man \begin{align}
+\mathcal{L}(\overline\beta,\beta_0,\overline\alpha,\overline\varepsilon,\overline\lambda)=\frac{1}{2}\overline\beta'\cdot \overline\beta + C \sum_{i=1}^{n}\varepsilon_i-\underbrace{\sum \alpha_i[y_i(\overline\beta \cdot \overline{x_i}+\beta_0)-1+\varepsilon_i]}_{\text{für }y_i(\overline\beta \cdot \overline{x}_i-\beta_0)>1- \varepsilon_i}-\underbrace{\sum \lambda_i \varepsilon_i }_{\substack{\text{für}\\ \varepsilon_i \ge 0}}
+\end{align} Wenn dieser Ausdruck wie beim Hardmargin Classifier gelöst
+wird und die Ergebnisse eingesetzt werden erhält man wieder den Ausruck
+aus \eqref{eq:dualproblem} mit der zusätzlichen Einschränkung
+\(0\le \alpha_i \le C\). Dieses Maximierungsproblem wird dann genauso
+aufgelöst wie bei dem Hard Margin Classifier und die Entscheidungsregel
+ist ebenfalls gleich.
+
+\subsection{Der Kernel Trick}
+
+Auch wenn eine lineare Entscheidungsgrenze Vorteile in Sachen
+Generalisierbarkeit bietet, ist sie doch nicht für jede Datensituation
+geeignet.In Abbildung \ref{fig:nonlinearsep} ist es sehr gut zu
+erkennen, dass in diesem Fall eine lineare Grenze zwischen den Klassen
+keinen Sinn Ergeben würde und eine elliptische Form wahrscheinlich
+besser geeignet wäre. Eine Lösung für dieses Problem, wäre den
+Merkmalsraum zu erweitern. So könnte die angenommene Formel für die
+lineare Hyperebene in \eqref{eq:hyperebene} durch polynomterme der
+Merkmale \(X_i\) oder durch Interaktionstherme erweitert werden. Dies
+führt dazu, dass die Entscheidungsgreze in diesem vergrößerten
+Merkmalsraum immer noch linear ist, aber die Trennung möglich ist (siehe
+Abbildung \ref{fig:featurexten}). Transformiert man diese dann wieder in
+den ursprünglichen Merkmalsraum ist die Entscheidungsgrenze dann nicht
+mehr linear. Allerdings führt diese Herangehensweise zu eine starken
+Anstieg des Rechenaufwands, da die Möglichkeiten der Merkmalserweiterung
+endlos sind \parencite{jamesIntroductionStatisticalLearning2021}.
+
+Die Lösung für das Problem sind sogenannte Kernel Funktionen. Betrachtet
+man die entscheidungsfunktion \eqref{eq:decisionf} und setzt für
+\(\overline{\beta}\) die Gleichung aus \eqref{eq:solutbeta} erhält man
+\begin{align}
+f(x_u)= \sum \alpha_i y_i x_i \cdot x_u +\beta_0
+\end{align} Es zeigt sich also, dass die Entscheidungsfunktion im
+Wesentlichen aus einer Linearkombiantion von Punktprodukten aus dem
+Vektor \(x_u\) mit allen Trainingsvektoren \(x_i\) ergibt. Diese
+Punktprodukt kann als Ähnlichkeitsmaß zwischen dem neuen Datenpunkt und
+dem jeweiligen Trainingsdatenpunkt interpretiert werden. Es ist nun
+Möglich auf diese Produkte eine Funktion anzuwenden, welche die
+Ähnlichkeiten von Datenpunkten anders bewertet. Diese sogenannte Kernel
+Funktion \(K(x_i,x_j)\) ermöglicht es eine flexiblere
+Entscheidungsgrenze zu implementieren. Der Vorteil ist dabei, dass die
+Kernel Funktion nur auf alle Punktprodukte angewndet wird und es dabei
+nicht nötig ist den Merkmalsraum zu Erweitern, was wiederum Rechenzeit
+spart\parencite{jamesIntroductionStatisticalLearning2021}. Die
+Entscheidungsfunktion wird dann mithilfe dieser Kernelfunktionen
+berechnet: \begin{align}
+  f(x_u)=\sum \alpha_i y_i K(x_i,x_u)+\beta_0
+\end{align}
+
+\begin{figure}[h]
+    \centering
+    \begin{minipage}{0.45\textwidth} 
+        \centering
+        \includegraphics[width=\textwidth,trim=0.5cm 0.5cm 0.5cm 0.5cm]{Images/nonlinearseperable.pdf} 
+        \caption{nicht linear getrennte Daten}
+        \label{fig:nonlinearsep}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth} 
+        \centering
+        \includegraphics[width=\textwidth,trim=0.5cm 0.5cm 0.5cm 0.5cm]{Images/featurexpansion.pdf}
+        \caption{Feature Erweiterung}
+        \label{fig:featurexten}
+    \end{minipage}
+\end{figure}
+
+Es gibt eine ganze Reihe an Kernelfunktionen, die bei SVMs Anwedung
+finden. Die Grundlage ist der lineare Kernel, wobei dieser lediglich das
+Punktprodukt beschreibt, also praktisch genau das macht, was bei einer
+linearen Entscheidungsgrenze gemacht wird. Deweiteren gibt es den
+Polynomial Kernel. Dieser hat die Form \begin{align}
+  f(x_u)=\sum \alpha_i y_i K(x_i,x_u)+\beta_0
+\end{align}
+
+wobei \(d\) ein Integer \(>0\) ist. Die Verwendung von diesem Kernel
+führt dazu, dass die Entscheidungsgrenze sich ähnlich Verhält, wie als
+würde man zu Beginn eine Merkmalserweiterung mit Polynomen vom Grad
+\(d\) durchführen (siehe Abbildung \ref{fig:polykernel}. Eine weitere
+Kernel Funktion ist der Radial Basis Function Kernel(RBF) mit der Form
+\begin{align}
+K(x_i,x_u)=\exp\left(-\gamma ||x_i-x_u||^2\right)
+\end{align} Für diesen Kernel wird die quadrierte euklidische Distanz
+als Ähnlichkeitsmaß verwendet, was dazu führt, dass für diejenigen
+\(x_i\) die näher an \(x_u\) liegen, in der Entscheidungsfunktion einen
+größeren Einfluss haben. Der Parameter \(\gamma\) legt dann fest, wie
+stark der Einfluss der Distanz sein soll. Die projektion die der Kernel
+hier macht ist eine, in einen uendlich großen Merkmalsraum . Daher
+könnte man selbst durch vorgeriges Erweitern des Merkmalsraums nicht das
+Ergebnis eines RBF Kernel replizieren und dies führt auch zu einer sehr
+flexiblen Entscheidungsgrenze (siehe Abbildung \ref{fig:radialkernel})\\
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.45\textwidth} 
+        \centering
+        \includegraphics[width=\textwidth,trim=0.5cm 0.5cm 0.5cm 0.5cm]{Images/ploynomial kernel.pdf} 
+        \caption{Mögliche Entscheidungsgrenze für polynomial Kernel}
+        \label{fig:polykernel}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth} 
+        \centering
+        \includegraphics[width=\textwidth,trim=0.5cm 0.5cm 0.5cm 0.5cm]{Images/radial_kernel.pdf}
+        \caption{Mögliche Entscheidungsgrenze für RBF Kernel}
+        \label{fig:radialkernel}
+    \end{minipage}
+\end{figure}
+
+Es gibt noch einen Reihe wietere Kernel, die auf unterschiedlichen
+Ähnlichkeitsmaßen beruhen, aber eher seltener oder nur in speziellen
+Zusammenhänge angewendet werden. Wichtig ist anzumerken, dass die
+Verwendung von Kernels zwar die Flexibilität der Entscheidungsgrenze
+erhöht, damit aber auch die Gefahr von overfitting einhergeht.
+Zusätzlich werden mit den Kernels auch neue Hyperparameter wie \(d\)
+oder \(\gamma\) eingeführt, die bei der Model selektion ebenfalls
+beachtet werden müssen.\\
+
+\section{Vor- und Nachteile der Methode}
+
+Support Vector Machines haben ein hohes Ansehen unter den Machine
+Learning Algorithmen, da sie einige Vorteile mit sich bringen. Aufgrund
+der Idee einer Soft Margin und des ``Kernel Tricks'' ist die Methode
+sehr flexibel und kann für spezielle Anwendungsbereiche angepasst werden
+\parencite{bennettSupportVectorMachines2000}.Dazu sind die Ergebnisse
+stabil und reproduzierbar, was sie von anderen Methoden wie
+beispielsweise Neural Networks abhebt. Auch die Anwendung ist
+vergleichsweise einfach, da es eine überschaubare Anzahl an Parametern
+gibt (wie beispielsweise bei der SVM mit radialem Kern nur der gamma-
+und cost-Parameter festzulegen ist).\newline Durch die Möglichkeit der
+Nutzung verschiedener Kerne sind SVM´s überaus vielseitig. Die Auswahl
+des Kerns ermöglicht es äußerst flexible Entscheidungsgrenzen zu formen
+\parencite{kuhnAppliedPredictiveModeling2013}. Dadurch können SVM´s an
+verschiedene Datensituationen angepasst werden.\newline Ein weiterer
+Vorteil ist, dass die Methode weitgehend robust gegenüber overfitting
+ist \parencite{kuhnAppliedPredictiveModeling2013}. Dafür verantwortlich
+ist der Cost-Parameter, anhand dessen der Fit an die Daten kontrolliert
+werden kann. Jedoch birgt dies auch Probleme (Erläuterungen im folgenden
+Abschnitt).\newline Diese Vorteile resultieren in einer allgemein
+häufigen Nutzung von SVM´s in der Wissenschaft. Sie haben folglich
+bewiesen, dass sie für verschiedenste Aufgaben gut funktionieren
+\parencite{kuhnAppliedPredictiveModeling2013}.
+
+Trotz der vielfachen Nutzung von SVM´s, bringen sie auch Nachteile mit
+sich. Das wohl größte Problem liegt in der Modellselektion
+\parencite{bennettSupportVectorMachines2000}. Wie bereits im vorherigen
+Abschnitt erwähnt, ist die Auswahl der Parameter von hoher Bedeutung bei
+der Performance und dem Fit an die Daten. So kontrollieren die
+Kernspezifischen Parameter und der Cost-Parameter einerseits die
+Komplexität und andererseits den Fit an die Daten
+\parencite{kuhnAppliedPredictiveModeling2013}. Dabei kann die Wahl der
+Parameter sowohl zu einem underfit als auch zu einem overfit führen.
+Jedoch haben nicht nur die Parameter einen Einfluss auf die Performance
+sondern bereits die Wahl des Kerns kann entscheidend sein
+\parencite{burgesTutorialSupportVector1998}. Je nach Datensituation
+können SVM´s mit verschiedenen Kernen äußert unterschiedliche Ergebnisse
+liefern. Dies zeigt die Sensitivität der Methode gegenüber der Wahl des
+Kerns und der Parameterabstimmung.\newline Ein weiterer Nachteil ist,
+dass die Methode weniger intuitiv und aufwendiger anzuwenden ist als
+andere Algorithmen \parencite{bennettSupportVectorMachines2000}. So ist
+es zum Beispiel schwer Informationen aus Support Vektoren zu ziehen und
+es gibt keine Koeffizienten die interpretiert werden können.\newline
+Zuletzt ist zu erwähnen, dass die Methode bei einer hohen Anzahl an
+Beobachtungen besonders rechenintensiv ist. So konnte beispielsweise
+gezeigt werden, dass insbesondere die SVM mit polynomialem und radialem
+Kern eine hohe Rechenzeit aufweisen
+\parencite{scholzComparisonClassificationMethods2021}. Dabei konnten
+andere Methoden wie die logistische Regression oder k-nearest Neighbour
+deutlich besser abschneiden. Dies liegt daran, dass die Lösung des
+SVM-Optimierungsproblems die Behebung eines quadratischen
+Programmierungsproblems erfordert. Da die Anzahl der zu optimierenden
+Parameter mit der Anzahl der Daten quadratisch zunimmt, führt dies zu
+einer hohen Rechenkomplexität
+\parencite{kecmanSupportVectorMachines2005}.
+
+\section{Daten}
+
+Das Ziel dieser Arbeit ist es, in verschiedenen Datensituationen die
+performance von SVM Algorithmen für die binäre Klassifikation zu
+evaluieren. Dafür wollen wir eine Reihe von Datensätzen mit
+verschiedenen Charakteristiken synthetisch erstellen und entsprechen als
+Trainigsdaten verwenden. Die Datensätze unterscheiden sich in zwei
+zentralen Eigenschaften. Das erste sind die Dimensionen. Es soll
+unterschieden werden in drei Kategorien. Die erste ist, dass es deutlich
+mehr Beobachtungen als Variablen gibt, also \(n \gg p\). Ein solches
+Datenszenario kann z.B. im Kontext des Zensus auftreten, in dem eine
+große Anzahl an Personen befragt wird, aber die Vorgabe besteht, dass
+die Bürger nicht zu stark belastet werden sollen, weshalb nur einige
+wenige Kernfragen gestellt werden. Das zweite Szenario stellt Datensätze
+vor die etwa gleich viele Beobachtung wie Variablen haben
+\(n \approx p\). Ein solches Szenario kann in vielen Kontexten
+auftreten. Das letzte Szenario behandelt dann entsprechend den Fall
+\(n \ll p\). Dies tritt oft im Kontext von Datenerhebungen im
+medizinischen Bereich auf, da sehr viele Erhebungen zu kostspielig
+wären. Auch im Bereich des Natural Language Processing sind solche
+Datensätze häufiger anzutreffen
+\parencite{scholzComparisonClassificationMethods2021}.
+
+Die zweite Charakteristik ist der Datengenerierende Prozess. Da in
+dieser Arbeit SVMs im Vordergrund stehen und wir hier vor allem Zeigen
+wollen, wie SVMs funktionieren ist die Idee den DGP so aufzubauen, dass
+er der grundlegenden Idee der SVMs am ehesten Entspricht. Die
+Grundlegendeidee ist, im ersten Schritt eine Hyperplane, im
+\(p\)-Dimensionalen Raum, in einer bestimmte Form zu erstellen und
+anschließend auf jeweils einer Seite dieser Hyperplane \(n/2\) zufällige
+Punkte zu samplen, die die jeweilige Ausprägung in der Zielvariable
+repräsentieren.
+
+Insgesammt gibt es auch hier wieder 3 Kategorien. Die erste sind linear
+getrennte Daten. Dafür wird eine lineare Hyperplane der Form
+\begin{align*}
+\beta_0+\beta_1 X_1+\beta_2 X_2 +...+\beta_p X_p=0
+\end{align*} mit zufälligen Koeffizienten erzeugt. Diese Daten sollen
+also den Annahmen entsprechen, die für SVMs mit linearem Kernel
+gelten.\newline In der zweiten Situation hat die Hyperplane eine
+quadratische Form: \begin{align*}
+\beta_0+\beta_1 X_1 + \beta_2 X_1^2+\beta_3 X_2+\beta_4 X_2^2+...+\beta_{2p-1}X_p+\beta_{2p}X_p^2=0
+\end{align*} diese Form der Trennung stellt also eine
+Merkmalserweiterung um quadratische Terme dar und funktioniert damit
+ähnlich wie eine SVM mit polynomialen Kernel mit \(d=2\). Der letzte DGP
+geht von einer noch Komplexeren Entscheidungsgrenzen aus. Es wird hier
+ein Hypershpäre im \(p\) dimensionalen Raum erstellt und einmal
+innerhalb und einmal außerhalb dieser gesampelt. Dafür wurde für eine
+Beobachtung \(j\), \(p-1\) Winkel \(\theta\) zufällig erstellt, ein
+Radius \(r\) festgelegt und anschließend die einzelnen Werte
+\(X_{1,j},X_{2,j},...,X_{p,j}\) berechnet. Die berechnung erfolgt dabei
+über die Definition von sphärischen Koordinaten: \begin{align*}
+        X_{1,j} &= r \cos(\theta_1)\\
+        X_{2,j} &= r \sin(\theta_1)\cos(\theta_2)\\
+        X_{3,j} &= r \sin(\theta_1)\sin(\theta_2)\cos(\theta_3)\\
+        &\quad \vdots\\
+        X_{p-1,j}&=r \sin(\theta_1)\ldots \sin(\theta_{p-2})\cos(\theta_{p-1})\\
+        X_{p,j}&=r \sin(\theta_1)\ldots \sin(\theta_{p-2})\sin(\theta_{p-1})
+    \end{align*} Dieser Vorgang wird dann \(n/2\) mal, mit einem
+zufälligen Radius mit Mittelwert \(\mu_r\) und einer Varianz
+\(\sigma^2_r\) für die eine Ausprägung der Zielvariable wiederholt. Für
+die andere Ausprägung wurde das gleiche dann durchgeführt mit einem
+neuen Mittelwert \(\mu_r+k,k\in \mathbb{R}\). je nachdem wie \(k\) und
+\(\sigma^2_r\) gewählt werden kann die Trennbarkeit der Daten angepasst
+werden.
+
+Es ergeben sich daher 9 unterschiedliche Datensituationen, welche in
+ihren Dimensionen und Komplexität der Entscheidungsgrenze variieren. Die
+Kürzel für die Situationen sind in Tabelle \ref{tab:datensituationen}
+abgetragen
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{ |c|c|c|c| }
+ \hline
+  & linear & polynomial & radial \\
+ \hline
+ $p \ll n$ & S1 & S2 & S3 \\
+ \hline
+ $p \approx n$ & S4 & S5 & S6 \\
+ \hline
+ $p \gg n$ & S7 & S8 & S9 \\
+ \hline
+\end{tabular}
+\end{center}
+\caption{Datensituationen}
+\label{tab:datensituationen}
+\end{table}
+
+Zusätzlich soll nicht nur ein Vergleich zwischen der Performance der
+SVMS mit verschiedenen Kernel gemacht werden, sondern auch die
+Klassifikationsgüte der SVMs im Vergleich zu anderen gängigen
+Klassifikationsmethoden gezogen werden. Dafür werden Logistic Regression
+und k-nearest Neighbour als Vergleichsalgorithmen hinzugezogen.
+
+\section{Hypothesen}
+
+Im Folgenden werden Studien hinzugezogen, um eine Einschätzung der
+Performance in den verschiedenen Szenarien vorzunehmen und Hypothesen
+abzuleiten. Vorab ist zu erwähnen, dass die Evaluation von
+Klassifikationsmethoden anhand synthetischer Datensätze in der Literatur
+begrenzt ist. Da für diese Arbeit die Form der Entscheidungsgrenze
+entscheidend ist, werden dennoch auschließlich Arbeiten mit
+synthetischen Datensätzen zu Rate gezogen.\newline Es konnte gezeigt
+werden, dass in einem Szenario, indem erheblich mehr Beobachtungen als
+Dimensionen und eine lineare Entscheidungsgrenze vorliegen (S1),
+deutliche Unterschiede zwischen SVM, k-NN und logistischer Regression
+bei der Diskriminationsfähigkeit auftreten
+\parencite{entezari-malekiComparisonClassificationMethods2009}. k-NN und
+lineare SVM zeigen AUC-Werte nahe 1 auf, was für eine nahezu perfekte
+Differenzierung der Klassen spricht. Die logistische Regression hingegen
+hat einen Wert knapp über 0.5, was nur etwas besser als eine
+Zufallsauswahl ist. Darüber hinaus ist festzustellen, dass die
+Unterschiede deutlicher werden, je höher die Anzahl an Beobachtungen
+ist.\newline Für den Fall einer radialen Entscheidungsgrenze (S3) sind
+die Ergebnisse ähnlich. So erreicht in diesem Beispiel eine SVM mit
+radialem Kernel im Vergleich zu einer logistischen Regression eine um
+34\% höhere Genauigkeit
+\parencite{faveroClassificationPerformanceEvaluation2022}.
+
+Die Szenarien S4 bis S6 finden in der Literatur kaum Beachtung, weshalb
+hier keine Studien herangezogen werden können. Liegt jedoch ein Szenario
+vor, indem die Anzahl der Dimensionen erheblich größer ist, als die
+Anzahl der Beobachtungen, mit einer linearen Entscheidungsgrenze (S7),
+sind die Ergebnisse differenzierter zu betrachten. So schneidet die SVM
+mit polynomialem Kern am besten unter den genannten Algorithmen ab,
+jedoch die lineare SVM am schlechtesten (als Kriterium wurde die
+mittlere Performance über 100 Datensätze evaluiert)
+\parencite{scholzComparisonClassificationMethods2021}. Während k-NN auch
+in diesem Szenario eine gute Performance hat, schneiden logistische
+Regression und SVM mit radialem Kern mittelmäßig ab. Hierbei ist wichtig
+zu erwähnen, dass in der Studie keine Ergebnisse über die genaue
+Performance präsentiert wurden, sondern lediglich die Ränge der 25
+behandelten Klassifikationsmethoden. Somit können nur eingeschränkte
+Schlussfolgerungen gezogen werden.
+
+Basierend auf den Ergebnissen der genannten Studien können folgende
+Schlussfolgerungen gezogen werden. Es ist anzunehmen, dass in
+niedrigdimensionalen Szenarien k-NN und SVM´s besser performen als eine
+logistische Regression. Jedoch ist zu vermuten, dass die Wahl des Kerns
+bei SVM´s einen großen Einfluss auf die Performance hat. So ist,
+basierend auf den mathematischen Grundlagen, anzunehmen, dass die SVM
+mit dem jeweils passenden Kern zu der vorliegenden Datensituation am
+besten performt. Da die SVM mit polynomialem und radialem Kern weitaus
+flexibler sind, werden diese voraussichtlich insgesamt betrachtet besser
+abschneiden als die SVM mit linearem Kern.\newline In hochdimensionalen
+Szenarien zeigt vermutlich die SVM mit polynomialem oder radialem Kern
+eine gute Performance, unabhängig von der Form der Entscheidungsgrenze,
+während die lineare SVM voraussichtlich weniger gut abschneiden wird. Es
+scheint so, dass auch k-NN und logistische Regression in
+hochdimensionalen Szenarien zumindest mittelmäßig abschneiden. Hier ist
+jedoch zu beachten, dass nur eine lineare Entscheidungsgrenze betrachtet
+wurde und in den Szenarien S8 und S9 andere Ergebnisse möglich sind.
+\newpage
 
 \addcontentsline{toc}{section}{Literatur}
 

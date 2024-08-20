@@ -22,7 +22,22 @@ knitr::opts_chunk$set(echo = TRUE)
 \clearpage
 \pagenumbering{arabic}
 \section{Einleitung}
-Support Vector Machines sind eine feine Sache \parencite{james_introduction_2021}
+\section{Funktionsweise}
+```{r child="Funktionsweise/Funktionsweise.Rmd"}
+
+```
+\section{Vor- und Nachteile der Methode}
+```{r child="Pros und Cons/Pros und Cons.Rmd"}
+
+```
+\section{Daten}
+```{r child="Daten/Daten.Rmd"}
+
+```
+\section{Hypothesen}
+```{r child="Hypothesen/Hypothesen.Rmd"}
+
+```
 \newpage
 \addcontentsline{toc}{section}{Literatur}
 

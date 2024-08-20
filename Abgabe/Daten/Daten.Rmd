@@ -25,20 +25,20 @@ In der zweiten Situation hat die Hyperplane eine quadratische Form:
 \beta_0+\beta_1 X_1 + \beta_2 X_1^2+\beta_3 X_2+\beta_4 X_2^2+...+\beta_{2p-1}X_p+\beta_{2p}X_p^2=0
 \end{align*}
 diese Form der Trennung stellt also eine Merkmalserweiterung um quadratische Terme dar und funktioniert damit ähnlich wie eine SVM mit polynomialen Kernel mit $d=2$.
-Der letzte DGP geht von einer noch Komplexeren Entscheidungsgrenzen aus. Es wird hier ein Hypershpäre im $p$ dimensionalen Raum erstellt und einmal innerhalb und einmal außerhalb dieser gesampelt. Dafür wurde für eine Beobachtung $j$, $p-1$ Winkel $\theta$ zufällig erstellt, ein Radius $r$ festgelegt und anschließend die einzelnen Werte $X_{1,j},X_{2,j},...,X_{p,j}$ berechnet. Die berechnung erfolgt dabei über die Definition von spärischen Koordinaten:
+Der letzte DGP geht von einer noch Komplexeren Entscheidungsgrenzen aus. Es wird hier ein Hypershpäre im $p$ dimensionalen Raum erstellt und einmal innerhalb und einmal außerhalb dieser gesampelt. Dafür wurde für eine Beobachtung $j$, $p-1$ Winkel $\theta$ zufällig erstellt, ein Radius $r$ festgelegt und anschließend die einzelnen Werte $X_{1,j},X_{2,j},...,X_{p,j}$ berechnet. Die berechnung erfolgt dabei über die Definition von sphärischen Koordinaten:
 \begin{align*}
-		X_{i,1} &= r \cos(\theta_1)\\
-		X_{i,2} &= r \sin(\theta_1)\cos(\theta_2)\\
-		X_{i,3} &= r \sin(\theta_1)\sin(\theta_2)\cos(\theta_3)\\
+		X_{1,j} &= r \cos(\theta_1)\\
+		X_{2,j} &= r \sin(\theta_1)\cos(\theta_2)\\
+		X_{3,j} &= r \sin(\theta_1)\sin(\theta_2)\cos(\theta_3)\\
 		&\quad \vdots\\
-		X_{i,p-1}&=r \sin(\theta_1)\ldots \sin(\theta_{p-2})\cos(\theta_{p-1})\\
-		x_{i,p}&=r \sin(\theta_1)\ldots \sin(\theta_{p-2})\sin(\theta_{p-1})
+		X_{p-1,j}&=r \sin(\theta_1)\ldots \sin(\theta_{p-2})\cos(\theta_{p-1})\\
+		X_{p,j}&=r \sin(\theta_1)\ldots \sin(\theta_{p-2})\sin(\theta_{p-1})
 	\end{align*}
 Dieser Vorgang wird dann $n/2$ mal, mit einem zufälligen Radius mit Mittelwert $\mu_r$ und einer Varianz $\sigma^2_r$ für die eine Ausprägung der Zielvariable wiederholt. Für die andere Ausprägung wurde das gleiche dann durchgeführt mit einem neuen Mittelwert $\mu_r+k,k\in \mathbb{R}$. je nachdem wie $k$ und $\sigma^2_r$ gewählt werden kann die Trennbarkeit der Daten angepasst werden. 
 
 Es ergeben sich daher 9 unterschiedliche Datensituationen, welche in ihren Dimensionen und Komplexität der Entscheidungsgrenze variieren. Die Kürzel für die Situationen sind in Tabelle \ref{tab:datensituationen} abgetragen
 
-\begin{table}[h]
+\begin{table}[H]
 \begin{center}
 \begin{tabular}{ |c|c|c|c| }
  \hline
@@ -46,7 +46,7 @@ Es ergeben sich daher 9 unterschiedliche Datensituationen, welche in ihren Dimen
  \hline
  $p \ll n$ & S1 & S2 & S3 \\
  \hline
- $p = n$ & S4 & S5 & S6 \\
+ $p \approx n$ & S4 & S5 & S6 \\
  \hline
  $p \gg n$ & S7 & S8 & S9 \\
  \hline

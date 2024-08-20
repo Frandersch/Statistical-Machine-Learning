@@ -64,6 +64,7 @@
 }
 \PassOptionsToPackage{a4paper,margin = 2.5cm}{geometry}
 \usepackage{geometry}
+\usepackage{float}
 \newcommand{\bcenter}{\begin{center}}
 \newcommand{\ecenter}{\end{center}}
 \renewcommand{\contentsname}{Inhalt}
@@ -140,13 +141,13 @@ innerhalb und einmal außerhalb dieser gesampelt. Dafür wurde für eine
 Beobachtung \(j\), \(p-1\) Winkel \(\theta\) zufällig erstellt, ein
 Radius \(r\) festgelegt und anschließend die einzelnen Werte
 \(X_{1,j},X_{2,j},...,X_{p,j}\) berechnet. Die berechnung erfolgt dabei
-über die Definition von spärischen Koordinaten: \begin{align*}
-        X_{i,1} &= r \cos(\theta_1)\\
-        X_{i,2} &= r \sin(\theta_1)\cos(\theta_2)\\
-        X_{i,3} &= r \sin(\theta_1)\sin(\theta_2)\cos(\theta_3)\\
+über die Definition von sphärischen Koordinaten: \begin{align*}
+        X_{1,j} &= r \cos(\theta_1)\\
+        X_{2,j} &= r \sin(\theta_1)\cos(\theta_2)\\
+        X_{3,j} &= r \sin(\theta_1)\sin(\theta_2)\cos(\theta_3)\\
         &\quad \vdots\\
-        X_{i,p-1}&=r \sin(\theta_1)\ldots \sin(\theta_{p-2})\cos(\theta_{p-1})\\
-        x_{i,p}&=r \sin(\theta_1)\ldots \sin(\theta_{p-2})\sin(\theta_{p-1})
+        X_{p-1,j}&=r \sin(\theta_1)\ldots \sin(\theta_{p-2})\cos(\theta_{p-1})\\
+        X_{p,j}&=r \sin(\theta_1)\ldots \sin(\theta_{p-2})\sin(\theta_{p-1})
     \end{align*} Dieser Vorgang wird dann \(n/2\) mal, mit einem
 zufälligen Radius mit Mittelwert \(\mu_r\) und einer Varianz
 \(\sigma^2_r\) für die eine Ausprägung der Zielvariable wiederholt. Für
@@ -160,7 +161,7 @@ ihren Dimensionen und Komplexität der Entscheidungsgrenze variieren. Die
 Kürzel für die Situationen sind in Tabelle \ref{tab:datensituationen}
 abgetragen
 
-\begin{table}[h]
+\begin{table}[H]
 \begin{center}
 \begin{tabular}{ |c|c|c|c| }
  \hline
@@ -168,7 +169,7 @@ abgetragen
  \hline
  $p \ll n$ & S1 & S2 & S3 \\
  \hline
- $p = n$ & S4 & S5 & S6 \\
+ $p \approx n$ & S4 & S5 & S6 \\
  \hline
  $p \gg n$ & S7 & S8 & S9 \\
  \hline

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.12.13)  20 AUG 2024 13:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.12.13)  20 AUG 2024 20:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1273,19 +1273,19 @@ Package pdftex.def Info: Images/featurexpansion.pdf  used on input line 346.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [4 <./Images/slackvariable.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 367--376
+Underfull \hbox (badness 10000) in paragraph at lines 364--373
 
  []
 
 <Images/ploynomial kernel.pdf, id=156, 444.45247pt x 377.12291pt>
 File: Images/ploynomial kernel.pdf Graphic file (type pdf)
 <use Images/ploynomial kernel.pdf>
-Package pdftex.def Info: Images/ploynomial kernel.pdf  used on input line 381.
+Package pdftex.def Info: Images/ploynomial kernel.pdf  used on input line 378.
 (pdftex.def)             Requested size: 211.39536pt x 177.18102pt.
 <Images/radial_kernel.pdf, id=157, 444.42737pt x 377.11992pt>
 File: Images/radial_kernel.pdf Graphic file (type pdf)
 <use Images/radial_kernel.pdf>
-Package pdftex.def Info: Images/radial_kernel.pdf  used on input line 387.
+Package pdftex.def Info: Images/radial_kernel.pdf  used on input line 384.
 (pdftex.def)             Requested size: 211.38893pt x 177.18481pt.
 [5 <./Images/nonlinearseperable.pdf> <./Images/featurexpansion.pdf> <./Images/p
 loynomial kernel.pdf> <./Images/radial_kernel.pdf>] [6] (Funktionsweise.aux)
@@ -1298,11 +1298,11 @@ Package logreq Info: Writing requests to 'Funktionsweise.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 33690 strings out of 474586
- 638115 string characters out of 5745680
+ 33692 strings out of 474586
+ 638137 string characters out of 5745680
  1945558 words of memory out of 5000000
  55209 multiletter control sequences out of 15000+600000
- 604212 words of font info for 119 fonts, out of 8000000 for 9000
+ 604295 words of font info for 120 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  84i,16n,87p,1013b,3227s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/49152/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
@@ -1325,7 +1325,7 @@ a/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/49152/AppData/
 Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/49152/AppData/
 Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/49152/AppData/
 Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb>
-Output written on Funktionsweise.pdf (6 pages, 328838 bytes).
+Output written on Funktionsweise.pdf (6 pages, 329353 bytes).
 PDF statistics:
  305 PDF objects out of 1000 (max. 8388607)
  40 named destinations out of 1000 (max. 500000)
