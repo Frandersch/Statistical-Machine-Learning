@@ -75,7 +75,7 @@
 \fi
 \usepackage[]{biblatex}
 \addbibresource{Literatur.bib}
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
@@ -90,8 +90,6 @@
 
 \begin{document}
 \maketitle
-
-\subsection{Pros}
 
 Support Vector Machines haben ein hohes Ansehen unter den Machine
 Learning Algorithmen, da sie einige Vorteile mit sich bringen. Aufgrund
@@ -115,8 +113,6 @@ Abschnitt).\newline Diese Vorteile resultieren in einer allgemein
 häufigen Nutzung von SVM´s in der Wissenschaft. Sie haben folglich
 bewiesen, dass sie für verschiedenste Aufgaben gut funktionieren
 \parencite{kuhnAppliedPredictiveModeling2013}.
-
-\subsection{Cons}
 
 Trotz der vielfachen Nutzung von SVM´s, bringen sie auch Nachteile mit
 sich. Das wohl größte Problem liegt in der Modellselektion
@@ -151,34 +147,6 @@ einer hohen Rechenkomplexität
 \parencite{kecmanSupportVectorMachines2005}.
 
 \subsection{Hypothesen}
-
-Die Performance von Support Vector Machines wird anhand verschiedener
-Datenszenarien untersucht. Dabei werden Logistic Regression und
-k-nearest Neighbour als Vergleichsalgorithmen hinzugezogen. Genauer
-gesagt, wird in neun verschiedene Szenarien unterschieden, welche sich
-durch zwei Unterteilungen ergeben: die Form der Entscheidungsgrenze
-sowie das Verhältnis zwischen der Anzahl an Dimensionen \(p\) und der
-Anzahl an Beobachtungen \(n\). Dabei werden ausschließlich binäre
-Klassifikationen untersucht. Es ergibt sich folgende Aufteilung in
-Tabelle 1.
-
-\begin{table}[h]
-\begin{center}
-\begin{tabular}{ |c|c|c|c| }
- \hline
-  & linear & polynomial & radial \\
- \hline
- $p \ll n$ & S1 & S2 & S3 \\
- \hline
- $p = n$ & S4 & S5 & S6 \\
- \hline
- $p \gg n$ & S7 & S8 & S9 \\
- \hline
-\end{tabular}
-\end{center}
-\caption{Datensituationen}
-\label{tab:datensituationen}
-\end{table}
 
 Im Folgenden werden Studien hinzugezogen, um eine Einschätzung der
 Performance in den verschiedenen Szenarien vorzunehmen und Hypothesen

@@ -44,7 +44,7 @@ Die blaue Linie soll die Hyperplain darstellen. Im zweidiemnsionalen handelt es 
 \begin{align}
 \frac{\overline \beta}{||\overline{\beta}||}\cdot \overline{x}=c \Leftrightarrow \overline{\beta}\cdot \overline{x}=c \cdot ||\overline{\beta}||\label{eq:betanull}
 \end{align}
-ersetzet man in Formel \ref{eq:betanull} $c \cdot ||\overline{\beta}||$ mit $-\beta_0$ und zieht dies dann auf die andere Seite, kommen man wieder bei der ursprünglichen Form aus Formel \ref{eq:hyperplanevec} raus. 
+ersetzet man in \eqref{eq:betanull} $c \cdot ||\overline{\beta}||$ mit $-\beta_0$ und zieht dies dann auf die andere Seite, kommen man wieder bei der ursprünglichen Form aus Formel \eqref{eq:hyperplanevec} raus. 
 
 Als nächstes stellt sich jetzt die Frage, welches $\overline{\beta}$ und $\beta_0$ die optimale Hyperplane darstellen. Betrachtet man die Abbildung \ref{fig:Margin}, dann ist zu erkennen, dass die Datenpunkte durch die blaue Linie getrennt werden. Allerdings könnte man theorethisch undendlich viele andere Hyperplains durch rotation oder verschiebung konstruieren, die trotzdem die Daten in ihren Ausprägungen trennen. Um eine eindeutige Lösung zu finden, wird als nächstes ein bereich um die Hperplane abgesteck. In Abbildung \ref{fig:Margin} dargestell durch die gestrichelten scharzen linien, welche man als Schranken bezeichnen könnte. In diesem Bereich sollen keine Datenpunkte liegen und die Schranken sollen immer parallel zur Hyperplain seien und den gleichen Abstand zu ihr haben. Außerdem dürfen keine positiven Samples unterhalb der oberen Schranke liegen und keine negativen unterhalb. Das gegenteil gilt dementsprechend für die untere Schranke. Als Definition für die beiden Schranken wird festgelegt
 \begin{align}
@@ -65,17 +65,17 @@ Da das Verfahren auch maximum Margin Classifier gennant wird, gilt es jetzt noch
         \caption{Abhängigkeit des Margins von den Support-Vektoren}
         \label{fig:SupVecs}
 \end{figure}
-In Abbildung \ref{fig:SupVecs} sind zwei solcher Support-Vektoren zu einem negativen und positiven Sample dargestellt. Der Margin kann dann dargestellt werden als eine Projektion dieser Differenz ($\overline{x}^+-\overline{x}^+$) auf den $\overline{\beta}$-Vektor. Damit am Ende die Länge dieses Margin $M$ rauskommt muss $\overline{\beta}$ noch durch seine Länge geteilt werden.
+In Abbildung \ref{fig:SupVecs} sind zwei solcher Support-Vektoren zu einem negativen und positiven Sample dargestellt. Der Margin kann dann dargestellt werden als eine Projektion dieser Differenz ($\overline{x}^+-\overline{x}^+$) auf den $\overline{\beta}$-Vektor. Damit am Ende die Länge dieses Margins $M$ rauskommt muss $\overline{\beta}$ noch durch seine Länge geteilt werden.
 \begin{align}
 M=\frac{\overline{\beta}}{||\overline{\beta}||}\cdot \left(\overline{x}^+-\overline{x}^+\right)=\frac{\overline{\beta}\cdot\overline{x}^- -\overline{\beta}\cdot\overline{x}^+}{||\overline{\beta}||}\label{eq:maring1}
 \end{align}
-Es ist bekannt, dass für postive Supportvektoren gilt $\overline\beta \overline{x}^+ +\beta_0 = 1 \Leftrightarrow \overline\beta \overline{x}^+=1-\beta_0$ und für negative $\overline\beta \overline{x}^- +\beta_0 = -1 \Leftrightarrow \overline\beta \overline{x}^-=-1-\beta_0$. Setzt man dies ein in Formel \ref{eq:maring1} erhält man als Maximisierungsziel
+Es ist bekannt, dass für postive Supportvektoren gilt $\overline\beta \overline{x}^+ +\beta_0 = 1 \Leftrightarrow \overline\beta \overline{x}^+=1-\beta_0$ und für negative $\overline\beta \overline{x}^- +\beta_0 = -1 \Leftrightarrow \overline\beta \overline{x}^-=-1-\beta_0$. Setzt man dies ein in \eqref{eq:maring1}, erhält man als Maximisierungsziel
 \begin{align}
 M=\frac{1-\beta_0-(-1-\beta_0)}{||\overline\beta||}=\frac{2}{||\overline\beta||}\label{eq:margin2}
 \end{align}
-Um diesen Maximierungsschritt angenehmer zu gestalten, wird an der Stelle versucht den Ausdruck $\frac{1}{2}||\overline \beta||^2=\frac{1}{2}\overline \beta '\cdot \overline \beta$ zu minimieren. Was im Endeffekt ebenfalls dazu führt das der Ausdruck in Formel \ref{eq:margin2} maximiert wird.
+Um diesen Maximierungsschritt angenehmer zu gestalten, wird an der Stelle versucht den Ausdruck $\frac{1}{2}||\overline \beta||^2=\frac{1}{2}\overline \beta '\cdot \overline \beta$ zu minimieren. Was im Endeffekt ebenfalls dazu führt, dass der Ausdruck in \eqref{eq:margin2} maximiert wird.
 
-Dieses Optimierungsproblem mit der Nebenbedingung aus Formel \ref{eq:Nebenbedingung} lässt sich am besten über Lagrange-Multiplier lösen
+Dieses Optimierungsproblem mit der Nebenbedingung aus Formel \eqref{eq:Nebenbedingung} lässt sich am besten über Lagrange-Multiplier lösen
 \begin{align}
 \mathcal{L}(\overline\beta,\beta_0,\overline \alpha)=\frac{1}{2}\overline \beta ' \overline \beta-\sum \alpha_i[y_i(\overline \beta \cdot \overline{x_i}+\beta_0)-1]\label{eq:Lagrange}
 \end{align}

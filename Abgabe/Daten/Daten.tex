@@ -1,0 +1,189 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage[german]{babel}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage{pgf}
+\usepackage{csquotes}
+\AtBeginDocument{
+\renewcommand{\maketitle}{}
+}
+\PassOptionsToPackage{a4paper,margin = 2.5cm}{geometry}
+\usepackage{geometry}
+\newcommand{\bcenter}{\begin{center}}
+\newcommand{\ecenter}{\end{center}}
+\renewcommand{\contentsname}{Inhalt}
+\usepackage{blindtext}
+\usepackage[backend=biber, style = apa]{biblatex}
+\addbibresource{Literatur.bib}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{biblatex}
+\addbibresource{Literatur.bib}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Zielsetzung und Datengenerierung},
+  pdfauthor={Franz Andersch \& Niklas Münz},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Zielsetzung und Datengenerierung}
+\author{Franz Andersch \& Niklas Münz}
+\date{2024-08-20}
+
+\begin{document}
+\maketitle
+
+Das Ziel dieser Arbeit ist es, in verschiedenen Datensituationen die
+performance von SVM Algorithmen für die binäre Klassifikation zu
+evaluieren. Dafür wollen wir eine Reihe von Datensätzen mit
+verschiedenen Charakteristiken synthetisch erstellen und entsprechen als
+Trainigsdaten verwenden. Die Datensätze unterscheiden sich in zwei
+zentralen Eigenschaften. Das erste sind die Dimensionen. Es soll
+unterschieden werden in drei Kategorien. Die erste ist, dass es deutlich
+mehr Beobachtungen als Variablen gibt, also \(n \gg p\). Ein solches
+Datenszenario kann z.B. im Kontext des Zensus auftreten, in dem eine
+große Anzahl an Personen befragt wird, aber die Vorgabe besteht, dass
+die Bürger nicht zu stark belastet werden sollen, weshalb nur einige
+wenige Kernfragen gestellt werden. Das zweite Szenario stellt Datensätze
+vor die etwa gleich viele Beobachtung wie Variablen haben
+\(n \approx p\). Ein solches Szenario kann in vielen Kontexten
+auftreten. Das letzte Szenario behandelt dann entsprechend den Fall
+\(n \ll p\). Dies tritt oft im Kontext von Datenerhebungen im
+medizinischen Bereich auf, da sehr viele Erhebungen zu kostspielig
+wären. Auch im Bereich des Natural Language Processing sind solche
+Datensätze häufiger anzutreffen
+\parencite{scholzComparisonClassificationMethods2021}.
+
+Die zweite Charakteristik ist der Datengenerierende Prozess. Da in
+dieser Arbeit SVMs im Vordergrund stehen und wir hier vor allem Zeigen
+wollen, wie SVMs funktionieren ist die Idee den DGP so aufzubauen, dass
+er der grundlegenden Idee der SVMs am ehesten Entspricht. Die
+Grundlegendeidee ist, im ersten Schritt eine Hyperplane, im
+\(p\)-Dimensionalen Raum, in einer bestimmte Form zu erstellen und
+anschließend auf jeweils einer Seite dieser Hyperplane \(n/2\) zufällige
+Punkte zu samplen, die die jeweilige Ausprägung in der Zielvariable
+repräsentieren.
+
+Insgesammt gibt es auch hier wieder 3 Kategorien. Die erste sind linear
+getrennte Daten. Dafür wird eine lineare Hyperplane der Form
+\begin{align*}
+\beta_0+\beta_1 X_1+\beta_2 X_2 +...+\beta_p X_p=0
+\end{align*} mit zufälligen Koeffizienten erzeugt. Diese Daten sollen
+also den Annahmen entsprechen, die für SVMs mit linearem Kernel
+gelten.\newline In der zweiten Situation hat die Hyperplane eine
+quadratische Form: \begin{align*}
+\beta_0+\beta_1 X_1 + \beta_2 X_1^2+\beta_3 X_2+\beta_4 X_2^2+...+\beta_{2p-1}X_p+\beta_{2p}X_p^2=0
+\end{align*} diese Form der Trennung stellt also eine
+Merkmalserweiterung um quadratische Terme dar und funktioniert damit
+ähnlich wie eine SVM mit polynomialen Kernel mit \(d=2\). Der letzte DGP
+geht von einer noch Komplexeren Entscheidungsgrenzen aus. Es wird hier
+ein Hypershpäre im \(p\) dimensionalen Raum erstellt und einmal
+innerhalb und einmal außerhalb dieser gesampelt. Dafür wurde für eine
+Beobachtung \(j\), \(p-1\) Winkel \(\theta\) zufällig erstellt, ein
+Radius \(r\) festgelegt und anschließend die einzelnen Werte
+\(X_{1,j},X_{2,j},...,X_{p,j}\) berechnet. Die berechnung erfolgt dabei
+über die Definition von spärischen Koordinaten: \begin{align*}
+        X_{i,1} &= r \cos(\theta_1)\\
+        X_{i,2} &= r \sin(\theta_1)\cos(\theta_2)\\
+        X_{i,3} &= r \sin(\theta_1)\sin(\theta_2)\cos(\theta_3)\\
+        &\quad \vdots\\
+        X_{i,p-1}&=r \sin(\theta_1)\ldots \sin(\theta_{p-2})\cos(\theta_{p-1})\\
+        x_{i,p}&=r \sin(\theta_1)\ldots \sin(\theta_{p-2})\sin(\theta_{p-1})
+    \end{align*} Dieser Vorgang wird dann \(n/2\) mal, mit einem
+zufälligen Radius mit Mittelwert \(\mu_r\) und einer Varianz
+\(\sigma^2_r\) für die eine Ausprägung der Zielvariable wiederholt. Für
+die andere Ausprägung wurde das gleiche dann durchgeführt mit einem
+neuen Mittelwert \(\mu_r+k,k\in \mathbb{R}\). je nachdem wie \(k\) und
+\(\sigma^2_r\) gewählt werden kann die Trennbarkeit der Daten angepasst
+werden.
+
+Es ergeben sich daher 9 unterschiedliche Datensituationen, welche in
+ihren Dimensionen und Komplexität der Entscheidungsgrenze variieren. Die
+Kürzel für die Situationen sind in Tabelle \ref{tab:datensituationen}
+abgetragen
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{ |c|c|c|c| }
+ \hline
+  & linear & polynomial & radial \\
+ \hline
+ $p \ll n$ & S1 & S2 & S3 \\
+ \hline
+ $p = n$ & S4 & S5 & S6 \\
+ \hline
+ $p \gg n$ & S7 & S8 & S9 \\
+ \hline
+\end{tabular}
+\end{center}
+\caption{Datensituationen}
+\label{tab:datensituationen}
+\end{table}
+
+Zusätzlich soll nicht nur ein Vergleich zwischen der Performance der
+SVMS mit verschiedenen Kernel gemacht werden, sondern auch die
+Klassifikationsgüte der SVMs im Vergleich zu anderen gängigen
+Klassifikationsmethoden gezogen werden. Dafür werden Logistic Regression
+und k-nearest Neighbour als Vergleichsalgorithmen hinzugezogen.
+
+\printbibliography
+
+\end{document}
