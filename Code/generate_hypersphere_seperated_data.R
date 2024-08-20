@@ -69,4 +69,15 @@ generate_dataset <- function(obs,variables,distance,jitter = 0.2){
   dataset
 }
 
-save(generate_dataset, generate_subdatasets, generate_observation, file = "Code/Funktionen/hypersphere_seperated.RData")
+S3_data_train <- generate_dataset(1000, 10, 1)
+S3_data_test <- generate_dataset(1000, 10, 1)
+
+S6_data_train <- generate_dataset(50, 50, 1)
+S6_data_test <- generate_dataset(50, 50, 1)
+
+S9_data_train <- generate_dataset(50, 200, 1)
+S9_data_test <- generate_dataset(50, 200, 1)
+
+save(S3_data_train, S3_data_test, file = "Code/Daten/Data_S3.RData")
+save(S6_data_train, S6_data_test, file = "Code/Daten/Data_S6.RData")
+save(S9_data_train, S9_data_test, file = "Code/Daten/Data_S9.RData")
