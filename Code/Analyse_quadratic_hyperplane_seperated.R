@@ -21,12 +21,14 @@ S2_tune_linear <- function(cost) {
   list(Score = accuracy)
 }
 
+set.seed(21)
 S2_opt_param_linear <- BayesianOptimization(
   FUN = S2_tune_linear,
   bounds = list(cost = c(0.01, 100)),
   init_points = 10,
   n_iter = 15,
   acq = "ucb",
+  verbose = FALSE
 )
 
 S2_tune_polynomial <- function(cost, gamma, degree) {
@@ -36,12 +38,14 @@ S2_tune_polynomial <- function(cost, gamma, degree) {
   list(Score = accuracy)
 }
 
+set.seed(22)
 S2_opt_param_polynomial <- BayesianOptimization(
   FUN = S2_tune_polynomial,
   bounds = list(cost = c(0.01, 100), gamma = c(0.001, 10), degree = c(1, 5)),
   init_points = 10,
   n_iter = 15,
-  acq = "ucb"
+  acq = "ucb",
+  verbose = FALSE
 )
 
 S2_tune_radial <- function(cost, gamma) {
@@ -51,12 +55,14 @@ S2_tune_radial <- function(cost, gamma) {
   list(Score = accuracy)
 }
 
+set.seed(23)
 S2_opt_param_radial <- BayesianOptimization(
   FUN = S2_tune_radial,
   bounds = list(cost = c(0.01, 100), gamma = c(0.001, 10)),
   init_points = 10,
   n_iter = 15,
-  acq = "ucb"
+  acq = "ucb",
+  verbose = FALSE
 )
 
 S2_tune_logR <- function(alpha, lambda) {
@@ -67,12 +73,14 @@ S2_tune_logR <- function(alpha, lambda) {
   list(Score = accuracy)
 }
 
+set.seed(24)
 S2_opt_param_logR <- BayesianOptimization(
   FUN = S2_tune_logR,
   bounds = list(alpha = c(0, 1), lambda = c(0.001, 1)),
   init_points = 10,
   n_iter = 15,
-  acq = "ucb"
+  acq = "ucb",
+  verbose = FALSE
 )
 
 S2_tune_k_NN <- function(k) {
@@ -85,12 +93,14 @@ S2_tune_k_NN <- function(k) {
   list(Score = accuracy)
 }
 
+set.seed(25)
 S2_opt_param_k_NN <- BayesianOptimization(
   FUN = S2_tune_k_NN,
   bounds = list(k = c(1, 100)),
   init_points = 10,
   n_iter = 15,
-  acq = "ucb"
+  acq = "ucb",
+  verbose = FALSE
 )
 
 # Modelle fitten
@@ -195,12 +205,14 @@ S5_tune_linear <- function(cost) {
   list(Score = accuracy)
 }
 
+set.seed(51)
 S5_opt_param_linear <- BayesianOptimization(
   FUN = S5_tune_linear,
   bounds = list(cost = c(0.01, 100)),
   init_points = 10,
   n_iter = 15,
   acq = "ucb",
+  verbose = FALSE
 )
 # kein tuning möglich, da kein optimaler Parameter vorhanden -> default Werte
 
@@ -211,12 +223,14 @@ S5_tune_polynomial <- function(cost, gamma, degree) {
   list(Score = accuracy)
 }
 
+set.seed(52)
 S5_opt_param_polynomial <- BayesianOptimization(
   FUN = S5_tune_polynomial,
   bounds = list(cost = c(0.01, 100), gamma = c(0.001, 10), degree = c(1, 5)),
   init_points = 10,
   n_iter = 15,
-  acq = "ucb"
+  acq = "ucb",
+  verbose = FALSE
 )
 
 S5_tune_radial <- function(cost, gamma) {
@@ -226,12 +240,14 @@ S5_tune_radial <- function(cost, gamma) {
   list(Score = accuracy)
 }
 
+set.seed(53)
 S5_opt_param_radial <- BayesianOptimization(
   FUN = S5_tune_radial,
   bounds = list(cost = c(0.01, 100), gamma = c(0.001, 10)),
   init_points = 10,
   n_iter = 15,
-  acq = "ucb"
+  acq = "ucb",
+  verbose = FALSE
 )
 
 S5_tune_logR <- function(alpha, lambda) {
@@ -242,12 +258,14 @@ S5_tune_logR <- function(alpha, lambda) {
   list(Score = accuracy)
 }
 
+set.seed(54)
 S5_opt_param_logR <- BayesianOptimization(
   FUN = S5_tune_logR,
   bounds = list(alpha = c(0, 1), lambda = c(0.001, 1)),
   init_points = 10,
   n_iter = 15,
-  acq = "ucb"
+  acq = "ucb",
+  verbose = FALSE
 )
 
 S5_tune_k_NN <- function(k) {
@@ -260,12 +278,14 @@ S5_tune_k_NN <- function(k) {
   list(Score = accuracy)
 }
 
+set.seed(55)
 S5_opt_param_k_NN <- BayesianOptimization(
   FUN = S5_tune_k_NN,
   bounds = list(k = c(1, 50)),
   init_points = 10,
   n_iter = 15,
-  acq = "ucb"
+  acq = "ucb",
+  verbose = FALSE
 )
 
 # Modelle fitten
@@ -372,12 +392,14 @@ S8_tune_linear <- function(cost) {
   list(Score = accuracy)
 }
 
+set.seed(81)
 S8_opt_param_linear <- BayesianOptimization(
   FUN = S8_tune_linear,
   bounds = list(cost = c(0.01, 100)),
   init_points = 10,
   n_iter = 15,
   acq = "ucb",
+  verbose = FALSE
 )
 # kein tuning möglich, da kein optimaler Parameter vorhanden -> default Werte
 
@@ -388,12 +410,14 @@ S8_tune_polynomial <- function(cost, gamma, degree) {
   list(Score = accuracy)
 }
 
+set.seed(82)
 S8_opt_param_polynomial <- BayesianOptimization(
   FUN = S8_tune_polynomial,
   bounds = list(cost = c(0.01, 100), gamma = c(0.001, 10), degree = c(1, 5)),
   init_points = 10,
   n_iter = 15,
-  acq = "ucb"
+  acq = "ucb",
+  verbose = FALSE
 )
 
 S8_tune_radial <- function(cost, gamma) {
@@ -403,12 +427,14 @@ S8_tune_radial <- function(cost, gamma) {
   list(Score = accuracy)
 }
 
+set.seed(83)
 S8_opt_param_radial <- BayesianOptimization(
   FUN = S8_tune_radial,
   bounds = list(cost = c(0.01, 100), gamma = c(0.001, 10)),
   init_points = 10,
   n_iter = 15,
-  acq = "ucb"
+  acq = "ucb",
+  verbose = FALSE
 )
 
 S8_tune_logR <- function(alpha, lambda) {
@@ -419,12 +445,14 @@ S8_tune_logR <- function(alpha, lambda) {
   list(Score = accuracy)
 }
 
+set.seed(84)
 S8_opt_param_logR <- BayesianOptimization(
   FUN = S8_tune_logR,
   bounds = list(alpha = c(0, 1), lambda = c(0.001, 1)),
   init_points = 10,
   n_iter = 15,
-  acq = "ucb"
+  acq = "ucb",
+  verbose = FALSE
 )
 
 S8_tune_k_NN <- function(k) {
@@ -437,12 +465,14 @@ S8_tune_k_NN <- function(k) {
   list(Score = accuracy)
 }
 
+set.seed(85)
 S8_opt_param_k_NN <- BayesianOptimization(
   FUN = S8_tune_k_NN,
   bounds = list(k = c(1, 50)),
   init_points = 10,
   n_iter = 15,
-  acq = "ucb"
+  acq = "ucb",
+  verbose = FALSE
 )
 
 # Modelle fitten
