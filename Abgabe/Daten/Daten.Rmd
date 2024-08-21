@@ -19,7 +19,7 @@ Insgesammt gibt es auch hier wieder 3 Kategorien. Die erste sind linear getrennt
 \begin{align*}
 \beta_0+\beta_1 X_1+\beta_2 X_2 +...+\beta_p X_p=0
 \end{align*}
-mit zufälligen Koeffizienten erzeugt. Diese Daten sollen also den Annahmen entsprechen, die für SVMs mit linearem Kernel gelten.\newline
+mit zufälligen Koeffizienten erzeugt. Diese Daten sollen also den Annahmen entsprechen, die für SVMs mit linearem Kernel gelten. Nachem für eine Beobachtung $j$ zufällig ein Punkt auf der Ebene gesampelt wurde, wurde dieser andschließend verschoben. Die Verschiebung erfolgte über eine Skalierung des normierten Normalenvektors $k\left(\frac{\overline{\beta}}{||\overline{\beta}||}\right)$. $k$ ist dabei eine Zufallszahl mit Mittelwert $\mu_k$ und Varianz $\sigma^2_k$. Dieser Prozess wird $n/2$ mal wiederholt für die eine Ausprägung der Zielvariable und dementsprechen $n/2$ mal für die andere Ausprägung, dann aber mit $-\mu_k$ als Mittelwert für $k$.  \newline
 In der zweiten Situation hat die Hyperplane eine quadratische Form:
 \begin{align*}
 \beta_0+\beta_1 X_1 + \beta_2 X_1^2+\beta_3 X_2+\beta_4 X_2^2+...+\beta_{2p-1}X_p+\beta_{2p}X_p^2=0
@@ -56,4 +56,4 @@ Es ergeben sich daher 9 unterschiedliche Datensituationen, welche in ihren Dimen
 \label{tab:datensituationen}
 \end{table}
 
-Zusätzlich soll nicht nur ein Vergleich zwischen der Performance der SVMS mit verschiedenen Kernel gemacht werden, sondern auch die Klassifikationsgüte der SVMs im Vergleich zu anderen gängigen Klassifikationsmethoden gezogen werden. Dafür werden Logistic Regression und k-nearest Neighbour als Vergleichsalgorithmen hinzugezogen.
+Zusätzlich soll nicht nur ein Vergleich zwischen der Performance der SVMS mit verschiedenen Kernel gemacht werden, sondern auch die Unterschiede in der Klassifikationsgüte der SVMs zu anderen gängigen Klassifikationsmethoden gezeigt werden. Dafür werden Regularized Logistic Regression und k-nearest Neighbour als Vergleichsalgorithmen hinzugezogen.
