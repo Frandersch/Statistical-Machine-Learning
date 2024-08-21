@@ -56,7 +56,7 @@ für die Schranke in richtung der grünen Datenpunkte und
 \end{align}
 für die Schranke in Richting der roten Datenpunkte. Aus dieser Beschränkung für die Hyperplane können wir auch ableiten, dass für die positiven Samples $\overline{x}^+$ immer gilt $\overline{\beta}\cdot \overline{x}^++\beta_0\ge 1$ und für negative Samples $\overline{x}^-$ immer gilt $\overline{\beta}\cdot \overline{x}^-+\beta_0\le -1$. Durch einführen einer weiteren Variable $y$, welche die eigenschaft hat, dass die den Wert 1 bei einem positiven und den Wert -1 bei einem negativen Sample annimmt, können diese zwei Beschränkungen zu einer zusammengefasst werden
 \begin{align}
-y(\overline{\beta}\cdot \overline{x}+\beta_0)\ge 1\label{eq:Nebenbedingung}
+y_i(\overline{\beta}\cdot \overline{x}_i+\beta_0)\ge 1\label{eq:Nebenbedingung}
 \end{align}
 Da das Verfahren auch maximum Margin Classifier gennant wird, gilt es jetzt noch eine Definition für den Margin also den Abstand zwischen den zwei Schranken zu finden, der schließlich maximiert werden soll. Damit diese Schranken, maximal weit auseinander liegen, muss es zwangsläufig Datenpunkte geben, die genau auf den Schranken liegen. Diese Datenpunkte haben eine wichtige Rolle für die Konstruktion des Margins. Es sind ausschließlich diese Datenpunkte, die einen Einfluss auf die finalen werte von $\overline{\beta}$ und $\beta_0$ haben werden. Sie werden \textbf{Support-Vektoren} genannt und geben den SVMs ihren Namen.
 \begin{figure}[h]
