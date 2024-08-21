@@ -14,6 +14,9 @@ load(file = "Code/Daten/Data_S3.RData")
 
 # Modelle tunen
 
+# Tuning durchgeführt. Parameter hier abrufbar:
+load(file = "Code/Parameter/Parameter_S3.RData")
+
 S3_tune_linear <- function(cost) {
   model <- svm(y ~ ., data = S3_data_train, kernel = "linear", cost = cost)
   prediction <- predict(model, S3_data_test)
@@ -103,9 +106,11 @@ S3_opt_param_k_NN <- BayesianOptimization(
   verbose = FALSE
 )
 
+save(S3_opt_param_linear, S3_opt_param_polynomial, S3_opt_param_radial, S3_opt_param_logR, S3_opt_param_k_NN, file = "Code/Parameter/Parameter_S3.RData")
+
 # Modelle fitten
 
-S3_svm_linear <- svm(y ~., data = S3_data_train, kernel = "linear", cost = S3_opt_param_linear$Best_Par)
+S3_svm_linear <- svm(y ~., data = S3_data_train, kernel = "linear", cost = S3_opt_param_linear$Best_Par["cost"])
 S3_svm_polynomial <- svm(y ~., data = S3_data_train, kernel = "polynomial", cost = S3_opt_param_polynomial$Best_Par["cost"], gamma = S3_opt_param_polynomial$Best_Par["gamma"], degree = S3_opt_param_polynomial$Best_Par["degree"])
 S3_svm_radial <- svm(y ~., data = S3_data_train, kernel = "radial", cost = S3_opt_param_radial$Best_Par["cost"], gamma = S3_opt_param_radial$Best_Par["gamma"])
 S3_logR <- glmnet(as.matrix(S3_data_train[, setdiff(names(S3_data_train), "y")]), S3_data_train[, "y"], family = "binomial", alpha = S3_opt_param_logR$Best_Par["alpha"], lambda = S3_opt_param_logR$Best_Par["lambda"])
@@ -152,7 +157,7 @@ grid.arrange(S3_Accuracy_Tabelle)
 
 # ROC/AUC
 
-S3_svm_linear_probs <- svm(y ~., data = S3_data_train, kernel = "linear", cost = S3_opt_param_linear$Best_Par, probability = TRUE)
+S3_svm_linear_probs <- svm(y ~., data = S3_data_train, kernel = "linear", cost = S3_opt_param_linear$Best_Par["cost"], probability = TRUE)
 S3_prob_svm_linear <- predict(S3_svm_linear_probs, S3_data_test, probability = TRUE)
 S3_prediction_probs_linear <- attr(S3_prob_svm_linear, "probabilities")[, 1]
 S3_roc_linear <- roc(S3_data_test$y, S3_prediction_probs_linear, levels = rev(levels(S3_data_test$y)))
@@ -197,6 +202,9 @@ legend("bottomright",
 load(file = "Code/Daten/Data_S6.RData")
 
 # Modelle tunen
+
+# Tuning durchgeführt. Parameter hier abrufbar:
+load(file = "Code/Parameter/Parameter_S6.RData")
 
 S6_tune_linear <- function(cost) {
   model <- svm(y ~ ., data = S6_data_train, kernel = "linear", cost = cost)
@@ -287,9 +295,11 @@ S6_opt_param_k_NN <- BayesianOptimization(
   verbose = FALSE
 )
 
+save(S6_opt_param_linear, S6_opt_param_polynomial, S6_opt_param_radial, S6_opt_param_logR, S6_opt_param_k_NN, file = "Code/Parameter/Parameter_S6.RData")
+
 # Modelle fitten
 
-S6_svm_linear <- svm(y ~., data = S6_data_train, kernel = "linear", cost = S6_opt_param_linear$Best_Par)
+S6_svm_linear <- svm(y ~., data = S6_data_train, kernel = "linear", cost = S6_opt_param_linear$Best_Par["cost"])
 S6_svm_polynomial <- svm(y ~., data = S6_data_train, kernel = "polynomial", cost = S6_opt_param_polynomial$Best_Par["cost"], gamma = S6_opt_param_polynomial$Best_Par["gamma"], degree = S6_opt_param_polynomial$Best_Par["degree"])
 S6_svm_radial <- svm(y ~., data = S6_data_train, kernel = "radial", cost = S6_opt_param_radial$Best_Par["cost"], gamma = S6_opt_param_radial$Best_Par["gamma"])
 S6_logR <- glmnet(as.matrix(S6_data_train[, setdiff(names(S6_data_train), "y")]), S6_data_train[, "y"], family = "binomial", alpha = S6_opt_param_logR$Best_Par["alpha"], lambda = S6_opt_param_logR$Best_Par["lambda"])
@@ -324,7 +334,7 @@ S6_accuracy_logR <- sum(diag(S6_confusion_matrix_logR))/sum(S6_confusion_matrix_
 S6_confusion_matrix_k_NN <- table(S6_k_NN, S6_data_test$y)
 S6_accuracy_k_NN <- sum(diag(S6_confusion_matrix_k_NN))/sum(S6_confusion_matrix_k_NN)
 
-S6_Accuracy <- data.frame(linear = c(as.character(round(S6_accuracy_linear, 4)), "/", "/", "/", "/", "/", "/"),
+S6_Accuracy <- data.frame(linear = c(as.character(round(S6_accuracy_linear, 4)), as.character(round(S6_opt_param_linear$Best_Par["cost"], 4)), "/", "/", "/", "/", "/"),
                           polynomial = c(as.character(round(S6_accuracy_polynomial, 4)), as.character(round(S6_opt_param_polynomial$Best_Par["cost"], 4)), as.character(round(S6_opt_param_polynomial$Best_Par["gamma"], 4)), as.character(round(S6_opt_param_polynomial$Best_Par["degree"], 4)), "/", "/", "/"),
                           radial = c(as.character(round(S6_accuracy_radial, 4)), as.character(round(S6_opt_param_radial$Best_Par["cost"], 4)), as.character(round(S6_opt_param_radial$Best_Par["gamma"], 4)), "/", "/", "/", "/"),
                           logR = c(as.character(round(S6_accuracy_logR, 4)), "/", "/", "/", as.character(round(S6_opt_param_logR$Best_Par["alpha"], 4)), as.character(round(S6_opt_param_logR$Best_Par["lambda"], 4)), "/"),
@@ -336,7 +346,7 @@ grid.arrange(S6_Accuracy_Tabelle)
 
 # ROC/AUC
 
-S6_svm_linear_probs <- svm(y ~., data = S6_data_train, kernel = "linear", cost = S6_opt_param_linear$Best_Par, probability = TRUE)
+S6_svm_linear_probs <- svm(y ~., data = S6_data_train, kernel = "linear", cost = S6_opt_param_linear$Best_Par["cost"], probability = TRUE)
 S6_prob_svm_linear <- predict(S6_svm_linear_probs, S6_data_test, probability = TRUE)
 S6_prediction_probs_linear <- attr(S6_prob_svm_linear, "probabilities")[, 1]
 S6_roc_linear <- roc(S6_data_test$y, S6_prediction_probs_linear, levels = rev(levels(S6_data_test$y)))
@@ -382,6 +392,9 @@ load(file = "Code/Daten/Data_S9.RData")
 
 # Modelle tunen
 
+# Tuning durchgeführt. Parameter hier abrufbar:
+load(file = "Code/Parameter/Parameter_S9.RData")
+
 S9_tune_linear <- function(cost) {
   model <- svm(y ~ ., data = S9_data_train, kernel = "linear", cost = cost)
   prediction <- predict(model, S9_data_test)
@@ -393,8 +406,8 @@ set.seed(91)
 S9_opt_param_linear <- BayesianOptimization(
   FUN = S9_tune_linear,
   bounds = list(cost = c(0.01, 100)),
-  init_points = 10,
-  n_iter = 15,
+  init_points = 15,
+  n_iter = 25,
   acq = "ucb",
   verbose = FALSE
 )
@@ -410,8 +423,8 @@ set.seed(92)
 S9_opt_param_polynomial <- BayesianOptimization(
   FUN = S9_tune_polynomial,
   bounds = list(cost = c(0.01, 100), gamma = c(0.001, 10), degree = c(1, 5)),
-  init_points = 10,
-  n_iter = 15,
+  init_points = 15,
+  n_iter = 25,
   acq = "ucb",
   verbose = FALSE
 )
@@ -427,8 +440,8 @@ set.seed(93)
 S9_opt_param_radial <- BayesianOptimization(
   FUN = S9_tune_radial,
   bounds = list(cost = c(0.01, 100), gamma = c(0.001, 10)),
-  init_points = 10,
-  n_iter = 15,
+  init_points = 15,
+  n_iter = 25,
   acq = "ucb",
   verbose = FALSE
 )
@@ -445,8 +458,8 @@ set.seed(94)
 S9_opt_param_logR <- BayesianOptimization(
   FUN = S9_tune_logR,
   bounds = list(alpha = c(0, 1), lambda = c(0.001, 1)),
-  init_points = 10,
-  n_iter = 15,
+  init_points = 15,
+  n_iter = 25,
   acq = "ucb",
   verbose = FALSE
 )
@@ -461,19 +474,21 @@ S9_tune_k_NN <- function(k) {
   list(Score = accuracy)
 }
 
-set.seed(95)
+set.seed(96)
 S9_opt_param_k_NN <- BayesianOptimization(
   FUN = S9_tune_k_NN,
   bounds = list(k = c(1, 50)),
-  init_points = 10,
-  n_iter = 15,
+  init_points = 15,
+  n_iter = 25,
   acq = "ucb",
   verbose = FALSE
 )
 
+save(S9_opt_param_linear, S9_opt_param_polynomial, S9_opt_param_radial, S9_opt_param_logR, S9_opt_param_k_NN, file = "Code/Parameter/Parameter_S9.RData")
+
 # Modelle fitten
 
-S9_svm_linear <- svm(y ~., data = S9_data_train, kernel = "linear", cost = S9_opt_param_linear$Best_Par)
+S9_svm_linear <- svm(y ~., data = S9_data_train, kernel = "linear", cost = S9_opt_param_linear$Best_Par["cost"])
 S9_svm_polynomial <- svm(y ~., data = S9_data_train, kernel = "polynomial", cost = S9_opt_param_polynomial$Best_Par["cost"], gamma = S9_opt_param_polynomial$Best_Par["gamma"], degree = S9_opt_param_polynomial$Best_Par["degree"])
 S9_svm_radial <- svm(y ~., data = S9_data_train, kernel = "radial", cost = S9_opt_param_radial$Best_Par["cost"], gamma = S9_opt_param_radial$Best_Par["gamma"])
 S9_logR <- glmnet(as.matrix(S9_data_train[, setdiff(names(S9_data_train), "y")]), S9_data_train[, "y"], family = "binomial", alpha = S9_opt_param_logR$Best_Par["alpha"], lambda = S9_opt_param_logR$Best_Par["lambda"])
@@ -508,7 +523,7 @@ S9_accuracy_logR <- sum(diag(S9_confusion_matrix_logR))/sum(S9_confusion_matrix_
 S9_confusion_matrix_k_NN <- table(S9_k_NN, S9_data_test$y)
 S9_accuracy_k_NN <- sum(diag(S9_confusion_matrix_k_NN))/sum(S9_confusion_matrix_k_NN)
 
-S9_Accuracy <- data.frame(linear = c(as.character(round(S9_accuracy_linear, 4)), "/", "/", "/", "/", "/", "/"),
+S9_Accuracy <- data.frame(linear = c(as.character(round(S9_accuracy_linear, 4)), as.character(round(S9_opt_param_linear$Best_Par["cost"], 4)), "/", "/", "/", "/", "/"),
                           polynomial = c(as.character(round(S9_accuracy_polynomial, 4)), as.character(round(S9_opt_param_polynomial$Best_Par["cost"], 4)), as.character(round(S9_opt_param_polynomial$Best_Par["gamma"], 4)), as.character(round(S9_opt_param_polynomial$Best_Par["degree"], 4)), "/", "/", "/"),
                           radial = c(as.character(round(S9_accuracy_radial, 4)), as.character(round(S9_opt_param_radial$Best_Par["cost"], 4)), as.character(round(S9_opt_param_radial$Best_Par["gamma"], 4)), "/", "/", "/", "/"),
                           logR = c(as.character(round(S9_accuracy_logR, 4)), "/", "/", "/", as.character(round(S9_opt_param_logR$Best_Par["alpha"], 4)), as.character(round(S9_opt_param_logR$Best_Par["lambda"], 4)), "/"),
@@ -520,7 +535,7 @@ grid.arrange(S9_Accuracy_Tabelle)
 
 # ROC/AUC
 
-S9_svm_linear_probs <- svm(y ~., data = S9_data_train, kernel = "linear", cost = S9_opt_param_linear$Best_Par, probability = TRUE)
+S9_svm_linear_probs <- svm(y ~., data = S9_data_train, kernel = "linear", cost = S9_opt_param_linear$Best_Par["cost"], probability = TRUE)
 S9_prob_svm_linear <- predict(S9_svm_linear_probs, S9_data_test, probability = TRUE)
 S9_prediction_probs_linear <- attr(S9_prob_svm_linear, "probabilities")[, 1]
 S9_roc_linear <- roc(S9_data_test$y, S9_prediction_probs_linear, levels = rev(levels(S9_data_test$y)))

@@ -14,6 +14,9 @@ load(file = "Code/Daten/Data_S1.RData")
 
 # Modelle tunen
 
+# Tuning durchgeführt. Parameter hier abrufbar:
+load(file = "Code/Parameter/Parameter_S1.RData")
+
 S1_tune_linear <- function(cost) {
   model <- svm(y ~ ., data = S1_data_train, kernel = "linear", cost = cost)
   prediction <- predict(model, S1_data_test)
@@ -73,7 +76,7 @@ S1_tune_logR <- function(alpha, lambda) {
   list(Score = accuracy)
 }
 
-set.seed(14)
+set.seed(16)
 S1_opt_param_logR <- BayesianOptimization(
   FUN = S1_tune_logR,
   bounds = list(alpha = c(0, 1), lambda = c(0.001, 1)),
@@ -102,6 +105,8 @@ S1_opt_param_k_NN <- BayesianOptimization(
   acq = "ucb",
   verbose = FALSE
 )
+
+save(S1_opt_param_linear, S1_opt_param_polynomial, S1_opt_param_radial, S1_opt_param_logR, S1_opt_param_k_NN, file = "Code/Parameter/Parameter_S1.RData")
 
 # Modelle fitten
 
@@ -150,9 +155,17 @@ S1_Accuracy <- data.frame(linear = c(as.character(round(S1_accuracy_linear, 4)),
 S1_Accuracy_Tabelle <- tableGrob(S1_Accuracy)
 grid.arrange(S1_Accuracy_Tabelle)
 
+# F1-Score
+
+S1_F1_linear <- 2/(1/(S1_confusion_matrix_linear[1, 1]/sum(S1_confusion_matrix_linear[1, ])) + 1/(S1_confusion_matrix_linear[1, 1]/sum(S1_confusion_matrix_linear[, 1])))
+S1_F1_polynomial <- 2/(1/(S1_confusion_matrix_polynomial[1, 1]/sum(S1_confusion_matrix_polynomial[1, ])) + 1/(S1_confusion_matrix_polynomial[1, 1]/sum(S1_confusion_matrix_polynomial[, 1])))
+S1_F1_radial <- 2/(1/(S1_confusion_matrix_radial[1, 1]/sum(S1_confusion_matrix_radial[1, ])) + 1/(S1_confusion_matrix_radial[1, 1]/sum(S1_confusion_matrix_radial[, 1])))
+S1_F1_logR <- 2/(1/(S1_confusion_matrix_logR[1, 1]/sum(S1_confusion_matrix_logR[1, ])) + 1/(S1_confusion_matrix_logR[1, 1]/sum(S1_confusion_matrix_logR[, 1])))
+S1_F1_k_NN <- 2/(1/(S1_confusion_matrix_k_NN[1, 1]/sum(S1_confusion_matrix_k_NN[1, ])) + 1/(S1_confusion_matrix_k_NN[1, 1]/sum(S1_confusion_matrix_k_NN[, 1])))
+
 # ROC/AUC
 
-S1_svm_linear_probs <- svm(y ~., data = S1_data_train, kernel = "linear", cost = S1_opt_param_linear$Best_Par, probability = TRUE)
+S1_svm_linear_probs <- svm(y ~., data = S1_data_train, kernel = "linear", cost = S1_opt_param_linear$Best_Par["cost"], probability = TRUE)
 S1_prob_svm_linear <- predict(S1_svm_linear_probs, S1_data_test, probability = TRUE)
 S1_prediction_probs_linear <- attr(S1_prob_svm_linear, "probabilities")[, 1]
 S1_roc_linear <- roc(S1_data_test$y, S1_prediction_probs_linear, levels = rev(levels(S1_data_test$y)))
@@ -198,6 +211,9 @@ load(file = "Code/Daten/Data_S4.RData")
 
 # Modelle tunen
 
+# Tuning durchgeführt. Parameter hier abrufbar:
+load(file = "Code/Parameter/Parameter_S4.RData")
+
 S4_tune_linear <- function(cost) {
   model <- svm(y ~ ., data = S4_data_train, kernel = "linear", cost = cost)
   prediction <- predict(model, S4_data_test)
@@ -209,12 +225,13 @@ set.seed(41)
 S4_opt_param_linear <- BayesianOptimization(
   FUN = S4_tune_linear,
   bounds = list(cost = c(0.01, 100)),
-  init_points = 10,
-  n_iter = 15,
+  init_points = 15,
+  n_iter = 25,
   acq = "ucb",
   verbose = FALSE
 )
 # kein tuning möglich, da kein optimaler Parameter vorhanden -> default Werte
+S4_opt_param_linear <- list(Best_Par = data.frame(cost = 1))
 
 S4_tune_polynomial <- function(cost, gamma, degree) {
   model <- svm(y ~ ., data = S4_data_train, kernel = "polynomial", cost = cost, gamma = gamma, degree = degree)
@@ -227,8 +244,8 @@ set.seed(42)
 S4_opt_param_polynomial <- BayesianOptimization(
   FUN = S4_tune_polynomial,
   bounds = list(cost = c(0.01, 100), gamma = c(0.001, 10), degree = c(1, 5)),
-  init_points = 10,
-  n_iter = 15,
+  init_points = 15,
+  n_iter = 25,
   acq = "ucb",
   verbose = FALSE
 )
@@ -244,8 +261,8 @@ set.seed(43)
 S4_opt_param_radial <- BayesianOptimization(
   FUN = S4_tune_radial,
   bounds = list(cost = c(0.01, 100), gamma = c(0.001, 10)),
-  init_points = 10,
-  n_iter = 15,
+  init_points = 15,
+  n_iter = 25,
   acq = "ucb",
   verbose = FALSE
 )
@@ -262,8 +279,8 @@ set.seed(44)
 S4_opt_param_logR <- BayesianOptimization(
   FUN = S4_tune_logR,
   bounds = list(alpha = c(0, 1), lambda = c(0.001, 1)),
-  init_points = 10,
-  n_iter = 15,
+  init_points = 15,
+  n_iter = 25,
   acq = "ucb",
   verbose = FALSE
 )
@@ -288,10 +305,11 @@ S4_opt_param_k_NN <- BayesianOptimization(
   verbose = FALSE
 )
 
+save(S4_opt_param_linear, S4_opt_param_polynomial, S4_opt_param_radial, S4_opt_param_logR, S4_opt_param_k_NN, file = "Code/Parameter/Parameter_S4.RData")
+
 # Modelle fitten
 
-# default Werte für linear, da kein optimaler Parameter vorhanden
-S4_svm_linear <- svm(y ~., data = S4_data_train, kernel = "linear")
+S4_svm_linear <- svm(y ~., data = S4_data_train, kernel = "linear", cost = S4_opt_param_linear$Best_Par["cost"])
 S4_svm_polynomial <- svm(y ~., data = S4_data_train, kernel = "polynomial", cost = S4_opt_param_polynomial$Best_Par["cost"], gamma = S4_opt_param_polynomial$Best_Par["gamma"], degree = S4_opt_param_polynomial$Best_Par["degree"])
 S4_svm_radial <- svm(y ~., data = S4_data_train, kernel = "radial", cost = S4_opt_param_radial$Best_Par["cost"], gamma = S4_opt_param_radial$Best_Par["gamma"])
 S4_logR <- glmnet(as.matrix(S4_data_train[, setdiff(names(S4_data_train), "y")]), S4_data_train[, "y"], family = "binomial", alpha = S4_opt_param_logR$Best_Par["alpha"], lambda = S4_opt_param_logR$Best_Par["lambda"])
@@ -326,7 +344,7 @@ S4_accuracy_logR <- sum(diag(S4_confusion_matrix_logR))/sum(S4_confusion_matrix_
 S4_confusion_matrix_k_NN <- table(S4_k_NN, S4_data_test$y)
 S4_accuracy_k_NN <- sum(diag(S4_confusion_matrix_k_NN))/sum(S4_confusion_matrix_k_NN)
 
-S4_Accuracy <- data.frame(linear = c(as.character(round(S4_accuracy_linear, 4)), "/", "/", "/", "/", "/", "/"),
+S4_Accuracy <- data.frame(linear = c(as.character(round(S4_accuracy_linear, 4)), "no opt.", "/", "/", "/", "/", "/"),
                           polynomial = c(as.character(round(S4_accuracy_polynomial, 4)), as.character(round(S4_opt_param_polynomial$Best_Par["cost"], 4)), as.character(round(S4_opt_param_polynomial$Best_Par["gamma"], 4)), as.character(round(S4_opt_param_polynomial$Best_Par["degree"], 4)), "/", "/", "/"),
                           radial = c(as.character(round(S4_accuracy_radial, 4)), as.character(round(S4_opt_param_radial$Best_Par["cost"], 4)), as.character(round(S4_opt_param_radial$Best_Par["gamma"], 4)), "/", "/", "/", "/"),
                           logR = c(as.character(round(S4_accuracy_logR, 4)), "/", "/", "/", as.character(round(S4_opt_param_logR$Best_Par["alpha"], 4)), as.character(round(S4_opt_param_logR$Best_Par["lambda"], 4)), "/"),
@@ -338,8 +356,7 @@ grid.arrange(S4_Accuracy_Tabelle)
 
 # ROC/AUC
 
-# default Werte für linear, da kein optimaler Parameter vorhanden
-S4_svm_linear_probs <- svm(y ~., data = S4_data_train, kernel = "linear", probability = TRUE)
+S4_svm_linear_probs <- svm(y ~., data = S4_data_train, kernel = "linear", cost = S4_opt_param_linear$Best_Par["cost"], probability = TRUE)
 S4_prob_svm_linear <- predict(S4_svm_linear_probs, S4_data_test, probability = TRUE)
 S4_prediction_probs_linear <- attr(S4_prob_svm_linear, "probabilities")[, 1]
 S4_roc_linear <- roc(S4_data_test$y, S4_prediction_probs_linear, levels = rev(levels(S4_data_test$y)))
@@ -385,6 +402,10 @@ load(file = "Code/Daten/Data_S7.RData")
 
 # Modelle tunen
 
+
+# Tuning durchgeführt. Parameter hier abrufbar:
+load(file = "Code/Parameter/Parameter_S7.RData")
+
 S7_tune_linear <- function(cost) {
   model <- svm(y ~ ., data = S7_data_train, kernel = "linear", cost = cost)
   prediction <- predict(model, S7_data_test)
@@ -396,12 +417,13 @@ set.seed(71)
 S7_opt_param_linear <- BayesianOptimization(
   FUN = S7_tune_linear,
   bounds = list(cost = c(0.01, 100)),
-  init_points = 10,
-  n_iter = 15,
+  init_points = 15,
+  n_iter = 25,
   acq = "ucb",
   verbose = FALSE
 )
 # kein tuning möglich, da kein optimaler Parameter vorhanden -> default Werte
+S7_opt_param_linear <- list(Best_Par = data.frame(cost = 1))
 
 S7_tune_polynomial <- function(cost, gamma, degree) {
   model <- svm(y ~ ., data = S7_data_train, kernel = "polynomial", cost = cost, gamma = gamma, degree = degree)
@@ -414,8 +436,8 @@ set.seed(72)
 S7_opt_param_polynomial <- BayesianOptimization(
   FUN = S7_tune_polynomial,
   bounds = list(cost = c(0.01, 100), gamma = c(0.001, 10), degree = c(1, 5)),
-  init_points = 10,
-  n_iter = 15,
+  init_points = 15,
+  n_iter = 25,
   acq = "ucb",
   verbose = FALSE
 )
@@ -431,8 +453,8 @@ set.seed(73)
 S7_opt_param_radial <- BayesianOptimization(
   FUN = S7_tune_radial,
   bounds = list(cost = c(0.01, 100), gamma = c(0.001, 10)),
-  init_points = 10,
-  n_iter = 15,
+  init_points = 15,
+  n_iter = 25,
   acq = "ucb",
   verbose = FALSE
 )
@@ -449,8 +471,8 @@ set.seed(74)
 S7_opt_param_logR <- BayesianOptimization(
   FUN = S7_tune_logR,
   bounds = list(alpha = c(0, 1), lambda = c(0.001, 1)),
-  init_points = 10,
-  n_iter = 15,
+  init_points = 15,
+  n_iter = 25,
   acq = "ucb",
   verbose = FALSE
 )
@@ -469,16 +491,17 @@ set.seed(75)
 S7_opt_param_k_NN <- BayesianOptimization(
   FUN = S7_tune_k_NN,
   bounds = list(k = c(1, 50)),
-  init_points = 10,
-  n_iter = 15,
+  init_points = 15,
+  n_iter = 25,
   acq = "ucb",
   verbose = FALSE
 )
 
+save(S7_opt_param_linear, S7_opt_param_polynomial, S7_opt_param_radial, S7_opt_param_logR, S7_opt_param_k_NN, file = "Code/Parameter/Parameter_S7.RData")
+
 # Modelle fitten
 
-# default Werte für linear, da kein optimaler Parameter vorhanden
-S7_svm_linear <- svm(y ~., data = S7_data_train, kernel = "linear")
+S7_svm_linear <- svm(y ~., data = S7_data_train, kernel = "linear", cost = S7_opt_param_linear$Best_Par["cost"])
 S7_svm_polynomial <- svm(y ~., data = S7_data_train, kernel = "polynomial", cost = S7_opt_param_polynomial$Best_Par["cost"], gamma = S7_opt_param_polynomial$Best_Par["gamma"], degree = S7_opt_param_polynomial$Best_Par["degree"])
 S7_svm_radial <- svm(y ~., data = S7_data_train, kernel = "radial", cost = S7_opt_param_radial$Best_Par["cost"], gamma = S7_opt_param_radial$Best_Par["gamma"])
 S7_logR <- glmnet(as.matrix(S7_data_train[, setdiff(names(S7_data_train), "y")]), S7_data_train[, "y"], family = "binomial", alpha = S7_opt_param_logR$Best_Par["alpha"], lambda = S7_opt_param_logR$Best_Par["lambda"])
@@ -525,8 +548,7 @@ grid.arrange(S7_Accuracy_Tabelle)
 
 # ROC/AUC
 
-# default Werte für linear, da kein optimaler Parameter vorhanden
-S7_svm_linear_probs <- svm(y ~., data = S7_data_train, kernel = "linear", probability = TRUE)
+S7_svm_linear_probs <- svm(y ~., data = S7_data_train, kernel = "linear", cost = S1_opt_param_linear$Best_Par["cost"], probability = TRUE)
 S7_prob_svm_linear <- predict(S7_svm_linear_probs, S7_data_test, probability = TRUE)
 S7_prediction_probs_linear <- attr(S7_prob_svm_linear, "probabilities")[, 1]
 S7_roc_linear <- roc(S7_data_test$y, S7_prediction_probs_linear, levels = rev(levels(S7_data_test$y)))
@@ -563,3 +585,10 @@ legend("bottomright",
        legend = c(paste("linear (AUC:", auc(S7_roc_linear), ")"), paste("polynomial (AUC:", auc(S7_roc_polynomial), ")"), paste("radial (AUC:", auc(S7_roc_radial), ")"), paste("logR (AUC:", auc(S7_roc_logR), ")"), paste("k_NN (AUC:", auc(S7_roc_k_NN), ")")),
        col = c("blue", "red", "green", "violet", "orange"),
        lwd = 2)
+
+# erstellen der Einzeltabellen
+
+S1_Tabelle <- round(data.frame(Accuracy = c(S1_accuracy_linear, S1_accuracy_polynomial, S1_accuracy_radial, S1_accuracy_logR, S1_accuracy_k_NN),
+                               AUC = c(auc(S1_roc_linear), auc(S1_roc_polynomial), auc(S1_roc_radial), auc(S1_roc_logR), auc(S1_roc_k_NN)),
+                               F_1_Score = c(S1_F1_linear, S1_F1_polynomial, S1_F1_radial, S1_F1_logR, S1_F1_k_NN),
+                               row.names = c("SVM-L", "SVM-P", "SVM-R", "LogR", "K-NN")), 2)
