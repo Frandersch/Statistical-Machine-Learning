@@ -1,0 +1,223 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage[german]{babel}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage{pgf}
+\usepackage{csquotes}
+\AtBeginDocument{
+\renewcommand{\maketitle}{}
+}
+\PassOptionsToPackage{a4paper,margin = 2.5cm}{geometry}
+\usepackage{geometry}
+\newcommand{\bcenter}{\begin{center}}
+\newcommand{\ecenter}{\end{center}}
+\renewcommand{\contentsname}{Inhalt}
+\usepackage{blindtext}
+\usepackage[backend=biber, style = apa]{biblatex}
+\addbibresource{Literatur.bib}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{pdflscape}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{biblatex}
+\addbibresource{Literatur.bib}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Tabelle},
+  pdfauthor={Franz Andersch \& Niklas Münz},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Tabelle}
+\author{Franz Andersch \& Niklas Münz}
+\date{2024-08-21}
+
+\begin{document}
+\maketitle
+
+\begin{verbatim}
+## Warning: Paket 'gridExtra' wurde unter R Version 4.3.3 erstellt
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Paket 'ggplot2' wurde unter R Version 4.3.2 erstellt
+\end{verbatim}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+& \textbf{linear} & \textbf{polynomial} & \textbf{radial} \\
+\hline
+\multirow{5}{*}{\textbf{p << n}} & 
+\begin{tabular}{lrrr}
+\toprule
+  & Accuracy & AUC & F..1..Score\\
+\midrule
+SVM-L & 0.96 & 0.99 & 0.96\\
+SVM-P & 0.96 & 0.99 & 0.96\\
+SVM-R & 0.96 & 0.99 & 0.96\\
+LogR & 0.96 & 0.99 & 0.96\\
+K-NN & 0.58 & 0.60 & 0.58\\
+\bottomrule
+\end{tabular} & 
+\begin{tabular}{lrrr}
+\toprule
+  & Accuracy & AUC & F\_1\_Score\\
+\midrule
+SVM-L & 0.82 & 0.87 & 0.82\\
+SVM-P & 0.82 & 0.87 & 0.82\\
+SVM-R & 0.86 & 0.88 & 0.84\\
+LogR & 0.88 & 0.92 & 0.86\\
+K-NN & 0.66 & 0.62 & 0.67\\
+\bottomrule
+\end{tabular} & 
+\begin{tabular}{lrrr}
+\toprule
+  & Accuracy & AUC & F\_1\_Score\\
+\midrule
+SVM-L & 0.72 & 0.79 & 0.71\\
+SVM-P & 0.74 & 0.79 & 0.73\\
+SVM-R & 0.54 & 0.50 & 0.44\\
+LogR & 0.80 & 0.81 & 0.81\\
+K-NN & 0.62 & 0.58 & 0.51\\
+\bottomrule
+\end{tabular} \\
+\hline
+\multirow{5}{*}{\textbf{p = n}} & 
+\begin{tabular}{lrrr}
+\toprule
+  & Accuracy & AUC & F\_1\_Score\\
+\midrule
+SVM-L & 0.66 & 0.73 & 0.66\\
+SVM-P & 0.67 & 0.73 & 0.67\\
+SVM-R & 0.70 & 0.76 & 0.69\\
+LogR & 0.69 & 0.74 & 0.69\\
+K-NN & 0.69 & 0.73 & 0.65\\
+\bottomrule
+\end{tabular} & 
+\begin{tabular}{lrrr}
+\toprule
+  & Accuracy & AUC & F\_1\_Score\\
+\midrule
+SVM-L & 0.50 & 0.50 & 0.55\\
+SVM-P & 0.58 & 0.52 & 0.57\\
+SVM-R & 0.56 & 0.53 & 0.39\\
+LogR & 0.64 & 0.56 & 0.67\\
+K-NN & 0.48 & 0.55 & 0.54\\
+\bottomrule
+\end{tabular} & 
+\begin{tabular}{lrrr}
+\toprule
+  & Accuracy & AUC & F\_1\_Score\\
+\midrule
+SVM-L & 0.62 & 0.57 & 0.61\\
+SVM-P & 0.62 & 0.57 & 0.61\\
+SVM-R & 0.50 & 0.50 & NaN\\
+LogR & 0.60 & 0.56 & 0.60\\
+K-NN & 0.64 & 0.61 & 0.62\\
+\bottomrule
+\end{tabular} \\
+\hline
+\multirow{5}{*}{\textbf{p >> n}} & 
+\begin{tabular}{lrrr}
+\toprule
+  & Accuracy & AUC & F\_1\_Score\\
+\midrule
+SVM-L & 0.52 & 0.53 & 0.62\\
+SVM-P & 1.00 & 1.00 & 1.00\\
+SVM-R & 0.91 & 0.99 & 0.90\\
+LogR & 0.51 & 0.53 & 0.53\\
+K-NN & 0.98 & 0.98 & 0.98\\
+\bottomrule
+\end{tabular} & 
+\begin{tabular}{lrrr}
+\toprule
+  & Accuracy & AUC & F\_1\_Score\\
+\midrule
+SVM-L & 0.68 & 0.60 & 0.72\\
+SVM-P & 0.84 & 0.91 & 0.85\\
+SVM-R & 0.84 & 0.89 & 0.82\\
+LogR & 0.64 & 0.53 & 0.69\\
+K-NN & 0.80 & 0.80 & 0.83\\
+\bottomrule
+\end{tabular} & 
+\begin{tabular}{lrrr}
+\toprule
+  & Accuracy & AUC & F\_1\_Score\\
+\midrule
+SVM-L & 0.56 & 0.50 & 0.63\\
+SVM-P & 0.72 & 0.88 & 0.77\\
+SVM-R & 0.72 & 0.74 & 0.61\\
+LogR & 0.58 & 0.53 & 0.66\\
+K-NN & 0.88 & 0.88 & 0.89\\
+\bottomrule
+\end{tabular} \\
+\hline
+\end{tabular}
+\caption{Tabelle 2: Vergleich der Modelle}
+\end{table}
+
+\printbibliography
+
+\end{document}

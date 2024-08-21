@@ -165,6 +165,7 @@ S1_F1_k_NN <- 2/(1/(S1_confusion_matrix_k_NN[1, 1]/sum(S1_confusion_matrix_k_NN[
 
 # ROC/AUC
 
+# alle Modelle mit Ausgabe der Wahrscheinlichkeit fitten, da ROC auf Wahrscheinlichkeiten basiert
 S1_svm_linear_probs <- svm(y ~., data = S1_data_train, kernel = "linear", cost = S1_opt_param_linear$Best_Par["cost"], probability = TRUE)
 S1_prob_svm_linear <- predict(S1_svm_linear_probs, S1_data_test, probability = TRUE)
 S1_prediction_probs_linear <- attr(S1_prob_svm_linear, "probabilities")[, 1]
@@ -181,8 +182,7 @@ S1_prediction_probs_radial <- attr(S1_prob_svm_radial, "probabilities")[, 1]
 S1_roc_radial <- roc(S1_data_test$y, S1_prediction_probs_radial, levels = rev(levels(S1_data_test$y)))
 
 S1_prob_logR <- predict(S1_logR, as.matrix(S1_data_test[, setdiff(names(S1_data_test), "y")]), type = "response")
-S1_prediction_probs_logR <- S1_prob_logR[, 1]
-S1_roc_logR <- roc(S1_data_test$y, S1_prediction_probs_logR, levels = rev(levels(S1_data_test$y)))
+S1_roc_logR <- roc(S1_data_test$y, as.numeric(S1_prob_logR), levels = rev(levels(S1_data_test$y)))
 
 S1_k_NN_probs <- knn(S1_data_train[, setdiff(names(S1_data_train), "y")],
                      S1_data_test[, setdiff(names(S1_data_test), "y")],
@@ -354,8 +354,17 @@ S4_Accuracy <- data.frame(linear = c(as.character(round(S4_accuracy_linear, 4)),
 S4_Accuracy_Tabelle <- tableGrob(S4_Accuracy)
 grid.arrange(S4_Accuracy_Tabelle)
 
+# F1-Score
+
+S4_F1_linear <- 2/(1/(S4_confusion_matrix_linear[1, 1]/sum(S4_confusion_matrix_linear[1, ])) + 1/(S4_confusion_matrix_linear[1, 1]/sum(S4_confusion_matrix_linear[, 1])))
+S4_F1_polynomial <- 2/(1/(S4_confusion_matrix_polynomial[1, 1]/sum(S4_confusion_matrix_polynomial[1, ])) + 1/(S4_confusion_matrix_polynomial[1, 1]/sum(S4_confusion_matrix_polynomial[, 1])))
+S4_F1_radial <- 2/(1/(S4_confusion_matrix_radial[1, 1]/sum(S4_confusion_matrix_radial[1, ])) + 1/(S4_confusion_matrix_radial[1, 1]/sum(S4_confusion_matrix_radial[, 1])))
+S4_F1_logR <- 2/(1/(S4_confusion_matrix_logR[1, 1]/sum(S4_confusion_matrix_logR[1, ])) + 1/(S4_confusion_matrix_logR[1, 1]/sum(S4_confusion_matrix_logR[, 1])))
+S4_F1_k_NN <- 2/(1/(S4_confusion_matrix_k_NN[1, 1]/sum(S4_confusion_matrix_k_NN[1, ])) + 1/(S4_confusion_matrix_k_NN[1, 1]/sum(S4_confusion_matrix_k_NN[, 1])))
+
 # ROC/AUC
 
+# alle Modelle mit Ausgabe der Wahrscheinlichkeit fitten, da ROC auf Wahrscheinlichkeiten basiert
 S4_svm_linear_probs <- svm(y ~., data = S4_data_train, kernel = "linear", cost = S4_opt_param_linear$Best_Par["cost"], probability = TRUE)
 S4_prob_svm_linear <- predict(S4_svm_linear_probs, S4_data_test, probability = TRUE)
 S4_prediction_probs_linear <- attr(S4_prob_svm_linear, "probabilities")[, 1]
@@ -372,8 +381,7 @@ S4_prediction_probs_radial <- attr(S4_prob_svm_radial, "probabilities")[, 1]
 S4_roc_radial <- roc(S4_data_test$y, S4_prediction_probs_radial, levels = rev(levels(S4_data_test$y)))
 
 S4_prob_logR <- predict(S4_logR, as.matrix(S4_data_test[, setdiff(names(S4_data_test), "y")]), type = "response")
-S4_prediction_probs_logR <- S4_prob_logR[, 1]
-S4_roc_logR <- roc(S4_data_test$y, S4_prediction_probs_logR, levels = rev(levels(S4_data_test$y)))
+S4_roc_logR <- roc(S4_data_test$y, as.numeric(S4_prob_logR), levels = rev(levels(S4_data_test$y)))
 
 S4_k_NN_probs <- knn(S4_data_train[, setdiff(names(S4_data_train), "y")],
                      S4_data_test[, setdiff(names(S4_data_test), "y")],
@@ -546,9 +554,18 @@ S7_Accuracy <- data.frame(linear = c(as.character(round(S7_accuracy_linear, 4)),
 S7_Accuracy_Tabelle <- tableGrob(S7_Accuracy)
 grid.arrange(S7_Accuracy_Tabelle)
 
+# F1-Score
+
+S7_F1_linear <- 2/(1/(S7_confusion_matrix_linear[1, 1]/sum(S7_confusion_matrix_linear[1, ])) + 1/(S7_confusion_matrix_linear[1, 1]/sum(S7_confusion_matrix_linear[, 1])))
+S7_F1_polynomial <- 2/(1/(S7_confusion_matrix_polynomial[1, 1]/sum(S7_confusion_matrix_polynomial[1, ])) + 1/(S7_confusion_matrix_polynomial[1, 1]/sum(S7_confusion_matrix_polynomial[, 1])))
+S7_F1_radial <- 2/(1/(S7_confusion_matrix_radial[1, 1]/sum(S7_confusion_matrix_radial[1, ])) + 1/(S7_confusion_matrix_radial[1, 1]/sum(S7_confusion_matrix_radial[, 1])))
+S7_F1_logR <- 2/(1/(S7_confusion_matrix_logR[1, 1]/sum(S7_confusion_matrix_logR[1, ])) + 1/(S7_confusion_matrix_logR[1, 1]/sum(S7_confusion_matrix_logR[, 1])))
+S7_F1_k_NN <- 2/(1/(S7_confusion_matrix_k_NN[1, 1]/sum(S7_confusion_matrix_k_NN[1, ])) + 1/(S7_confusion_matrix_k_NN[1, 1]/sum(S7_confusion_matrix_k_NN[, 1])))
+
 # ROC/AUC
 
-S7_svm_linear_probs <- svm(y ~., data = S7_data_train, kernel = "linear", cost = S1_opt_param_linear$Best_Par["cost"], probability = TRUE)
+# alle Modelle mit Ausgabe der Wahrscheinlichkeit fitten, da ROC auf Wahrscheinlichkeiten basiert
+S7_svm_linear_probs <- svm(y ~., data = S7_data_train, kernel = "linear", cost = S7_opt_param_linear$Best_Par["cost"], probability = TRUE)
 S7_prob_svm_linear <- predict(S7_svm_linear_probs, S7_data_test, probability = TRUE)
 S7_prediction_probs_linear <- attr(S7_prob_svm_linear, "probabilities")[, 1]
 S7_roc_linear <- roc(S7_data_test$y, S7_prediction_probs_linear, levels = rev(levels(S7_data_test$y)))
@@ -564,8 +581,7 @@ S7_prediction_probs_radial <- attr(S7_prob_svm_radial, "probabilities")[, 1]
 S7_roc_radial <- roc(S7_data_test$y, S7_prediction_probs_radial, levels = rev(levels(S7_data_test$y)))
 
 S7_prob_logR <- predict(S7_logR, as.matrix(S7_data_test[, setdiff(names(S7_data_test), "y")]), type = "response")
-S7_prediction_probs_logR <- S7_prob_logR[, 1]
-S7_roc_logR <- roc(S7_data_test$y, S7_prediction_probs_logR, levels = rev(levels(S7_data_test$y)))
+S7_roc_logR <- roc(S7_data_test$y, as.numeric(S7_prob_logR), levels = rev(levels(S7_data_test$y)))
 
 S7_k_NN_probs <- knn(S7_data_train[, setdiff(names(S7_data_train), "y")],
                      S7_data_test[, setdiff(names(S7_data_test), "y")],
@@ -592,3 +608,15 @@ S1_Tabelle <- round(data.frame(Accuracy = c(S1_accuracy_linear, S1_accuracy_poly
                                AUC = c(auc(S1_roc_linear), auc(S1_roc_polynomial), auc(S1_roc_radial), auc(S1_roc_logR), auc(S1_roc_k_NN)),
                                F_1_Score = c(S1_F1_linear, S1_F1_polynomial, S1_F1_radial, S1_F1_logR, S1_F1_k_NN),
                                row.names = c("SVM-L", "SVM-P", "SVM-R", "LogR", "K-NN")), 2)
+
+S4_Tabelle <- round(data.frame(Accuracy = c(S4_accuracy_linear, S4_accuracy_polynomial, S4_accuracy_radial, S4_accuracy_logR, S4_accuracy_k_NN),
+                               AUC = c(auc(S4_roc_linear), auc(S4_roc_polynomial), auc(S4_roc_radial), auc(S4_roc_logR), auc(S4_roc_k_NN)),
+                               F_1_Score = c(S4_F1_linear, S4_F1_polynomial, S4_F1_radial, S4_F1_logR, S4_F1_k_NN),
+                               row.names = c("SVM-L", "SVM-P", "SVM-R", "LogR", "K-NN")), 2)
+
+S7_Tabelle <- round(data.frame(Accuracy = c(S7_accuracy_linear, S7_accuracy_polynomial, S7_accuracy_radial, S7_accuracy_logR, S7_accuracy_k_NN),
+                               AUC = c(auc(S7_roc_linear), auc(S7_roc_polynomial), auc(S7_roc_radial), auc(S7_roc_logR), auc(S7_roc_k_NN)),
+                               F_1_Score = c(S7_F1_linear, S7_F1_polynomial, S7_F1_radial, S7_F1_logR, S7_F1_k_NN),
+                               row.names = c("SVM-L", "SVM-P", "SVM-R", "LogR", "K-NN")), 2)
+
+save(S1_Tabelle, S4_Tabelle, S7_Tabelle, file = "Code/Tabellen/Tabellen_S1_S4_S7.RData")

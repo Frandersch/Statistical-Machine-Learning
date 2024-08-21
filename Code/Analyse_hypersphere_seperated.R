@@ -155,8 +155,17 @@ S3_Accuracy <- data.frame(linear = c(as.character(round(S3_accuracy_linear, 4)),
 S3_Accuracy_Tabelle <- tableGrob(S3_Accuracy)
 grid.arrange(S3_Accuracy_Tabelle)
 
+# F1-Score
+
+S3_F1_linear <- 2/(1/(S3_confusion_matrix_linear[1, 1]/sum(S3_confusion_matrix_linear[1, ])) + 1/(S3_confusion_matrix_linear[1, 1]/sum(S3_confusion_matrix_linear[, 1])))
+S3_F1_polynomial <- 2/(1/(S3_confusion_matrix_polynomial[1, 1]/sum(S3_confusion_matrix_polynomial[1, ])) + 1/(S3_confusion_matrix_polynomial[1, 1]/sum(S3_confusion_matrix_polynomial[, 1])))
+S3_F1_radial <- 2/(1/(S3_confusion_matrix_radial[1, 1]/sum(S3_confusion_matrix_radial[1, ])) + 1/(S3_confusion_matrix_radial[1, 1]/sum(S3_confusion_matrix_radial[, 1])))
+S3_F1_logR <- 2/(1/(S3_confusion_matrix_logR[1, 1]/sum(S3_confusion_matrix_logR[1, ])) + 1/(S3_confusion_matrix_logR[1, 1]/sum(S3_confusion_matrix_logR[, 1])))
+S3_F1_k_NN <- 2/(1/(S3_confusion_matrix_k_NN[1, 1]/sum(S3_confusion_matrix_k_NN[1, ])) + 1/(S3_confusion_matrix_k_NN[1, 1]/sum(S3_confusion_matrix_k_NN[, 1])))
+
 # ROC/AUC
 
+# alle Modelle mit Ausgabe der Wahrscheinlichkeit fitten, da ROC auf Wahrscheinlichkeiten basiert
 S3_svm_linear_probs <- svm(y ~., data = S3_data_train, kernel = "linear", cost = S3_opt_param_linear$Best_Par["cost"], probability = TRUE)
 S3_prob_svm_linear <- predict(S3_svm_linear_probs, S3_data_test, probability = TRUE)
 S3_prediction_probs_linear <- attr(S3_prob_svm_linear, "probabilities")[, 1]
@@ -173,8 +182,7 @@ S3_prediction_probs_radial <- attr(S3_prob_svm_radial, "probabilities")[, 1]
 S3_roc_radial <- roc(S3_data_test$y, S3_prediction_probs_radial, levels = rev(levels(S3_data_test$y)))
 
 S3_prob_logR <- predict(S3_logR, as.matrix(S3_data_test[, setdiff(names(S3_data_test), "y")]), type = "response")
-S3_prediction_probs_logR <- S3_prob_logR[, 1]
-S3_roc_logR <- roc(S3_data_test$y, S3_prediction_probs_logR, levels = rev(levels(S3_data_test$y)))
+S3_roc_logR <- roc(S3_data_test$y, as.numeric(S3_prob_logR), levels = rev(levels(S3_data_test$y)))
 
 S3_k_NN_probs <- knn(S3_data_train[, setdiff(names(S3_data_train), "y")],
                      S3_data_test[, setdiff(names(S3_data_test), "y")],
@@ -185,7 +193,7 @@ S3_prediction_probs_k_NN <- attr(S3_k_NN_probs, "prob")
 S3_prediction_probs_k_NN <- ifelse(S3_k_NN_probs == levels(S3_data_train$y)[1], S3_prediction_probs_k_NN, 1 - S3_prediction_probs_k_NN)
 S3_roc_k_NN <- roc(S3_data_test$y, S3_prediction_probs_k_NN, levels = rev(levels(S3_data_test$y)))
 
-plot(S3_roc_linear, col = "blue", main = "ROC-Kurven Szenario 3")
+plot(S3_roc_linear, col = "blue", main = "ROC-Kurven Szenario 1")
 plot(S3_roc_polynomial, col = "red", add = TRUE)
 plot(S3_roc_radial, col = "green", add = TRUE)
 plot(S3_roc_logR, col = "violet", add = TRUE)
@@ -344,8 +352,17 @@ S6_Accuracy <- data.frame(linear = c(as.character(round(S6_accuracy_linear, 4)),
 S6_Accuracy_Tabelle <- tableGrob(S6_Accuracy)
 grid.arrange(S6_Accuracy_Tabelle)
 
+# F1-Score
+
+S6_F1_linear <- 2/(1/(S6_confusion_matrix_linear[1, 1]/sum(S6_confusion_matrix_linear[1, ])) + 1/(S6_confusion_matrix_linear[1, 1]/sum(S6_confusion_matrix_linear[, 1])))
+S6_F1_polynomial <- 2/(1/(S6_confusion_matrix_polynomial[1, 1]/sum(S6_confusion_matrix_polynomial[1, ])) + 1/(S6_confusion_matrix_polynomial[1, 1]/sum(S6_confusion_matrix_polynomial[, 1])))
+S6_F1_radial <- 2/(1/(S6_confusion_matrix_radial[1, 1]/sum(S6_confusion_matrix_radial[1, ])) + 1/(S6_confusion_matrix_radial[1, 1]/sum(S6_confusion_matrix_radial[, 1])))
+S6_F1_logR <- 2/(1/(S6_confusion_matrix_logR[1, 1]/sum(S6_confusion_matrix_logR[1, ])) + 1/(S6_confusion_matrix_logR[1, 1]/sum(S6_confusion_matrix_logR[, 1])))
+S6_F1_k_NN <- 2/(1/(S6_confusion_matrix_k_NN[1, 1]/sum(S6_confusion_matrix_k_NN[1, ])) + 1/(S6_confusion_matrix_k_NN[1, 1]/sum(S6_confusion_matrix_k_NN[, 1])))
+
 # ROC/AUC
 
+# alle Modelle mit Ausgabe der Wahrscheinlichkeit fitten, da ROC auf Wahrscheinlichkeiten basiert
 S6_svm_linear_probs <- svm(y ~., data = S6_data_train, kernel = "linear", cost = S6_opt_param_linear$Best_Par["cost"], probability = TRUE)
 S6_prob_svm_linear <- predict(S6_svm_linear_probs, S6_data_test, probability = TRUE)
 S6_prediction_probs_linear <- attr(S6_prob_svm_linear, "probabilities")[, 1]
@@ -362,8 +379,7 @@ S6_prediction_probs_radial <- attr(S6_prob_svm_radial, "probabilities")[, 1]
 S6_roc_radial <- roc(S6_data_test$y, S6_prediction_probs_radial, levels = rev(levels(S6_data_test$y)))
 
 S6_prob_logR <- predict(S6_logR, as.matrix(S6_data_test[, setdiff(names(S6_data_test), "y")]), type = "response")
-S6_prediction_probs_logR <- S6_prob_logR[, 1]
-S6_roc_logR <- roc(S6_data_test$y, S6_prediction_probs_logR, levels = rev(levels(S6_data_test$y)))
+S6_roc_logR <- roc(S6_data_test$y, as.numeric(S6_prob_logR), levels = rev(levels(S6_data_test$y)))
 
 S6_k_NN_probs <- knn(S6_data_train[, setdiff(names(S6_data_train), "y")],
                      S6_data_test[, setdiff(names(S6_data_test), "y")],
@@ -374,7 +390,7 @@ S6_prediction_probs_k_NN <- attr(S6_k_NN_probs, "prob")
 S6_prediction_probs_k_NN <- ifelse(S6_k_NN_probs == levels(S6_data_train$y)[1], S6_prediction_probs_k_NN, 1 - S6_prediction_probs_k_NN)
 S6_roc_k_NN <- roc(S6_data_test$y, S6_prediction_probs_k_NN, levels = rev(levels(S6_data_test$y)))
 
-plot(S6_roc_linear, col = "blue", main = "ROC-Kurven Szenario 6")
+plot(S6_roc_linear, col = "blue", main = "ROC-Kurven Szenario 1")
 plot(S6_roc_polynomial, col = "red", add = TRUE)
 plot(S6_roc_radial, col = "green", add = TRUE)
 plot(S6_roc_logR, col = "violet", add = TRUE)
@@ -533,8 +549,17 @@ S9_Accuracy <- data.frame(linear = c(as.character(round(S9_accuracy_linear, 4)),
 S9_Accuracy_Tabelle <- tableGrob(S9_Accuracy)
 grid.arrange(S9_Accuracy_Tabelle)
 
+# F1-Score
+
+S9_F1_linear <- 2/(1/(S9_confusion_matrix_linear[1, 1]/sum(S9_confusion_matrix_linear[1, ])) + 1/(S9_confusion_matrix_linear[1, 1]/sum(S9_confusion_matrix_linear[, 1])))
+S9_F1_polynomial <- 2/(1/(S9_confusion_matrix_polynomial[1, 1]/sum(S9_confusion_matrix_polynomial[1, ])) + 1/(S9_confusion_matrix_polynomial[1, 1]/sum(S9_confusion_matrix_polynomial[, 1])))
+S9_F1_radial <- 2/(1/(S9_confusion_matrix_radial[1, 1]/sum(S9_confusion_matrix_radial[1, ])) + 1/(S9_confusion_matrix_radial[1, 1]/sum(S9_confusion_matrix_radial[, 1])))
+S9_F1_logR <- 2/(1/(S9_confusion_matrix_logR[1, 1]/sum(S9_confusion_matrix_logR[1, ])) + 1/(S9_confusion_matrix_logR[1, 1]/sum(S9_confusion_matrix_logR[, 1])))
+S9_F1_k_NN <- 2/(1/(S9_confusion_matrix_k_NN[1, 1]/sum(S9_confusion_matrix_k_NN[1, ])) + 1/(S9_confusion_matrix_k_NN[1, 1]/sum(S9_confusion_matrix_k_NN[, 1])))
+
 # ROC/AUC
 
+# alle Modelle mit Ausgabe der Wahrscheinlichkeit fitten, da ROC auf Wahrscheinlichkeiten basiert
 S9_svm_linear_probs <- svm(y ~., data = S9_data_train, kernel = "linear", cost = S9_opt_param_linear$Best_Par["cost"], probability = TRUE)
 S9_prob_svm_linear <- predict(S9_svm_linear_probs, S9_data_test, probability = TRUE)
 S9_prediction_probs_linear <- attr(S9_prob_svm_linear, "probabilities")[, 1]
@@ -551,8 +576,7 @@ S9_prediction_probs_radial <- attr(S9_prob_svm_radial, "probabilities")[, 1]
 S9_roc_radial <- roc(S9_data_test$y, S9_prediction_probs_radial, levels = rev(levels(S9_data_test$y)))
 
 S9_prob_logR <- predict(S9_logR, as.matrix(S9_data_test[, setdiff(names(S9_data_test), "y")]), type = "response")
-S9_prediction_probs_logR <- S9_prob_logR[, 1]
-S9_roc_logR <- roc(S9_data_test$y, S9_prediction_probs_logR, levels = rev(levels(S9_data_test$y)))
+S9_roc_logR <- roc(S9_data_test$y, as.numeric(S9_prob_logR), levels = rev(levels(S9_data_test$y)))
 
 S9_k_NN_probs <- knn(S9_data_train[, setdiff(names(S9_data_train), "y")],
                      S9_data_test[, setdiff(names(S9_data_test), "y")],
@@ -563,7 +587,7 @@ S9_prediction_probs_k_NN <- attr(S9_k_NN_probs, "prob")
 S9_prediction_probs_k_NN <- ifelse(S9_k_NN_probs == levels(S9_data_train$y)[1], S9_prediction_probs_k_NN, 1 - S9_prediction_probs_k_NN)
 S9_roc_k_NN <- roc(S9_data_test$y, S9_prediction_probs_k_NN, levels = rev(levels(S9_data_test$y)))
 
-plot(S9_roc_linear, col = "blue", main = "ROC-Kurven Szenario 9")
+plot(S9_roc_linear, col = "blue", main = "ROC-Kurven Szenario 1")
 plot(S9_roc_polynomial, col = "red", add = TRUE)
 plot(S9_roc_radial, col = "green", add = TRUE)
 plot(S9_roc_logR, col = "violet", add = TRUE)
@@ -572,3 +596,21 @@ legend("bottomright",
        legend = c(paste("linear (AUC:", auc(S9_roc_linear), ")"), paste("polynomial (AUC:", auc(S9_roc_polynomial), ")"), paste("radial (AUC:", auc(S9_roc_radial), ")"), paste("logR (AUC:", auc(S9_roc_logR), ")"), paste("k_NN (AUC:", auc(S9_roc_k_NN), ")")),
        col = c("blue", "red", "green", "violet", "orange"),
        lwd = 2)
+# erstellen der Einzeltabellen
+
+S3_Tabelle <- round(data.frame(Accuracy = c(S3_accuracy_linear, S3_accuracy_polynomial, S3_accuracy_radial, S3_accuracy_logR, S3_accuracy_k_NN),
+                               AUC = c(auc(S3_roc_linear), auc(S3_roc_polynomial), auc(S3_roc_radial), auc(S3_roc_logR), auc(S3_roc_k_NN)),
+                               F_1_Score = c(S3_F1_linear, S3_F1_polynomial, S3_F1_radial, S3_F1_logR, S3_F1_k_NN),
+                               row.names = c("SVM-L", "SVM-P", "SVM-R", "LogR", "K-NN")), 2)
+
+S6_Tabelle <- round(data.frame(Accuracy = c(S6_accuracy_linear, S6_accuracy_polynomial, S6_accuracy_radial, S6_accuracy_logR, S6_accuracy_k_NN),
+                               AUC = c(auc(S6_roc_linear), auc(S6_roc_polynomial), auc(S6_roc_radial), auc(S6_roc_logR), auc(S6_roc_k_NN)),
+                               F_1_Score = c(S6_F1_linear, S6_F1_polynomial, S6_F1_radial, S6_F1_logR, S6_F1_k_NN),
+                               row.names = c("SVM-L", "SVM-P", "SVM-R", "LogR", "K-NN")), 2)
+
+S9_Tabelle <- round(data.frame(Accuracy = c(S9_accuracy_linear, S9_accuracy_polynomial, S9_accuracy_radial, S9_accuracy_logR, S9_accuracy_k_NN),
+                               AUC = c(auc(S9_roc_linear), auc(S9_roc_polynomial), auc(S9_roc_radial), auc(S9_roc_logR), auc(S9_roc_k_NN)),
+                               F_1_Score = c(S9_F1_linear, S9_F1_polynomial, S9_F1_radial, S9_F1_logR, S9_F1_k_NN),
+                               row.names = c("SVM-L", "SVM-P", "SVM-R", "LogR", "K-NN")), 2)
+
+save(S3_Tabelle, S6_Tabelle, S9_Tabelle, file = "Code/Tabellen/Tabellen_S3_S6_S9.RData")
