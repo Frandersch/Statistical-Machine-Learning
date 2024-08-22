@@ -39,11 +39,12 @@ F1\text{-}Score=\frac{2}{1/Präzision~+~1/Sensitivität}
 Zuletzt wird innerhalb jeder Datensituation, für jeden Algorithmus ein Rang vergeben, der sich aus der Summe der drei Auswertungskriterien Genauigkeit, AUC-Wert sowie F1-Score ergibt. Dabei steht Rang 1 für den am besten abschneidenden Algorithmus in der jeweiligen Datensituation.
 
 \subsection{Darstellung der Ergebnisse}
-Tabelle 2 zeigt die Leistungsfähigkeit der fünf Klassifikationsalgorithmen über die neun verschiedenen Datensituationen anhand drei verschiedener Evaluationskriterien, sowie den Rang in der jeweiligen Datensituation.\newline
-
+Tabelle \ref{tab:TabVergleich} zeigt die Leistungsfähigkeit der fünf Klassifikationsalgorithmen über die neun verschiedenen Datensituationen anhand drei verschiedener Evaluationskriterien, sowie den Rang in der jeweiligen Datensituation.\newline
+\afterpage{
+\clearpage
 \begin{landscape}
 
-```{r, echo=FALSE, results='asis', warning=FALSE}
+```{r TabVergleich, echo=FALSE, results='asis', warning=FALSE,fig.align='center'}
 library(gridExtra)
 library(knitr)
 library(xtable)
@@ -80,21 +81,21 @@ cat(
   "\\hline",
   "\\end{tabular}",
   "\\caption{Vergleich der Modelle}",
+  "\\label{tab:TabVergleich}",
   "\\end{table}"
 )
 
 ```
 
 \end{landscape}
-
+\clearpage
+}
 In den Datensituationen mit linearer Form der Entscheidungsgrenze performt insbesondere $logR$ gut, da sie in allen drei Szenarien über alle Kriterien hinweg einen Wert von mindestens 0.8 aufweist und jeweils mindestens Rang 2 belegt. Im Falle von $p \ll n$ und $p \approx n$ zeigen auch $SVM-L$, $SVM-P$ und $SVM-R$ eine gute Leistung mit Werten um 0.9. In dem hochdimensionalen Setting $p \gg n$ ist die Performance jedoch differnzierter zu betrachten. Hier schneiden $SVM-L$ und $SVM-P$ nach wie vor ordentlich ab. $SVM-R$ zeigt hier jedoch deutliche Defizite über alle Kriterien hinweg mit Werten um 0.5. $K-NN$ schneidet im linearen Kontext über alle Szenarien hinweg schlecht ab, wobei die Genauigkeit maximal bei 0.66 im Falle von $p \approx n$ liegt.\newline
-Die ROC-Kurven werden nur in den Datensituationen mit $p \ll n$ genutzt, da die grafische Darstellung in Szenarien mit kleinem $n$ nicht sinnvoll erscheint. Abbildung 8 zeigt die ROC-Kurven für die Datensituation S1. Diese zeigt grafisch noch einmal den deutlichen Unterschied zwischen $K-NN$, welcher nur etwas besser als eine reine Zufallsauswahl ist und den anderen vier Algorithmen, welche nahezu perfekt klassifizieren.
+Die ROC-Kurven werden nur in den Datensituationen mit $p \ll n$ genutzt, da die grafische Darstellung in Szenarien mit kleinem $n$ nicht sinnvoll erscheint. Abbildung \ref{fig:S1ROC} zeigt die ROC-Kurven für die Datensituation S1. Diese zeigt grafisch noch einmal den deutlichen Unterschied zwischen $K-NN$, welcher nur etwas besser als eine reine Zufallsauswahl ist und den anderen vier Algorithmen, welche nahezu perfekt klassifizieren.
 
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=7, fig.height=5, fig.cap="ROC-Kurven Szenario 1"}
+```{r S1ROC, echo=FALSE, warning=FALSE, message=FALSE, fig.width=7, fig.height=5, fig.cap="ROC-Kurven Szenario 1",fig.align='center'}
 library(pROC)
-
 load(file = "ROC/S1_roc.RData")
-
 plot(S1_roc_linear, col = "blue")
 plot(S1_roc_polynomial, col = "red", add = TRUE)
 plot(S1_roc_radial, col = "green", add = TRUE)
@@ -107,9 +108,9 @@ legend("bottomright",
 ```
 
 In den Datensituationen mit polynomialer Form der Entscheidungsgrenze ist die Leistungsfähigkeit aller Algorithmen grundsätzlich deutlich schlechter als in den zuvor beschriebenen Szenarien. Im Fall von $p \ll n$ sind die Ergebnisse mittelmäßig mit Werten um 0.7, wobei sich kein Algorithmus von den anderen absetzen kann. Bei $p \approx n$ ist $LogR$ den anderen Klassifikationsmethoden leicht überlegen, insbesondere bei der Fähigkeit gleichzeitig falsch Positive und falsch Negative zu minimieren (F1-Score = 0.667). Die anderen Algorithmen befinden sich durchweg über alle Werte hinweg nahe 0.5. Ähnlich ist es der Fall für $p \gg n$ bei dem nun $SVM-L$, $SVM-P$ und $LogR$ mit einer Genauigkeit von 0.6, $SVM-R$ und $K-NN$ mit einer Genauigkeit von 0.5 leicht überlegen sind. Dennoch ist für die letzten beiden Szenarien deutlich, dass kein Algorithmus gute Leistung zeigt.\newline
-Abbildung 9 zeigt die ROC-Kurven für Szenario 2. Hieraus wird erneut deutlich, dass sich kein Algorithmus von den anderen abheben kann, wobei alle eine mittelmäßige Leistung zeigen.
+Abbildung \ref{fig:S2ROC} zeigt die ROC-Kurven für Szenario 2. Hieraus wird erneut deutlich, dass sich kein Algorithmus von den anderen abheben kann, wobei alle eine mittelmäßige Leistung zeigen.
 
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=7, fig.height=5, fig.cap="ROC-Kurven Szenario 2"}
+```{r S2ROC, echo=FALSE, warning=FALSE, message=FALSE, fig.width=7, fig.height=5, fig.cap="ROC-Kurven Szenario 2",fig.align='center'}
 library(pROC)
 
 load(file = "ROC/S2_roc.RData")
@@ -126,9 +127,9 @@ legend("bottomright",
 ```
 
 In den Datensituationen mit radialer Form der Entscheidungsgrenze ist für den Fall $p \ll n$ eine eindeutige Unterscheidung zu treffen. Während $SVM-P$, $SVM-R$ und $K-NN$ (nahezu) perfekt klassifizieren, haben dabei $SVM-L$ und $LogR$ große Probleme und zeigen lediglich Werte nahe 0.5. Weniger drastisch aber dennoch mit dem gleichen Resultat ist dies für $p \approx n$ der Fall. Während $SVM-P$, $SVM-R$ und $K-NN$ etwas schlechter abschneiden (beispielsweise mit F1-Scores zwischen 0.8 und 0.9), performen $SVM-L$ und $LogR$ leicht besser (beispielsweise mit F1-Scores nahe 0.7). Innerhalb dieser beiden Gruppen gibt es keine nennenswerten Unterschiede. Für $p \gg n$ sind ebenfalls die beiden Gruppen zu differenzieren. Für $SVM-L$ und $LogR$ sind wie in Szenario 3 wieder Werte nahe 0.5 bzw. nahe 0.6 für die F1-Scores erkennbar. $SVM-P$ und $SVM-R$ performen in diesem Szenario am schlechtesten, wobei die AUC-Werte von 0.882 bzw. 0.744 weiterhin akzeptable Leistungen zeigen. Heraus sticht $K-NN$, insbesondere bei dem F1-Score von 0.893, was verdeutlicht das dieser Algorithmus hier die beste Leistung zeigt.\newline
-Abbildung 10 zeigt die ROC-Kurven für Szenario 3. Hieraus wird die Aufteilung in die zwei Gruppen sofort deutlich. $SVM-P$, $SVM-R$ und $K-NN$ bewegen sich nahe an der oberen linken Kante, was für eine (nahezu) perfekte Klassifikation spricht. $SVM-L$ und $LogR$ orientieren sich nahe der diagonalen Linie, die eine ROC-Kurve einer reinen Zufallsauswahl beschreibt. Dies zeigt auf, dass sie kaum Fähigkeit aufweisen zwischen den Klassen zu unterscheiden. 
+Abbildung \ref{fig:S3ROC} zeigt die ROC-Kurven für Szenario 3. Hieraus wird die Aufteilung in die zwei Gruppen sofort deutlich. $SVM-P$, $SVM-R$ und $K-NN$ bewegen sich nahe an der oberen linken Kante, was für eine (nahezu) perfekte Klassifikation spricht. $SVM-L$ und $LogR$ orientieren sich nahe der diagonalen Linie, die eine ROC-Kurve einer reinen Zufallsauswahl beschreibt. Dies zeigt auf, dass sie kaum Fähigkeit aufweisen zwischen den Klassen zu unterscheiden. 
 
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=7, fig.height=5, fig.cap="ROC-Kurven Szenario 3"}
+```{r S3ROC, echo=FALSE, warning=FALSE, message=FALSE, fig.width=7, fig.height=5, fig.cap="ROC-Kurven Szenario 3",fig.align='center'}
 library(pROC)
 
 load(file = "ROC/S3_roc.RData")

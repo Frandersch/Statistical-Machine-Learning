@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.12.13)  22 AUG 2024 13:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.12.13)  22 AUG 2024 22:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -939,8 +939,59 @@ e.sty
 Package: xparse 2023-10-10 L3 Experimental document command parser
 )
 Package: blx-case-expl3 2023/03/05 v3.19 expl3 case changing code for biblatex
-)) (C:\Users\49152\AppData\Local\Programs\MiKTeX\tex/latex/bookmark\bookmark.st
+)) (C:\Users\49152\AppData\Local\Programs\MiKTeX\tex/latex/multirow\multirow.st
 y
+Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
+\multirow@colwidth=\skip81
+\multirow@cntb=\count469
+\multirow@dima=\skip82
+\bigstrutjot=\dimen279
+) (C:\Users\49152\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen280
+\lightrulewidth=\dimen281
+\cmidrulewidth=\dimen282
+\belowrulesep=\dimen283
+\belowbottomsep=\dimen284
+\aboverulesep=\dimen285
+\abovetopsep=\dimen286
+\cmidrulesep=\dimen287
+\cmidrulekern=\dimen288
+\defaultaddspace=\dimen289
+\@cmidla=\count470
+\@cmidlb=\count471
+\@aboverulesep=\dimen290
+\@belowrulesep=\dimen291
+\@thisruleclass=\count472
+\@lastruleclass=\count473
+\@thisrulewidth=\dimen292
+) (C:\Users\49152\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
+Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
+\col@sep=\dimen293
+\ar@mcellbox=\box70
+\extrarowheight=\dimen294
+\NC@list=\toks44
+\extratabsurround=\skip83
+\backup@length=\skip84
+\ar@cellbox=\box71
+)
+(C:\Users\49152\AppData\Local\Programs\MiKTeX\tex/latex/pdflscape\pdflscape.sty
+Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
+
+(C:\Users\49152\AppData\Local\Programs\MiKTeX\tex/latex/pdflscape\pdflscape-nom
+etadata.sty
+Package: pdflscape-nometadata 2022-10-28 v0.13 Display of landscape pages in PD
+F (HO)
+(C:\Users\49152\AppData\Local\Programs\MiKTeX\tex/latex/graphics\lscape.sty
+Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+)) (C:\Users\49152\AppData\Local\Programs\MiKTeX\tex/latex/tools\afterpage.sty
+Package: afterpage 2023/07/04 v1.08 After-Page Package (DPC)
+\AP@output=\toks45
+\AP@partial=\box72
+\AP@footins=\box73
+) (C:\Users\49152\AppData\Local\Programs\MiKTeX\tex/latex/bookmark\bookmark.sty
 Package: bookmark 2020-11-06 v1.29 PDF bookmarks (HO)
 (C:\Users\49152\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
 Package: hyperref 2023-11-26 v7.01g Hypertext links for LaTeX
@@ -969,11 +1020,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 lestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count469
+\c@section@level=\count474
 )
-\@linkdim=\dimen279
-\Hy@linkcounter=\count470
-\Hy@pagecounter=\count471
+\@linkdim=\dimen295
+\Hy@linkcounter=\count475
+\Hy@pagecounter=\count476
 (C:\Users\49152\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
 File: pd1enc.def 2023-11-26 v7.01g Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
@@ -981,7 +1032,7 @@ Now handling font encoding PD1 ...
 ) (C:\Users\49152\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count472
+\Hy@SavedSpaceFactor=\count477
 (C:\Users\49152\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
 File: puenc.def 2023-11-26 v7.01g Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
@@ -995,9 +1046,9 @@ Package hyperref Info: Plain pages OFF on input line 4196.
 Package hyperref Info: Backreferencing OFF on input line 4201.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4448.
-\c@Hy@tempcnt=\count473
+\c@Hy@tempcnt=\count478
 LaTeX Info: Redefining \url on input line 4786.
-\XeTeXLinkMargin=\dimen280
+\XeTeXLinkMargin=\dimen296
 (C:\Users\49152\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 
@@ -1006,9 +1057,9 @@ Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count474
-\Field@Width=\dimen281
-\Fld@charsize=\dimen282
+\Fld@menulength=\count479
+\Field@Width=\dimen297
+\Fld@charsize=\dimen298
 Package hyperref Info: Hyper figures OFF on input line 6065.
 Package hyperref Info: Link nesting OFF on input line 6070.
 Package hyperref Info: Hyper index ON on input line 6073.
@@ -1020,9 +1071,9 @@ Package hyperref Info: PDF/A mode OFF on input line 6095.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count475
-\c@Item=\count476
-\c@Hfootnote=\count477
+\Hy@abspage=\count480
+\c@Item=\count481
+\c@Hfootnote=\count482
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 (C:\Users\49152\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
@@ -1032,8 +1083,8 @@ Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
 kage
 with kernel methods
 )
-\Fld@listcount=\count478
-\c@bookmark@seq@number=\count479
+\Fld@listcount=\count483
+\c@bookmark@seq@number=\count484
 
 (C:\Users\49152\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfil
 echeck.sty
@@ -1046,11 +1097,11 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 85.
 )
-\Hy@SectionHShift=\skip81
+\Hy@SectionHShift=\skip85
 )
 (C:\Users\49152\AppData\Local\Programs\MiKTeX\tex/latex/bookmark\bkm-pdftex.def
 File: bkm-pdftex.def 2020-11-06 v1.29 bookmark driver for pdfTeX (HO)
-\BKM@id=\count480
+\BKM@id=\count485
 )) (C:\Users\49152\AppData\Local\Programs\MiKTeX\tex/latex/xurl\xurl.sty
 Package: xurl 2022/01/09 v 0.10 modify URL breaks
 xurl: Set penalties for biblatex
@@ -1059,44 +1110,44 @@ Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'german'.
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 93
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 98
 .
 (C:\Users\49152\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) (Hausarbeit.aux (titlepage.aux))
 \openout1 = `Hausarbeit.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Info: Redefining \microtypecontext on input line 93.
-Package microtype Info: Applying patch `item' on input line 93.
-Package microtype Info: Applying patch `toc' on input line 93.
-Package microtype Info: Applying patch `eqnum' on input line 93.
-Package microtype Info: Applying patch `footnote' on input line 93.
-Package microtype Info: Applying patch `verbatim' on input line 93.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Info: Redefining \microtypecontext on input line 98.
+Package microtype Info: Applying patch `item' on input line 98.
+Package microtype Info: Applying patch `toc' on input line 98.
+Package microtype Info: Applying patch `eqnum' on input line 98.
+Package microtype Info: Applying patch `footnote' on input line 98.
+Package microtype Info: Applying patch `verbatim' on input line 98.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 93.
+LaTeX Info: Redefining \showhyphens on input line 98.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -1107,17 +1158,17 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 (C:\Users\49152\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count481
-\scratchdimen=\dimen283
-\scratchbox=\box70
-\nofMPsegments=\count482
-\nofMParguments=\count483
-\everyMPshowfont=\toks44
-\MPscratchCnt=\count484
-\MPscratchDim=\dimen284
-\MPnumerator=\count485
-\makeMPintoPDFobject=\count486
-\everyMPtoPDFconversion=\toks45
+\scratchcounter=\count486
+\scratchdimen=\dimen299
+\scratchbox=\box74
+\nofMPsegments=\count487
+\nofMParguments=\count488
+\everyMPshowfont=\toks46
+\MPscratchCnt=\count489
+\MPscratchDim=\dimen300
+\MPnumerator=\count490
+\makeMPintoPDFobject=\count491
+\everyMPtoPDFconversion=\toks47
 )
 (C:\Users\49152\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
 ase.sty
@@ -1189,9 +1240,9 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'Hausarbeit.bbl' found.
 (Hausarbeit.bbl)
-Package biblatex Info: Reference section=0 on input line 93.
-Package biblatex Info: Reference segment=0 on input line 93.
-Package hyperref Info: Link coloring OFF on input line 93.
+Package biblatex Info: Reference section=0 on input line 98.
+Package biblatex Info: Reference segment=0 on input line 98.
+Package hyperref Info: Link coloring OFF on input line 98.
 \openout2 = `titlepage.aux'.
 
 (titlepage.tex
@@ -1252,132 +1303,144 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.100 \clearpage
+l.105 \clearpage
                  [1
 
 
 ]
-<Images/decision_boundary.pdf, id=46, 443.91447pt x 377.12794pt>
+<Images/decision_boundary.pdf, id=45, 443.91447pt x 377.12794pt>
 File: Images/decision_boundary.pdf Graphic file (type pdf)
 <use Images/decision_boundary.pdf>
-Package pdftex.def Info: Images/decision_boundary.pdf  used on input line 124.
+Package pdftex.def Info: Images/decision_boundary.pdf  used on input line 129.
 (pdftex.def)             Requested size: 211.38821pt x 177.40703pt.
-<Images/guttes.pdf, id=47, 444.41432pt x 377.12794pt>
+<Images/guttes.pdf, id=46, 444.41432pt x 377.12794pt>
 File: Images/guttes.pdf Graphic file (type pdf)
 <use Images/guttes.pdf>
-Package pdftex.def Info: Images/guttes.pdf  used on input line 130.
+Package pdftex.def Info: Images/guttes.pdf  used on input line 135.
 (pdftex.def)             Requested size: 211.38866pt x 177.19421pt.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.165 \end{align}
+l.170 \end{align}
                   für die Schranke in richtung der grünen Datenpunkte und [1
 
 {C:/Users/49152/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}
 {C:/Users/49152/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/
 Users/49152/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc} <./
 Images/decision_boundary.pdf> <./Images/guttes.pdf>]
-<Images/margin.pdf, id=87, 424.4136pt x 357.12723pt>
+<Images/margin.pdf, id=86, 424.4136pt x 357.12723pt>
 File: Images/margin.pdf Graphic file (type pdf)
 <use Images/margin.pdf>
-Package pdftex.def Info: Images/margin.pdf  used on input line 192.
+Package pdftex.def Info: Images/margin.pdf  used on input line 197.
 (pdftex.def)             Requested size: 234.87764pt x 194.96445pt.
 [2{C:/Users/49152/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.en
 c} <./Images/margin.pdf>]
-<Images/slackvariable.pdf, id=134, 444.45247pt x 377.12291pt>
+<Images/slackvariable.pdf, id=133, 444.45247pt x 377.12291pt>
 File: Images/slackvariable.pdf Graphic file (type pdf)
 <use Images/slackvariable.pdf>
-Package pdftex.def Info: Images/slackvariable.pdf  used on input line 283.
+Package pdftex.def Info: Images/slackvariable.pdf  used on input line 288.
 (pdftex.def)             Requested size: 234.8816pt x 196.86601pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [3] [4 <./Images/slackvariable.pdf>]
-<Images/nonlinearseperable.pdf, id=182, 444.45247pt x 377.12291pt>
+<Images/nonlinearseperable.pdf, id=181, 444.45247pt x 377.12291pt>
 File: Images/nonlinearseperable.pdf Graphic file (type pdf)
 <use Images/nonlinearseperable.pdf>
-Package pdftex.def Info: Images/nonlinearseperable.pdf  used on input line 350.
+Package pdftex.def Info: Images/nonlinearseperable.pdf  used on input line 355.
 
 (pdftex.def)             Requested size: 211.39536pt x 177.18102pt.
-<Images/featurexpansion.pdf, id=183, 325.5914pt x 253.59743pt>
+<Images/featurexpansion.pdf, id=182, 325.5914pt x 253.59743pt>
 File: Images/featurexpansion.pdf Graphic file (type pdf)
 <use Images/featurexpansion.pdf>
-Package pdftex.def Info: Images/featurexpansion.pdf  used on input line 356.
+Package pdftex.def Info: Images/featurexpansion.pdf  used on input line 361.
 (pdftex.def)             Requested size: 211.39613pt x 160.17677pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 374--383
+Underfull \hbox (badness 10000) in paragraph at lines 379--388
 
  []
 
-<Images/ploynomial kernel.pdf, id=186, 444.45247pt x 377.12291pt>
+<Images/ploynomial kernel.pdf, id=185, 444.45247pt x 377.12291pt>
 File: Images/ploynomial kernel.pdf Graphic file (type pdf)
 <use Images/ploynomial kernel.pdf>
-Package pdftex.def Info: Images/ploynomial kernel.pdf  used on input line 388.
+Package pdftex.def Info: Images/ploynomial kernel.pdf  used on input line 393.
 (pdftex.def)             Requested size: 211.39536pt x 177.18102pt.
-<Images/radial_kernel.pdf, id=187, 444.42737pt x 377.11992pt>
+<Images/radial_kernel.pdf, id=186, 444.42737pt x 377.11992pt>
 File: Images/radial_kernel.pdf Graphic file (type pdf)
 <use Images/radial_kernel.pdf>
-Package pdftex.def Info: Images/radial_kernel.pdf  used on input line 394.
+Package pdftex.def Info: Images/radial_kernel.pdf  used on input line 399.
 (pdftex.def)             Requested size: 211.38893pt x 177.18481pt.
 [5 <./Images/nonlinearseperable.pdf> <./Images/featurexpansion.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 400--408
+Underfull \hbox (badness 10000) in paragraph at lines 405--413
 
  []
 
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 4
-21.
+26.
 (C:\Users\49152\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) [6{C:/Users/49152/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc
 } <./Images/ploynomial kernel.pdf> <./Images/radial_kernel.pdf>] [7] [8]
-Underfull \hbox (badness 10000) in paragraph at lines 644--651
+Underfull \hbox (badness 10000) in paragraph at lines 649--656
 
  []
 
-[9] [10] [11] (Hausarbeit.aux (titlepage.aux))
- ***********
-LaTeX2e <2023-11-01>
-L3 programming layer <2023-11-09>
- ***********
-Package logreq Info: Writing requests to 'Hausarbeit.run.xml'.
-\openout1 = `Hausarbeit.run.xml'.
+[9]
 
- ) 
+LaTeX Warning: Command \" invalid in math mode on input line 715.
+
+
+LaTeX Warning: Command \" invalid in math mode on input line 715.
+
+
+LaTeX Warning: Command \" invalid in math mode on input line 717.
+
+
+LaTeX Warning: Command \" invalid in math mode on input line 717.
+
+
+LaTeX Warning: Command \" invalid in math mode on input line 730.
+
+
+LaTeX Warning: Command \" invalid in math mode on input line 730.
+
+
+LaTeX Warning: Command \" invalid in math mode on input line 735.
+
+
+LaTeX Warning: Command \" invalid in math mode on input line 735.
+
+
+LaTeX Warning: Command \" invalid in math mode on input line 735.
+
+
+LaTeX Warning: Command \" invalid in math mode on input line 735.
+
+<Hausarbeit_files/figure-latex/S1ROC-1.pdf, id=291, 465.74pt x 324.21124pt>
+File: Hausarbeit_files/figure-latex/S1ROC-1.pdf Graphic file (type pdf)
+<use Hausarbeit_files/figure-latex/S1ROC-1.pdf>
+Package pdftex.def Info: Hausarbeit_files/figure-latex/S1ROC-1.pdf  used on inp
+ut line 875.
+(pdftex.def)             Requested size: 465.75307pt x 324.22034pt.
+[10]
+
+! LaTeX Error: Float(s) lost.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.880 \end{figure}
+                   
 Here is how much of TeX's memory you used:
- 34309 strings out of 474586
- 651709 string characters out of 5745680
+ 34552 strings out of 474586
+ 656051 string characters out of 5745680
  1946558 words of memory out of 5000000
- 55728 multiletter control sequences out of 15000+600000
- 619281 words of font info for 152 fonts, out of 8000000 for 9000
+ 55951 multiletter control sequences out of 15000+600000
+ 623266 words of font info for 152 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  84i,16n,87p,1743b,3227s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/49152/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmmi10.pfb><C:/Users/49152/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmmi12.pfb><C:/Users/49152/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmmib10.pfb><C:/Users/49152/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/49152/AppData/Local/Programs/Mi
-KTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/49152/AppData/Local/Pro
-grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/49152/AppData/Lo
-cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/49152/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/49152/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/49152/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/49152/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/49152/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi5.pfb><C:/Users/49152/Ap
-pData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Users/49152/App
-Data/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/49152/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/49152/AppDa
-ta/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr5.pfb><C:/Users/49152/AppData
-/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/49152/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/49152/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/49152/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/49152/AppData/Lo
-cal/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Hausarbeit.pdf (13 pages, 521705 bytes).
-PDF statistics:
- 447 PDF objects out of 1000 (max. 8388607)
- 65 named destinations out of 1000 (max. 500000)
- 34970 words of extra memory for PDF output out of 35830 (max. 10000000)
 
+!  ==> Fatal error occurred, no output PDF file produced!

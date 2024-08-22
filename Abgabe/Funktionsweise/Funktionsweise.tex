@@ -87,7 +87,7 @@
 
 \title{Funktionsweise}
 \author{Franz Andersch \& Niklas Münz}
-\date{2024-08-21}
+\date{2024-08-22}
 
 \begin{document}
 \maketitle
@@ -107,7 +107,7 @@ einer solchen hyperplain lautet \begin{align}
 des Skalars \(\beta_0\) wird in Abbildung \ref{fig:Ebene} im zwei
 dimensionalen Fall dargestellt.
 
-\begin{figure}[h]
+\begin{figure}[htb]
     \centering
     \begin{minipage}{0.45\textwidth} 
         \centering
@@ -177,7 +177,7 @@ auf die finalen werte von \(\overline{\beta}\) und \(\beta_0\) haben
 werden. Sie werden \textbf{Support-Vektoren} genannt und geben den SVMs
 ihren Namen.
 
-\begin{figure}[h]
+\begin{figure}[htb]
 \centering
  \includegraphics[width=0.5\textwidth,trim=0.5cm 0.5cm 0.5cm 0.5cm]{Images/margin.pdf} 
         \caption{Abhängigkeit des Margins von den Support-Vektoren}
@@ -268,7 +268,7 @@ Nebenbedingung \begin{align}
 y_i(\beta \cdot \overline{x}_i-\beta_0)>1- \varepsilon_i \label{eq:nebbedsfm}
 \end{align}
 
-\begin{figure}[h]
+\begin{figure}[htb]
 \centering
 \includegraphics[width=0.5\textwidth,trim=0.5cm 0.5cm 0.5cm 0.5cm]{Images/slackvariable.pdf} 
         \caption{Funktion der Slack Variable}
@@ -333,7 +333,7 @@ berechnet: \begin{align}
   f(x_u)=\sum \alpha_i y_i K(x_i,x_u)+\beta_0
 \end{align}
 
-\begin{figure}[h]
+\begin{figure}[htb]
     \centering
     \begin{minipage}{0.45\textwidth} 
         \centering
@@ -371,7 +371,7 @@ könnte man selbst durch vorgeriges Erweitern des Merkmalsraums nicht das
 Ergebnis eines RBF Kernel replizieren und dies führt auch zu einer sehr
 flexiblen Entscheidungsgrenze (siehe Abbildung \ref{fig:radialkernel})\\
 
-\begin{figure}[H]
+\begin{figure}[htb]
     \centering
     \begin{minipage}{0.45\textwidth} 
         \centering

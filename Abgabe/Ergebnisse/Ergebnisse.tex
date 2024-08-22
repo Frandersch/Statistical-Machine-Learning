@@ -74,12 +74,13 @@
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{pdflscape}
+\usepackage{afterpage}
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
 \usepackage[]{biblatex}
 \addbibresource{Literatur.bib}
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
@@ -162,11 +163,11 @@ jeweiligen Datensituation.
 
 \subsection{Darstellung der Ergebnisse}
 
-Tabelle 2 zeigt die Leistungsfähigkeit der fünf
+Tabelle \ref{tab:TabVergleich} zeigt die Leistungsfähigkeit der fünf
 Klassifikationsalgorithmen über die neun verschiedenen Datensituationen
 anhand drei verschiedener Evaluationskriterien, sowie den Rang in der
-jeweiligen Datensituation.\newline
-
+jeweiligen Datensituation.\newline \afterpage{
+\clearpage
 \begin{landscape}
 
 \begin{table}[h] \centering \begin{tabular}{|c|c|c|c|} \hline
@@ -269,11 +270,11 @@ SVM-R & 0.72 & 0.744 & 0.611 & 3\\
 LogR & 0.58 & 0.530 & 0.656 & 4\\
 K-NN & 0.88 & 0.880 & 0.893 & 1\\
 \bottomrule
-\end{tabular}  \\ \hline \end{tabular} \caption{Vergleich der Modelle} \end{table}
+\end{tabular}  \\ \hline \end{tabular} \caption{Vergleich der Modelle} \label{tab:TabVergleich} \end{table}
 
 \end{landscape}
-
-In den Datensituationen mit linearer Form der Entscheidungsgrenze
+\clearpage
+} In den Datensituationen mit linearer Form der Entscheidungsgrenze
 performt insbesondere \(logR\) gut, da sie in allen drei Szenarien über
 alle Kriterien hinweg einen Wert von mindestens 0.8 aufweist und jeweils
 mindestens Rang 2 belegt. Im Falle von \(p \ll n\) und \(p \approx n\)
@@ -286,16 +287,19 @@ jedoch deutliche Defizite über alle Kriterien hinweg mit Werten um 0.5.
 schlecht ab, wobei die Genauigkeit maximal bei 0.66 im Falle von
 \(p \approx n\) liegt.\newline Die ROC-Kurven werden nur in den
 Datensituationen mit \(p \ll n\) genutzt, da die grafische Darstellung
-in Szenarien mit kleinem \(n\) nicht sinnvoll erscheint. Abbildung 8
-zeigt die ROC-Kurven für die Datensituation S1. Diese zeigt grafisch
-noch einmal den deutlichen Unterschied zwischen \(K-NN\), welcher nur
-etwas besser als eine reine Zufallsauswahl ist und den anderen vier
-Algorithmen, welche nahezu perfekt klassifizieren.
+in Szenarien mit kleinem \(n\) nicht sinnvoll erscheint. Abbildung
+\ref{fig:S1ROC} zeigt die ROC-Kurven für die Datensituation S1. Diese
+zeigt grafisch noch einmal den deutlichen Unterschied zwischen \(K-NN\),
+welcher nur etwas besser als eine reine Zufallsauswahl ist und den
+anderen vier Algorithmen, welche nahezu perfekt klassifizieren.
 
 \begin{figure}
-\centering
-\includegraphics{Ergebnisse_files/figure-latex/unnamed-chunk-2-1.pdf}
-\caption{ROC-Kurven Szenario 1}
+
+{\centering \includegraphics{Ergebnisse_files/figure-latex/S1ROC-1} 
+
+}
+
+\caption{ROC-Kurven Szenario 1}\label{fig:S1ROC}
 \end{figure}
 
 In den Datensituationen mit polynomialer Form der Entscheidungsgrenze
@@ -311,14 +315,17 @@ der Fall für \(p \gg n\) bei dem nun \(SVM-L\), \(SVM-P\) und \(LogR\)
 mit einer Genauigkeit von 0.6, \(SVM-R\) und \(K-NN\) mit einer
 Genauigkeit von 0.5 leicht überlegen sind. Dennoch ist für die letzten
 beiden Szenarien deutlich, dass kein Algorithmus gute Leistung
-zeigt.\newline Abbildung 9 zeigt die ROC-Kurven für Szenario 2. Hieraus
-wird erneut deutlich, dass sich kein Algorithmus von den anderen abheben
-kann, wobei alle eine mittelmäßige Leistung zeigen.
+zeigt.\newline Abbildung \ref{fig:S2ROC} zeigt die ROC-Kurven für
+Szenario 2. Hieraus wird erneut deutlich, dass sich kein Algorithmus von
+den anderen abheben kann, wobei alle eine mittelmäßige Leistung zeigen.
 
 \begin{figure}
-\centering
-\includegraphics{Ergebnisse_files/figure-latex/unnamed-chunk-3-1.pdf}
-\caption{ROC-Kurven Szenario 2}
+
+{\centering \includegraphics{Ergebnisse_files/figure-latex/S2ROC-1} 
+
+}
+
+\caption{ROC-Kurven Szenario 2}\label{fig:S2ROC}
 \end{figure}
 
 In den Datensituationen mit radialer Form der Entscheidungsgrenze ist
@@ -338,18 +345,22 @@ Werte nahe 0.5 bzw. nahe 0.6 für die F1-Scores erkennbar. \(SVM-P\) und
 AUC-Werte von 0.882 bzw. 0.744 weiterhin akzeptable Leistungen zeigen.
 Heraus sticht \(K-NN\), insbesondere bei dem F1-Score von 0.893, was
 verdeutlicht das dieser Algorithmus hier die beste Leistung
-zeigt.\newline Abbildung 10 zeigt die ROC-Kurven für Szenario 3. Hieraus
-wird die Aufteilung in die zwei Gruppen sofort deutlich. \(SVM-P\),
-\(SVM-R\) und \(K-NN\) bewegen sich nahe an der oberen linken Kante, was
-für eine (nahezu) perfekte Klassifikation spricht. \(SVM-L\) und
-\(LogR\) orientieren sich nahe der diagonalen Linie, die eine ROC-Kurve
-einer reinen Zufallsauswahl beschreibt. Dies zeigt auf, dass sie kaum
-Fähigkeit aufweisen zwischen den Klassen zu unterscheiden.
+zeigt.\newline Abbildung \ref{fig:S3ROC} zeigt die ROC-Kurven für
+Szenario 3. Hieraus wird die Aufteilung in die zwei Gruppen sofort
+deutlich. \(SVM-P\), \(SVM-R\) und \(K-NN\) bewegen sich nahe an der
+oberen linken Kante, was für eine (nahezu) perfekte Klassifikation
+spricht. \(SVM-L\) und \(LogR\) orientieren sich nahe der diagonalen
+Linie, die eine ROC-Kurve einer reinen Zufallsauswahl beschreibt. Dies
+zeigt auf, dass sie kaum Fähigkeit aufweisen zwischen den Klassen zu
+unterscheiden.
 
 \begin{figure}
-\centering
-\includegraphics{Ergebnisse_files/figure-latex/unnamed-chunk-4-1.pdf}
-\caption{ROC-Kurven Szenario 3}
+
+{\centering \includegraphics{Ergebnisse_files/figure-latex/S3ROC-1} 
+
+}
+
+\caption{ROC-Kurven Szenario 3}\label{fig:S3ROC}
 \end{figure}
 
 Zuletzt wird ein Vergleich der einzelnen Dimensionen über die drei

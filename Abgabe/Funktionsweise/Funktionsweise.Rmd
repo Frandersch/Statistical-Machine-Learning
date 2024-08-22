@@ -24,7 +24,7 @@ oder in Vektorschreibweise
 \end{align}
 Die geometrische Interpretation des Vektors $\beta$ und des Skalars $\beta_0$ wird in Abbildung \ref{fig:Ebene} im zwei dimensionalen Fall dargestellt.
 
-\begin{figure}[h]
+\begin{figure}[htb]
     \centering
     \begin{minipage}{0.45\textwidth} 
         \centering
@@ -59,7 +59,7 @@ für die Schranke in Richting der roten Datenpunkte. Aus dieser Beschränkung f�
 y_i(\overline{\beta}\cdot \overline{x}_i+\beta_0)\ge 1\label{eq:Nebenbedingung}
 \end{align}
 Da das Verfahren auch maximum Margin Classifier gennant wird, gilt es jetzt noch eine Definition für den Margin also den Abstand zwischen den zwei Schranken zu finden, der schließlich maximiert werden soll. Damit diese Schranken, maximal weit auseinander liegen, muss es zwangsläufig Datenpunkte geben, die genau auf den Schranken liegen. Diese Datenpunkte haben eine wichtige Rolle für die Konstruktion des Margins. Es sind ausschließlich diese Datenpunkte, die einen Einfluss auf die finalen werte von $\overline{\beta}$ und $\beta_0$ haben werden. Sie werden \textbf{Support-Vektoren} genannt und geben den SVMs ihren Namen.
-\begin{figure}[h]
+\begin{figure}[htb]
 \centering
  \includegraphics[width=0.5\textwidth,trim=0.5cm 0.5cm 0.5cm 0.5cm]{Images/margin.pdf} 
         \caption{Abhängigkeit des Margins von den Support-Vektoren}
@@ -104,7 +104,7 @@ Dass die Daten sich perfekt linear trennen lassen ist zwar ein gut um die Vorgeh
 \begin{align}
 y_i(\beta \cdot \overline{x}_i-\beta_0)>1- \varepsilon_i \label{eq:nebbedsfm}
 \end{align}
-\begin{figure}[h]
+\begin{figure}[htb]
 \centering
 \includegraphics[width=0.5\textwidth,trim=0.5cm 0.5cm 0.5cm 0.5cm]{Images/slackvariable.pdf} 
         \caption{Funktion der Slack Variable}
@@ -127,7 +127,7 @@ Es zeigt sich also, dass die Entscheidungsfunktion im Wesentlichen aus einer Lin
 \begin{align}
   f(x_u)=\sum \alpha_i y_i K(x_i,x_u)+\beta_0
 \end{align}
-\begin{figure}[h]
+\begin{figure}[htb]
     \centering
     \begin{minipage}{0.45\textwidth} 
         \centering
@@ -152,7 +152,7 @@ Eine weitere Kernel Funktion ist der Radial Basis Function Kernel(RBF) mit der F
 K(x_i,x_u)=\exp\left(-\gamma ||x_i-x_u||^2\right)
 \end{align}
 Für diesen Kernel wird die quadrierte euklidische Distanz als Ähnlichkeitsmaß verwendet, was dazu führt, dass für diejenigen $x_i$ die näher an $x_u$ liegen, in der Entscheidungsfunktion einen größeren Einfluss haben. Der Parameter $\gamma$ legt dann fest, wie stark der Einfluss der Distanz sein soll. Die projektion die der Kernel hier macht ist eine, in einen uendlich großen Merkmalsraum . Daher könnte man selbst durch vorgeriges Erweitern des Merkmalsraums nicht das Ergebnis eines RBF Kernel replizieren und dies führt auch zu einer sehr flexiblen Entscheidungsgrenze (siehe Abbildung \ref{fig:radialkernel})  
-\begin{figure}[H]
+\begin{figure}[htb]
     \centering
     \begin{minipage}{0.45\textwidth} 
         \centering
