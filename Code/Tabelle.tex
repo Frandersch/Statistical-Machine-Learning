@@ -99,103 +99,103 @@
 
 \begin{table}[h] \begin{center} \begin{tabular}{|c|c|c|c|} \hline
  & \textbf{linear} & \textbf{polynomial} & \textbf{radial} \\ \hline \multirow{5}{*}{\textbf{$p \ll n$}} &  
-\begin{tabular}{lrrr}
+\begin{tabular}{lrrrr}
 \toprule
-  & Accuracy & AUC & F..1..Score\\
+  & ACC & AUC & F1 & Rang\\
 \midrule
-SVM-L & 0.96 & 0.99 & 0.96\\
-SVM-P & 0.96 & 0.99 & 0.96\\
-SVM-R & 0.96 & 0.99 & 0.96\\
-LogR & 0.96 & 0.99 & 0.96\\
-K-NN & 0.58 & 0.60 & 0.58\\
+SVM-L & 0.956 & 0.991 & 0.956 & 4\\
+SVM-P & 0.956 & 0.991 & 0.956 & 3\\
+SVM-R & 0.961 & 0.991 & 0.961 & 1\\
+LogR & 0.957 & 0.992 & 0.957 & 2\\
+K-NN & 0.582 & 0.599 & 0.582 & 5\\
 \bottomrule
 \end{tabular}  &  
-\begin{tabular}{lrrr}
+\begin{tabular}{lrrrr}
 \toprule
-  & Accuracy & AUC & F\_1\_Score\\
+  & Accuracy & AUC & F\_1\_Score & Rang\\
 \midrule
-SVM-L & 0.82 & 0.87 & 0.82\\
-SVM-P & 0.82 & 0.87 & 0.82\\
-SVM-R & 0.86 & 0.88 & 0.84\\
-LogR & 0.88 & 0.92 & 0.86\\
-K-NN & 0.66 & 0.62 & 0.67\\
+SVM-L & 0.82 & 0.869 & 0.816 & 3\\
+SVM-P & 0.82 & 0.869 & 0.816 & 3\\
+SVM-R & 0.86 & 0.875 & 0.844 & 2\\
+LogR & 0.88 & 0.918 & 0.864 & 1\\
+K-NN & 0.66 & 0.622 & 0.667 & 5\\
 \bottomrule
 \end{tabular}  &  
-\begin{tabular}{lrrr}
+\begin{tabular}{lrrrr}
 \toprule
-  & Accuracy & AUC & F\_1\_Score\\
+  & ACC & AUC & F1 & Rang\\
 \midrule
-SVM-L & 0.72 & 0.79 & 0.71\\
-SVM-P & 0.74 & 0.79 & 0.73\\
-SVM-R & 0.54 & 0.50 & 0.44\\
-LogR & 0.80 & 0.81 & 0.81\\
-K-NN & 0.62 & 0.58 & 0.51\\
+SVM-L & 0.72 & 0.786 & 0.708 & 3\\
+SVM-P & 0.74 & 0.792 & 0.735 & 2\\
+SVM-R & 0.54 & 0.500 & 0.439 & 5\\
+LogR & 0.80 & 0.814 & 0.808 & 1\\
+K-NN & 0.62 & 0.584 & 0.513 & 4\\
 \bottomrule
 \end{tabular}  \\ \hline \multirow{5}{*}{\textbf{$p \approx n$}} &  
-\begin{tabular}{lrrr}
+\begin{tabular}{lrrrr}
 \toprule
-  & Accuracy & AUC & F\_1\_Score\\
+  & ACC & AUC & F1 & Rang\\
 \midrule
-SVM-L & 0.66 & 0.73 & 0.66\\
-SVM-P & 0.67 & 0.73 & 0.67\\
-SVM-R & 0.70 & 0.76 & 0.69\\
-LogR & 0.69 & 0.74 & 0.69\\
-K-NN & 0.69 & 0.73 & 0.65\\
+SVM-L & 0.665 & 0.728 & 0.659 & 5\\
+SVM-P & 0.674 & 0.729 & 0.671 & 4\\
+SVM-R & 0.704 & 0.759 & 0.690 & 1\\
+LogR & 0.687 & 0.740 & 0.687 & 2\\
+K-NN & 0.691 & 0.731 & 0.657 & 3\\
 \bottomrule
 \end{tabular}  &  
-\begin{tabular}{lrrr}
+\begin{tabular}{lrrrr}
 \toprule
-  & Accuracy & AUC & F\_1\_Score\\
+  & ACC & AUC & F1 & Rang\\
 \midrule
-SVM-L & 0.50 & 0.50 & 0.55\\
-SVM-P & 0.58 & 0.52 & 0.57\\
-SVM-R & 0.56 & 0.53 & 0.39\\
-LogR & 0.64 & 0.56 & 0.67\\
-K-NN & 0.48 & 0.55 & 0.54\\
+SVM-L & 0.50 & 0.504 & 0.545 & 4\\
+SVM-P & 0.58 & 0.525 & 0.571 & 3\\
+SVM-R & 0.56 & 0.530 & 0.389 & 5\\
+LogR & 0.64 & 0.563 & 0.667 & 1\\
+K-NN & 0.56 & 0.552 & 0.577 & 2\\
 \bottomrule
 \end{tabular}  &  
-\begin{tabular}{lrrr}
+\begin{tabular}{lrrrr}
 \toprule
-  & Accuracy & AUC & F\_1\_Score\\
+  & ACC & AUC & F1 & Rang\\
 \midrule
-SVM-L & 0.62 & 0.57 & 0.61\\
-SVM-P & 0.62 & 0.57 & 0.61\\
-SVM-R & 0.50 & 0.50 & NaN\\
-LogR & 0.60 & 0.56 & 0.60\\
-K-NN & 0.64 & 0.61 & 0.62\\
+SVM-L & 0.62 & 0.574 & 0.612 & 1\\
+SVM-P & 0.62 & 0.574 & 0.612 & 1\\
+SVM-R & 0.50 & 0.500 & NaN & 5\\
+LogR & 0.60 & 0.562 & 0.600 & 3\\
+K-NN & 0.50 & 0.612 & 0.490 & 4\\
 \bottomrule
 \end{tabular}  \\ \hline \multirow{5}{*}{\textbf{$p \gg n$}} &  
-\begin{tabular}{lrrr}
+\begin{tabular}{lrrrr}
 \toprule
-  & Accuracy & AUC & F\_1\_Score\\
+  & ACC & AUC & F1 & Rang\\
 \midrule
-SVM-L & 0.52 & 0.53 & 0.62\\
-SVM-P & 1.00 & 1.00 & 1.00\\
-SVM-R & 0.91 & 0.99 & 0.90\\
-LogR & 0.51 & 0.53 & 0.53\\
-K-NN & 0.98 & 0.98 & 0.98\\
+SVM-L & 0.525 & 0.532 & 0.620 & 4\\
+SVM-P & 1.000 & 1.000 & 1.000 & 1\\
+SVM-R & 0.913 & 0.994 & 0.905 & 3\\
+LogR & 0.506 & 0.530 & 0.532 & 5\\
+K-NN & 0.978 & 0.978 & 0.978 & 2\\
 \bottomrule
 \end{tabular}  &  
-\begin{tabular}{lrrr}
+\begin{tabular}{lrrrr}
 \toprule
-  & Accuracy & AUC & F\_1\_Score\\
+  & ACC & AUC & F1 & Rang\\
 \midrule
-SVM-L & 0.68 & 0.60 & 0.72\\
-SVM-P & 0.84 & 0.91 & 0.85\\
-SVM-R & 0.84 & 0.89 & 0.82\\
-LogR & 0.64 & 0.53 & 0.69\\
-K-NN & 0.80 & 0.80 & 0.83\\
+SVM-L & 0.68 & 0.605 & 0.724 & 4\\
+SVM-P & 0.84 & 0.912 & 0.852 & 1\\
+SVM-R & 0.84 & 0.886 & 0.818 & 2\\
+LogR & 0.64 & 0.526 & 0.690 & 5\\
+K-NN & 0.80 & 0.800 & 0.833 & 3\\
 \bottomrule
 \end{tabular}  &  
-\begin{tabular}{lrrr}
+\begin{tabular}{lrrrr}
 \toprule
-  & Accuracy & AUC & F\_1\_Score\\
+  & ACC & AUC & F1 & Rang\\
 \midrule
-SVM-L & 0.56 & 0.50 & 0.63\\
-SVM-P & 0.72 & 0.88 & 0.77\\
-SVM-R & 0.72 & 0.74 & 0.61\\
-LogR & 0.58 & 0.53 & 0.66\\
-K-NN & 0.88 & 0.88 & 0.89\\
+SVM-L & 0.56 & 0.504 & 0.633 & 5\\
+SVM-P & 0.72 & 0.882 & 0.774 & 2\\
+SVM-R & 0.72 & 0.744 & 0.611 & 3\\
+LogR & 0.58 & 0.530 & 0.656 & 4\\
+K-NN & 0.88 & 0.880 & 0.893 & 1\\
 \bottomrule
 \end{tabular}  \\ \hline \end{tabular} \end{center} \caption{Vergleich der Modelle} \end{table}
 
