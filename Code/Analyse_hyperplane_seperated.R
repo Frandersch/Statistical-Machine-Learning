@@ -145,15 +145,15 @@ S1_accuracy_logR <- sum(diag(S1_confusion_matrix_logR))/sum(S1_confusion_matrix_
 S1_confusion_matrix_k_NN <- table(S1_k_NN, S1_data_test$y)
 S1_accuracy_k_NN <- sum(diag(S1_confusion_matrix_k_NN))/sum(S1_confusion_matrix_k_NN)
 
-S1_Accuracy <- data.frame(linear = c(as.character(round(S1_accuracy_linear, 4)), as.character(round(S1_opt_param_linear$Best_Par["cost"], 4)), "/", "/", "/", "/", "/"),
-           polynomial = c(as.character(round(S1_accuracy_polynomial, 4)), as.character(round(S1_opt_param_polynomial$Best_Par["cost"], 4)), as.character(round(S1_opt_param_polynomial$Best_Par["gamma"], 4)), as.character(round(S1_opt_param_polynomial$Best_Par["degree"], 4)), "/", "/", "/"),
-           radial = c(as.character(round(S1_accuracy_radial, 4)), as.character(round(S1_opt_param_radial$Best_Par["cost"], 4)), as.character(round(S1_opt_param_radial$Best_Par["gamma"], 4)), "/", "/", "/", "/"),
-           logR = c(as.character(round(S1_accuracy_logR, 4)), "/", "/", "/", as.character(round(S1_opt_param_logR$Best_Par["alpha"], 4)), as.character(round(S1_opt_param_logR$Best_Par["lambda"], 4)), "/"),
-           k_NN = c(as.character(round(S1_accuracy_k_NN, 4)), "/", "/", "/", "/", "/", as.character(round(S1_opt_param_k_NN$Best_Par["k"], 4))),
-           row.names = c("Accuracy", "Cost", "Gamma", "Degree", "Alpha", "Lambda", "K"))
-
-S1_Accuracy_Tabelle <- tableGrob(S1_Accuracy)
-grid.arrange(S1_Accuracy_Tabelle)
+# S1_Accuracy <- data.frame(linear = c(as.character(round(S1_accuracy_linear, 4)), as.character(round(S1_opt_param_linear$Best_Par["cost"], 4)), "/", "/", "/", "/", "/"),
+#            polynomial = c(as.character(round(S1_accuracy_polynomial, 4)), as.character(round(S1_opt_param_polynomial$Best_Par["cost"], 4)), as.character(round(S1_opt_param_polynomial$Best_Par["gamma"], 4)), as.character(round(S1_opt_param_polynomial$Best_Par["degree"], 4)), "/", "/", "/"),
+#            radial = c(as.character(round(S1_accuracy_radial, 4)), as.character(round(S1_opt_param_radial$Best_Par["cost"], 4)), as.character(round(S1_opt_param_radial$Best_Par["gamma"], 4)), "/", "/", "/", "/"),
+#            logR = c(as.character(round(S1_accuracy_logR, 4)), "/", "/", "/", as.character(round(S1_opt_param_logR$Best_Par["alpha"], 4)), as.character(round(S1_opt_param_logR$Best_Par["lambda"], 4)), "/"),
+#            k_NN = c(as.character(round(S1_accuracy_k_NN, 4)), "/", "/", "/", "/", "/", as.character(round(S1_opt_param_k_NN$Best_Par["k"], 4))),
+#            row.names = c("Accuracy", "Cost", "Gamma", "Degree", "Alpha", "Lambda", "K"))
+# 
+# S1_Accuracy_Tabelle <- tableGrob(S1_Accuracy)
+# grid.arrange(S1_Accuracy_Tabelle)
 
 # F1-Score
 
@@ -199,7 +199,7 @@ plot(S1_roc_radial, col = "green", add = TRUE)
 plot(S1_roc_logR, col = "violet", add = TRUE)
 plot(S1_roc_k_NN, col = "orange", add = TRUE)
 legend("bottomright",
-       legend = c(paste("linear (AUC:", auc(S1_roc_linear), ")"), paste("polynomial (AUC:", auc(S1_roc_polynomial), ")"), paste("radial (AUC:", auc(S1_roc_radial), ")"), paste("logR (AUC:", auc(S1_roc_logR), ")"), paste("k_NN (AUC:", auc(S1_roc_k_NN), ")")),
+       legend = c(paste("linear (AUC:", round(auc(S1_roc_linear), 3), ")"), paste("polynomial (AUC:", round(auc(S1_roc_polynomial), 3), ")"), paste("radial (AUC:", round(auc(S1_roc_radial),3 ), ")"), paste("logR (AUC:", round(auc(S1_roc_logR), 3), ")"), paste("k_NN (AUC:", round(auc(S1_roc_k_NN), 3), ")")),
        col = c("blue", "red", "green", "violet", "orange"),
        lwd = 2)
 
@@ -344,15 +344,15 @@ S4_accuracy_logR <- sum(diag(S4_confusion_matrix_logR))/sum(S4_confusion_matrix_
 S4_confusion_matrix_k_NN <- table(S4_k_NN, S4_data_test$y)
 S4_accuracy_k_NN <- sum(diag(S4_confusion_matrix_k_NN))/sum(S4_confusion_matrix_k_NN)
 
-S4_Accuracy <- data.frame(linear = c(as.character(round(S4_accuracy_linear, 4)), "no opt.", "/", "/", "/", "/", "/"),
-                          polynomial = c(as.character(round(S4_accuracy_polynomial, 4)), as.character(round(S4_opt_param_polynomial$Best_Par["cost"], 4)), as.character(round(S4_opt_param_polynomial$Best_Par["gamma"], 4)), as.character(round(S4_opt_param_polynomial$Best_Par["degree"], 4)), "/", "/", "/"),
-                          radial = c(as.character(round(S4_accuracy_radial, 4)), as.character(round(S4_opt_param_radial$Best_Par["cost"], 4)), as.character(round(S4_opt_param_radial$Best_Par["gamma"], 4)), "/", "/", "/", "/"),
-                          logR = c(as.character(round(S4_accuracy_logR, 4)), "/", "/", "/", as.character(round(S4_opt_param_logR$Best_Par["alpha"], 4)), as.character(round(S4_opt_param_logR$Best_Par["lambda"], 4)), "/"),
-                          k_NN = c(as.character(round(S4_accuracy_k_NN, 4)), "/", "/", "/", "/", "/", as.character(round(S4_opt_param_k_NN$Best_Par["k"], 4))),
-                          row.names = c("Accuracy", "Cost", "Gamma", "Degree", "Alpha", "Lambda", "K"))
-
-S4_Accuracy_Tabelle <- tableGrob(S4_Accuracy)
-grid.arrange(S4_Accuracy_Tabelle)
+# S4_Accuracy <- data.frame(linear = c(as.character(round(S4_accuracy_linear, 4)), "no opt.", "/", "/", "/", "/", "/"),
+#                           polynomial = c(as.character(round(S4_accuracy_polynomial, 4)), as.character(round(S4_opt_param_polynomial$Best_Par["cost"], 4)), as.character(round(S4_opt_param_polynomial$Best_Par["gamma"], 4)), as.character(round(S4_opt_param_polynomial$Best_Par["degree"], 4)), "/", "/", "/"),
+#                           radial = c(as.character(round(S4_accuracy_radial, 4)), as.character(round(S4_opt_param_radial$Best_Par["cost"], 4)), as.character(round(S4_opt_param_radial$Best_Par["gamma"], 4)), "/", "/", "/", "/"),
+#                           logR = c(as.character(round(S4_accuracy_logR, 4)), "/", "/", "/", as.character(round(S4_opt_param_logR$Best_Par["alpha"], 4)), as.character(round(S4_opt_param_logR$Best_Par["lambda"], 4)), "/"),
+#                           k_NN = c(as.character(round(S4_accuracy_k_NN, 4)), "/", "/", "/", "/", "/", as.character(round(S4_opt_param_k_NN$Best_Par["k"], 4))),
+#                           row.names = c("Accuracy", "Cost", "Gamma", "Degree", "Alpha", "Lambda", "K"))
+# 
+# S4_Accuracy_Tabelle <- tableGrob(S4_Accuracy)
+# grid.arrange(S4_Accuracy_Tabelle)
 
 # F1-Score
 
@@ -544,15 +544,15 @@ S7_accuracy_logR <- sum(diag(S7_confusion_matrix_logR))/sum(S7_confusion_matrix_
 S7_confusion_matrix_k_NN <- table(S7_k_NN, S7_data_test$y)
 S7_accuracy_k_NN <- sum(diag(S7_confusion_matrix_k_NN))/sum(S7_confusion_matrix_k_NN)
 
-S7_Accuracy <- data.frame(linear = c(as.character(round(S7_accuracy_linear, 4)), "no opt.", "/", "/", "/", "/", "/"),
-                          polynomial = c(as.character(round(S7_accuracy_polynomial, 4)), as.character(round(S7_opt_param_polynomial$Best_Par["cost"], 4)), as.character(round(S7_opt_param_polynomial$Best_Par["gamma"], 4)), as.character(round(S7_opt_param_polynomial$Best_Par["degree"], 4)), "/", "/", "/"),
-                          radial = c(as.character(round(S7_accuracy_radial, 4)), as.character(round(S7_opt_param_radial$Best_Par["cost"], 4)), as.character(round(S7_opt_param_radial$Best_Par["gamma"], 4)), "/", "/", "/", "/"),
-                          logR = c(as.character(round(S7_accuracy_logR, 4)), "/", "/", "/", as.character(round(S7_opt_param_logR$Best_Par["alpha"], 4)), as.character(round(S7_opt_param_logR$Best_Par["lambda"], 4)), "/"),
-                          k_NN = c(as.character(round(S7_accuracy_k_NN, 4)), "/", "/", "/", "/", "/", as.character(round(S7_opt_param_k_NN$Best_Par["k"], 4))),
-                          row.names = c("Accuracy", "Cost", "Gamma", "Degree", "Alpha", "Lambda", "K"))
-
-S7_Accuracy_Tabelle <- tableGrob(S7_Accuracy)
-grid.arrange(S7_Accuracy_Tabelle)
+# S7_Accuracy <- data.frame(linear = c(as.character(round(S7_accuracy_linear, 4)), "no opt.", "/", "/", "/", "/", "/"),
+#                           polynomial = c(as.character(round(S7_accuracy_polynomial, 4)), as.character(round(S7_opt_param_polynomial$Best_Par["cost"], 4)), as.character(round(S7_opt_param_polynomial$Best_Par["gamma"], 4)), as.character(round(S7_opt_param_polynomial$Best_Par["degree"], 4)), "/", "/", "/"),
+#                           radial = c(as.character(round(S7_accuracy_radial, 4)), as.character(round(S7_opt_param_radial$Best_Par["cost"], 4)), as.character(round(S7_opt_param_radial$Best_Par["gamma"], 4)), "/", "/", "/", "/"),
+#                           logR = c(as.character(round(S7_accuracy_logR, 4)), "/", "/", "/", as.character(round(S7_opt_param_logR$Best_Par["alpha"], 4)), as.character(round(S7_opt_param_logR$Best_Par["lambda"], 4)), "/"),
+#                           k_NN = c(as.character(round(S7_accuracy_k_NN, 4)), "/", "/", "/", "/", "/", as.character(round(S7_opt_param_k_NN$Best_Par["k"], 4))),
+#                           row.names = c("Accuracy", "Cost", "Gamma", "Degree", "Alpha", "Lambda", "K"))
+# 
+# S7_Accuracy_Tabelle <- tableGrob(S7_Accuracy)
+# grid.arrange(S7_Accuracy_Tabelle)
 
 # F1-Score
 
@@ -604,19 +604,29 @@ legend("bottomright",
 
 # erstellen der Einzeltabellen
 
-S1_Tabelle <- round(data.frame(Accuracy = c(S1_accuracy_linear, S1_accuracy_polynomial, S1_accuracy_radial, S1_accuracy_logR, S1_accuracy_k_NN),
-                               AUC = c(auc(S1_roc_linear), auc(S1_roc_polynomial), auc(S1_roc_radial), auc(S1_roc_logR), auc(S1_roc_k_NN)),
-                               F_1_Score = c(S1_F1_linear, S1_F1_polynomial, S1_F1_radial, S1_F1_logR, S1_F1_k_NN),
-                               row.names = c("SVM-L", "SVM-P", "SVM-R", "LogR", "K-NN")), 2)
+S1_Tabelle <- data.frame(ACC = c(S1_accuracy_linear, S1_accuracy_polynomial, S1_accuracy_radial, S1_accuracy_logR, S1_accuracy_k_NN),
+                         AUC = c(auc(S1_roc_linear), auc(S1_roc_polynomial), auc(S1_roc_radial), auc(S1_roc_logR), auc(S1_roc_k_NN)),
+                         F1 = c(S1_F1_linear, S1_F1_polynomial, S1_F1_radial, S1_F1_logR, S1_F1_k_NN),
+                         row.names = c("SVM-L", "SVM-P", "SVM-R", "LogR", "K-NN"))
+S1_index <- rowSums(S1_Tabelle)
+S1_rank <- data.frame(Rang = rank(-S1_index, ties.method = "min"))
+S1_Tabelle <- round(cbind(S1_Tabelle, S1_rank), 3)
 
-S4_Tabelle <- round(data.frame(Accuracy = c(S4_accuracy_linear, S4_accuracy_polynomial, S4_accuracy_radial, S4_accuracy_logR, S4_accuracy_k_NN),
-                               AUC = c(auc(S4_roc_linear), auc(S4_roc_polynomial), auc(S4_roc_radial), auc(S4_roc_logR), auc(S4_roc_k_NN)),
-                               F_1_Score = c(S4_F1_linear, S4_F1_polynomial, S4_F1_radial, S4_F1_logR, S4_F1_k_NN),
-                               row.names = c("SVM-L", "SVM-P", "SVM-R", "LogR", "K-NN")), 2)
 
-S7_Tabelle <- round(data.frame(Accuracy = c(S7_accuracy_linear, S7_accuracy_polynomial, S7_accuracy_radial, S7_accuracy_logR, S7_accuracy_k_NN),
-                               AUC = c(auc(S7_roc_linear), auc(S7_roc_polynomial), auc(S7_roc_radial), auc(S7_roc_logR), auc(S7_roc_k_NN)),
-                               F_1_Score = c(S7_F1_linear, S7_F1_polynomial, S7_F1_radial, S7_F1_logR, S7_F1_k_NN),
-                               row.names = c("SVM-L", "SVM-P", "SVM-R", "LogR", "K-NN")), 2)
+S4_Tabelle <- data.frame(ACC = c(S4_accuracy_linear, S4_accuracy_polynomial, S4_accuracy_radial, S4_accuracy_logR, S4_accuracy_k_NN),
+                         AUC = c(auc(S4_roc_linear), auc(S4_roc_polynomial), auc(S4_roc_radial), auc(S4_roc_logR), auc(S4_roc_k_NN)),
+                         F1 = c(S4_F1_linear, S4_F1_polynomial, S4_F1_radial, S4_F1_logR, S4_F1_k_NN),
+                         row.names = c("SVM-L", "SVM-P", "SVM-R", "LogR", "K-NN"))
+S4_index <- rowSums(S4_Tabelle)
+S4_rank <- data.frame(Rang = rank(-S4_index, ties.method = "min"))
+S4_Tabelle <- round(cbind(S4_Tabelle, S4_rank), 3)
+
+S7_Tabelle <- data.frame(ACC = c(S7_accuracy_linear, S7_accuracy_polynomial, S7_accuracy_radial, S7_accuracy_logR, S7_accuracy_k_NN),
+                         AUC = c(auc(S7_roc_linear), auc(S7_roc_polynomial), auc(S7_roc_radial), auc(S7_roc_logR), auc(S7_roc_k_NN)),
+                         F1 = c(S7_F1_linear, S7_F1_polynomial, S7_F1_radial, S7_F1_logR, S7_F1_k_NN),
+                         row.names = c("SVM-L", "SVM-P", "SVM-R", "LogR", "K-NN"))
+S7_index <- rowSums(S7_Tabelle)
+S7_rank <- data.frame(Rang = rank(-S7_index, ties.method = "min"))
+S7_Tabelle <- round(cbind(S7_Tabelle, S7_rank), 3)
 
 save(S1_Tabelle, S4_Tabelle, S7_Tabelle, file = "Code/Tabellen/Tabellen_S1_S4_S7.RData")

@@ -12,13 +12,30 @@ output:
 bibliography: Literatur.bib
 ---
 \subsection{Analyse}
-Bevor die Ergebnisse dargelegt werden, wird kurz auf die Vorgehensweise bei der Analyse eingegangen. In die Analyse werden fünf Modelle einbezogen: SVM mit linearem, polynomialem und radialem Kern, sowie regularisierte logistische Regression und k-nearest neighbours.\newline
-Vor dem erstellen der Modelle wird ein Tuning der Hyperparameter je Modell durchgeführt. Dafür wird die Bayesian Optimization Methode genutzt, welche ein iterativer Algorithmus ist. Hierbei werden die nächsten Evaluierungspunkte basierend auf zuvor beobachteten Ergebnissen bestimmt \parencite{yangHyperparameterOptimizationMachine2020}. Der Algorithmus basiert auf zwei Hauptkomponenten: einem Surrogatmodell und einer Akqusitionsfunktion. Das Surrogatmodell, wofür hier ein Gaussian Process genutzt wird, passt die bisher beobachteten Punkte an die Zielfunktion an. Die Akquisitionsfunktion wählt dann die nächsten Punkte aus, wobei ein Gleichgewicht zwischen der Erkundung neuer Bereiche und der Nutzung vielversprechender Regionen angestrebt wird. Dafür wird hier der Ansatz des Upper-Confidence-Bound genutzt, welcher obere Konfidenzgrenzen nutzt um den Verlust gegenüber der besten möglichen Entscheidung, während der Optimierung zu minimieren \parencite{snoekPracticalBayesianOptimization2012}. Die Bayesian Optimization wird genutzt, da sie eine schnelle Konvergenz für stetige Hyperparameter aufweist \parencite{yangHyperparameterOptimizationMachine2020}. Als Evaluierungskriterium wird die Genauigkeit der Modelle, welche durch den Anteil der korrekt klassifizierten Beobachtungen wiedergegeben wird,  verwendet.\newline
-Basierend auf den Ergebnissen des Tuning werden die oben genannten Modelle erstellt. Daraufhin werden die Genauigkeit und die Receiver Operating Characteristic Kurve (ROC-Kurve) bzw. der Area Under The Curve Wert (AUC-Wert) für jedes Modell bestimmt. Die ROC-Kurve ist eine grafische Darstellung der Leistungsfähigkeit eines Klassifikationsmodells, wobei die Sensitivität gegen die Spezifität abgetragen wird \parencite{fawcettIntroductionROCAnalysis2006}. Die Sensitivität gibt den Anteil der korrekt als positiv (hier gleichbedeutend mit Klasse 1) klassifizierten Beobachtungen an während die Spezifität den Anteil der korrekt als negativ (hier gleichbedeutend mit Klasse 2) klassifizierten Beobachtungen angibt. Der AUC-Wert bezieht sich auf die Fläche unterhalb die Kurve und liegt somit im Intervall [0,1], wobei ein Wert von 1 für eine perfekte Klassifikation spricht, während ein Wert von 0.5 für eine rein zufällige Zuordnung der Klassen spricht.
+Bevor die Ergebnisse erläutert werden, wird kurz auf die Vorgehensweise bei der Analyse eingegangen. In die Analyse werden fünf Modelle einbezogen: SVM mit linearem, polynomialem und radialem Kern, sowie regularisierte logistische Regression und k-nearest neighbours.\newline
+Vor dem erstellen der Modelle wird ein Tuning der Hyperparameter je Modell durchgeführt. Dafür wird die Bayesian Optimization Methode genutzt, welche ein iterativer Algorithmus ist. Hierbei werden die nächsten Evaluierungspunkte basierend auf zuvor beobachteten Ergebnissen bestimmt \parencite{yangHyperparameterOptimizationMachine2020}. Der Algorithmus basiert auf zwei Hauptkomponenten: einem Surrogatmodell und einer Akqusitionsfunktion. Das Surrogatmodell, wofür hier ein Gaussian Process genutzt wird, passt die bisher beobachteten Punkte an die Zielfunktion an. Die Akquisitionsfunktion wählt dann die nächsten Punkte aus, wobei ein Gleichgewicht zwischen der Erkundung neuer Bereiche und der Nutzung vielversprechender Regionen angestrebt wird. Dafür wird hier der Ansatz des Upper-Confidence-Bound genutzt, welcher obere Konfidenzgrenzen nutzt um den Verlust gegenüber der besten möglichen Entscheidung, während der Optimierung zu minimieren \parencite{snoekPracticalBayesianOptimization2012}.
+\begin{align}
+a_{UCB}(\mathbf{x};~\left\{\mathbf{x}_n,y_n\right\},\theta) = \mu(\mathbf{x};~\left\{\mathbf{x}_n,y_n\right\},\theta) - k \sigma(\mathbf{x};~\left\{\mathbf{x}_n,y_n\right\},\theta)
+\end{align}
+Die Bayesian Optimization wird genutzt, da sie eine schnelle Konvergenz für stetige Hyperparameter aufweist \parencite{yangHyperparameterOptimizationMachine2020}. Als Evaluierungskriterium wird die Genauigkeit der Modelle, welche durch den Anteil der korrekt klassifizierten Beobachtungen wiedergegeben wird, verwendet.
+
+Basierend auf den Ergebnissen des Tuning werden die oben genannten Modelle erstellt. Daraufhin werden die Genauigkeit, die Receiver Operating Characteristic Kurve (ROC-Kurve) bzw. der Area Under The Curve Wert (AUC-Wert) und der F1-Score für jedes Modell bestimmt.\newline
+Die ROC-Kurve ist eine grafische Darstellung der Leistungsfähigkeit eines Klassifikationsmodells, wobei die Sensitivität auf der y-Achse von 0 bis 1 gegen die Spezifität auf der x-Achse von 1 bis 0 abgetragen wird \parencite{fawcettIntroductionROCAnalysis2006}. Sensitivität und Spezifität ergeben sich aus:
+\begin{align}
+Sensitivität=\frac{korrekt~Positiv}{korrekt~Positiv~+~falsch~Negativ}
+\end{align}
+\begin{align}
+Spezifität=\frac{korrekt~Negativ}{falsch~Positiv~+~korrekt~Negativ}
+\end{align}
+Positiv ist in diesem Fall gleichbedeutend mit Klasse 1 und Negativ mit Klasse 2. Die ROC-Kurve zeigt dann den Zusammenhang zwischen dem Nutzen (korrekt Positive) und den Kosten (falsch Positive) auf. Eine ideale Kurve läuft nah am linken, oberen Rand der Grafik, da hier bereits bei sehr hoher Spezifität (hohe Anzahl korrekt Negative) eine hohe Sensitivität (hohe Anzahl korrekt Positive) erreicht wird.  Der AUC-Wert bezieht sich auf die Fläche unterhalb der Kurve und liegt somit im Intervall [0,1], wobei ein Wert von 1 für eine perfekte Klassifikation spricht, während ein Wert von 0.5 glechbedeutend mit einer rein zufälligen Zuordnung der Klassen spricht.\newline
+Für den F1-Score ist außerdem die Präzision von Bedeutung, die sich wie folgt berechnet\parencite{fawcettIntroductionROCAnalysis2006}:
+\begin{align}
+Präzision=\frac{korrekt~Positiv}{korrekt~Positiv~+~falsch~Positiv}
+\end{align}
+Der F1-Score beschreibt das harmonische Mittel zwischen Präzision und Sensitivität und drückt folglich die Fähigkeit des Modells, gleichzeitig falsch Positive und falsch Negative zu minimieren, aus.
+\begin{align}
+F1\text{-}Score=\frac{2}{1/Präzision~+~1/Sensitivität}
+\end{align}
 
 \subsection{Auswertung}
-
-```{r, echo=FALSE, warning=FALSE, message=FALSE}
-
-```
 
