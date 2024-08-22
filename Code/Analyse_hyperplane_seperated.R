@@ -193,6 +193,9 @@ S1_prediction_probs_k_NN <- attr(S1_k_NN_probs, "prob")
 S1_prediction_probs_k_NN <- ifelse(S1_k_NN_probs == levels(S1_data_train$y)[1], S1_prediction_probs_k_NN, 1 - S1_prediction_probs_k_NN)
 S1_roc_k_NN <- roc(S1_data_test$y, S1_prediction_probs_k_NN, levels = rev(levels(S1_data_test$y)))
 
+#speichern der roc-Daten um plot im Rmd ausführen zu können
+save(S1_roc_linear, S1_roc_polynomial, S1_roc_radial, S1_roc_logR, S1_roc_k_NN, file = "Code/ROC/S1_roc.RData")
+
 plot(S1_roc_linear, col = "blue", main = "ROC-Kurven Szenario 1")
 plot(S1_roc_polynomial, col = "red", add = TRUE)
 plot(S1_roc_radial, col = "green", add = TRUE)

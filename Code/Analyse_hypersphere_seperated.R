@@ -193,13 +193,16 @@ S3_prediction_probs_k_NN <- attr(S3_k_NN_probs, "prob")
 S3_prediction_probs_k_NN <- ifelse(S3_k_NN_probs == levels(S3_data_train$y)[1], S3_prediction_probs_k_NN, 1 - S3_prediction_probs_k_NN)
 S3_roc_k_NN <- roc(S3_data_test$y, S3_prediction_probs_k_NN, levels = rev(levels(S3_data_test$y)))
 
+#speichern der roc-Daten um plot im Rmd ausführen zu können
+save(S3_roc_linear, S3_roc_polynomial, S3_roc_radial, S3_roc_logR, S3_roc_k_NN, file = "Code/ROC/S3_roc.RData")
+
 plot(S3_roc_linear, col = "blue", main = "ROC-Kurven Szenario 3")
 plot(S3_roc_polynomial, col = "red", add = TRUE)
 plot(S3_roc_radial, col = "green", add = TRUE)
 plot(S3_roc_logR, col = "violet", add = TRUE)
 plot(S3_roc_k_NN, col = "orange", add = TRUE)
 legend("bottomright",
-       legend = c(paste("linear (AUC:", auc(S3_roc_linear), ")"), paste("polynomial (AUC:", auc(S3_roc_polynomial), ")"), paste("radial (AUC:", auc(S3_roc_radial), ")"), paste("logR (AUC:", auc(S3_roc_logR), ")"), paste("k_NN (AUC:", auc(S3_roc_k_NN), ")")),
+       legend = c(paste("linear (AUC:", round(auc(S3_roc_linear), 3), ")"), paste("polynomial (AUC:", round(auc(S3_roc_polynomial), 3), ")"), paste("radial (AUC:", round(auc(S3_roc_radial), 3), ")"), paste("logR (AUC:", round(auc(S3_roc_logR), 3), ")"), paste("k_NN (AUC:", round(auc(S3_roc_k_NN), 3), ")")),
        col = c("blue", "red", "green", "violet", "orange"),
        lwd = 2)
 

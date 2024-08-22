@@ -11,7 +11,7 @@ output:
     citation_package: biblatex
 bibliography: Literatur.bib
 ---
-\subsection{Analyse}
+\subsection{Vorgehensweise bei der Analyse}
 Bevor die Ergebnisse erläutert werden, wird kurz auf die Vorgehensweise bei der Analyse eingegangen. In die Analyse werden fünf Modelle einbezogen: SVM mit linearem, polynomialem und radialem Kern, sowie regularisierte logistische Regression und k-nearest neighbours.\newline
 Vor dem erstellen der Modelle wird ein Tuning der Hyperparameter je Modell durchgeführt. Dafür wird die Bayesian Optimization Methode genutzt, welche ein iterativer Algorithmus ist. Hierbei werden die nächsten Evaluierungspunkte basierend auf zuvor beobachteten Ergebnissen bestimmt \parencite{yangHyperparameterOptimizationMachine2020}. Der Algorithmus basiert auf zwei Hauptkomponenten: einem Surrogatmodell und einer Akqusitionsfunktion. Das Surrogatmodell, wofür hier ein Gaussian Process genutzt wird, passt die bisher beobachteten Punkte an die Zielfunktion an. Die Akquisitionsfunktion wählt dann die nächsten Punkte aus, wobei ein Gleichgewicht zwischen der Erkundung neuer Bereiche und der Nutzung vielversprechender Regionen angestrebt wird. Dafür wird hier der Ansatz des Upper-Confidence-Bound genutzt, welcher obere Konfidenzgrenzen nutzt um den Verlust gegenüber der besten möglichen Entscheidung, während der Optimierung zu minimieren \parencite{snoekPracticalBayesianOptimization2012}.
 \begin{align}
@@ -35,7 +35,113 @@ Präzision=\frac{korrekt~Positiv}{korrekt~Positiv~+~falsch~Positiv}
 Der F1-Score beschreibt das harmonische Mittel zwischen Präzision und Sensitivität und drückt folglich die Fähigkeit des Modells, gleichzeitig falsch Positive und falsch Negative zu minimieren, aus.
 \begin{align}
 F1\text{-}Score=\frac{2}{1/Präzision~+~1/Sensitivität}
-\end{align}
+\end{align}\newline
+Zuletzt wird innerhalb jeder Datensituation, für jeden Algorithmus ein Rang vergeben, der sich aus der Summe der drei Auswertungskriterien Genauigkeit, AUC-Wert sowie F1-Score ergibt. Dabei steht Rang 1 für den am besten abschneidenden Algorithmus in der jeweiligen Datensituation.
 
-\subsection{Auswertung}
+\subsection{Darstellung der Ergebnisse}
+Tabelle 2 zeigt die Leistungsfähigkeit der fünf Klassifikationsalgorithmen über die neun verschiedenen Datensituationen anhand drei verschiedener Evaluationskriterien, sowie den Rang in der jeweiligen Datensituation.\newline
 
+\begin{landscape}
+
+```{r, echo=FALSE, results='asis', warning=FALSE}
+library(gridExtra)
+library(knitr)
+library(xtable)
+
+load(file = "Tabellen/Tabellen_S1_S4_S7.RData")
+load(file = "Tabellen/Tabellen_S2_S5_S8.RData")
+load(file = "Tabellen/Tabellen_S3_S6_S9.RData")
+
+# Tabelle als LaTeX-String erstellen
+cat(
+  "\\begin{table}[h]",
+  "\\centering",
+  "\\begin{tabular}{|c|c|c|c|}",
+  "\\hline\n",
+  "& \\textbf{linear} & \\textbf{polynomial} & \\textbf{radial} \\\\",
+  "\\hline",
+  # p << n
+  "\\multirow{5}{*}{\\textbf{$p \\ll n$}} & ",
+  kable(S1_Tabelle, format = "latex", booktabs = TRUE, linesep = "", row.names = TRUE), " & ",
+  kable(S2_Tabelle, format = "latex", booktabs = TRUE, linesep = "", row.names = TRUE), " & ",
+  kable(S3_Tabelle, format = "latex", booktabs = TRUE, linesep = "", row.names = TRUE), " \\\\",
+  "\\hline",
+  # p = n
+  "\\multirow{5}{*}{\\textbf{$p \\approx n$}} & ",
+  kable(S4_Tabelle, format = "latex", booktabs = TRUE, linesep = "", row.names = TRUE), " & ",
+  kable(S5_Tabelle, format = "latex", booktabs = TRUE, linesep = "", row.names = TRUE), " & ",
+  kable(S6_Tabelle, format = "latex", booktabs = TRUE, linesep = "", row.names = TRUE), " \\\\",
+  "\\hline",
+  # p >> n
+  "\\multirow{5}{*}{\\textbf{$p \\gg n$}} & ",
+  kable(S7_Tabelle, format = "latex", booktabs = TRUE, linesep = "", row.names = TRUE), " & ",
+  kable(S8_Tabelle, format = "latex", booktabs = TRUE, linesep = "", row.names = TRUE), " & ",
+  kable(S9_Tabelle, format = "latex", booktabs = TRUE, linesep = "", row.names = TRUE), " \\\\",
+  "\\hline",
+  "\\end{tabular}",
+  "\\caption{Vergleich der Modelle}",
+  "\\end{table}"
+)
+
+```
+
+\end{landscape}
+
+In den Datensituationen mit linearer Form der Entscheidungsgrenze performt insbesondere $logR$ gut, da sie in allen drei Szenarien über alle Kriterien hinweg einen Wert von mindestens 0.8 aufweist und jeweils mindestens Rang 2 belegt. Im Falle von $p \ll n$ und $p \approx n$ zeigen auch $SVM-L$, $SVM-P$ und $SVM-R$ eine gute Leistung mit Werten um 0.9. In dem hochdimensionalen Setting $p \gg n$ ist die Performance jedoch differnzierter zu betrachten. Hier schneiden $SVM-L$ und $SVM-P$ nach wie vor ordentlich ab. $SVM-R$ zeigt hier jedoch deutliche Defizite über alle Kriterien hinweg mit Werten um 0.5. $K-NN$ schneidet im linearen Kontext über alle Szenarien hinweg schlecht ab, wobei die Genauigkeit maximal bei 0.66 im Falle von $p \approx n$ liegt.\newline
+Die ROC-Kurven werden nur in den Datensituationen mit $p \ll n$ genutzt, da die grafische Darstellung in Szenarien mit kleinem $n$ nicht sinnvoll erscheint. Abbildung 8 zeigt die ROC-Kurven für die Datensituation S1. Diese zeigt grafisch noch einmal den deutlichen Unterschied zwischen $K-NN$, welcher nur etwas besser als eine reine Zufallsauswahl ist und den anderen vier Algorithmen, welche nahezu perfekt klassifizieren.
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=7, fig.height=5, fig.cap="ROC-Kurven Szenario 1"}
+library(pROC)
+
+load(file = "ROC/S1_roc.RData")
+
+plot(S1_roc_linear, col = "blue")
+plot(S1_roc_polynomial, col = "red", add = TRUE)
+plot(S1_roc_radial, col = "green", add = TRUE)
+plot(S1_roc_logR, col = "violet", add = TRUE)
+plot(S1_roc_k_NN, col = "orange", add = TRUE)
+legend("bottomright",
+       legend = c(paste("linear (AUC:", round(auc(S1_roc_linear), 3), ")"), paste("polynomial (AUC:", round(auc(S1_roc_polynomial), 3), ")"), paste("radial (AUC:", round(auc(S1_roc_radial),3 ), ")"), paste("logR (AUC:", round(auc(S1_roc_logR), 3), ")"), paste("k_NN (AUC:", round(auc(S1_roc_k_NN), 3), ")")),
+       col = c("blue", "red", "green", "violet", "orange"),
+       lwd = 2)
+```
+
+In den Datensituationen mit polynomialer Form der Entscheidungsgrenze ist die Leistungsfähigkeit aller Algorithmen grundsätzlich deutlich schlechter als in den zuvor beschriebenen Szenarien. Im Fall von $p \ll n$ sind die Ergebnisse mittelmäßig mit Werten um 0.7, wobei sich kein Algorithmus von den anderen absetzen kann. Bei $p \approx n$ ist $LogR$ den anderen Klassifikationsmethoden leicht überlegen, insbesondere bei der Fähigkeit gleichzeitig falsch Positive und falsch Negative zu minimieren (F1-Score = 0.667). Die anderen Algorithmen befinden sich durchweg über alle Werte hinweg nahe 0.5. Ähnlich ist es der Fall für $p \gg n$ bei dem nun $SVM-L$, $SVM-P$ und $LogR$ mit einer Genauigkeit von 0.6, $SVM-R$ und $K-NN$ mit einer Genauigkeit von 0.5 leicht überlegen sind. Dennoch ist für die letzten beiden Szenarien deutlich, dass kein Algorithmus gute Leistung zeigt.\newline
+Abbildung 9 zeigt die ROC-Kurven für Szenario 2. Hieraus wird erneut deutlich, dass sich kein Algorithmus von den anderen abheben kann, wobei alle eine mittelmäßige Leistung zeigen.
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=7, fig.height=5, fig.cap="ROC-Kurven Szenario 2"}
+library(pROC)
+
+load(file = "ROC/S2_roc.RData")
+
+plot(S2_roc_linear, col = "blue")
+plot(S2_roc_polynomial, col = "red", add = TRUE)
+plot(S2_roc_radial, col = "green", add = TRUE)
+plot(S2_roc_logR, col = "violet", add = TRUE)
+plot(S2_roc_k_NN, col = "orange", add = TRUE)
+legend("bottomright",
+       legend = c(paste("linear (AUC:", round(auc(S2_roc_linear), 3), ")"), paste("polynomial (AUC:", round(auc(S2_roc_polynomial), 3), ")"), paste("radial (AUC:", round(auc(S2_roc_radial), 3), ")"), paste("logR (AUC:", round(auc(S2_roc_logR), 3), ")"), paste("k_NN (AUC:", round(auc(S2_roc_k_NN), 3), ")")),
+       col = c("blue", "red", "green", "violet", "orange"),
+       lwd = 2)
+```
+
+In den Datensituationen mit radialer Form der Entscheidungsgrenze ist für den Fall $p \ll n$ eine eindeutige Unterscheidung zu treffen. Während $SVM-P$, $SVM-R$ und $K-NN$ (nahezu) perfekt klassifizieren, haben dabei $SVM-L$ und $LogR$ große Probleme und zeigen lediglich Werte nahe 0.5. Weniger drastisch aber dennoch mit dem gleichen Resultat ist dies für $p \approx n$ der Fall. Während $SVM-P$, $SVM-R$ und $K-NN$ etwas schlechter abschneiden (beispielsweise mit F1-Scores zwischen 0.8 und 0.9), performen $SVM-L$ und $LogR$ leicht besser (beispielsweise mit F1-Scores nahe 0.7). Innerhalb dieser beiden Gruppen gibt es keine nennenswerten Unterschiede. Für $p \gg n$ sind ebenfalls die beiden Gruppen zu differenzieren. Für $SVM-L$ und $LogR$ sind wie in Szenario 3 wieder Werte nahe 0.5 bzw. nahe 0.6 für die F1-Scores erkennbar. $SVM-P$ und $SVM-R$ performen in diesem Szenario am schlechtesten, wobei die AUC-Werte von 0.882 bzw. 0.744 weiterhin akzeptable Leistungen zeigen. Heraus sticht $K-NN$, insbesondere bei dem F1-Score von 0.893, was verdeutlicht das dieser Algorithmus hier die beste Leistung zeigt.\newline
+Abbildung 10 zeigt die ROC-Kurven für Szenario 3. Hieraus wird die Aufteilung in die zwei Gruppen sofort deutlich. $SVM-P$, $SVM-R$ und $K-NN$ bewegen sich nahe an der oberen linken Kante, was für eine (nahezu) perfekte Klassifikation spricht. $SVM-L$ und $LogR$ orientieren sich nahe der diagonalen Linie, die eine ROC-Kurve einer reinen Zufallsauswahl beschreibt. Dies zeigt auf, dass sie kaum Fähigkeit aufweisen zwischen den Klassen zu unterscheiden. 
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=7, fig.height=5, fig.cap="ROC-Kurven Szenario 3"}
+library(pROC)
+
+load(file = "ROC/S3_roc.RData")
+
+plot(S3_roc_linear, col = "blue")
+plot(S3_roc_polynomial, col = "red", add = TRUE)
+plot(S3_roc_radial, col = "green", add = TRUE)
+plot(S3_roc_logR, col = "violet", add = TRUE)
+plot(S3_roc_k_NN, col = "orange", add = TRUE)
+legend("bottomright",
+       legend = c(paste("linear (AUC:", round(auc(S3_roc_linear), 3), ")"), paste("polynomial (AUC:", round(auc(S3_roc_polynomial), 3), ")"), paste("radial (AUC:", round(auc(S3_roc_radial), 3), ")"), paste("logR (AUC:", round(auc(S3_roc_logR), 3), ")"), paste("k_NN (AUC:", round(auc(S3_roc_k_NN), 3), ")")),
+       col = c("blue", "red", "green", "violet", "orange"),
+       lwd = 2)
+```
+
+Zuletzt wird ein Vergleich der einzelnen Dimensionen über die drei Formen der Entscheidungsgrenze gezogen. So ist für $p \ll n$ ersichtlich, dass insbesondere $SVM-P$ und $SVM-R$ über alle drei Szenarien gute Leistung (insbesondere für S1 und S3 mit mindestens 0.9 über alle Werte) zeigen. Das gleiche gilt, mit Ausnahme der polynomialen Form der Entscheidungsgrenze, auch für $p \approx n$, wobei die Werte etwas niedriger bei 0.8 bis 0.9 liegen. In den hochdimensionalen Szenarien $p \gg n$ ist einzig $SVM-P$ überzeugend, erneut ausgenommen der polynomialen Form der Entscheidungsgrenze.
