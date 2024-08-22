@@ -12,49 +12,50 @@ output:
 bibliography: Literatur.bib
 ---
 
-```{r, echo=FALSE, results='asis'}
+\begin{landscape}
+
+```{r, echo=FALSE, results='asis', warning=FALSE}
 library(gridExtra)
 library(ggplot2)
 library(knitr)
+library(xtable)
 
 load(file = "Tabellen/Tabellen_S1_S4_S7.RData")
 load(file = "Tabellen/Tabellen_S2_S5_S8.RData")
 load(file = "Tabellen/Tabellen_S3_S6_S9.RData")
-create_inner_table <- function(data) {
-  return(kable(data, format = "latex", booktabs = TRUE, linesep = "", row.names = TRUE))
-}
 
 # Tabelle als LaTeX-String erstellen
-table_content <- paste0(
-  "\\begin{table}[h]\n",
-  "\\centering\n",
-  "\\begin{tabular}{|c|c|c|c|}\n",
+cat(
+  "\\begin{table}[h]",
+  "\\begin{center}",
+  "\\begin{tabular}{|c|c|c|c|}",
   "\\hline\n",
-  "& \\textbf{linear} & \\textbf{polynomial} & \\textbf{radial} \\\\\n",
-  "\\hline\n",
+  "& \\textbf{linear} & \\textbf{polynomial} & \\textbf{radial} \\\\",
+  "\\hline",
   # p << n
-  "\\multirow{5}{*}{\\textbf{p << n}} & ",
-  create_inner_table(S1_Tabelle), " & ",
-  create_inner_table(S4_Tabelle), " & ",
-  create_inner_table(S7_Tabelle), " \\\\\n",
-  "\\hline\n",
+  "\\multirow{5}{*}{\\textbf{$p \\ll n$}} & ",
+  kable(S1_Tabelle, format = "latex", booktabs = TRUE, linesep = "", row.names = TRUE), " & ",
+  kable(S4_Tabelle, format = "latex", booktabs = TRUE, linesep = "", row.names = TRUE), " & ",
+  kable(S7_Tabelle, format = "latex", booktabs = TRUE, linesep = "", row.names = TRUE), " \\\\",
+  "\\hline",
   # p = n
-  "\\multirow{5}{*}{\\textbf{p = n}} & ",
-  create_inner_table(S2_Tabelle), " & ",
-  create_inner_table(S5_Tabelle), " & ",
-  create_inner_table(S8_Tabelle), " \\\\\n",
-  "\\hline\n",
+  "\\multirow{5}{*}{\\textbf{$p \\approx n$}} & ",
+  kable(S2_Tabelle, format = "latex", booktabs = TRUE, linesep = "", row.names = TRUE), " & ",
+  kable(S5_Tabelle, format = "latex", booktabs = TRUE, linesep = "", row.names = TRUE), " & ",
+  kable(S8_Tabelle, format = "latex", booktabs = TRUE, linesep = "", row.names = TRUE), " \\\\",
+  "\\hline",
   # p >> n
-  "\\multirow{5}{*}{\\textbf{p >> n}} & ",
-  create_inner_table(S3_Tabelle), " & ",
-  create_inner_table(S6_Tabelle), " & ",
-  create_inner_table(S9_Tabelle), " \\\\\n",
-  "\\hline\n",
-  "\\end{tabular}\n",
-  "\\caption{Tabelle 2: Vergleich der Modelle}\n",
-  "\\end{table}\n"
+  "\\multirow{5}{*}{\\textbf{$p \\gg n$}} & ",
+  kable(S3_Tabelle, format = "latex", booktabs = TRUE, linesep = "", row.names = TRUE), " & ",
+  kable(S6_Tabelle, format = "latex", booktabs = TRUE, linesep = "", row.names = TRUE), " & ",
+  kable(S9_Tabelle, format = "latex", booktabs = TRUE, linesep = "", row.names = TRUE), " \\\\",
+  "\\hline",
+  "\\end{tabular}",
+  "\\end{center}",
+  "\\caption{Vergleich der Modelle}",
+  "\\end{table}"
 )
 
-# Ausgabe der Tabelle
-cat(table_content)
 ```
+
+\end{landscape}

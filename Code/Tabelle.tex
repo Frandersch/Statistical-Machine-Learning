@@ -90,26 +90,15 @@
 
 \title{Tabelle}
 \author{Franz Andersch \& Niklas Münz}
-\date{2024-08-21}
+\date{2024-08-22}
 
 \begin{document}
 \maketitle
 
-\begin{verbatim}
-## Warning: Paket 'gridExtra' wurde unter R Version 4.3.3 erstellt
-\end{verbatim}
+\begin{landscape}
 
-\begin{verbatim}
-## Warning: Paket 'ggplot2' wurde unter R Version 4.3.2 erstellt
-\end{verbatim}
-
-\begin{table}[h]
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-& \textbf{linear} & \textbf{polynomial} & \textbf{radial} \\
-\hline
-\multirow{5}{*}{\textbf{p << n}} & 
+\begin{table}[h] \begin{center} \begin{tabular}{|c|c|c|c|} \hline
+ & \textbf{linear} & \textbf{polynomial} & \textbf{radial} \\ \hline \multirow{5}{*}{\textbf{$p \ll n$}} &  
 \begin{tabular}{lrrr}
 \toprule
   & Accuracy & AUC & F..1..Score\\
@@ -120,7 +109,7 @@ SVM-R & 0.96 & 0.99 & 0.96\\
 LogR & 0.96 & 0.99 & 0.96\\
 K-NN & 0.58 & 0.60 & 0.58\\
 \bottomrule
-\end{tabular} & 
+\end{tabular}  &  
 \begin{tabular}{lrrr}
 \toprule
   & Accuracy & AUC & F\_1\_Score\\
@@ -131,7 +120,7 @@ SVM-R & 0.86 & 0.88 & 0.84\\
 LogR & 0.88 & 0.92 & 0.86\\
 K-NN & 0.66 & 0.62 & 0.67\\
 \bottomrule
-\end{tabular} & 
+\end{tabular}  &  
 \begin{tabular}{lrrr}
 \toprule
   & Accuracy & AUC & F\_1\_Score\\
@@ -142,9 +131,7 @@ SVM-R & 0.54 & 0.50 & 0.44\\
 LogR & 0.80 & 0.81 & 0.81\\
 K-NN & 0.62 & 0.58 & 0.51\\
 \bottomrule
-\end{tabular} \\
-\hline
-\multirow{5}{*}{\textbf{p = n}} & 
+\end{tabular}  \\ \hline \multirow{5}{*}{\textbf{$p \approx n$}} &  
 \begin{tabular}{lrrr}
 \toprule
   & Accuracy & AUC & F\_1\_Score\\
@@ -155,7 +142,7 @@ SVM-R & 0.70 & 0.76 & 0.69\\
 LogR & 0.69 & 0.74 & 0.69\\
 K-NN & 0.69 & 0.73 & 0.65\\
 \bottomrule
-\end{tabular} & 
+\end{tabular}  &  
 \begin{tabular}{lrrr}
 \toprule
   & Accuracy & AUC & F\_1\_Score\\
@@ -166,7 +153,7 @@ SVM-R & 0.56 & 0.53 & 0.39\\
 LogR & 0.64 & 0.56 & 0.67\\
 K-NN & 0.48 & 0.55 & 0.54\\
 \bottomrule
-\end{tabular} & 
+\end{tabular}  &  
 \begin{tabular}{lrrr}
 \toprule
   & Accuracy & AUC & F\_1\_Score\\
@@ -177,9 +164,7 @@ SVM-R & 0.50 & 0.50 & NaN\\
 LogR & 0.60 & 0.56 & 0.60\\
 K-NN & 0.64 & 0.61 & 0.62\\
 \bottomrule
-\end{tabular} \\
-\hline
-\multirow{5}{*}{\textbf{p >> n}} & 
+\end{tabular}  \\ \hline \multirow{5}{*}{\textbf{$p \gg n$}} &  
 \begin{tabular}{lrrr}
 \toprule
   & Accuracy & AUC & F\_1\_Score\\
@@ -190,7 +175,7 @@ SVM-R & 0.91 & 0.99 & 0.90\\
 LogR & 0.51 & 0.53 & 0.53\\
 K-NN & 0.98 & 0.98 & 0.98\\
 \bottomrule
-\end{tabular} & 
+\end{tabular}  &  
 \begin{tabular}{lrrr}
 \toprule
   & Accuracy & AUC & F\_1\_Score\\
@@ -201,7 +186,7 @@ SVM-R & 0.84 & 0.89 & 0.82\\
 LogR & 0.64 & 0.53 & 0.69\\
 K-NN & 0.80 & 0.80 & 0.83\\
 \bottomrule
-\end{tabular} & 
+\end{tabular}  &  
 \begin{tabular}{lrrr}
 \toprule
   & Accuracy & AUC & F\_1\_Score\\
@@ -212,11 +197,19 @@ SVM-R & 0.72 & 0.74 & 0.61\\
 LogR & 0.58 & 0.53 & 0.66\\
 K-NN & 0.88 & 0.88 & 0.89\\
 \bottomrule
-\end{tabular} \\
-\hline
-\end{tabular}
-\caption{Tabelle 2: Vergleich der Modelle}
-\end{table}
+\end{tabular}  \\ \hline \end{tabular} \end{center} \caption{Vergleich der Modelle} \end{table}
+
+\end{landscape}
+
+ad
+
+dsa dsa dsa sda sda dsa saddsa dsa
+
+das asd
+
+das
+
+das
 
 \printbibliography
 
