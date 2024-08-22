@@ -38,6 +38,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r child="Hypothesen/Hypothesen.Rmd"}
 
 ```
+\section{Ergebnisse}
+```{r child="Ergebnisse/Ergebnisse.Rmd"}
+
+```
 \newpage
 \addcontentsline{toc}{section}{Literatur}
 

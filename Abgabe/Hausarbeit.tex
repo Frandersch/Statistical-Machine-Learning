@@ -65,6 +65,7 @@
 \PassOptionsToPackage{a4paper,margin = 2.5cm}{geometry}
 \usepackage{geometry}
 \usepackage{float}
+\usepackage{enumitem}
 \newcommand{\bcenter}{\begin{center}}
 \newcommand{\ecenter}{\end{center}}
 \renewcommand{\contentsname}{Inhalt}
@@ -87,7 +88,7 @@
 
 \title{Hausarbeit}
 \author{Franz Andersch \& Niklas Münz}
-\date{2024-08-20}
+\date{2024-08-22}
 
 \begin{document}
 \maketitle
@@ -174,7 +175,7 @@ einer weiteren Variable \(y\), welche die eigenschaft hat, dass die den
 Wert 1 bei einem positiven und den Wert -1 bei einem negativen Sample
 annimmt, können diese zwei Beschränkungen zu einer zusammengefasst
 werden \begin{align}
-y(\overline{\beta}\cdot \overline{x}+\beta_0)\ge 1\label{eq:Nebenbedingung}
+y_i(\overline{\beta}\cdot \overline{x}_i+\beta_0)\ge 1\label{eq:Nebenbedingung}
 \end{align} Da das Verfahren auch maximum Margin Classifier gennant
 wird, gilt es jetzt noch eine Definition für den Margin also den Abstand
 zwischen den zwei Schranken zu finden, der schließlich maximiert werden
@@ -330,7 +331,7 @@ Wesentlichen aus einer Linearkombiantion von Punktprodukten aus dem
 Vektor \(x_u\) mit allen Trainingsvektoren \(x_i\) ergibt. Diese
 Punktprodukt kann als Ähnlichkeitsmaß zwischen dem neuen Datenpunkt und
 dem jeweiligen Trainingsdatenpunkt interpretiert werden. Es ist nun
-Möglich auf diese Produkte eine Funktion anzuwenden, welche die
+Möglich diese Produkte durch eine Funktion zu ersetzen, welche die
 Ähnlichkeiten von Datenpunkten anders bewertet. Diese sogenannte Kernel
 Funktion \(K(x_i,x_j)\) ermöglicht es eine flexiblere
 Entscheidungsgrenze zu implementieren. Der Vorteil ist dabei, dass die
@@ -363,15 +364,12 @@ finden. Die Grundlage ist der lineare Kernel, wobei dieser lediglich das
 Punktprodukt beschreibt, also praktisch genau das macht, was bei einer
 linearen Entscheidungsgrenze gemacht wird. Deweiteren gibt es den
 Polynomial Kernel. Dieser hat die Form \begin{align}
-  f(x_u)=\sum \alpha_i y_i K(x_i,x_u)+\beta_0
-\end{align}
-
-wobei \(d\) ein Integer \(>0\) ist. Die Verwendung von diesem Kernel
-führt dazu, dass die Entscheidungsgrenze sich ähnlich Verhält, wie als
-würde man zu Beginn eine Merkmalserweiterung mit Polynomen vom Grad
-\(d\) durchführen (siehe Abbildung \ref{fig:polykernel}. Eine weitere
-Kernel Funktion ist der Radial Basis Function Kernel(RBF) mit der Form
-\begin{align}
+ K(x_i,x_u)=(1+x_i\cdot x_u)^d
+\end{align} Die Verwendung von diesem Kernel führt dazu, dass die
+Entscheidungsgrenze sich ähnlich Verhält, wie als würde man zu Beginn
+eine Merkmalserweiterung mit Polynomen vom Grad \(d\) durchführen (siehe
+Abbildung \ref{fig:polykernel}. Eine weitere Kernel Funktion ist der
+Radial Basis Function Kernel(RBF) mit der Form \begin{align}
 K(x_i,x_u)=\exp\left(-\gamma ||x_i-x_u||^2\right)
 \end{align} Für diesen Kernel wird die quadrierte euklidische Distanz
 als Ähnlichkeitsmaß verwendet, was dazu führt, dass für diejenigen
@@ -490,22 +488,29 @@ Datensätze häufiger anzutreffen
 
 Die zweite Charakteristik ist der Datengenerierende Prozess. Da in
 dieser Arbeit SVMs im Vordergrund stehen und wir hier vor allem Zeigen
-wollen, wie SVMs funktionieren ist die Idee den DGP so aufzubauen, dass
-er der grundlegenden Idee der SVMs am ehesten Entspricht. Die
-Grundlegendeidee ist, im ersten Schritt eine Hyperplane, im
-\(p\)-Dimensionalen Raum, in einer bestimmte Form zu erstellen und
-anschließend auf jeweils einer Seite dieser Hyperplane \(n/2\) zufällige
-Punkte zu samplen, die die jeweilige Ausprägung in der Zielvariable
-repräsentieren.
+wollen, wie SVMs funktionieren, wird der DGP so aufgebaut, dass er der
+grundlegenden Idee der SVMs am ehesten Entspricht. Die Vorgehensweise
+ist, im ersten Schritt eine Hyperplane, im \(p\)-Dimensionalen Raum, in
+einer bestimmte Form zu erstellen und anschließend auf jeweils einer
+Seite dieser Hyperplane \(n/2\) zufällige Punkte zu samplen, die die
+jeweilige Ausprägung in der Zielvariable repräsentieren.
 
 Insgesammt gibt es auch hier wieder 3 Kategorien. Die erste sind linear
 getrennte Daten. Dafür wird eine lineare Hyperplane der Form
 \begin{align*}
 \beta_0+\beta_1 X_1+\beta_2 X_2 +...+\beta_p X_p=0
 \end{align*} mit zufälligen Koeffizienten erzeugt. Diese Daten sollen
-also den Annahmen entsprechen, die für SVMs mit linearem Kernel
-gelten.\newline In der zweiten Situation hat die Hyperplane eine
-quadratische Form: \begin{align*}
+also den Annahmen entsprechen, die für SVMs mit linearem Kernel gelten.
+Nachem für eine Beobachtung \(j\) zufällig ein Punkt auf der Ebene
+gesampelt wurde, wurde dieser andschließend verschoben. Die Verschiebung
+erfolgte über eine Skalierung des normierten Normalenvektors
+\(k\left(\frac{\overline{\beta}}{||\overline{\beta}||}\right)\). \(k\)
+ist dabei eine Zufallszahl mit Mittelwert \(\mu_k\) und Varianz
+\(\sigma^2_k\). Dieser Prozess wird \(n/2\) mal wiederholt für die eine
+Ausprägung der Zielvariable und dementsprechen \(n/2\) mal für die
+andere Ausprägung, dann aber mit \(-\mu_k\) als Mittelwert für \(k\).
+\newline In der zweiten Situation hat die Hyperplane eine quadratische
+Form: \begin{align*}
 \beta_0+\beta_1 X_1 + \beta_2 X_1^2+\beta_3 X_2+\beta_4 X_2^2+...+\beta_{2p-1}X_p+\beta_{2p}X_p^2=0
 \end{align*} diese Form der Trennung stellt also eine
 Merkmalserweiterung um quadratische Terme dar und funktioniert damit
@@ -556,9 +561,10 @@ abgetragen
 
 Zusätzlich soll nicht nur ein Vergleich zwischen der Performance der
 SVMS mit verschiedenen Kernel gemacht werden, sondern auch die
-Klassifikationsgüte der SVMs im Vergleich zu anderen gängigen
-Klassifikationsmethoden gezogen werden. Dafür werden Logistic Regression
-und k-nearest Neighbour als Vergleichsalgorithmen hinzugezogen.
+Unterschiede in der Klassifikationsgüte der SVMs zu anderen gängigen
+Klassifikationsmethoden gezeigt werden. Dafür werden Regularized
+Logistic Regression und k-nearest Neighbour als Vergleichsalgorithmen
+hinzugezogen.
 
 \section{Hypothesen}
 
@@ -568,11 +574,36 @@ abzuleiten. Vorab ist zu erwähnen, dass die Evaluation von
 Klassifikationsmethoden anhand synthetischer Datensätze in der Literatur
 begrenzt ist. Da für diese Arbeit die Form der Entscheidungsgrenze
 entscheidend ist, werden dennoch auschließlich Arbeiten mit
-synthetischen Datensätzen zu Rate gezogen.\newline Es konnte gezeigt
-werden, dass in einem Szenario, indem erheblich mehr Beobachtungen als
-Dimensionen und eine lineare Entscheidungsgrenze vorliegen (S1),
-deutliche Unterschiede zwischen SVM, k-NN und logistischer Regression
-bei der Diskriminationsfähigkeit auftreten
+synthetischen Datensätzen zu Rate gezogen.\newline Aufgrund dessen, dass
+der Datengenerierende Prozess hier so ausgearbeitet wurde, dass er mit
+den Annahmen der SVMs arbeitet, erwarten wir zuerst einmal eine bessere
+Performance der SVM Classifier im Vergleich zu den anderen Methoden.
+
+\begin{minipage}{0.9\linewidth}
+\begin{itemize}[leftmargin=0.1\linewidth]
+\item[\textbf{H1:}] Die SVM Classifier Performen über alle Datensituationen im Durchschnitt besser als die anderen Classifier
+\end{itemize}
+\end{minipage}
+
+Des Weiteren wurden in den einzelnen Kategorien des daten generierenden
+Prozesses die Entscheidungsgrenzen speziell auf verschiedene Kernels der
+SVMs zugeschnitten. Daher sollten SVMs mit linearem Kernel im Setting
+mit linearer Entscheidungsgrenze mindestens so gut oder besser als die
+restlichen Classifier performen. Gleiches gilt für SVMs mit polynomialen
+Kernel im Setting mit einer quadratischen Entscheidungsgrenze und
+radiale Kernel bei einer Hypershäre als Entscheidungsgrenze.
+
+\begin{minipage}{0.9\linewidth}
+\begin{itemize}[leftmargin=0.1\linewidth]
+\item[\textbf{H2:}] Die SVM Classifier mit dem Kernel, der für die jeweiligen DGP zugeschnitten ist sollten mindestens genauso gut oder besser Performen als die restlichen Classifier
+\end{itemize}
+\end{minipage}
+
+Es konnte weiterhin gezeigt werden, dass in einem Szenario, indem
+erheblich mehr Beobachtungen als Dimensionen und eine lineare
+Entscheidungsgrenze vorliegen (S1), deutliche Unterschiede zwischen SVM,
+k-NN und logistischer Regression bei der Diskriminationsfähigkeit
+auftreten
 \parencite{entezari-malekiComparisonClassificationMethods2009}. k-NN und
 lineare SVM zeigen AUC-Werte nahe 1 auf, was für eine nahezu perfekte
 Differenzierung der Klassen spricht. Die logistische Regression hingegen
@@ -602,24 +633,86 @@ behandelten Klassifikationsmethoden. Somit können nur eingeschränkte
 Schlussfolgerungen gezogen werden.
 
 Basierend auf den Ergebnissen der genannten Studien können folgende
-Schlussfolgerungen gezogen werden. Es ist anzunehmen, dass in
-niedrigdimensionalen Szenarien k-NN und SVM´s besser performen als eine
-logistische Regression. Jedoch ist zu vermuten, dass die Wahl des Kerns
-bei SVM´s einen großen Einfluss auf die Performance hat. So ist,
-basierend auf den mathematischen Grundlagen, anzunehmen, dass die SVM
-mit dem jeweils passenden Kern zu der vorliegenden Datensituation am
-besten performt. Da die SVM mit polynomialem und radialem Kern weitaus
-flexibler sind, werden diese voraussichtlich insgesamt betrachtet besser
-abschneiden als die SVM mit linearem Kern.\newline In hochdimensionalen
-Szenarien zeigt vermutlich die SVM mit polynomialem oder radialem Kern
-eine gute Performance, unabhängig von der Form der Entscheidungsgrenze,
-während die lineare SVM voraussichtlich weniger gut abschneiden wird. Es
-scheint so, dass auch k-NN und logistische Regression in
-hochdimensionalen Szenarien zumindest mittelmäßig abschneiden. Hier ist
-jedoch zu beachten, dass nur eine lineare Entscheidungsgrenze betrachtet
-wurde und in den Szenarien S8 und S9 andere Ergebnisse möglich sind.
-\newpage
+Schlussfolgerungen gezogen werden.
 
+\begin{minipage}{0.9\linewidth}
+\begin{itemize}[leftmargin=0.1\linewidth]
+\item[\textbf{H3:}] In niedrigdimensionalen Szenarien performen k-NN und SVM´s besser als eine logistische Regression.
+\end{itemize}
+\end{minipage}
+
+Jedoch ist zu vermuten, dass die Wahl des Kerns bei SVM´s einen großen
+Einfluss auf die Performance hat. So ist, basierend auf den
+mathematischen Grundlagen, anzunehmen, dass die SVM mit dem jeweils
+passenden Kern zu der vorliegenden Datensituation am besten performt. Da
+die SVM mit polynomialem und radialem Kern weitaus flexibler sind,
+werden diese voraussichtlich insgesamt betrachtet besser abschneiden als
+die SVM mit linearem Kern.\newline
+
+In hochdimensionalen Szenarien zeigt vermutlich die SVM mit polynomialem
+oder radialem Kern eine gute Performance, unabhängig von der Form der
+Entscheidungsgrenze, während die lineare SVM voraussichtlich weniger gut
+abschneiden wird. Es scheint so, dass auch k-NN und logistische
+Regression in hochdimensionalen Szenarien zumindest mittelmäßig
+abschneiden. Es ist aber auch bekannt, dass gerade die k-NN Methode in
+hochdimensionalen Settings schlechter performt
+\parencite{jamesIntroductionStatisticalLearning2021}. Hier ist jedoch zu
+beachten, dass nur eine lineare Entscheidungsgrenze betrachtet wurde und
+in den Szenarien S8 und S9 andere Ergebnisse möglich sind. Wir schließen
+Final daraus:
+
+\begin{minipage}{0.9\linewidth}
+\begin{itemize}[leftmargin=0.1\linewidth]
+\item[\textbf{H4:}] In hochdimensionalen Settings performen v.a. SVMs mit radialen und polynomialen Kernel besser als die anderen Klassifikationsmethoden
+\end{itemize}
+\end{minipage}
+\section{Ergebnisse}
+
+\subsection{Analyse}
+
+Bevor die Ergebnisse dargelegt werden, wird kurz auf die Vorgehensweise
+bei der Analyse eingegangen. In die Analyse werden fünf Modelle
+einbezogen: SVM mit linearem, polynomialem und radialem Kern, sowie
+regularisierte logistische Regression und k-nearest neighbours.\newline
+Vor dem erstellen der Modelle wird ein Tuning der Hyperparameter je
+Modell durchgeführt. Dafür wird die Bayesian Optimization Methode
+genutzt, welche ein iterativer Algorithmus ist. Hierbei werden die
+nächsten Evaluierungspunkte basierend auf zuvor beobachteten Ergebnissen
+bestimmt \parencite{yangHyperparameterOptimizationMachine2020}. Der
+Algorithmus basiert auf zwei Hauptkomponenten: einem Surrogatmodell und
+einer Akqusitionsfunktion. Das Surrogatmodell, wofür hier ein Gaussian
+Process genutzt wird, passt die bisher beobachteten Punkte an die
+Zielfunktion an. Die Akquisitionsfunktion wählt dann die nächsten Punkte
+aus, wobei ein Gleichgewicht zwischen der Erkundung neuer Bereiche und
+der Nutzung vielversprechender Regionen angestrebt wird. Dafür wird hier
+der Ansatz des Upper-Confidence-Bound genutzt, welcher obere
+Konfidenzgrenzen nutzt um den Verlust gegenüber der besten möglichen
+Entscheidung, während der Optimierung zu minimieren
+\parencite{snoekPracticalBayesianOptimization2012}. Die Bayesian
+Optimization wird genutzt, da sie eine schnelle Konvergenz für stetige
+Hyperparameter aufweist
+\parencite{yangHyperparameterOptimizationMachine2020}. Als
+Evaluierungskriterium wird die Genauigkeit der Modelle, welche durch den
+Anteil der korrekt klassifizierten Beobachtungen wiedergegeben wird,
+verwendet.\newline Basierend auf den Ergebnissen des Tuning werden die
+oben genannten Modelle erstellt. Daraufhin werden die Genauigkeit und
+die Receiver Operating Characteristic Kurve (ROC-Kurve) bzw. der Area
+Under The Curve Wert (AUC-Wert) für jedes Modell bestimmt. Die ROC-Kurve
+ist eine grafische Darstellung der Leistungsfähigkeit eines
+Klassifikationsmodells, wobei die Sensitivität gegen die Spezifität
+abgetragen wird \parencite{fawcettIntroductionROCAnalysis2006}. Die
+Sensitivität gibt den Anteil der korrekt als positiv (hier
+gleichbedeutend mit Klasse 1) klassifizierten Beobachtungen an während
+die Spezifität den Anteil der korrekt als negativ (hier gleichbedeutend
+mit Klasse 2) klassifizierten Beobachtungen angibt. Der AUC-Wert bezieht
+sich auf die Fläche unterhalb die Kurve und liegt somit im Intervall
+{[}0,1{]}, wobei ein Wert von 1 für eine perfekte Klassifikation
+spricht, während ein Wert von 0.5 für eine rein zufällige Zuordnung der
+Klassen spricht.
+
+\subsection{Auswertung}
+
+\newpage
 \addcontentsline{toc}{section}{Literatur}
 
 \printbibliography
