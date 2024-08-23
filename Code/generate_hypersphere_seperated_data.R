@@ -24,18 +24,10 @@ plot3d(df$x,df$y,df$z,col = group)
 
 #erweiterung in mehrere Dimensionen
 
-generate_observation <- function(n, distance, jitter = 0.5) {
-  #library(copula)
-  #myCop <- normalCopula(param = rep(correl,((n-1)*(n-2))/2), dim = n-1, dispstr = "un")
-  #paramMargins <- replicate(n-2, list(min = 0, max = pi), simplify = FALSE)
-  #paramMargins[[n-1]] <- list(min=0,max =2*pi)
-  #myMvd <- mvdc(copula = myCop, 
-  #              margins = rep("unif",n-1),
-  #              paramMargins = paramMargins)
-  #winkel <- as.vector(rMvdc(1,myMvd))
+generate_observation <- function(n, distance, jitter = 0.5,radius) {
   winkel <- runif(n - 1, 0, pi)
   winkel[n - 1] <- runif(1, 0, 2 * pi)
-  radius <- rnorm(1, distance, jitter)
+  radius <- radius
   x <- vector(mode = "numeric", length = n)
   
   for (i in 1:(n-1)) {
@@ -46,31 +38,31 @@ generate_observation <- function(n, distance, jitter = 0.5) {
     }
   }
   x[n] <- radius * prod(sin(winkel))
-  
+  x <- x+rnorm(1,distance,jitter)*(x/sqrt(sum(x^2)))
   return(x)
 }
 
-generate_subdatasets <- function(obs,variables,distance,jitter=0.2){
+generate_subdatasets <- function(obs,variables,distance,jitter=0.2,radius){
   dat <- matrix(0,nrow = obs,ncol = variables)
   for(i in 1:obs){
-    dat[i,] <- generate_observation(variables,distance,jitter = jitter)
+    dat[i,] <- generate_observation(variables,distance=distance,jitter = jitter,radius=radius)
   }
   return(as.data.frame(dat))
 }
 
-generate_dataset <- function(obs,variables,distance,jitter = 0.2){
-  group1 <- generate_subdatasets(obs = obs/2, variables = variables, distance = distance, jitter = jitter)
+generate_dataset <- function(obs,variables,distance,jitter = 0.2,radius){
+  group1 <- generate_subdatasets(obs = obs/2, variables = variables, distance = distance, jitter = jitter,radius = radius)
   group1_y <- rep(1, times = obs/2)
   group1 <- cbind(group1, y = as.factor(group1_y))
-  group2 <- generate_subdatasets(obs = obs/2, variables = variables, distance = (2 * distance), jitter = jitter)
+  group2 <- generate_subdatasets(obs = obs/2, variables = variables, distance = -distance, jitter = jitter,radius = radius)
   group2_y <- rep(2, times = obs/2)
   group2 <- cbind(group2, y = as.factor(group2_y))
   dataset <- rbind(group1, group2)
   dataset
 }
-
-S3_data_train <- generate_dataset(1000, 10, 1)
-S3_data_test <- generate_dataset(1000, 10, 1)
+#radius muss noch als letztes argument eingefügt werden, kann aber ein beliebiger positiver wert sein
+S3_data_train <- generate_dataset(1000, 10, 1,5)
+S3_data_test <- generate_dataset(1000, 10, 1,5)
 
 S6_data_train <- generate_dataset(50, 50, 1)
 S6_data_test <- generate_dataset(50, 50, 1)

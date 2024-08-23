@@ -35,7 +35,15 @@ generate_subdatasets <- function(obs,variables,distance,jitter,seed,coef_min=-10
   combinations<- xses%*%coefficients[1:(variables-1)]
   quadcombinations <- xses^2%*%coefficients[variables:(2*variables-2)]
   z <- combinations+quadcombinations+rep(coefficients[2+variables-1],obs)+rnorm(obs,distance,jitter)
-  return(as.data.frame(cbind(xses,z)))
+  datamat <- as.data.frame(cbind(xses,z))
+  normvectors <- matrix(0,nrow=obs,ncol=variables)
+  for(i in 1:obs){
+    for(j in 1:variables){
+      normvectors[i,j] <- coefficients[j]+coefficients[variables+j]*datamat[i,j]
+      
+    }
+  }
+  return()
 }
 
 generate_dataset <- function(obs,variables,distance,jitter,seed,scaling_factor=100,coef_min=-100,coef_max=100,center=0,range=3){
