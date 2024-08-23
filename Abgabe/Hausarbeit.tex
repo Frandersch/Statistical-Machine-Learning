@@ -93,7 +93,7 @@
 
 \title{Hausarbeit}
 \author{Franz Andersch \& Niklas Münz}
-\date{2024-08-22}
+\date{2024-08-23}
 
 \begin{document}
 \maketitle
@@ -122,7 +122,7 @@ einer solchen hyperplain lautet \begin{align}
 des Skalars \(\beta_0\) wird in Abbildung \ref{fig:Ebene} im zwei
 dimensionalen Fall dargestellt.
 
-\begin{figure}[h]
+\begin{figure}[htb]
     \centering
     \begin{minipage}{0.45\textwidth} 
         \centering
@@ -192,7 +192,7 @@ auf die finalen werte von \(\overline{\beta}\) und \(\beta_0\) haben
 werden. Sie werden \textbf{Support-Vektoren} genannt und geben den SVMs
 ihren Namen.
 
-\begin{figure}[h]
+\begin{figure}[htb]
 \centering
  \includegraphics[width=0.5\textwidth,trim=0.5cm 0.5cm 0.5cm 0.5cm]{Images/margin.pdf} 
         \caption{Abhängigkeit des Margins von den Support-Vektoren}
@@ -283,7 +283,7 @@ Nebenbedingung \begin{align}
 y_i(\beta \cdot \overline{x}_i-\beta_0)>1- \varepsilon_i \label{eq:nebbedsfm}
 \end{align}
 
-\begin{figure}[h]
+\begin{figure}[htb]
 \centering
 \includegraphics[width=0.5\textwidth,trim=0.5cm 0.5cm 0.5cm 0.5cm]{Images/slackvariable.pdf} 
         \caption{Funktion der Slack Variable}
@@ -348,7 +348,7 @@ berechnet: \begin{align}
   f(x_u)=\sum \alpha_i y_i K(x_i,x_u)+\beta_0
 \end{align}
 
-\begin{figure}[h]
+\begin{figure}[htb]
     \centering
     \begin{minipage}{0.45\textwidth} 
         \centering
@@ -386,7 +386,7 @@ könnte man selbst durch vorgeriges Erweitern des Merkmalsraums nicht das
 Ergebnis eines RBF Kernel replizieren und dies führt auch zu einer sehr
 flexiblen Entscheidungsgrenze (siehe Abbildung \ref{fig:radialkernel})\\
 
-\begin{figure}[H]
+\begin{figure}[htb]
     \centering
     \begin{minipage}{0.45\textwidth} 
         \centering
@@ -870,15 +870,6 @@ zeigt grafisch noch einmal den deutlichen Unterschied zwischen \(K-NN\),
 welcher nur etwas besser als eine reine Zufallsauswahl ist und den
 anderen vier Algorithmen, welche nahezu perfekt klassifizieren.
 
-\begin{figure}
-
-{\centering \includegraphics{Hausarbeit_files/figure-latex/S1ROC-1} 
-
-}
-
-\caption{ROC-Kurven Szenario 1}\label{fig:S1ROC}
-\end{figure}
-
 In den Datensituationen mit polynomialer Form der Entscheidungsgrenze
 ist die Leistungsfähigkeit aller Algorithmen grundsätzlich deutlich
 schlechter als in den zuvor beschriebenen Szenarien. Im Fall von
@@ -895,15 +886,6 @@ beiden Szenarien deutlich, dass kein Algorithmus gute Leistung
 zeigt.\newline Abbildung \ref{fig:S2ROC} zeigt die ROC-Kurven für
 Szenario 2. Hieraus wird erneut deutlich, dass sich kein Algorithmus von
 den anderen abheben kann, wobei alle eine mittelmäßige Leistung zeigen.
-
-\begin{figure}
-
-{\centering \includegraphics{Hausarbeit_files/figure-latex/S2ROC-1} 
-
-}
-
-\caption{ROC-Kurven Szenario 2}\label{fig:S2ROC}
-\end{figure}
 
 In den Datensituationen mit radialer Form der Entscheidungsgrenze ist
 für den Fall \(p \ll n\) eine eindeutige Unterscheidung zu treffen.
@@ -931,13 +913,27 @@ Linie, die eine ROC-Kurve einer reinen Zufallsauswahl beschreibt. Dies
 zeigt auf, dass sie kaum Fähigkeit aufweisen zwischen den Klassen zu
 unterscheiden.
 
-\begin{figure}
-
-{\centering \includegraphics{Hausarbeit_files/figure-latex/S3ROC-1} 
-
-}
-
-\caption{ROC-Kurven Szenario 3}\label{fig:S3ROC}
+\begin{figure}[htb]
+\begin{minipage}{0.48\linewidth}
+\centering
+\includegraphics{Ergebnisse_files/figure-latex/S1ROC-1.pdf}
+\caption{ROC-Kurven Szenario 1}
+\label{fig:S1ROC}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\linewidth}
+\centering
+\includegraphics{Ergebnisse_files/figure-latex/S2ROC-1.pdf}
+\caption{ROC-Kurven Szenario 2}
+\label{fig:S2ROC}
+\end{minipage}
+\vspace*{0.5cm}\newline
+\begin{minipage}{\linewidth}
+\centering
+\includegraphics[width=0.48\linewidth]{Ergebnisse_files/figure-latex/S3ROC-1.pdf}
+\caption{ROC-Kurven Szenario 3}
+\label{fig:S3ROC}
+\end{minipage}
 \end{figure}
 
 Zuletzt wird ein Vergleich der einzelnen Dimensionen über die drei

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.12.13)  22 AUG 2024 22:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.12.13)  23 AUG 2024 14:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1308,12 +1308,12 @@ l.105 \clearpage
 
 
 ]
-<Images/decision_boundary.pdf, id=45, 443.91447pt x 377.12794pt>
+<Images/decision_boundary.pdf, id=47, 443.91447pt x 377.12794pt>
 File: Images/decision_boundary.pdf Graphic file (type pdf)
 <use Images/decision_boundary.pdf>
 Package pdftex.def Info: Images/decision_boundary.pdf  used on input line 129.
 (pdftex.def)             Requested size: 211.38821pt x 177.40703pt.
-<Images/guttes.pdf, id=46, 444.41432pt x 377.12794pt>
+<Images/guttes.pdf, id=48, 444.41432pt x 377.12794pt>
 File: Images/guttes.pdf Graphic file (type pdf)
 <use Images/guttes.pdf>
 Package pdftex.def Info: Images/guttes.pdf  used on input line 135.
@@ -1330,29 +1330,26 @@ l.170 \end{align}
 {C:/Users/49152/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/
 Users/49152/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc} <./
 Images/decision_boundary.pdf> <./Images/guttes.pdf>]
-<Images/margin.pdf, id=86, 424.4136pt x 357.12723pt>
+<Images/margin.pdf, id=88, 424.4136pt x 357.12723pt>
 File: Images/margin.pdf Graphic file (type pdf)
 <use Images/margin.pdf>
 Package pdftex.def Info: Images/margin.pdf  used on input line 197.
 (pdftex.def)             Requested size: 234.87764pt x 194.96445pt.
 [2{C:/Users/49152/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.en
 c} <./Images/margin.pdf>]
-<Images/slackvariable.pdf, id=133, 444.45247pt x 377.12291pt>
+<Images/slackvariable.pdf, id=135, 444.45247pt x 377.12291pt>
 File: Images/slackvariable.pdf Graphic file (type pdf)
 <use Images/slackvariable.pdf>
 Package pdftex.def Info: Images/slackvariable.pdf  used on input line 288.
 (pdftex.def)             Requested size: 234.8816pt x 196.86601pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 [3] [4 <./Images/slackvariable.pdf>]
-<Images/nonlinearseperable.pdf, id=181, 444.45247pt x 377.12291pt>
+<Images/nonlinearseperable.pdf, id=183, 444.45247pt x 377.12291pt>
 File: Images/nonlinearseperable.pdf Graphic file (type pdf)
 <use Images/nonlinearseperable.pdf>
 Package pdftex.def Info: Images/nonlinearseperable.pdf  used on input line 355.
 
 (pdftex.def)             Requested size: 211.39536pt x 177.18102pt.
-<Images/featurexpansion.pdf, id=182, 325.5914pt x 253.59743pt>
+<Images/featurexpansion.pdf, id=184, 325.5914pt x 253.59743pt>
 File: Images/featurexpansion.pdf Graphic file (type pdf)
 <use Images/featurexpansion.pdf>
 Package pdftex.def Info: Images/featurexpansion.pdf  used on input line 361.
@@ -1362,17 +1359,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 379--388
 
  []
 
-<Images/ploynomial kernel.pdf, id=185, 444.45247pt x 377.12291pt>
+<Images/ploynomial kernel.pdf, id=187, 444.45247pt x 377.12291pt>
 File: Images/ploynomial kernel.pdf Graphic file (type pdf)
 <use Images/ploynomial kernel.pdf>
 Package pdftex.def Info: Images/ploynomial kernel.pdf  used on input line 393.
 (pdftex.def)             Requested size: 211.39536pt x 177.18102pt.
-<Images/radial_kernel.pdf, id=186, 444.42737pt x 377.11992pt>
+<Images/radial_kernel.pdf, id=188, 444.42737pt x 377.11992pt>
 File: Images/radial_kernel.pdf Graphic file (type pdf)
 <use Images/radial_kernel.pdf>
 Package pdftex.def Info: Images/radial_kernel.pdf  used on input line 399.
 (pdftex.def)             Requested size: 211.38893pt x 177.18481pt.
-[5 <./Images/nonlinearseperable.pdf> <./Images/featurexpansion.pdf>]
+
 Underfull \hbox (badness 10000) in paragraph at lines 405--413
 
  []
@@ -1381,26 +1378,27 @@ LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 4
 26.
 (C:\Users\49152\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [6{C:/Users/49152/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc
-} <./Images/ploynomial kernel.pdf> <./Images/radial_kernel.pdf>] [7] [8]
+) [5 <./Images/nonlinearseperable.pdf> <./Images/featurexpansion.pdf>] [6{C:/Us
+ers/49152/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc} <./Image
+s/ploynomial kernel.pdf> <./Images/radial_kernel.pdf>] [7] [8]
 Underfull \hbox (badness 10000) in paragraph at lines 649--656
 
  []
 
+
+LaTeX Warning: Command \" invalid in math mode on input line 715.
+
+
+LaTeX Warning: Command \" invalid in math mode on input line 715.
+
+
+LaTeX Warning: Command \" invalid in math mode on input line 717.
+
+
+LaTeX Warning: Command \" invalid in math mode on input line 717.
+
 [9]
 
-LaTeX Warning: Command \" invalid in math mode on input line 715.
-
-
-LaTeX Warning: Command \" invalid in math mode on input line 715.
-
-
-LaTeX Warning: Command \" invalid in math mode on input line 717.
-
-
-LaTeX Warning: Command \" invalid in math mode on input line 717.
-
-
 LaTeX Warning: Command \" invalid in math mode on input line 730.
 
 
@@ -1418,29 +1416,75 @@ LaTeX Warning: Command \" invalid in math mode on input line 735.
 
 LaTeX Warning: Command \" invalid in math mode on input line 735.
 
-<Hausarbeit_files/figure-latex/S1ROC-1.pdf, id=291, 465.74pt x 324.21124pt>
-File: Hausarbeit_files/figure-latex/S1ROC-1.pdf Graphic file (type pdf)
-<use Hausarbeit_files/figure-latex/S1ROC-1.pdf>
-Package pdftex.def Info: Hausarbeit_files/figure-latex/S1ROC-1.pdf  used on inp
-ut line 875.
-(pdftex.def)             Requested size: 465.75307pt x 324.22034pt.
-[10]
+[10] [11
 
-! LaTeX Error: Float(s) lost.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.880 \end{figure}
-                   
+]
+<Ergebnisse_files/figure-latex/S1ROC-1.pdf, id=315, 429.605pt x 288.07625pt>
+File: Ergebnisse_files/figure-latex/S1ROC-1.pdf Graphic file (type pdf)
+<use Ergebnisse_files/figure-latex/S1ROC-1.pdf>
+Package pdftex.def Info: Ergebnisse_files/figure-latex/S1ROC-1.pdf  used on inp
+ut line 919.
+(pdftex.def)             Requested size: 225.48044pt x 151.19833pt.
+<Ergebnisse_files/figure-latex/S2ROC-1.pdf, id=316, 429.605pt x 288.07625pt>
+File: Ergebnisse_files/figure-latex/S2ROC-1.pdf Graphic file (type pdf)
+<use Ergebnisse_files/figure-latex/S2ROC-1.pdf>
+Package pdftex.def Info: Ergebnisse_files/figure-latex/S2ROC-1.pdf  used on inp
+ut line 926.
+(pdftex.def)             Requested size: 225.48044pt x 151.19833pt.
+<Ergebnisse_files/figure-latex/S3ROC-1.pdf, id=317, 465.74pt x 324.21124pt>
+File: Ergebnisse_files/figure-latex/S3ROC-1.pdf Graphic file (type pdf)
+<use Ergebnisse_files/figure-latex/S3ROC-1.pdf>
+Package pdftex.def Info: Ergebnisse_files/figure-latex/S3ROC-1.pdf  used on inp
+ut line 933.
+(pdftex.def)             Requested size: 225.47855pt x 156.96028pt.
+[12
+
+
+ <./Ergebnisse_files/figure-latex/S1ROC-1.pdf> <./Ergebnisse_files/figure-latex
+/S2ROC-1.pdf> <./Ergebnisse_files/figure-latex/S3ROC-1.pdf>] [13] (Hausarbeit.a
+ux (titlepage.aux))
+ ***********
+LaTeX2e <2023-11-01>
+L3 programming layer <2023-11-09>
+ ***********
+Package logreq Info: Writing requests to 'Hausarbeit.run.xml'.
+\openout1 = `Hausarbeit.run.xml'.
+
+ ) 
 Here is how much of TeX's memory you used:
- 34552 strings out of 474586
- 656051 string characters out of 5745680
- 1946558 words of memory out of 5000000
- 55951 multiletter control sequences out of 15000+600000
- 623266 words of font info for 152 fonts, out of 8000000 for 9000
+ 34673 strings out of 474586
+ 659445 string characters out of 5745680
+ 1955558 words of memory out of 5000000
+ 56039 multiletter control sequences out of 15000+600000
+ 628782 words of font info for 163 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  84i,16n,87p,1743b,3227s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/49152/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmmi10.pfb><C:/Users/49152/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmmi12.pfb><C:/Users/49152/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/amsfonts/cm/cmmib10.pfb><C:/Users/49152/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/49152/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/49152/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/49152/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/49152/A
+ppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/49152/A
+ppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/49152/A
+ppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/49152/A
+ppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/49152/A
+ppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi5.pfb><C:/Users/49152/Ap
+pData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Users/49152/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/49152/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/49152/AppDa
+ta/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr5.pfb><C:/Users/49152/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/49152/AppData/L
+ocal/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/49152/AppData/L
+ocal/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/49152/AppData/L
+ocal/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/49152/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Hausarbeit.pdf (15 pages, 578783 bytes).
+PDF statistics:
+ 499 PDF objects out of 1000 (max. 8388607)
+ 76 named destinations out of 1000 (max. 500000)
+ 41129 words of extra memory for PDF output out of 42996 (max. 10000000)
 
-!  ==> Fatal error occurred, no output PDF file produced!

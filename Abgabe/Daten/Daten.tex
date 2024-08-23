@@ -87,7 +87,7 @@
 
 \title{Zielsetzung und Datengenerierung}
 \author{Franz Andersch \& Niklas Münz}
-\date{2024-08-21}
+\date{2024-08-23}
 
 \begin{document}
 \maketitle
@@ -103,25 +103,26 @@ mehr Beobachtungen als Variablen gibt, also \(n \gg p\). Ein solches
 Datenszenario kann z.B. im Kontext des Zensus auftreten, in dem eine
 große Anzahl an Personen befragt wird, aber die Vorgabe besteht, dass
 die Bürger nicht zu stark belastet werden sollen, weshalb nur einige
-wenige Kernfragen gestellt werden. Das zweite Szenario stellt Datensätze
-vor die etwa gleich viele Beobachtung wie Variablen haben
-\(n \approx p\). Ein solches Szenario kann in vielen Kontexten
-auftreten. Das letzte Szenario behandelt dann entsprechend den Fall
-\(n \ll p\). Dies tritt oft im Kontext von Datenerhebungen im
-medizinischen Bereich auf, da sehr viele Erhebungen zu kostspielig
-wären. Auch im Bereich des Natural Language Processing sind solche
-Datensätze häufiger anzutreffen
-\parencite{scholzComparisonClassificationMethods2021}.
+wenige Kernfragen gestellt werden. In diesem Fall wurde für \(n=1000\)
+Beobachtungen und \(p=10\) Variablen generiert. Das zweite Szenario
+stellt Datensätze vor die etwa gleich viele Beobachtung wie Variablen
+haben \(n \approx p\). Ein solches Szenario kann in vielen Kontexten
+auftreten. Für dieses Szenario sind die Dimensionen \(n=p=50\). Das
+letzte Szenario behandelt dann entsprechend den Fall \(n \ll p\). Dies
+tritt oft im Kontext von Datenerhebungen im medizinischen Bereich auf,
+da sehr viele Erhebungen zu kostspielig wären. Auch im Bereich des
+Natural Language Processing sind solche Datensätze häufiger anzutreffen
+\parencite{scholzComparisonClassificationMethods2021}. Die Werte die
+dafür angenommen wurden sind \(p=200\) und \(n=50\).
 
 Die zweite Charakteristik ist der Datengenerierende Prozess. Da in
 dieser Arbeit SVMs im Vordergrund stehen und wir hier vor allem Zeigen
-wollen, wie SVMs funktionieren ist die Idee den DGP so aufzubauen, dass
-er der grundlegenden Idee der SVMs am ehesten Entspricht. Die
-Grundlegendeidee ist, im ersten Schritt eine Hyperplane, im
-\(p\)-Dimensionalen Raum, in einer bestimmte Form zu erstellen und
-anschließend auf jeweils einer Seite dieser Hyperplane \(n/2\) zufällige
-Punkte zu samplen, die die jeweilige Ausprägung in der Zielvariable
-repräsentieren.
+wollen, wie SVMs funktionieren, wird der DGP so aufgebaut, dass er der
+grundlegenden Idee der SVMs am ehesten Entspricht. Die Vorgehensweise
+ist, im ersten Schritt eine Hyperplane, im \(p\)-Dimensionalen Raum, in
+einer bestimmte Form zu erstellen und anschließend auf jeweils einer
+Seite dieser Hyperplane \(n/2\) zufällige Punkte zu samplen, die die
+jeweilige Ausprägung in der Zielvariable repräsentieren.
 
 Insgesammt gibt es auch hier wieder 3 Kategorien. Die erste sind linear
 getrennte Daten. Dafür wird eine lineare Hyperplane der Form
@@ -183,7 +184,7 @@ abgetragen
  \hline
 \end{tabular}
 \end{center}
-\caption{Datensituationen}
+\caption{Datenszenarien}
 \label{tab:datensituationen}
 \end{table}
 
