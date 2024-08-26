@@ -80,7 +80,7 @@
 \fi
 \usepackage[]{biblatex}
 \addbibresource{Literatur.bib}
-\usepackage{bookmark}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
@@ -91,7 +91,7 @@
 
 \title{Ergebnisse}
 \author{Franz Andersch \& Niklas Münz}
-\date{2024-08-23}
+\date{2024-08-26}
 
 \begin{document}
 \maketitle
@@ -176,99 +176,99 @@ jeweiligen Datensituation.\newline \afterpage{
 \toprule
   & ACC & AUC & F1 & Rang\\
 \midrule
-SVM-L & 0.956 & 0.991 & 0.956 & 4\\
-SVM-P & 0.956 & 0.991 & 0.956 & 3\\
-SVM-R & 0.961 & 0.991 & 0.961 & 1\\
-LogR & 0.957 & 0.992 & 0.957 & 2\\
-K-NN & 0.582 & 0.599 & 0.582 & 5\\
+SVM-L & 0.964 & 0.991 & 0.964 & 2\\
+SVM-P & 0.964 & 0.991 & 0.964 & 2\\
+SVM-R & 0.961 & 0.990 & 0.961 & 4\\
+LogR & 0.965 & 0.991 & 0.965 & 1\\
+K-NN & 0.571 & 0.600 & 0.567 & 5\\
 \bottomrule
 \end{tabular}  &  
 \begin{tabular}{lrrrr}
 \toprule
   & ACC & AUC & F1 & Rang\\
 \midrule
-SVM-L & 0.665 & 0.728 & 0.659 & 5\\
-SVM-P & 0.674 & 0.729 & 0.671 & 4\\
-SVM-R & 0.704 & 0.759 & 0.690 & 1\\
-LogR & 0.687 & 0.740 & 0.687 & 2\\
-K-NN & 0.691 & 0.731 & 0.657 & 3\\
+SVM-L & 0.759 & 0.802 & 0.752 & 4\\
+SVM-P & 0.764 & 0.802 & 0.756 & 2\\
+SVM-R & 0.904 & 0.972 & 0.904 & 1\\
+LogR & 0.762 & 0.802 & 0.751 & 3\\
+K-NN & 0.756 & 0.800 & 0.756 & 5\\
 \bottomrule
 \end{tabular}  &  
 \begin{tabular}{lrrrr}
 \toprule
   & ACC & AUC & F1 & Rang\\
 \midrule
-SVM-L & 0.525 & 0.532 & 0.620 & 4\\
-SVM-P & 1.000 & 1.000 & 1.000 & 1\\
-SVM-R & 0.913 & 0.994 & 0.905 & 3\\
-LogR & 0.506 & 0.530 & 0.532 & 5\\
-K-NN & 0.978 & 0.978 & 0.978 & 2\\
+SVM-L & 0.497 & 0.495 & 0.504 & 5\\
+SVM-P & 0.926 & 0.981 & 0.926 & 1\\
+SVM-R & 0.792 & 0.888 & 0.801 & 2\\
+LogR & 0.500 & 0.500 & 0.667 & 4\\
+K-NN & 0.687 & 0.749 & 0.657 & 3\\
 \bottomrule
 \end{tabular}  \\ \hline \multirow{5}{*}{\textbf{$p \approx n$}} &  
 \begin{tabular}{lrrrr}
 \toprule
   & ACC & AUC & F1 & Rang\\
 \midrule
-SVM-L & 0.82 & 0.869 & 0.816 & 3\\
-SVM-P & 0.82 & 0.869 & 0.816 & 3\\
-SVM-R & 0.86 & 0.875 & 0.844 & 2\\
-LogR & 0.88 & 0.918 & 0.864 & 1\\
-K-NN & 0.66 & 0.622 & 0.667 & 5\\
+SVM-L & 0.80 & 0.851 & 0.783 & 3\\
+SVM-P & 0.80 & 0.851 & 0.783 & 3\\
+SVM-R & 0.86 & 0.885 & 0.851 & 1\\
+LogR & 0.80 & 0.858 & 0.783 & 2\\
+K-NN & 0.70 & 0.698 & 0.681 & 5\\
 \bottomrule
 \end{tabular}  &  
 \begin{tabular}{lrrrr}
 \toprule
   & ACC & AUC & F1 & Rang\\
 \midrule
-SVM-L & 0.50 & 0.504 & 0.545 & 4\\
-SVM-P & 0.58 & 0.525 & 0.571 & 3\\
-SVM-R & 0.56 & 0.530 & 0.389 & 5\\
-LogR & 0.64 & 0.563 & 0.667 & 1\\
-K-NN & 0.56 & 0.552 & 0.577 & 2\\
+SVM-L & 0.60 & 0.590 & 0.524 & 3\\
+SVM-P & 0.60 & 0.590 & 0.524 & 3\\
+SVM-R & 0.60 & 0.586 & 0.545 & 2\\
+LogR & 0.56 & 0.437 & 0.500 & 5\\
+K-NN & 0.62 & 0.729 & 0.642 & 1\\
 \bottomrule
 \end{tabular}  &  
 \begin{tabular}{lrrrr}
 \toprule
   & ACC & AUC & F1 & Rang\\
 \midrule
-SVM-L & 0.68 & 0.605 & 0.724 & 4\\
-SVM-P & 0.84 & 0.912 & 0.852 & 1\\
-SVM-R & 0.84 & 0.886 & 0.818 & 2\\
-LogR & 0.64 & 0.526 & 0.690 & 5\\
-K-NN & 0.80 & 0.800 & 0.833 & 3\\
+SVM-L & 0.58 & 0.531 & 0.462 & 5\\
+SVM-P & 0.84 & 0.830 & 0.826 & 1\\
+SVM-R & 0.74 & 0.889 & 0.794 & 2\\
+LogR & 0.58 & 0.699 & 0.364 & 4\\
+K-NN & 0.80 & 0.800 & 0.762 & 3\\
 \bottomrule
 \end{tabular}  \\ \hline \multirow{5}{*}{\textbf{$p \gg n$}} &  
 \begin{tabular}{lrrrr}
 \toprule
   & ACC & AUC & F1 & Rang\\
 \midrule
-SVM-L & 0.72 & 0.786 & 0.708 & 3\\
-SVM-P & 0.74 & 0.792 & 0.735 & 2\\
-SVM-R & 0.54 & 0.500 & 0.439 & 5\\
-LogR & 0.80 & 0.814 & 0.808 & 1\\
-K-NN & 0.62 & 0.584 & 0.513 & 4\\
+SVM-L & 0.66 & 0.725 & 0.653 & 4\\
+SVM-P & 0.70 & 0.750 & 0.681 & 3\\
+SVM-R & 0.64 & 0.500 & 0.609 & 5\\
+LogR & 0.72 & 0.754 & 0.741 & 2\\
+K-NN & 0.80 & 0.866 & 0.808 & 1\\
 \bottomrule
 \end{tabular}  &  
 \begin{tabular}{lrrrr}
 \toprule
   & ACC & AUC & F1 & Rang\\
 \midrule
-SVM-L & 0.62 & 0.574 & 0.612 & 1\\
-SVM-P & 0.62 & 0.574 & 0.612 & 1\\
-SVM-R & 0.50 & 0.500 & NaN & 5\\
-LogR & 0.60 & 0.562 & 0.600 & 3\\
-K-NN & 0.50 & 0.612 & 0.490 & 4\\
+SVM-L & 0.48 & 0.485 & 0.480 & 4\\
+SVM-P & 0.50 & 0.517 & NaN & 5\\
+SVM-R & 0.56 & 0.500 & 0.450 & 3\\
+LogR & 0.64 & 0.642 & 0.654 & 2\\
+K-NN & 0.70 & 0.700 & 0.706 & 1\\
 \bottomrule
 \end{tabular}  &  
 \begin{tabular}{lrrrr}
 \toprule
   & ACC & AUC & F1 & Rang\\
 \midrule
-SVM-L & 0.56 & 0.504 & 0.633 & 5\\
-SVM-P & 0.72 & 0.882 & 0.774 & 2\\
-SVM-R & 0.72 & 0.744 & 0.611 & 3\\
-LogR & 0.58 & 0.530 & 0.656 & 4\\
-K-NN & 0.88 & 0.880 & 0.893 & 1\\
+SVM-L & 0.50 & 0.570 & 0.390 & 4\\
+SVM-P & 0.76 & 0.726 & 0.750 & 1\\
+SVM-R & 0.66 & 0.757 & 0.738 & 3\\
+LogR & 0.54 & 0.538 & 0.343 & 5\\
+K-NN & 0.76 & 0.760 & 0.700 & 2\\
 \bottomrule
 \end{tabular}  \\ \hline \end{tabular} \caption{Vergleich der Modelle} \label{tab:TabVergleich} \end{table}
 

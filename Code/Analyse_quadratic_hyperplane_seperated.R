@@ -33,8 +33,6 @@ S2_opt_param_linear <- BayesianOptimization(
   acq = "ucb",
   verbose = FALSE
 )
-# kein tuning möglich, da kein optimaler Parameter vorhanden -> default Werte
-S2_opt_param_linear <- list(Best_Par = data.frame(cost = 1))
 
 S2_tune_polynomial <- function(cost, gamma, degree) {
   model <- svm(y ~ ., data = S2_data_train, kernel = "polynomial", cost = cost, gamma = gamma, degree = degree)
@@ -147,16 +145,6 @@ S2_accuracy_logR <- sum(diag(S2_confusion_matrix_logR))/sum(S2_confusion_matrix_
 S2_confusion_matrix_k_NN <- table(S2_k_NN, S2_data_test$y)
 S2_accuracy_k_NN <- sum(diag(S2_confusion_matrix_k_NN))/sum(S2_confusion_matrix_k_NN)
 
-# S2_Accuracy <- data.frame(linear = c(as.character(round(S2_accuracy_linear, 4)), as.character(round(S2_opt_param_linear$Best_Par["cost"], 4)), "/", "/", "/", "/", "/"),
-#                           polynomial = c(as.character(round(S2_accuracy_polynomial, 4)), as.character(round(S2_opt_param_polynomial$Best_Par["cost"], 4)), as.character(round(S2_opt_param_polynomial$Best_Par["gamma"], 4)), as.character(round(S2_opt_param_polynomial$Best_Par["degree"], 4)), "/", "/", "/"),
-#                           radial = c(as.character(round(S2_accuracy_radial, 4)), as.character(round(S2_opt_param_radial$Best_Par["cost"], 4)), as.character(round(S2_opt_param_radial$Best_Par["gamma"], 4)), "/", "/", "/", "/"),
-#                           logR = c(as.character(round(S2_accuracy_logR, 4)), "/", "/", "/", as.character(round(S2_opt_param_logR$Best_Par["alpha"], 4)), as.character(round(S2_opt_param_logR$Best_Par["lambda"], 4)), "/"),
-#                           k_NN = c(as.character(round(S2_accuracy_k_NN, 4)), "/", "/", "/", "/", "/", as.character(round(S2_opt_param_k_NN$Best_Par["k"], 4))),
-#                           row.names = c("Accuracy", "Cost", "Gamma", "Degree", "Alpha", "Lambda", "K"))
-# 
-# S2_Accuracy_Tabelle <- tableGrob(S2_Accuracy)
-# grid.arrange(S2_Accuracy_Tabelle)
-
 # F1-Score
 
 S2_F1_linear <- 2/(1/(S2_confusion_matrix_linear[1, 1]/sum(S2_confusion_matrix_linear[1, ])) + 1/(S2_confusion_matrix_linear[1, 1]/sum(S2_confusion_matrix_linear[, 1])))
@@ -198,15 +186,15 @@ S2_roc_k_NN <- roc(S2_data_test$y, S2_prediction_probs_k_NN, levels = rev(levels
 #speichern der roc-Daten um plot im Rmd ausführen zu können
 save(S2_roc_linear, S2_roc_polynomial, S2_roc_radial, S2_roc_logR, S2_roc_k_NN, file = "Code/ROC/S2_roc.RData")
 
-plot(S2_roc_linear, col = "blue", main = "ROC-Kurven Szenario 2")
-plot(S2_roc_polynomial, col = "red", add = TRUE)
-plot(S2_roc_radial, col = "green", add = TRUE)
-plot(S2_roc_logR, col = "violet", add = TRUE)
-plot(S2_roc_k_NN, col = "orange", add = TRUE)
-legend("bottomright",
-       legend = c(paste("linear (AUC:", round(auc(S2_roc_linear), 3), ")"), paste("polynomial (AUC:", round(auc(S2_roc_polynomial), 3), ")"), paste("radial (AUC:", round(auc(S2_roc_radial), 3), ")"), paste("logR (AUC:", round(auc(S2_roc_logR), 3), ")"), paste("k_NN (AUC:", round(auc(S2_roc_k_NN), 3), ")")),
-       col = c("blue", "red", "green", "violet", "orange"),
-       lwd = 2)
+# plot(S2_roc_linear, col = "blue", main = "ROC-Kurven Szenario 2")
+# plot(S2_roc_polynomial, col = "red", add = TRUE)
+# plot(S2_roc_radial, col = "green", add = TRUE)
+# plot(S2_roc_logR, col = "violet", add = TRUE)
+# plot(S2_roc_k_NN, col = "orange", add = TRUE)
+# legend("bottomright",
+#        legend = c(paste("linear (AUC:", round(auc(S2_roc_linear), 3), ")"), paste("polynomial (AUC:", round(auc(S2_roc_polynomial), 3), ")"), paste("radial (AUC:", round(auc(S2_roc_radial), 3), ")"), paste("logR (AUC:", round(auc(S2_roc_logR), 3), ")"), paste("k_NN (AUC:", round(auc(S2_roc_k_NN), 3), ")")),
+#        col = c("blue", "red", "green", "violet", "orange"),
+#        lwd = 2)
 
 ## Szenario 5: p = n (p = 50, n = 50)
 
@@ -349,16 +337,6 @@ S5_accuracy_logR <- sum(diag(S5_confusion_matrix_logR))/sum(S5_confusion_matrix_
 S5_confusion_matrix_k_NN <- table(S5_k_NN, S5_data_test$y)
 S5_accuracy_k_NN <- sum(diag(S5_confusion_matrix_k_NN))/sum(S5_confusion_matrix_k_NN)
 
-# S5_Accuracy <- data.frame(linear = c(as.character(round(S5_accuracy_linear, 4)), "no opt.", "/", "/", "/", "/", "/"),
-#                           polynomial = c(as.character(round(S5_accuracy_polynomial, 4)), as.character(round(S5_opt_param_polynomial$Best_Par["cost"], 4)), as.character(round(S5_opt_param_polynomial$Best_Par["gamma"], 4)), as.character(round(S5_opt_param_polynomial$Best_Par["degree"], 4)), "/", "/", "/"),
-#                           radial = c(as.character(round(S5_accuracy_radial, 4)), as.character(round(S5_opt_param_radial$Best_Par["cost"], 4)), as.character(round(S5_opt_param_radial$Best_Par["gamma"], 4)), "/", "/", "/", "/"),
-#                           logR = c(as.character(round(S5_accuracy_logR, 4)), "/", "/", "/", as.character(round(S5_opt_param_logR$Best_Par["alpha"], 4)), as.character(round(S5_opt_param_logR$Best_Par["lambda"], 4)), "/"),
-#                           k_NN = c(as.character(round(S5_accuracy_k_NN, 4)), "/", "/", "/", "/", "/", as.character(round(S5_opt_param_k_NN$Best_Par["k"], 4))),
-#                           row.names = c("Accuracy", "Cost", "Gamma", "Degree", "Alpha", "Lambda", "K"))
-# 
-# S5_Accuracy_Tabelle <- tableGrob(S5_Accuracy)
-# grid.arrange(S5_Accuracy_Tabelle)
-
 # F1-Score
 
 S5_F1_linear <- 2/(1/(S5_confusion_matrix_linear[1, 1]/sum(S5_confusion_matrix_linear[1, ])) + 1/(S5_confusion_matrix_linear[1, 1]/sum(S5_confusion_matrix_linear[, 1])))
@@ -397,15 +375,15 @@ S5_prediction_probs_k_NN <- attr(S5_k_NN_probs, "prob")
 S5_prediction_probs_k_NN <- ifelse(S5_k_NN_probs == levels(S5_data_train$y)[1], S5_prediction_probs_k_NN, 1 - S5_prediction_probs_k_NN)
 S5_roc_k_NN <- roc(S5_data_test$y, S5_prediction_probs_k_NN, levels = rev(levels(S5_data_test$y)))
 
-plot(S5_roc_linear, col = "blue", main = "ROC-Kurven Szenario 5")
-plot(S5_roc_polynomial, col = "red", add = TRUE)
-plot(S5_roc_radial, col = "green", add = TRUE)
-plot(S5_roc_logR, col = "violet", add = TRUE)
-plot(S5_roc_k_NN, col = "orange", add = TRUE)
-legend("bottomright",
-       legend = c(paste("linear (AUC:", auc(S5_roc_linear), ")"), paste("polynomial (AUC:", auc(S5_roc_polynomial), ")"), paste("radial (AUC:", auc(S5_roc_radial), ")"), paste("logR (AUC:", auc(S5_roc_logR), ")"), paste("k_NN (AUC:", auc(S5_roc_k_NN), ")")),
-       col = c("blue", "red", "green", "violet", "orange"),
-       lwd = 2)
+# plot(S5_roc_linear, col = "blue", main = "ROC-Kurven Szenario 5")
+# plot(S5_roc_polynomial, col = "red", add = TRUE)
+# plot(S5_roc_radial, col = "green", add = TRUE)
+# plot(S5_roc_logR, col = "violet", add = TRUE)
+# plot(S5_roc_k_NN, col = "orange", add = TRUE)
+# legend("bottomright",
+#        legend = c(paste("linear (AUC:", auc(S5_roc_linear), ")"), paste("polynomial (AUC:", auc(S5_roc_polynomial), ")"), paste("radial (AUC:", auc(S5_roc_radial), ")"), paste("logR (AUC:", auc(S5_roc_logR), ")"), paste("k_NN (AUC:", auc(S5_roc_k_NN), ")")),
+#        col = c("blue", "red", "green", "violet", "orange"),
+#        lwd = 2)
 
 ## Szenario 8: p >> n (p = 200, n = 50)
 
@@ -548,16 +526,6 @@ S8_accuracy_logR <- sum(diag(S8_confusion_matrix_logR))/sum(S8_confusion_matrix_
 
 S8_confusion_matrix_k_NN <- table(S8_k_NN, S8_data_test$y)
 S8_accuracy_k_NN <- sum(diag(S8_confusion_matrix_k_NN))/sum(S8_confusion_matrix_k_NN)
-# 
-# S8_Accuracy <- data.frame(linear = c(as.character(round(S8_accuracy_linear, 4)), "no opt.", "/", "/", "/", "/", "/"),
-#                           polynomial = c(as.character(round(S8_accuracy_polynomial, 4)), as.character(round(S8_opt_param_polynomial$Best_Par["cost"], 4)), as.character(round(S8_opt_param_polynomial$Best_Par["gamma"], 4)), as.character(round(S8_opt_param_polynomial$Best_Par["degree"], 4)), "/", "/", "/"),
-#                           radial = c(as.character(round(S8_accuracy_radial, 4)), as.character(round(S8_opt_param_radial$Best_Par["cost"], 4)), as.character(round(S8_opt_param_radial$Best_Par["gamma"], 4)), "/", "/", "/", "/"),
-#                           logR = c(as.character(round(S8_accuracy_logR, 4)), "/", "/", "/", as.character(round(S8_opt_param_logR$Best_Par["alpha"], 4)), as.character(round(S8_opt_param_logR$Best_Par["lambda"], 4)), "/"),
-#                           k_NN = c(as.character(round(S8_accuracy_k_NN, 4)), "/", "/", "/", "/", "/", as.character(round(S8_opt_param_k_NN$Best_Par["k"], 4))),
-#                           row.names = c("Accuracy", "Cost", "Gamma", "Degree", "Alpha", "Lambda", "K"))
-# 
-# S8_Accuracy_Tabelle <- tableGrob(S8_Accuracy)
-# grid.arrange(S8_Accuracy_Tabelle)
 
 # F1-Score
 
@@ -597,15 +565,15 @@ S8_prediction_probs_k_NN <- attr(S8_k_NN_probs, "prob")
 S8_prediction_probs_k_NN <- ifelse(S8_k_NN_probs == levels(S8_data_train$y)[1], S8_prediction_probs_k_NN, 1 - S8_prediction_probs_k_NN)
 S8_roc_k_NN <- roc(S8_data_test$y, S8_prediction_probs_k_NN, levels = rev(levels(S8_data_test$y)))
 
-plot(S8_roc_linear, col = "blue", main = "ROC-Kurven Szenario 8")
-plot(S8_roc_polynomial, col = "red", add = TRUE)
-plot(S8_roc_radial, col = "green", add = TRUE)
-plot(S8_roc_logR, col = "violet", add = TRUE)
-plot(S8_roc_k_NN, col = "orange", add = TRUE)
-legend("bottomright",
-       legend = c(paste("linear (AUC:", auc(S8_roc_linear), ")"), paste("polynomial (AUC:", auc(S8_roc_polynomial), ")"), paste("radial (AUC:", auc(S8_roc_radial), ")"), paste("logR (AUC:", auc(S8_roc_logR), ")"), paste("k_NN (AUC:", auc(S8_roc_k_NN), ")")),
-       col = c("blue", "red", "green", "violet", "orange"),
-       lwd = 2)
+# plot(S8_roc_linear, col = "blue", main = "ROC-Kurven Szenario 8")
+# plot(S8_roc_polynomial, col = "red", add = TRUE)
+# plot(S8_roc_radial, col = "green", add = TRUE)
+# plot(S8_roc_logR, col = "violet", add = TRUE)
+# plot(S8_roc_k_NN, col = "orange", add = TRUE)
+# legend("bottomright",
+#        legend = c(paste("linear (AUC:", auc(S8_roc_linear), ")"), paste("polynomial (AUC:", auc(S8_roc_polynomial), ")"), paste("radial (AUC:", auc(S8_roc_radial), ")"), paste("logR (AUC:", auc(S8_roc_logR), ")"), paste("k_NN (AUC:", auc(S8_roc_k_NN), ")")),
+#        col = c("blue", "red", "green", "violet", "orange"),
+#        lwd = 2)
 
 # erstellen der Einzeltabellen
 

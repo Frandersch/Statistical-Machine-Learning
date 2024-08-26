@@ -37,8 +37,6 @@ generate_subdatasets <- function(obs,variables,distance,jitter,seed,coefficients
   as.data.frame(cbind(xses,z))
 }
 
-generate_subdatasets(1000, 10, 1000, 500, 1000, coefficients = S1_coefficients)
-
 generate_dataset <- function(obs,variables,distance,jitter,seed1,seed2,coefficients,center=0,range=3){
   group1 <- generate_subdatasets(obs = obs/2, variables = variables, distance = distance, jitter = jitter, seed = seed1,coefficients=coefficients,center=center,range=range)
   group1_y <- rep(1, times = obs/2)
@@ -50,25 +48,20 @@ generate_dataset <- function(obs,variables,distance,jitter,seed1,seed2,coefficie
   dataset
 }
 
-
-train <- generate_dataset(1000, 3, 1000, 500, 1000, 2000, S2_coefficients)
-test <- generate_dataset(100, 10, 20, 2, 3000, 4000)
-plot3d(train$V1, train$V2, train$V3, col = train$y)
-
 set.seed(100)
 S2_coefficients <- runif(2*10-1,-100,100)
 S2_data_train <- generate_dataset(obs = 1000, variables = 10, distance = 1000, jitter = 500, seed1 = 1000, seed2 = 2000, coefficients = S2_coefficients)
 S2_data_test <- generate_dataset(obs = 1000, variables = 10, distance = 1000, jitter = 500, seed1 = 3000, seed2 = 4000, coefficients = S2_coefficients)
 
 set.seed(200)
-S2_coefficients <- runif(2*50-1,-100,100)
-S2_data_train <- generate_dataset(obs = 50, variables = 50, distance = 1000, jitter = 500, seed1 = 1000, seed2 = 2000, coefficients = S5_coefficients)
-S2_data_test <- generate_dataset(obs = 50, variables = 50, distance = 1000, jitter = 500, seed1 = 3000, seed2 = 4000, coefficients = S5_coefficients)
+S5_coefficients <- runif(2*50-1,-100,100)
+S5_data_train <- generate_dataset(obs = 50, variables = 50, distance = 1000, jitter = 500, seed1 = 1000, seed2 = 2000, coefficients = S5_coefficients)
+S5_data_test <- generate_dataset(obs = 50, variables = 50, distance = 1000, jitter = 500, seed1 = 3000, seed2 = 4000, coefficients = S5_coefficients)
 
 set.seed(300)
-S2_coefficients <- runif(2*200-1,-100,100)
-S2_data_train <- generate_dataset(obs = 50, variables = 200, distance = 1000, jitter = 500, seed1 = 1000, seed2 = 2000, coefficients = S8_coefficients)
-S2_data_test <- generate_dataset(obs = 50, variables = 200, distance = 1000, jitter = 500, seed1 = 3000, seed2 = 4000, coefficients = S8_coefficients)
+S8_coefficients <- runif(2*200-1,-100,100)
+S8_data_train <- generate_dataset(obs = 50, variables = 200, distance = 1000, jitter = 500, seed1 = 1000, seed2 = 2000, coefficients = S8_coefficients)
+S8_data_test <- generate_dataset(obs = 50, variables = 200, distance = 1000, jitter = 500, seed1 = 3000, seed2 = 4000, coefficients = S8_coefficients)
 
 save(S2_data_train, S2_data_test, file = "Code/Daten/Data_S2.RData")
 save(S5_data_train, S5_data_test, file = "Code/Daten/Data_S5.RData")
