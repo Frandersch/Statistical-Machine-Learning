@@ -117,13 +117,14 @@ der Ansatz des Upper-Confidence-Bound genutzt, welcher obere
 Konfidenzgrenzen nutzt um den Verlust gegenüber der besten möglichen
 Entscheidung, während der Optimierung zu minimieren
 \parencite{snoekPracticalBayesianOptimization2012}. \begin{align}
-a_{UCB}(\mathbf{x};~\left\{\mathbf{x}_n,y_n\right\},\theta) = \mu(\mathbf{x};~\left\{\mathbf{x}_n,y_n\right\},\theta) - k \sigma(\mathbf{x};~\left\{\mathbf{x}_n,y_n\right\},\theta)
+a_{UCB}(\mathbf{x};~\left\{\mathbf{x}_n,y_n\right\},\theta) = \mu(\mathbf{x};~\left\{\mathbf{x}_n,y_n\right\},\theta) + k \sigma(\mathbf{x};~\left\{\mathbf{x}_n,y_n\right\},\theta)
 \end{align} Die Bayesian Optimization wird genutzt, da sie eine schnelle
 Konvergenz für stetige Hyperparameter aufweist
 \parencite{yangHyperparameterOptimizationMachine2020}. Als
 Evaluierungskriterium wird die Genauigkeit der Modelle, welche durch den
 Anteil der korrekt klassifizierten Beobachtungen wiedergegeben wird,
-verwendet.
+verwendet. Zur Bestimmung dieser werden die erzeugten Testdaten
+herangezogen.
 
 Basierend auf den Ergebnissen des Tuning werden die oben genannten
 Modelle erstellt. Daraufhin werden die Genauigkeit, die Receiver
@@ -274,66 +275,75 @@ K-NN & 0.76 & 0.760 & 0.700 & 2\\
 
 \end{landscape}
 \clearpage
-} In den Datensituationen mit linearer Form der Entscheidungsgrenze
+} \textless\textless\textless\textless\textless\textless\textless{} HEAD
+In den Datensituationen mit linearer Form der Entscheidungsgrenze
 performt insbesondere \textit{logR} gut, da sie in allen drei Szenarien
-über alle Kriterien hinweg einen Wert von mindestens 0.8 aufweist und
+über alle Kriterien hinweg einen Wert von mindestens 0.72 aufweist und
 jeweils mindestens Rang 2 belegt. Im Falle von \(p \ll n\) und
-\(p \approx n\) zeigen auch \textit{SVM-L}, \textit{SVM-P} und \(SVM-R\)
-eine gute Leistung mit Werten um 0.9. In dem hochdimensionalen Setting
-\(p \gg n\) ist die Performance jedoch differnzierter zu betrachten.
-Hier schneiden \textit{SVM-L} und \textit{SVM-P} nach wie vor ordentlich
-ab. \textit{SVM-R} zeigt hier jedoch deutliche Defizite über alle
-Kriterien hinweg mit Werten um 0.5. \textit{K-NN} schneidet im linearen
-Kontext über alle Szenarien hinweg schlecht ab, wobei die Genauigkeit
-maximal bei 0.66 im Falle von \(p \approx n\) liegt.\newline Die
-ROC-Kurven werden nur in den Datensituationen mit \(p \ll n\) genutzt,
-da die grafische Darstellung in Szenarien mit kleinem \(n\) nicht
-sinnvoll erscheint. Abbildung \ref{fig:S1ROC} zeigt die ROC-Kurven für
-die Datensituation S1. Diese zeigt grafisch noch einmal den deutlichen
-Unterschied zwischen \textit{K-NN}, welcher nur etwas besser als eine
-reine Zufallsauswahl ist und den anderen vier Algorithmen, welche nahezu
-perfekt klassifizieren.
+\(p \approx n\) zeigen auch \textit{SVM-L}, \textit{SVM-P} und
+\textit{SVM-R} eine gute Leistung mit Werten nahe 0.9 bzw. 0.8. In dem
+hochdimensionalen Setting \(p \gg n\) schneiden alle Drei, jedoch
+insbesondere \textit{SVM-R} schlechter ab, welche einen AUC-Wert von 0.5
+aufweist. \textit{K-NN} schneidet im linearen Kontext für \(p \ll n\)
+und \(p \approx n\) am schlechtesten ab, wobei der Unterschied im
+niedrigdimensionalen Raum am deutlichsten ist (0.39 schlechtere
+Genauigkeit als der nächst schlechteste Algorithmus). Im
+hochdimensionalen Raum kann \textit{K-NN} allerdings als bester
+Algorithmus mit Werten über 0.8 überzeugen.\newline Die ROC-Kurven
+werden nur in den Datensituationen mit \(p \ll n\) genutzt, da die
+grafische Darstellung in Szenarien mit kleinem \(n\) nicht sinnvoll
+erscheint. Es ist dazu zu sagen, das SVM anders als beispielsweise
+logistische Regression, nicht direkt eine Wahrscheinlichkeit ausgeben,
+dass eine Beobachtung zu einer bestimmten Klasse gehört. Da diese
+Wahrscheinlichkeit aber für die ROC-Kurven benötigt wird, gibt es auch
+hier Möglichkeiten diese für die SVM zu berechnen (siehe
+\cite{plattProbabilisticOutputsSupport2000}). Abbildung \ref{fig:S1ROC}
+zeigt die ROC-Kurven für die Datensituation S1. Diese zeigt grafisch
+noch einmal den deutlichen Unterschied zwischen \textit{K-NN}, welcher
+nur etwas besser als eine reine Zufallsauswahl ist und den anderen vier
+Algorithmen, welche nahezu perfekt klassifizieren.
 
 In den Datensituationen mit polynomialer Form der Entscheidungsgrenze
-ist die Leistungsfähigkeit aller Algorithmen grundsätzlich deutlich
-schlechter als in den zuvor beschriebenen Szenarien. Im Fall von
-\(p \ll n\) sind die Ergebnisse mittelmäßig mit Werten um 0.7, wobei
-sich kein Algorithmus von den anderen absetzen kann. Bei \(p \approx n\)
-ist \textit{LogR} den anderen Klassifikationsmethoden leicht überlegen,
-insbesondere bei der Fähigkeit gleichzeitig falsch Positive und falsch
-Negative zu minimieren (F1-Score = 0.667). Die anderen Algorithmen
-befinden sich durchweg über alle Werte hinweg nahe 0.5. Ähnlich ist es
-der Fall für \(p \gg n\) bei dem nun \textit{SVM-L}, \textit{SVM-P} und
-\textit{LogR} mit einer Genauigkeit von 0.6, \textit{SVM-R} und
-\textit{K-NN} mit einer Genauigkeit von 0.5 leicht überlegen sind.
-Dennoch ist für die letzten beiden Szenarien deutlich, dass kein
-Algorithmus gute Leistung zeigt.\newline Abbildung \ref{fig:S2ROC} zeigt
-die ROC-Kurven für Szenario 2. Hieraus wird erneut deutlich, dass sich
-kein Algorithmus von den anderen abheben kann, wobei alle eine
-mittelmäßige Leistung zeigen.
+ist die Leistungsfähigkeit aller Algorithmen grundsätzlich schlechter
+als in den zuvor beschriebenen Szenarien. Im Fall von \(p \ll n\) sind
+die Ergebnisse ausschließlich für \textit{SVM-R} sehr gut mit Werten
+über 0.9. Die restlichen Algorithmen performen mittelmäßig mit Werten um
+0.7, wobei sich hier kein Algorithmus von den anderen absetzen kann. Bei
+\(p \approx n\) ist \textit{K-NN} den anderen Klassifikationsmethoden
+leicht überlegen, insbesondere beim AUC-Wert mit 0.729. Die anderen
+Algorithmen befinden sich durchweg über alle Werte hinweg nahe 0.5.
+Ähnlich ist es der Fall für \(p \gg n\) bei dem auch wieder
+\textit{K-NN} eine leicht bessere Leistung zeigt mit einer Genauigkeit
+von 0.7, gefolgt von \textit{LogR} mit 0.64. Dennoch ist für die letzten
+beiden Szenarien deutlich, dass kein Algorithmus gute Leistung
+zeigt.\newline Abbildung \ref{fig:S2ROC} zeigt die ROC-Kurven für
+Szenario 2. Hier ist gut ersichtlich, dass sich \textit{SVM-R} von den
+anderen Algorithmen abheben kann, welche alle eine mittelmäßige Leistung
+zeigen.
 
 In den Datensituationen mit radialer Form der Entscheidungsgrenze ist
 für den Fall \(p \ll n\) eine eindeutige Unterscheidung zu treffen.
-Während \textit{SVM-P}, \textit{SVM-R} und \textit{K-NN} (nahezu)
-perfekt klassifizieren, haben dabei \textit{SVM-L} und \textit{LogR}
-große Probleme und zeigen lediglich Werte nahe 0.5. Weniger drastisch
-aber dennoch mit dem gleichen Resultat ist dies für \(p \approx n\) der
-Fall. Während \textit{SVM-P}, \textit{SVM-R} und \textit{K-NN} etwas
-schlechter abschneiden (beispielsweise mit F1-Scores zwischen 0.8 und
-0.9), performen \textit{SVM-L} und \textit{LogR} leicht besser
-(beispielsweise mit F1-Scores nahe 0.7). Innerhalb dieser beiden Gruppen
-gibt es keine nennenswerten Unterschiede. Für \(p \gg n\) sind ebenfalls
-die beiden Gruppen zu differenzieren. Für \textit{SVM-L} und
-\textit{LogR} sind wie in Szenario 3 wieder Werte nahe 0.5 bzw. nahe 0.6
-für die F1-Scores erkennbar. \textit{SVM-P} und \textit{SVM-R} performen
-in diesem Szenario am schlechtesten, wobei die AUC-Werte von 0.882 bzw.
-0.744 weiterhin akzeptable Leistungen zeigen. Heraus sticht
-\textit{K-NN}, insbesondere bei dem F1-Score von 0.893, was verdeutlicht
-das dieser Algorithmus hier die beste Leistung zeigt.\newline Abbildung
-\ref{fig:S3ROC} zeigt die ROC-Kurven für Szenario 3. Hieraus wird die
-Aufteilung in die zwei Gruppen sofort deutlich. \textit{SVM-P},
-\textit{SVM-R} und \textit{K-NN} bewegen sich nahe an der oberen linken
-Kante, was für eine (nahezu) perfekte Klassifikation spricht.
+Während \textit{SVM-P}, \textit{SVM-R} und \textit{K-NN} gut
+klassifizieren, haben dabei \textit{SVM-L} und \textit{LogR} große
+Probleme und zeigen lediglich Werte nahe 0.5. Insbesondere
+\textit{SVM-P} zeigt mit einem AUC-Wert von 0.981 eine sehr gute
+Performance. Weniger drastisch aber dennoch mit dem gleichen Resultat
+ist dies für \(p \approx n\) der Fall. Während \textit{SVM-P} etwas
+schlechter performt, bleibt \textit{SVM-R} nahezu identisch und
+\textit{K-NN} kann sich sogar leicht steigern auf einen AUC-Wert von
+0.8. \textit{SVM-L} und \textit{LogR} können sich leicht verbessern
+(beispielsweise mit einer Genauigkeit nahe 0.6). Für \(p \gg n\) sind
+ebenfalls die beiden Gruppen zu differenzieren. Für \textit{SVM-L} und
+\textit{LogR} sind wie in Szenario 3 wieder Werte nahe 0.5 für die
+Genauigkeit erkennbar. \textit{SVM-P} und \textit{K-NN} performen in
+diesem Szenario am Besten. \textit{SVM-R} fällt insbesondere mit einer
+Genauigkeit von 0.66 im Vergleich zu 0.76 etwas hinter den anderen
+beiden Algorithmen zurück.\newline Abbildung \ref{fig:S3ROC} zeigt die
+ROC-Kurven für Szenario 3. Hieraus wird einerseits die Aufteilung in die
+zwei Gruppen deutlich. \textit{SVM-P}, \textit{SVM-R} und \textit{K-NN}
+bewegen sich näher an der oberen linken Kante, was für eine (nahezu)
+perfekte Klassifikation spricht. Andererseits ist eindeutig, dass sich
+\textit{SVM-P} nochmal von den anderen beiden Algorithmen absetzen kann.
 \textit{SVM-L} und \textit{LogR} orientieren sich nahe der diagonalen
 Linie, die eine ROC-Kurve einer reinen Zufallsauswahl beschreibt. Dies
 zeigt auf, dass sie kaum Fähigkeit aufweisen zwischen den Klassen zu
@@ -365,13 +375,13 @@ unterscheiden.
 Zuletzt wird ein Vergleich der einzelnen Dimensionen über die drei
 Formen der Entscheidungsgrenze gezogen. So ist für \(p \ll n\)
 ersichtlich, dass insbesondere \textit{SVM-P} und \textit{SVM-R} über
-alle drei Szenarien gute Leistung (insbesondere für S1 und S3 mit
-mindestens 0.9 über alle Werte) zeigen. Das gleiche gilt, mit Ausnahme
-der polynomialen Form der Entscheidungsgrenze, auch für \(p \approx n\),
-wobei die Werte etwas niedriger bei 0.8 bis 0.9 liegen. In den
-hochdimensionalen Szenarien \(p \gg n\) ist einzig \textit{SVM-P}
-überzeugend, erneut ausgenommen der polynomialen Form der
-Entscheidungsgrenze.
+alle drei Szenarien gute Leistung (mit Werten mindestens nahe 0.8 über
+alle drei Szenarien) zeigen. Ähnliches gilt, mit Ausnahme der
+polynomialen Form der Entscheidungsgrenze, auch für \(p \approx n\),
+wobei hier auch \textit{K-NN} gute Werte zeigt (alle drei durchweg mit
+Werten über 0.7). In den hochdimensionalen Szenarien \(p \gg n\) ist
+einzig \textit{K-NN} überzeugend, welcher auch im polynomialen Szenario
+Werte über 0.7 aufweist.
 
 \printbibliography
 

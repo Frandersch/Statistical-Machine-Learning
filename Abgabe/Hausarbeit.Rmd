@@ -22,6 +22,9 @@ knitr::opts_chunk$set(echo = TRUE)
 \clearpage
 \pagenumbering{arabic}
 \section{Einleitung}
+```{r child="Einleitung/Einleitung.Rmd"}
+
+```
 \section{Funktionsweise}
 ```{r child="Funktionsweise/Funktionsweise.Rmd"}
 

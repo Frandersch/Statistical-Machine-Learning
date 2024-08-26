@@ -1,2 +1,1 @@
-die geschriebenen Funktionen reproduzierbar machen, (set.seed sinnvoll einsetzen)
-tuning optimieren
+erklären wie klassifikationswahrscheinlichkeiten berechnet werden

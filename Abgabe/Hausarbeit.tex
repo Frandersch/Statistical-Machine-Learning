@@ -93,7 +93,7 @@
 
 \title{Hausarbeit}
 \author{Franz Andersch \& Niklas Münz}
-\date{2024-08-23}
+\date{2024-08-26}
 
 \begin{document}
 \maketitle
@@ -105,6 +105,42 @@
 \clearpage
 \pagenumbering{arabic}
 \section{Einleitung}
+
+Warum eine gerade Ebene manchmal die beste Möglichkeit ist, um Daten in
+zwei klassen aufzuteilen? Darum soll es in dieser Arbeit gehen. Wir
+wollen hier die Methode der Support Vector Machines, die mit dieser
+Annahme arbeitet, erläutern und gleichzeitig auf den Prüfstand stellen.
+Denn auch wenn die Grundidee, vielleicht etwas zu simpel klingt, ist
+ihre Leistung was vor allem binäre Klassifikationprobleme angeht
+unumstritten. Die Grundlage für eine optimal seperierende Hyperebene
+wurde bereits 1964 von Alexej Chervonenkis und Vladimir Vapnik gelegt
+und die Methode wurde anschließend von mehrern Autoren stetig erweitert
+\parencite{vapnikEstimationDependencesBased2006}. Zuerst wollen wir die
+Funktionsweise der SVM näher beleuchten. Dazu wird zuerst gezeigt wie
+die Konstruktion dieser seperiernden Hypereben in dem Fall funktioniert,
+in dem die Daten tasächlich linear trennbar sind. Danach soll gezeigt
+werden wie eine Soft Margin Klassifier funktioniert, der auch
+funktioniert bei nicht perfekt linear trennbaren Daten und zuletzt soll
+es um die Anwendung von Kernels gehen, die es dann auch ermöglichen,
+nicht lineare Entscheidungsgrenzen herzustellen. im Kapitel 3 wollen wir
+dann die Vor und Nachteile der Methode uns anschauen. Anhand dieser
+Informationen konnten wir uns dann bereits einige Gedanken zur Leistung
+der SVM in unserem Datenexperiment machen. Wie wir dieses Experiment
+aufbauen soll im nachfolgenden Kapitel beschrieben werden. Wir
+generieren uns zum anschließenden Vergleich neun verschiedene
+Datenszenarien, welche in ihrer Dimensionalitäten und Kompleixität der
+Entscheidungsgrenze variieren. Für den Vergleich wollen wir dann
+Klassifikationsleistung von SVM uns anderen Klassifikationsmethoden
+vegleichen. Im Teil Hypothesen haben wir aufgrund von Literatur, die
+bereits ähnliche Versuche durchgeführt haben, Vermutungen aufgestellt,
+wie die einzelnen Classifier im Vergleich abschneiden werden. Im
+Ergebnis-Teil wollen wir dann das Experiment durchführen und mithilfe
+von verschiedenen Maßzahlen die Leistung evaluieren. Ebenfalls wollen
+wir üperprüfen, ob die Hypothesen die wir zuvor aufgestellt haben sich
+bewahrheiten. Im letzen Teil soll ein Fazit gezogen werden, in dem Wir
+die Ergebnisse noch einmal diskutieren und Defitite in unserer Arbeit
+aufarbeiten.
+
 \section{Funktionsweise}
 
 \subsection{Hard Margin Classifier}
@@ -481,15 +517,17 @@ mehr Beobachtungen als Variablen gibt, also \(n \gg p\). Ein solches
 Datenszenario kann z.B. im Kontext des Zensus auftreten, in dem eine
 große Anzahl an Personen befragt wird, aber die Vorgabe besteht, dass
 die Bürger nicht zu stark belastet werden sollen, weshalb nur einige
-wenige Kernfragen gestellt werden. Das zweite Szenario stellt Datensätze
-vor die etwa gleich viele Beobachtung wie Variablen haben
-\(n \approx p\). Ein solches Szenario kann in vielen Kontexten
-auftreten. Das letzte Szenario behandelt dann entsprechend den Fall
-\(n \ll p\). Dies tritt oft im Kontext von Datenerhebungen im
-medizinischen Bereich auf, da sehr viele Erhebungen zu kostspielig
-wären. Auch im Bereich des Natural Language Processing sind solche
-Datensätze häufiger anzutreffen
-\parencite{scholzComparisonClassificationMethods2021}.
+wenige Kernfragen gestellt werden. In diesem Fall wurde für \(n=1000\)
+Beobachtungen und \(p=10\) Variablen generiert. Das zweite Szenario
+stellt Datensätze vor die etwa gleich viele Beobachtung wie Variablen
+haben \(n \approx p\). Ein solches Szenario kann in vielen Kontexten
+auftreten. Für dieses Szenario sind die Dimensionen \(n=p=50\). Das
+letzte Szenario behandelt dann entsprechend den Fall \(n \ll p\). Dies
+tritt oft im Kontext von Datenerhebungen im medizinischen Bereich auf,
+da sehr viele Erhebungen zu kostspielig wären. Auch im Bereich des
+Natural Language Processing sind solche Datensätze häufiger anzutreffen
+\parencite{scholzComparisonClassificationMethods2021}. Die Werte die
+dafür angenommen wurden sind \(p=200\) und \(n=50\).
 
 Die zweite Charakteristik ist der Datengenerierende Prozess. Da in
 dieser Arbeit SVMs im Vordergrund stehen und wir hier vor allem Zeigen
@@ -503,43 +541,49 @@ jeweilige Ausprägung in der Zielvariable repräsentieren.
 Insgesammt gibt es auch hier wieder 3 Kategorien. Die erste sind linear
 getrennte Daten. Dafür wird eine lineare Hyperplane der Form
 \begin{align*}
-\beta_0+\beta_1 X_1+\beta_2 X_2 +...+\beta_p X_p=0
+\beta_0+\beta_1 X_1+\beta_2 X_2 +...+\beta_{1-p} = X_p
 \end{align*} mit zufälligen Koeffizienten erzeugt. Diese Daten sollen
 also den Annahmen entsprechen, die für SVMs mit linearem Kernel gelten.
 Nachem für eine Beobachtung \(j\) zufällig ein Punkt auf der Ebene
 gesampelt wurde, wurde dieser andschließend verschoben. Die Verschiebung
 erfolgte über eine Skalierung des normierten Normalenvektors
 \(k\left(\frac{\overline{\beta}}{||\overline{\beta}||}\right)\). \(k\)
-ist dabei eine Zufallszahl mit Mittelwert \(\mu_k\) und Varianz
-\(\sigma^2_k\). Dieser Prozess wird \(n/2\) mal wiederholt für die eine
-Ausprägung der Zielvariable und dementsprechen \(n/2\) mal für die
-andere Ausprägung, dann aber mit \(-\mu_k\) als Mittelwert für \(k\).
-\newline In der zweiten Situation hat die Hyperplane eine quadratische
-Form: \begin{align*}
-\beta_0+\beta_1 X_1 + \beta_2 X_1^2+\beta_3 X_2+\beta_4 X_2^2+...+\beta_{2p-1}X_p+\beta_{2p}X_p^2=0
+ist dabei eine normalverteilte Zufallszahl mit Mittelwert \(\mu_k\) und
+Varianz \(\sigma^2_k\). Dieser Prozess wird \(n/2\) mal wiederholt für
+die eine Ausprägung der Zielvariable und dementsprechen \(n/2\) mal für
+die andere Ausprägung, dann aber mit \(-\mu_k\) als Mittelwert für
+\(k\). \newline In der zweiten Situation hat die Hyperplane eine
+quadratische Form: \begin{align*}
+\beta_0+\beta_1 X_1 + \beta_2 X_1^2+\beta_3 X_2+\beta_4 X_2^2+...+\beta_{2p-2}X_{p-1}+\beta_{2p-1}X_{p-1}^2=\beta_{2p} X_p
 \end{align*} diese Form der Trennung stellt also eine
 Merkmalserweiterung um quadratische Terme dar und funktioniert damit
-ähnlich wie eine SVM mit polynomialen Kernel mit \(d=2\). Der letzte DGP
-geht von einer noch Komplexeren Entscheidungsgrenzen aus. Es wird hier
-ein Hypershpäre im \(p\) dimensionalen Raum erstellt und einmal
-innerhalb und einmal außerhalb dieser gesampelt. Dafür wurde für eine
-Beobachtung \(j\), \(p-1\) Winkel \(\theta\) zufällig erstellt, ein
-Radius \(r\) festgelegt und anschließend die einzelnen Werte
-\(X_{1,j},X_{2,j},...,X_{p,j}\) berechnet. Die berechnung erfolgt dabei
-über die Definition von sphärischen Koordinaten: \begin{align*}
+ähnlich wie eine SVM mit polynomialen Kernel mit \(d=2\).Die
+Verschiebung erflogte hier nur durch skalierung der Werte von \(X_p\)
+ebenfalls mit \(k\sim\mathcal{N}(\mu_k,\sigma^2_k)\) für die eine
+Ausprägung und \(k\sim\mathcal{N}(-\mu_k,\sigma^2)\) für die andere
+Ausprägung. Der letzte DGP geht von einer noch Komplexeren
+Entscheidungsgrenzen aus. Es wird hier ein Hypershpäre im \(p\)
+dimensionalen Raum erstellt und einmal innerhalb und einmal außerhalb
+dieser gesampelt. Dafür wurde für eine Beobachtung \(j\), \(p-1\) Winkel
+\(\theta\) zufällig erstellt, ein Radius \(r\) festgelegt und
+anschließend die einzelnen Werte \(X_{1,j},X_{2,j},...,X_{p,j}\)
+berechnet. Die berechnung erfolgt dabei über die Definition von
+sphärischen Koordinaten: \begin{align*}
         X_{1,j} &= r \cos(\theta_1)\\
         X_{2,j} &= r \sin(\theta_1)\cos(\theta_2)\\
         X_{3,j} &= r \sin(\theta_1)\sin(\theta_2)\cos(\theta_3)\\
         &\quad \vdots\\
         X_{p-1,j}&=r \sin(\theta_1)\ldots \sin(\theta_{p-2})\cos(\theta_{p-1})\\
         X_{p,j}&=r \sin(\theta_1)\ldots \sin(\theta_{p-2})\sin(\theta_{p-1})
-    \end{align*} Dieser Vorgang wird dann \(n/2\) mal, mit einem
-zufälligen Radius mit Mittelwert \(\mu_r\) und einer Varianz
-\(\sigma^2_r\) für die eine Ausprägung der Zielvariable wiederholt. Für
-die andere Ausprägung wurde das gleiche dann durchgeführt mit einem
-neuen Mittelwert \(\mu_r+k,k\in \mathbb{R}\). je nachdem wie \(k\) und
-\(\sigma^2_r\) gewählt werden kann die Trennbarkeit der Daten angepasst
-werden.
+    \end{align*} Dieser Vorgang wird dann \(n/2\) mal, wiederholt und
+anschließend erfolgt die Verschiebung durch eine Skalierung des
+jeweiligen normalisierten Datenvektors
+\(k\left(\frac{\overline{x}}{||x||}\right)\). \(k\) ist auch hier wieder
+eine Zufallsvariable mit \(\mu_k\) für die eine Ausprägung der
+Zielvariable und \(-\mu_k\) für die andere Ausprägung. Die Streuung
+bleibt bei beiden bei einem konstanten Werte \(\sigma^2_k\). Je nachdem
+wie \(\mu_k\) und \(\sigma^2_r\) gewählt werden kann die Trennbarkeit
+der Daten angepasst werden.
 
 Es ergeben sich daher 9 unterschiedliche Datensituationen, welche in
 ihren Dimensionen und Komplexität der Entscheidungsgrenze variieren. Die
@@ -560,7 +604,7 @@ abgetragen
  \hline
 \end{tabular}
 \end{center}
-\caption{Datensituationen}
+\caption{Datenszenarien}
 \label{tab:datensituationen}
 \end{table}
 
@@ -694,7 +738,7 @@ der Ansatz des Upper-Confidence-Bound genutzt, welcher obere
 Konfidenzgrenzen nutzt um den Verlust gegenüber der besten möglichen
 Entscheidung, während der Optimierung zu minimieren
 \parencite{snoekPracticalBayesianOptimization2012}. \begin{align}
-a_{UCB}(\mathbf{x};~\left\{\mathbf{x}_n,y_n\right\},\theta) = \mu(\mathbf{x};~\left\{\mathbf{x}_n,y_n\right\},\theta) - k \sigma(\mathbf{x};~\left\{\mathbf{x}_n,y_n\right\},\theta)
+a_{UCB}(\mathbf{x};~\left\{\mathbf{x}_n,y_n\right\},\theta) = \mu(\mathbf{x};~\left\{\mathbf{x}_n,y_n\right\},\theta) + k \sigma(\mathbf{x};~\left\{\mathbf{x}_n,y_n\right\},\theta)
 \end{align} Die Bayesian Optimization wird genutzt, da sie eine schnelle
 Konvergenz für stetige Hyperparameter aufweist
 \parencite{yangHyperparameterOptimizationMachine2020}. Als
@@ -852,63 +896,67 @@ K-NN & 0.88 & 0.880 & 0.893 & 1\\
 \end{landscape}
 \clearpage
 } In den Datensituationen mit linearer Form der Entscheidungsgrenze
-performt insbesondere \(logR\) gut, da sie in allen drei Szenarien über
-alle Kriterien hinweg einen Wert von mindestens 0.8 aufweist und jeweils
-mindestens Rang 2 belegt. Im Falle von \(p \ll n\) und \(p \approx n\)
-zeigen auch \(SVM-L\), \(SVM-P\) und \(SVM-R\) eine gute Leistung mit
-Werten um 0.9. In dem hochdimensionalen Setting \(p \gg n\) ist die
-Performance jedoch differnzierter zu betrachten. Hier schneiden
-\(SVM-L\) und \(SVM-P\) nach wie vor ordentlich ab. \(SVM-R\) zeigt hier
+performt insbesondere \textit{logR} gut, da sie in allen drei Szenarien
+über alle Kriterien hinweg einen Wert von mindestens 0.8 aufweist und
+jeweils mindestens Rang 2 belegt. Im Falle von \(p \ll n\) und
+\(p \approx n\) zeigen auch \textit{SVM-L}, \textit{SVM-P} und
+\textit{SVM-R} eine gute Leistung mit Werten um 0.9. In dem
+hochdimensionalen Setting \(p \gg n\) ist die Performance jedoch
+differnzierter zu betrachten. Hier schneiden \textit{SVM-L} und
+\textit{SVM-P} nach wie vor ordentlich ab. \textit{SVM-R} zeigt hier
 jedoch deutliche Defizite über alle Kriterien hinweg mit Werten um 0.5.
-\(K-NN\) schneidet im linearen Kontext über alle Szenarien hinweg
+\textit{K-NN} schneidet im linearen Kontext über alle Szenarien hinweg
 schlecht ab, wobei die Genauigkeit maximal bei 0.66 im Falle von
 \(p \approx n\) liegt.\newline Die ROC-Kurven werden nur in den
 Datensituationen mit \(p \ll n\) genutzt, da die grafische Darstellung
 in Szenarien mit kleinem \(n\) nicht sinnvoll erscheint. Abbildung
 \ref{fig:S1ROC} zeigt die ROC-Kurven für die Datensituation S1. Diese
-zeigt grafisch noch einmal den deutlichen Unterschied zwischen \(K-NN\),
-welcher nur etwas besser als eine reine Zufallsauswahl ist und den
-anderen vier Algorithmen, welche nahezu perfekt klassifizieren.
+zeigt grafisch noch einmal den deutlichen Unterschied zwischen
+\textit{K-NN}, welcher nur etwas besser als eine reine Zufallsauswahl
+ist und den anderen vier Algorithmen, welche nahezu perfekt
+klassifizieren.
 
 In den Datensituationen mit polynomialer Form der Entscheidungsgrenze
 ist die Leistungsfähigkeit aller Algorithmen grundsätzlich deutlich
 schlechter als in den zuvor beschriebenen Szenarien. Im Fall von
 \(p \ll n\) sind die Ergebnisse mittelmäßig mit Werten um 0.7, wobei
 sich kein Algorithmus von den anderen absetzen kann. Bei \(p \approx n\)
-ist \(LogR\) den anderen Klassifikationsmethoden leicht überlegen,
+ist \textit{LogR} den anderen Klassifikationsmethoden leicht überlegen,
 insbesondere bei der Fähigkeit gleichzeitig falsch Positive und falsch
 Negative zu minimieren (F1-Score = 0.667). Die anderen Algorithmen
 befinden sich durchweg über alle Werte hinweg nahe 0.5. Ähnlich ist es
-der Fall für \(p \gg n\) bei dem nun \(SVM-L\), \(SVM-P\) und \(LogR\)
-mit einer Genauigkeit von 0.6, \(SVM-R\) und \(K-NN\) mit einer
-Genauigkeit von 0.5 leicht überlegen sind. Dennoch ist für die letzten
-beiden Szenarien deutlich, dass kein Algorithmus gute Leistung
-zeigt.\newline Abbildung \ref{fig:S2ROC} zeigt die ROC-Kurven für
-Szenario 2. Hieraus wird erneut deutlich, dass sich kein Algorithmus von
-den anderen abheben kann, wobei alle eine mittelmäßige Leistung zeigen.
+der Fall für \(p \gg n\) bei dem nun \textit{SVM-L}, \textit{SVM-P} und
+\textit{LogR} mit einer Genauigkeit von 0.6, \textit{SVM-R} und
+\textit{K-NN} mit einer Genauigkeit von 0.5 leicht überlegen sind.
+Dennoch ist für die letzten beiden Szenarien deutlich, dass kein
+Algorithmus gute Leistung zeigt.\newline Abbildung \ref{fig:S2ROC} zeigt
+die ROC-Kurven für Szenario 2. Hieraus wird erneut deutlich, dass sich
+kein Algorithmus von den anderen abheben kann, wobei alle eine
+mittelmäßige Leistung zeigen.
 
 In den Datensituationen mit radialer Form der Entscheidungsgrenze ist
 für den Fall \(p \ll n\) eine eindeutige Unterscheidung zu treffen.
-Während \(SVM-P\), \(SVM-R\) und \(K-NN\) (nahezu) perfekt
-klassifizieren, haben dabei \(SVM-L\) und \(LogR\) große Probleme und
-zeigen lediglich Werte nahe 0.5. Weniger drastisch aber dennoch mit dem
-gleichen Resultat ist dies für \(p \approx n\) der Fall. Während
-\(SVM-P\), \(SVM-R\) und \(K-NN\) etwas schlechter abschneiden
-(beispielsweise mit F1-Scores zwischen 0.8 und 0.9), performen \(SVM-L\)
-und \(LogR\) leicht besser (beispielsweise mit F1-Scores nahe 0.7).
-Innerhalb dieser beiden Gruppen gibt es keine nennenswerten
-Unterschiede. Für \(p \gg n\) sind ebenfalls die beiden Gruppen zu
-differenzieren. Für \(SVM-L\) und \(LogR\) sind wie in Szenario 3 wieder
-Werte nahe 0.5 bzw. nahe 0.6 für die F1-Scores erkennbar. \(SVM-P\) und
-\(SVM-R\) performen in diesem Szenario am schlechtesten, wobei die
-AUC-Werte von 0.882 bzw. 0.744 weiterhin akzeptable Leistungen zeigen.
-Heraus sticht \(K-NN\), insbesondere bei dem F1-Score von 0.893, was
-verdeutlicht das dieser Algorithmus hier die beste Leistung
-zeigt.\newline Abbildung \ref{fig:S3ROC} zeigt die ROC-Kurven für
-Szenario 3. Hieraus wird die Aufteilung in die zwei Gruppen sofort
-deutlich. \(SVM-P\), \(SVM-R\) und \(K-NN\) bewegen sich nahe an der
-oberen linken Kante, was für eine (nahezu) perfekte Klassifikation
-spricht. \(SVM-L\) und \(LogR\) orientieren sich nahe der diagonalen
+Während \textit{SVM-P}, \textit{SVM-R} und \textit{K-NN} (nahezu)
+perfekt klassifizieren, haben dabei \textit{SVM-L} und \textit{LogR}
+große Probleme und zeigen lediglich Werte nahe 0.5. Weniger drastisch
+aber dennoch mit dem gleichen Resultat ist dies für \(p \approx n\) der
+Fall. Während \textit{SVM-P}, \textit{SVM-R} und \textit{K-NN} etwas
+schlechter abschneiden (beispielsweise mit F1-Scores zwischen 0.8 und
+0.9), performen \textit{SVM-L} und \textit{LogR} leicht besser
+(beispielsweise mit F1-Scores nahe 0.7). Innerhalb dieser beiden Gruppen
+gibt es keine nennenswerten Unterschiede. Für \(p \gg n\) sind ebenfalls
+die beiden Gruppen zu differenzieren. Für \textit{SVM-L} und
+\textit{LogR} sind wie in Szenario 3 wieder Werte nahe 0.5 bzw. nahe 0.6
+für die F1-Scores erkennbar. \textit{SVM-P} und \textit{SVM-R} performen
+in diesem Szenario am schlechtesten, wobei die AUC-Werte von 0.882 bzw.
+0.744 weiterhin akzeptable Leistungen zeigen. Heraus sticht
+\textit{K-NN}, insbesondere bei dem F1-Score von 0.893, was verdeutlicht
+das dieser Algorithmus hier die beste Leistung zeigt.\newline Abbildung
+\ref{fig:S3ROC} zeigt die ROC-Kurven für Szenario 3. Hieraus wird die
+Aufteilung in die zwei Gruppen sofort deutlich. \textit{SVM-P},
+\textit{SVM-R} und \textit{K-NN} bewegen sich nahe an der oberen linken
+Kante, was für eine (nahezu) perfekte Klassifikation spricht.
+\textit{SVM-L} und \textit{LogR} orientieren sich nahe der diagonalen
 Linie, die eine ROC-Kurve einer reinen Zufallsauswahl beschreibt. Dies
 zeigt auf, dass sie kaum Fähigkeit aufweisen zwischen den Klassen zu
 unterscheiden.
@@ -938,13 +986,14 @@ unterscheiden.
 
 Zuletzt wird ein Vergleich der einzelnen Dimensionen über die drei
 Formen der Entscheidungsgrenze gezogen. So ist für \(p \ll n\)
-ersichtlich, dass insbesondere \(SVM-P\) und \(SVM-R\) über alle drei
-Szenarien gute Leistung (insbesondere für S1 und S3 mit mindestens 0.9
-über alle Werte) zeigen. Das gleiche gilt, mit Ausnahme der polynomialen
-Form der Entscheidungsgrenze, auch für \(p \approx n\), wobei die Werte
-etwas niedriger bei 0.8 bis 0.9 liegen. In den hochdimensionalen
-Szenarien \(p \gg n\) ist einzig \(SVM-P\) überzeugend, erneut
-ausgenommen der polynomialen Form der Entscheidungsgrenze. \newpage
+ersichtlich, dass insbesondere \textit{SVM-P} und \textit{SVM-R} über
+alle drei Szenarien gute Leistung (insbesondere für S1 und S3 mit
+mindestens 0.9 über alle Werte) zeigen. Das gleiche gilt, mit Ausnahme
+der polynomialen Form der Entscheidungsgrenze, auch für \(p \approx n\),
+wobei die Werte etwas niedriger bei 0.8 bis 0.9 liegen. In den
+hochdimensionalen Szenarien \(p \gg n\) ist einzig \textit{SVM-P}
+überzeugend, erneut ausgenommen der polynomialen Form der
+Entscheidungsgrenze. \newpage
 
 \addcontentsline{toc}{section}{Literatur}
 
