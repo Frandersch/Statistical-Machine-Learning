@@ -431,7 +431,7 @@ S7_opt_param_linear <- BayesianOptimization(
   init_points = 15,
   n_iter = 25,
   acq = "ucb",
-  verbose = FALSE
+  #verbose = FALSE
 )
 # kein tuning möglich, da kein optimaler Parameter vorhanden -> default Werte
 S7_opt_param_linear <- list(Best_Par = data.frame(cost = 1))
@@ -467,7 +467,7 @@ S7_opt_param_radial <- BayesianOptimization(
   init_points = 15,
   n_iter = 25,
   acq = "ucb",
-  verbose = FALSE
+  #verbose = FALSE
 )
 
 S7_tune_logR <- function(alpha, lambda) {

@@ -24,47 +24,51 @@ df_final$group <- c(rep(1,100),rep(2,100))
 plot3d(x=df_final$x,y=df_final$y,z=df_final$z,col=df_final$group)
 
 #erweiterung in n dimensionen
-generate_subdatasets <- function(obs,variables,distance,jitter,seed,coef_min=-100,coef_max=100,center=0,range=3){
+generate_subdatasets <- function(obs,variables,distance,jitter,seed,coefficients,center=0,range=3){
   set.seed(seed)
-  coefficients <- runif(2*variables-1,coef_min,coef_max)
-  set.seed(NULL)
   xses <- matrix(rnorm(obs,center,range),nrow=obs,ncol=1)
  for(i in 2:(variables-1)){
+   set.seed(seed+i)
    xses <- cbind(xses,rnorm(obs,center,range))
  }
   combinations<- xses%*%coefficients[1:(variables-1)]
   quadcombinations <- xses^2%*%coefficients[variables:(2*variables-2)]
   z <- combinations+quadcombinations+rep(coefficients[2+variables-1],obs)+rnorm(obs,distance,jitter)
-  datamat <- as.data.frame(cbind(xses,z))
-  normvectors <- matrix(0,nrow=obs,ncol=variables)
-  for(i in 1:obs){
-    for(j in 1:variables){
-      normvectors[i,j] <- coefficients[j]+coefficients[variables+j]*datamat[i,j]
-      
-    }
-  }
-  return()
+  as.data.frame(cbind(xses,z))
 }
 
-generate_dataset <- function(obs,variables,distance,jitter,seed,scaling_factor=100,coef_min=-100,coef_max=100,center=0,range=3){
-  group1 <- generate_subdatasets(obs = obs/2, variables = variables, distance = distance, jitter = (scaling_factor*jitter), seed = seed, coef_min=coef_min,coef_max=coef_max,center=center,range=range)
+generate_subdatasets(1000, 10, 1000, 500, 1000, coefficients = S1_coefficients)
+
+generate_dataset <- function(obs,variables,distance,jitter,seed1,seed2,coefficients,center=0,range=3){
+  group1 <- generate_subdatasets(obs = obs/2, variables = variables, distance = distance, jitter = jitter, seed = seed1,coefficients=coefficients,center=center,range=range)
   group1_y <- rep(1, times = obs/2)
   group1 <- cbind(group1, y = as.factor(group1_y))
-  group2 <- generate_subdatasets(obs = obs/2, variables = variables, distance = (scaling_factor*distance), jitter = (scaling_factor*jitter), seed = seed, coef_min=coef_min,coef_max=coef_max,center=center,range=range)
+  group2 <- generate_subdatasets(obs = obs/2, variables = variables, distance = (-distance), jitter = jitter, seed = seed2,coefficients=coefficients,center=center,range=range)
   group2_y <- rep(2, times = obs/2)
   group2 <- cbind(group2, y = as.factor(group2_y))
   dataset <- rbind(group1, group2)
   dataset
 }
 
-S2_data_train <- generate_dataset(1000, 10, 20, 2, 2024)
-S2_data_test <- generate_dataset(1000, 10, 20, 2, 2024)
 
-S5_data_train <- generate_dataset(50, 50, 20, 2, 2024)
-S5_data_test <- generate_dataset(50, 50, 20, 2, 2024)
+train <- generate_dataset(1000, 3, 1000, 500, 1000, 2000, S2_coefficients)
+test <- generate_dataset(100, 10, 20, 2, 3000, 4000)
+plot3d(train$V1, train$V2, train$V3, col = train$y)
 
-S8_data_train <- generate_dataset(50, 200, 20, 2, 2024)
-S8_data_test <- generate_dataset(50, 200, 20, 2, 2024)
+set.seed(100)
+S2_coefficients <- runif(2*10-1,-100,100)
+S2_data_train <- generate_dataset(obs = 1000, variables = 10, distance = 1000, jitter = 500, seed1 = 1000, seed2 = 2000, coefficients = S2_coefficients)
+S2_data_test <- generate_dataset(obs = 1000, variables = 10, distance = 1000, jitter = 500, seed1 = 3000, seed2 = 4000, coefficients = S2_coefficients)
+
+set.seed(200)
+S2_coefficients <- runif(2*50-1,-100,100)
+S2_data_train <- generate_dataset(obs = 50, variables = 50, distance = 1000, jitter = 500, seed1 = 1000, seed2 = 2000, coefficients = S5_coefficients)
+S2_data_test <- generate_dataset(obs = 50, variables = 50, distance = 1000, jitter = 500, seed1 = 3000, seed2 = 4000, coefficients = S5_coefficients)
+
+set.seed(300)
+S2_coefficients <- runif(2*200-1,-100,100)
+S2_data_train <- generate_dataset(obs = 50, variables = 200, distance = 1000, jitter = 500, seed1 = 1000, seed2 = 2000, coefficients = S8_coefficients)
+S2_data_test <- generate_dataset(obs = 50, variables = 200, distance = 1000, jitter = 500, seed1 = 3000, seed2 = 4000, coefficients = S8_coefficients)
 
 save(S2_data_train, S2_data_test, file = "Code/Daten/Data_S2.RData")
 save(S5_data_train, S5_data_test, file = "Code/Daten/Data_S5.RData")

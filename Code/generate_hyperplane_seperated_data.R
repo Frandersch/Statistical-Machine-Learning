@@ -58,8 +58,8 @@ df5 <- data.frame(x=c(df3$x,df4$x),y=c(df3$y,df4$y),z=c(df3$z,df4$z),group=c(rep
 plot3d(x=df5$x,y=df5$y,z=df5$z,col = df5$group)
 
 #sampling in n dimensions(intercept of hyperplain is zero)
-coefficients <- runif(variables,)
-generate_subdatasets <- function(obs,variables,distance,coefficients,jitter,seed,center=0,range=5){
+
+generate_subdatasets <- function(obs,variables,distance,jitter,seed,coefficients,center=0,range=5){
   set.seed(seed)
   points_on_plane <- matrix(rnorm(obs,center,range),nrow = obs,ncol=1)
   for(i in 2:(length(coefficients)-1)){
@@ -76,27 +76,35 @@ generate_subdatasets <- function(obs,variables,distance,coefficients,jitter,seed
   return(as.data.frame(points_next_to_plane)) 
 }
 
-generate_dataset <- function(obs,variables,distance,jitter,seed,center=0,range=3){
-  group1 <- generate_subdatasets(obs = obs/2, variables = variables, distance = distance, jitter = jitter, seed = seed,center=center,range=range)
+generate_dataset <- function(obs,variables,distance,jitter,seed1,seed2,coefficients,center=0,range=3){
+  group1 <- generate_subdatasets(obs = obs/2, variables = variables, distance = distance, jitter = jitter, seed = seed1, coefficients = coefficients, center=center,range=range)
   group1_y <- rep(1, times = obs/2)
   group1 <- cbind(group1, y = as.factor(group1_y))
-  group2 <- generate_subdatasets(obs = obs/2, variables = variables, distance = (-distance), jitter = jitter, seed = seed, center=center,range=range)
+  group2 <- generate_subdatasets(obs = obs/2, variables = variables, distance = (-distance), jitter = jitter, seed = seed2, coefficients = coefficients, center=center,range=range)
   group2_y <- rep(2, times = obs/2)
   group2 <- cbind(group2, y = as.factor(group2_y))
   dataset <- rbind(group1, group2)
   dataset
 }
 
+
+
 # geringe Distance, da sonst alle Algorithmen perfekt klassifizieren
-S1_data_train <- generate_dataset(1000, 10, 0.5, 0.3, 2024)
-S1_data_test <- generate_dataset(1000, 10, 0.5, 0.3, 2024)
+set.seed(100)
+S1_coefficients <- runif(10,-100,100)
+S1_data_train <- generate_dataset(obs = 1000, variables =  10, distance = 0.5, jitter = 0.3, seed1 = 1000, seed2 = 2000, coefficients = S1_coefficients)
+S1_data_test <- generate_dataset(obs = 1000, variables =  10, distance = 0.5, jitter = 0.3, seed1 = 3000, seed2 = 4000, coefficients = S1_coefficients)
 
 # weitere Distance, da sonst bei allen sehr schlechte Klassifizierung
-S4_data_train <- generate_dataset(50, 50, 3, 1, 2024)
-S4_data_test <- generate_dataset(50, 50, 3, 1, 2024)
+set.seed(200)
+S4_coefficients <- runif(50,-100,100)
+S4_data_train <- generate_dataset(obs = 50, variables =  50, distance = 3, jitter = 1.5, seed1 = 1000, seed2 = 2000, coefficients = S4_coefficients)
+S4_data_test <- generate_dataset(obs = 50, variables =  50, distance = 3, jitter = 1.5, seed1 = 3000, seed2 = 4000, coefficients = S4_coefficients)
 
-S7_data_train <- generate_dataset(50, 200, 3, 1, 2024)
-S7_data_test <- generate_dataset(50, 200, 3, 1, 2024)
+set.seed(300)
+S7_coefficients <- runif(200,-100,100)
+S7_data_train <- generate_dataset(obs = 50, variables =  200, distance = 3, jitter = 1.5, seed1 = 1000, seed2 = 2000, coefficients = S7_coefficients)
+S7_data_test <- generate_dataset(obs = 50, variables =  200, distance = 3, jitter = 1.5, seed1 = 3000, seed2 = 4000, coefficients = S7_coefficients)
 
 save(S1_data_train, S1_data_test, file = "Code/Daten/Data_S1.RData")
 save(S4_data_train, S4_data_test, file = "Code/Daten/Data_S4.RData")
