@@ -24,10 +24,10 @@ plot3d(df$x,df$y,df$z,col = group)
 
 #erweiterung in mehrere Dimensionen
 
-generate_observation <- function(n, distance, jitter = 0.5,radius) {
+generate_observation <- function(n, distance, jitter, radius, seed) {
+  set.seed(seed)
   winkel <- runif(n - 1, 0, pi)
   winkel[n - 1] <- runif(1, 0, 2 * pi)
-  radius <- radius
   x <- vector(mode = "numeric", length = n)
   
   for (i in 1:(n-1)) {
@@ -42,33 +42,35 @@ generate_observation <- function(n, distance, jitter = 0.5,radius) {
   return(x)
 }
 
-generate_subdatasets <- function(obs,variables,distance,jitter=0.2,radius){
+generate_subdatasets <- function(obs,variables,distance,jitter,radius,seed){
+  
   dat <- matrix(0,nrow = obs,ncol = variables)
   for(i in 1:obs){
-    dat[i,] <- generate_observation(variables,distance=distance,jitter = jitter,radius=radius)
+    dat[i,] <- generate_observation(variables,distance=distance,jitter = jitter,radius=radius,seed=seed+i)
   }
   return(as.data.frame(dat))
 }
 
-generate_dataset <- function(obs,variables,distance,jitter = 0.2,radius){
-  group1 <- generate_subdatasets(obs = obs/2, variables = variables, distance = distance, jitter = jitter,radius = radius)
+generate_dataset <- function(obs,variables,distance,jitter,radius, seed1, seed2){
+  group1 <- generate_subdatasets(obs = obs/2, variables = variables, distance = distance, jitter = jitter,radius = radius, seed = seed1)
   group1_y <- rep(1, times = obs/2)
   group1 <- cbind(group1, y = as.factor(group1_y))
-  group2 <- generate_subdatasets(obs = obs/2, variables = variables, distance = -distance, jitter = jitter,radius = radius)
+  group2 <- generate_subdatasets(obs = obs/2, variables = variables, distance = (-distance), jitter = jitter,radius = radius, seed = seed2)
   group2_y <- rep(2, times = obs/2)
   group2 <- cbind(group2, y = as.factor(group2_y))
   dataset <- rbind(group1, group2)
   dataset
 }
-#radius muss noch als letztes argument eingefügt werden, kann aber ein beliebiger positiver wert sein
-S3_data_train <- generate_dataset(1000, 10, 1,5)
-S3_data_test <- generate_dataset(1000, 10, 1,5)
 
-S6_data_train <- generate_dataset(50, 50, 1)
-S6_data_test <- generate_dataset(50, 50, 1)
 
-S9_data_train <- generate_dataset(50, 200, 1)
-S9_data_test <- generate_dataset(50, 200, 1)
+S3_data_train <- generate_dataset(obs = 1000, variables = 10, distance = 0.5,jitter = 0.3, radius = 10, seed1 = 1000, seed2 = 2000)
+S3_data_test <- generate_dataset(obs = 1000, variables = 10, distance = 0.5,jitter = 0.3, radius = 10, seed1 = 3000, seed2 = 4000)
+
+S6_data_train <- generate_dataset(obs = 50, variables = 50, distance = 3,jitter = 1.5, radius = 10, seed1 = 100, seed2 = 200)
+S6_data_test <- generate_dataset(obs = 50, variables = 50, distance = 3,jitter = 1.5, radius = 10, seed1 = 300, seed2 = 400)
+
+S9_data_train <- generate_dataset(obs = 50, variables = 200, distance = 3,jitter = 1.5, radius = 10, seed1 = 1000, seed2 = 2000)
+S9_data_test <- generate_dataset(obs = 50, variables = 200, distance = 3,jitter = 1.5, radius = 10, seed1 = 3000, seed2 = 4000)
 
 save(S3_data_train, S3_data_test, file = "Code/Daten/Data_S3.RData")
 save(S6_data_train, S6_data_test, file = "Code/Daten/Data_S6.RData")

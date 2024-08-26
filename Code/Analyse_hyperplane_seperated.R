@@ -485,7 +485,7 @@ S7_opt_param_logR <- BayesianOptimization(
   init_points = 15,
   n_iter = 25,
   acq = "ucb",
-  verbose = FALSE
+  #verbose = FALSE
 )
 
 S7_tune_k_NN <- function(k) {
