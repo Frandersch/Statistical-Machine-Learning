@@ -31,7 +31,7 @@ S3_opt_param_linear <- BayesianOptimization(
   init_points = 10,
   n_iter = 15,
   acq = "ucb",
-  verbose = FALSE
+  #verbose = FALSE
 )
 
 S3_tune_polynomial <- function(cost, gamma, degree) {
@@ -65,7 +65,7 @@ S3_opt_param_radial <- BayesianOptimization(
   init_points = 10,
   n_iter = 15,
   acq = "ucb",
-  verbose = FALSE
+  #verbose = FALSE
 )
 
 S3_tune_logR <- function(alpha, lambda) {
@@ -103,7 +103,7 @@ S3_opt_param_k_NN <- BayesianOptimization(
   init_points = 10,
   n_iter = 15,
   acq = "ucb",
-  verbose = FALSE
+  #verbose = FALSE
 )
 
 save(S3_opt_param_linear, S3_opt_param_polynomial, S3_opt_param_radial, S3_opt_param_logR, S3_opt_param_k_NN, file = "Code/Parameter/Parameter_S3.RData")
@@ -231,7 +231,7 @@ S6_opt_param_linear <- BayesianOptimization(
   init_points = 10,
   n_iter = 15,
   acq = "ucb",
-  verbose = FALSE
+  #verbose = FALSE
 )
 
 S6_tune_polynomial <- function(cost, gamma, degree) {
@@ -265,7 +265,7 @@ S6_opt_param_radial <- BayesianOptimization(
   init_points = 10,
   n_iter = 15,
   acq = "ucb",
-  verbose = FALSE
+  #verbose = FALSE
 )
 
 S6_tune_logR <- function(alpha, lambda) {
@@ -283,7 +283,7 @@ S6_opt_param_logR <- BayesianOptimization(
   init_points = 10,
   n_iter = 15,
   acq = "ucb",
-  verbose = FALSE
+  #verbose = FALSE
 )
 
 S6_tune_k_NN <- function(k) {
@@ -428,7 +428,7 @@ S9_opt_param_linear <- BayesianOptimization(
   init_points = 15,
   n_iter = 25,
   acq = "ucb",
-  verbose = FALSE
+  #verbose = FALSE
 )
 
 S9_tune_polynomial <- function(cost, gamma, degree) {
@@ -462,7 +462,7 @@ S9_opt_param_radial <- BayesianOptimization(
   init_points = 15,
   n_iter = 25,
   acq = "ucb",
-  verbose = FALSE
+  #verbose = FALSE
 )
 
 S9_tune_logR <- function(alpha, lambda) {
