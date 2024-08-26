@@ -87,7 +87,7 @@
 
 \title{Zielsetzung und Datengenerierung}
 \author{Franz Andersch \& Niklas Münz}
-\date{2024-08-23}
+\date{2024-08-26}
 
 \begin{document}
 \maketitle
@@ -147,7 +147,7 @@ Merkmalserweiterung um quadratische Terme dar und funktioniert damit
 Verschiebung erflogte hier nur durch skalierung der Werte von \(X_p\)
 ebenfalls mit \(k\sim\mathcal{N}(\mu_k,\sigma^2_k)\) für die eine
 Ausprägung und \(k\sim\mathcal{N}(-\mu_k,\sigma^2)\) für die andere
-Ausprägung. Der letzte DGP geht von einer noch Komplexeren
+Ausprägung.\newline  Der letzte DGP geht von einer noch Komplexeren
 Entscheidungsgrenzen aus. Es wird hier ein Hypershpäre im \(p\)
 dimensionalen Raum erstellt und einmal innerhalb und einmal außerhalb
 dieser gesampelt. Dafür wurde für eine Beobachtung \(j\), \(p-1\) Winkel
@@ -169,7 +169,12 @@ eine Zufallsvariable mit \(\mu_k\) für die eine Ausprägung der
 Zielvariable und \(-\mu_k\) für die andere Ausprägung. Die Streuung
 bleibt bei beiden bei einem konstanten Werte \(\sigma^2_k\). Je nachdem
 wie \(\mu_k\) und \(\sigma^2_r\) gewählt werden kann die Trennbarkeit
-der Daten angepasst werden.
+der Daten angepasst werden. Für alle Szenarien wurde ein Wert für
+\(\mu_k\) und \(\sigma^2_k\) festgelegt, der für eine moderate
+Überschneidung der zwei Klassen sorgt. Allerdings musste der Abstand in
+den höherdimensionalen Szenarien etwas erhöht werden, da sonst die
+Performance für alle Classifier sehr schlecht und damit nicht
+vergleichbar war.
 
 Es ergeben sich daher 9 unterschiedliche Datensituationen, welche in
 ihren Dimensionen und Komplexität der Entscheidungsgrenze variieren. Die

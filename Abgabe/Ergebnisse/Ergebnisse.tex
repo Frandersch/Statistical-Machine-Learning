@@ -91,7 +91,7 @@
 
 \title{Ergebnisse}
 \author{Franz Andersch \& Niklas Münz}
-\date{2024-08-23}
+\date{2024-08-26}
 
 \begin{document}
 \maketitle
@@ -117,7 +117,7 @@ der Ansatz des Upper-Confidence-Bound genutzt, welcher obere
 Konfidenzgrenzen nutzt um den Verlust gegenüber der besten möglichen
 Entscheidung, während der Optimierung zu minimieren
 \parencite{snoekPracticalBayesianOptimization2012}. \begin{align}
-a_{UCB}(\mathbf{x};~\left\{\mathbf{x}_n,y_n\right\},\theta) = \mu(\mathbf{x};~\left\{\mathbf{x}_n,y_n\right\},\theta) - k \sigma(\mathbf{x};~\left\{\mathbf{x}_n,y_n\right\},\theta)
+a_{UCB}(\mathbf{x};~\left\{\mathbf{x}_n,y_n\right\},\theta) = \mu(\mathbf{x};~\left\{\mathbf{x}_n,y_n\right\},\theta) + k \sigma(\mathbf{x};~\left\{\mathbf{x}_n,y_n\right\},\theta)
 \end{align} Die Bayesian Optimization wird genutzt, da sie eine schnelle
 Konvergenz für stetige Hyperparameter aufweist
 \parencite{yangHyperparameterOptimizationMachine2020}. Als
@@ -278,21 +278,27 @@ K-NN & 0.88 & 0.880 & 0.893 & 1\\
 performt insbesondere \textit{logR} gut, da sie in allen drei Szenarien
 über alle Kriterien hinweg einen Wert von mindestens 0.8 aufweist und
 jeweils mindestens Rang 2 belegt. Im Falle von \(p \ll n\) und
-\(p \approx n\) zeigen auch \textit{SVM-L}, \textit{SVM-P} und \(SVM-R\)
-eine gute Leistung mit Werten um 0.9. In dem hochdimensionalen Setting
-\(p \gg n\) ist die Performance jedoch differnzierter zu betrachten.
-Hier schneiden \textit{SVM-L} und \textit{SVM-P} nach wie vor ordentlich
-ab. \textit{SVM-R} zeigt hier jedoch deutliche Defizite über alle
-Kriterien hinweg mit Werten um 0.5. \textit{K-NN} schneidet im linearen
-Kontext über alle Szenarien hinweg schlecht ab, wobei die Genauigkeit
-maximal bei 0.66 im Falle von \(p \approx n\) liegt.\newline Die
-ROC-Kurven werden nur in den Datensituationen mit \(p \ll n\) genutzt,
-da die grafische Darstellung in Szenarien mit kleinem \(n\) nicht
-sinnvoll erscheint. Abbildung \ref{fig:S1ROC} zeigt die ROC-Kurven für
-die Datensituation S1. Diese zeigt grafisch noch einmal den deutlichen
-Unterschied zwischen \textit{K-NN}, welcher nur etwas besser als eine
-reine Zufallsauswahl ist und den anderen vier Algorithmen, welche nahezu
-perfekt klassifizieren.
+\(p \approx n\) zeigen auch \textit{SVM-L}, \textit{SVM-P} und
+\textit{SVM-R} eine gute Leistung mit Werten um 0.9. In dem
+hochdimensionalen Setting \(p \gg n\) ist die Performance jedoch
+differnzierter zu betrachten. Hier schneiden \textit{SVM-L} und
+\textit{SVM-P} nach wie vor ordentlich ab. \textit{SVM-R} zeigt hier
+jedoch deutliche Defizite über alle Kriterien hinweg mit Werten um 0.5.
+\textit{K-NN} schneidet im linearen Kontext über alle Szenarien hinweg
+schlecht ab, wobei die Genauigkeit maximal bei 0.66 im Falle von
+\(p \approx n\) liegt.\newline Die ROC-Kurven werden nur in den
+Datensituationen mit \(p \ll n\) genutzt, da die grafische Darstellung
+in Szenarien mit kleinem \(n\) nicht sinnvoll erscheint. Es ist dazu zu
+sagen, das SVM anders als beispielsweise logistische Regression, nicht
+direkt eine Wahrscheinlichkeit ausgeben, dass eine Beobachtung zu einer
+bestimmten Klasse gehört. Da diese Wahrscheinlichkeit aber für die
+ROC-Kurven benötigt wird, gibt es auch hier Möglichkeiten diese für die
+SVM zu berechnen (siehe \cite{plattProbabilisticOutputsSupport2000}).
+Abbildung \ref{fig:S1ROC} zeigt die ROC-Kurven für die Datensituation
+S1. Diese zeigt grafisch noch einmal den deutlichen Unterschied zwischen
+\textit{K-NN}, welcher nur etwas besser als eine reine Zufallsauswahl
+ist und den anderen vier Algorithmen, welche nahezu perfekt
+klassifizieren.
 
 In den Datensituationen mit polynomialer Form der Entscheidungsgrenze
 ist die Leistungsfähigkeit aller Algorithmen grundsätzlich deutlich
