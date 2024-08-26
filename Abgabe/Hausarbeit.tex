@@ -561,7 +561,7 @@ Merkmalserweiterung um quadratische Terme dar und funktioniert damit
 Verschiebung erflogte hier nur durch skalierung der Werte von \(X_p\)
 ebenfalls mit \(k\sim\mathcal{N}(\mu_k,\sigma^2_k)\) für die eine
 Ausprägung und \(k\sim\mathcal{N}(-\mu_k,\sigma^2)\) für die andere
-Ausprägung. Der letzte DGP geht von einer noch Komplexeren
+Ausprägung.\newline  Der letzte DGP geht von einer noch Komplexeren
 Entscheidungsgrenzen aus. Es wird hier ein Hypershpäre im \(p\)
 dimensionalen Raum erstellt und einmal innerhalb und einmal außerhalb
 dieser gesampelt. Dafür wurde für eine Beobachtung \(j\), \(p-1\) Winkel
@@ -583,7 +583,12 @@ eine Zufallsvariable mit \(\mu_k\) für die eine Ausprägung der
 Zielvariable und \(-\mu_k\) für die andere Ausprägung. Die Streuung
 bleibt bei beiden bei einem konstanten Werte \(\sigma^2_k\). Je nachdem
 wie \(\mu_k\) und \(\sigma^2_r\) gewählt werden kann die Trennbarkeit
-der Daten angepasst werden.
+der Daten angepasst werden. Für alle Szenarien wurde ein Wert für
+\(\mu_k\) und \(\sigma^2_k\) festgelegt, der für eine moderate
+Überschneidung der zwei Klassen sorgt. Allerdings musste der Abstand in
+den höherdimensionalen Szenarien etwas erhöht werden, da sonst die
+Performance für alle Classifier sehr schlecht und damit nicht
+vergleichbar war.
 
 Es ergeben sich daher 9 unterschiedliche Datensituationen, welche in
 ihren Dimensionen und Komplexität der Entscheidungsgrenze variieren. Die
@@ -744,7 +749,8 @@ Konvergenz für stetige Hyperparameter aufweist
 \parencite{yangHyperparameterOptimizationMachine2020}. Als
 Evaluierungskriterium wird die Genauigkeit der Modelle, welche durch den
 Anteil der korrekt klassifizierten Beobachtungen wiedergegeben wird,
-verwendet.
+verwendet. Zur Bestimmung dieser werden die erzeugten Testdaten
+herangezogen.
 
 Basierend auf den Ergebnissen des Tuning werden die oben genannten
 Modelle erstellt. Daraufhin werden die Genauigkeit, die Receiver
@@ -797,165 +803,173 @@ jeweiligen Datensituation.\newline \afterpage{
 \toprule
   & ACC & AUC & F1 & Rang\\
 \midrule
-SVM-L & 0.956 & 0.991 & 0.956 & 4\\
-SVM-P & 0.956 & 0.991 & 0.956 & 3\\
-SVM-R & 0.961 & 0.991 & 0.961 & 1\\
-LogR & 0.957 & 0.992 & 0.957 & 2\\
-K-NN & 0.582 & 0.599 & 0.582 & 5\\
+SVM-L & 0.964 & 0.991 & 0.964 & 2\\
+SVM-P & 0.964 & 0.991 & 0.964 & 2\\
+SVM-R & 0.961 & 0.990 & 0.961 & 4\\
+LogR & 0.965 & 0.991 & 0.965 & 1\\
+K-NN & 0.571 & 0.600 & 0.567 & 5\\
 \bottomrule
 \end{tabular}  &  
 \begin{tabular}{lrrrr}
 \toprule
   & ACC & AUC & F1 & Rang\\
 \midrule
-SVM-L & 0.665 & 0.728 & 0.659 & 5\\
-SVM-P & 0.674 & 0.729 & 0.671 & 4\\
-SVM-R & 0.704 & 0.759 & 0.690 & 1\\
-LogR & 0.687 & 0.740 & 0.687 & 2\\
-K-NN & 0.691 & 0.731 & 0.657 & 3\\
+SVM-L & 0.759 & 0.802 & 0.752 & 4\\
+SVM-P & 0.764 & 0.802 & 0.756 & 2\\
+SVM-R & 0.904 & 0.972 & 0.904 & 1\\
+LogR & 0.762 & 0.802 & 0.751 & 3\\
+K-NN & 0.756 & 0.800 & 0.756 & 5\\
 \bottomrule
 \end{tabular}  &  
 \begin{tabular}{lrrrr}
 \toprule
   & ACC & AUC & F1 & Rang\\
 \midrule
-SVM-L & 0.525 & 0.532 & 0.620 & 4\\
-SVM-P & 1.000 & 1.000 & 1.000 & 1\\
-SVM-R & 0.913 & 0.994 & 0.905 & 3\\
-LogR & 0.506 & 0.530 & 0.532 & 5\\
-K-NN & 0.978 & 0.978 & 0.978 & 2\\
+SVM-L & 0.497 & 0.495 & 0.504 & 5\\
+SVM-P & 0.926 & 0.981 & 0.926 & 1\\
+SVM-R & 0.792 & 0.888 & 0.801 & 2\\
+LogR & 0.500 & 0.500 & 0.667 & 4\\
+K-NN & 0.687 & 0.749 & 0.657 & 3\\
 \bottomrule
 \end{tabular}  \\ \hline \multirow{5}{*}{\textbf{$p \approx n$}} &  
 \begin{tabular}{lrrrr}
 \toprule
   & ACC & AUC & F1 & Rang\\
 \midrule
-SVM-L & 0.82 & 0.869 & 0.816 & 3\\
-SVM-P & 0.82 & 0.869 & 0.816 & 3\\
-SVM-R & 0.86 & 0.875 & 0.844 & 2\\
-LogR & 0.88 & 0.918 & 0.864 & 1\\
-K-NN & 0.66 & 0.622 & 0.667 & 5\\
+SVM-L & 0.80 & 0.851 & 0.783 & 3\\
+SVM-P & 0.80 & 0.851 & 0.783 & 3\\
+SVM-R & 0.86 & 0.885 & 0.851 & 1\\
+LogR & 0.80 & 0.858 & 0.783 & 2\\
+K-NN & 0.70 & 0.698 & 0.681 & 5\\
 \bottomrule
 \end{tabular}  &  
 \begin{tabular}{lrrrr}
 \toprule
   & ACC & AUC & F1 & Rang\\
 \midrule
-SVM-L & 0.50 & 0.504 & 0.545 & 4\\
-SVM-P & 0.58 & 0.525 & 0.571 & 3\\
-SVM-R & 0.56 & 0.530 & 0.389 & 5\\
-LogR & 0.64 & 0.563 & 0.667 & 1\\
-K-NN & 0.56 & 0.552 & 0.577 & 2\\
+SVM-L & 0.60 & 0.590 & 0.524 & 3\\
+SVM-P & 0.60 & 0.590 & 0.524 & 3\\
+SVM-R & 0.60 & 0.586 & 0.545 & 2\\
+LogR & 0.56 & 0.437 & 0.500 & 5\\
+K-NN & 0.62 & 0.729 & 0.642 & 1\\
 \bottomrule
 \end{tabular}  &  
 \begin{tabular}{lrrrr}
 \toprule
   & ACC & AUC & F1 & Rang\\
 \midrule
-SVM-L & 0.68 & 0.605 & 0.724 & 4\\
-SVM-P & 0.84 & 0.912 & 0.852 & 1\\
-SVM-R & 0.84 & 0.886 & 0.818 & 2\\
-LogR & 0.64 & 0.526 & 0.690 & 5\\
-K-NN & 0.80 & 0.800 & 0.833 & 3\\
+SVM-L & 0.58 & 0.531 & 0.462 & 5\\
+SVM-P & 0.84 & 0.830 & 0.826 & 1\\
+SVM-R & 0.74 & 0.889 & 0.794 & 2\\
+LogR & 0.58 & 0.699 & 0.364 & 4\\
+K-NN & 0.80 & 0.800 & 0.762 & 3\\
 \bottomrule
 \end{tabular}  \\ \hline \multirow{5}{*}{\textbf{$p \gg n$}} &  
 \begin{tabular}{lrrrr}
 \toprule
   & ACC & AUC & F1 & Rang\\
 \midrule
-SVM-L & 0.72 & 0.786 & 0.708 & 3\\
-SVM-P & 0.74 & 0.792 & 0.735 & 2\\
-SVM-R & 0.54 & 0.500 & 0.439 & 5\\
-LogR & 0.80 & 0.814 & 0.808 & 1\\
-K-NN & 0.62 & 0.584 & 0.513 & 4\\
+SVM-L & 0.66 & 0.725 & 0.653 & 4\\
+SVM-P & 0.70 & 0.750 & 0.681 & 3\\
+SVM-R & 0.64 & 0.500 & 0.609 & 5\\
+LogR & 0.72 & 0.754 & 0.741 & 2\\
+K-NN & 0.80 & 0.866 & 0.808 & 1\\
 \bottomrule
 \end{tabular}  &  
 \begin{tabular}{lrrrr}
 \toprule
   & ACC & AUC & F1 & Rang\\
 \midrule
-SVM-L & 0.62 & 0.574 & 0.612 & 1\\
-SVM-P & 0.62 & 0.574 & 0.612 & 1\\
-SVM-R & 0.50 & 0.500 & NaN & 5\\
-LogR & 0.60 & 0.562 & 0.600 & 3\\
-K-NN & 0.50 & 0.612 & 0.490 & 4\\
+SVM-L & 0.48 & 0.485 & 0.480 & 4\\
+SVM-P & 0.50 & 0.517 & NaN & 5\\
+SVM-R & 0.56 & 0.500 & 0.450 & 3\\
+LogR & 0.64 & 0.642 & 0.654 & 2\\
+K-NN & 0.70 & 0.700 & 0.706 & 1\\
 \bottomrule
 \end{tabular}  &  
 \begin{tabular}{lrrrr}
 \toprule
   & ACC & AUC & F1 & Rang\\
 \midrule
-SVM-L & 0.56 & 0.504 & 0.633 & 5\\
-SVM-P & 0.72 & 0.882 & 0.774 & 2\\
-SVM-R & 0.72 & 0.744 & 0.611 & 3\\
-LogR & 0.58 & 0.530 & 0.656 & 4\\
-K-NN & 0.88 & 0.880 & 0.893 & 1\\
+SVM-L & 0.50 & 0.570 & 0.390 & 4\\
+SVM-P & 0.76 & 0.726 & 0.750 & 1\\
+SVM-R & 0.66 & 0.757 & 0.738 & 3\\
+LogR & 0.54 & 0.538 & 0.343 & 5\\
+K-NN & 0.76 & 0.760 & 0.700 & 2\\
 \bottomrule
 \end{tabular}  \\ \hline \end{tabular} \caption{Vergleich der Modelle} \label{tab:TabVergleich} \end{table}
 
 \end{landscape}
 \clearpage
-} In den Datensituationen mit linearer Form der Entscheidungsgrenze
+} \textless\textless\textless\textless\textless\textless\textless{} HEAD
+In den Datensituationen mit linearer Form der Entscheidungsgrenze
 performt insbesondere \textit{logR} gut, da sie in allen drei Szenarien
-über alle Kriterien hinweg einen Wert von mindestens 0.8 aufweist und
+über alle Kriterien hinweg einen Wert von mindestens 0.72 aufweist und
 jeweils mindestens Rang 2 belegt. Im Falle von \(p \ll n\) und
 \(p \approx n\) zeigen auch \textit{SVM-L}, \textit{SVM-P} und
-\textit{SVM-R} eine gute Leistung mit Werten um 0.9. In dem
-hochdimensionalen Setting \(p \gg n\) ist die Performance jedoch
-differnzierter zu betrachten. Hier schneiden \textit{SVM-L} und
-\textit{SVM-P} nach wie vor ordentlich ab. \textit{SVM-R} zeigt hier
-jedoch deutliche Defizite über alle Kriterien hinweg mit Werten um 0.5.
-\textit{K-NN} schneidet im linearen Kontext über alle Szenarien hinweg
-schlecht ab, wobei die Genauigkeit maximal bei 0.66 im Falle von
-\(p \approx n\) liegt.\newline Die ROC-Kurven werden nur in den
-Datensituationen mit \(p \ll n\) genutzt, da die grafische Darstellung
-in Szenarien mit kleinem \(n\) nicht sinnvoll erscheint. Abbildung
-\ref{fig:S1ROC} zeigt die ROC-Kurven für die Datensituation S1. Diese
-zeigt grafisch noch einmal den deutlichen Unterschied zwischen
-\textit{K-NN}, welcher nur etwas besser als eine reine Zufallsauswahl
-ist und den anderen vier Algorithmen, welche nahezu perfekt
-klassifizieren.
+\textit{SVM-R} eine gute Leistung mit Werten nahe 0.9 bzw. 0.8. In dem
+hochdimensionalen Setting \(p \gg n\) schneiden alle Drei, jedoch
+insbesondere \textit{SVM-R} schlechter ab, welche einen AUC-Wert von 0.5
+aufweist. \textit{K-NN} schneidet im linearen Kontext für \(p \ll n\)
+und \(p \approx n\) am schlechtesten ab, wobei der Unterschied im
+niedrigdimensionalen Raum am deutlichsten ist (0.39 schlechtere
+Genauigkeit als der nächst schlechteste Algorithmus). Im
+hochdimensionalen Raum kann \textit{K-NN} allerdings als bester
+Algorithmus mit Werten über 0.8 überzeugen.\newline Die ROC-Kurven
+werden nur in den Datensituationen mit \(p \ll n\) genutzt, da die
+grafische Darstellung in Szenarien mit kleinem \(n\) nicht sinnvoll
+erscheint. Es ist dazu zu sagen, das SVM anders als beispielsweise
+logistische Regression, nicht direkt eine Wahrscheinlichkeit ausgeben,
+dass eine Beobachtung zu einer bestimmten Klasse gehört. Da diese
+Wahrscheinlichkeit aber für die ROC-Kurven benötigt wird, gibt es auch
+hier Möglichkeiten diese für die SVM zu berechnen (siehe
+\cite{plattProbabilisticOutputsSupport2000}). Abbildung \ref{fig:S1ROC}
+zeigt die ROC-Kurven für die Datensituation S1. Diese zeigt grafisch
+noch einmal den deutlichen Unterschied zwischen \textit{K-NN}, welcher
+nur etwas besser als eine reine Zufallsauswahl ist und den anderen vier
+Algorithmen, welche nahezu perfekt klassifizieren.
 
 In den Datensituationen mit polynomialer Form der Entscheidungsgrenze
-ist die Leistungsfähigkeit aller Algorithmen grundsätzlich deutlich
-schlechter als in den zuvor beschriebenen Szenarien. Im Fall von
-\(p \ll n\) sind die Ergebnisse mittelmäßig mit Werten um 0.7, wobei
-sich kein Algorithmus von den anderen absetzen kann. Bei \(p \approx n\)
-ist \textit{LogR} den anderen Klassifikationsmethoden leicht überlegen,
-insbesondere bei der Fähigkeit gleichzeitig falsch Positive und falsch
-Negative zu minimieren (F1-Score = 0.667). Die anderen Algorithmen
-befinden sich durchweg über alle Werte hinweg nahe 0.5. Ähnlich ist es
-der Fall für \(p \gg n\) bei dem nun \textit{SVM-L}, \textit{SVM-P} und
-\textit{LogR} mit einer Genauigkeit von 0.6, \textit{SVM-R} und
-\textit{K-NN} mit einer Genauigkeit von 0.5 leicht überlegen sind.
-Dennoch ist für die letzten beiden Szenarien deutlich, dass kein
-Algorithmus gute Leistung zeigt.\newline Abbildung \ref{fig:S2ROC} zeigt
-die ROC-Kurven für Szenario 2. Hieraus wird erneut deutlich, dass sich
-kein Algorithmus von den anderen abheben kann, wobei alle eine
-mittelmäßige Leistung zeigen.
+ist die Leistungsfähigkeit aller Algorithmen grundsätzlich schlechter
+als in den zuvor beschriebenen Szenarien. Im Fall von \(p \ll n\) sind
+die Ergebnisse ausschließlich für \textit{SVM-R} sehr gut mit Werten
+über 0.9. Die restlichen Algorithmen performen mittelmäßig mit Werten um
+0.7, wobei sich hier kein Algorithmus von den anderen absetzen kann. Bei
+\(p \approx n\) ist \textit{K-NN} den anderen Klassifikationsmethoden
+leicht überlegen, insbesondere beim AUC-Wert mit 0.729. Die anderen
+Algorithmen befinden sich durchweg über alle Werte hinweg nahe 0.5.
+Ähnlich ist es der Fall für \(p \gg n\) bei dem auch wieder
+\textit{K-NN} eine leicht bessere Leistung zeigt mit einer Genauigkeit
+von 0.7, gefolgt von \textit{LogR} mit 0.64. Dennoch ist für die letzten
+beiden Szenarien deutlich, dass kein Algorithmus gute Leistung
+zeigt.\newline Abbildung \ref{fig:S2ROC} zeigt die ROC-Kurven für
+Szenario 2. Hier ist gut ersichtlich, dass sich \textit{SVM-R} von den
+anderen Algorithmen abheben kann, welche alle eine mittelmäßige Leistung
+zeigen.
 
 In den Datensituationen mit radialer Form der Entscheidungsgrenze ist
 für den Fall \(p \ll n\) eine eindeutige Unterscheidung zu treffen.
-Während \textit{SVM-P}, \textit{SVM-R} und \textit{K-NN} (nahezu)
-perfekt klassifizieren, haben dabei \textit{SVM-L} und \textit{LogR}
-große Probleme und zeigen lediglich Werte nahe 0.5. Weniger drastisch
-aber dennoch mit dem gleichen Resultat ist dies für \(p \approx n\) der
-Fall. Während \textit{SVM-P}, \textit{SVM-R} und \textit{K-NN} etwas
-schlechter abschneiden (beispielsweise mit F1-Scores zwischen 0.8 und
-0.9), performen \textit{SVM-L} und \textit{LogR} leicht besser
-(beispielsweise mit F1-Scores nahe 0.7). Innerhalb dieser beiden Gruppen
-gibt es keine nennenswerten Unterschiede. Für \(p \gg n\) sind ebenfalls
-die beiden Gruppen zu differenzieren. Für \textit{SVM-L} und
-\textit{LogR} sind wie in Szenario 3 wieder Werte nahe 0.5 bzw. nahe 0.6
-für die F1-Scores erkennbar. \textit{SVM-P} und \textit{SVM-R} performen
-in diesem Szenario am schlechtesten, wobei die AUC-Werte von 0.882 bzw.
-0.744 weiterhin akzeptable Leistungen zeigen. Heraus sticht
-\textit{K-NN}, insbesondere bei dem F1-Score von 0.893, was verdeutlicht
-das dieser Algorithmus hier die beste Leistung zeigt.\newline Abbildung
-\ref{fig:S3ROC} zeigt die ROC-Kurven für Szenario 3. Hieraus wird die
-Aufteilung in die zwei Gruppen sofort deutlich. \textit{SVM-P},
-\textit{SVM-R} und \textit{K-NN} bewegen sich nahe an der oberen linken
-Kante, was für eine (nahezu) perfekte Klassifikation spricht.
+Während \textit{SVM-P}, \textit{SVM-R} und \textit{K-NN} gut
+klassifizieren, haben dabei \textit{SVM-L} und \textit{LogR} große
+Probleme und zeigen lediglich Werte nahe 0.5. Insbesondere
+\textit{SVM-P} zeigt mit einem AUC-Wert von 0.981 eine sehr gute
+Performance. Weniger drastisch aber dennoch mit dem gleichen Resultat
+ist dies für \(p \approx n\) der Fall. Während \textit{SVM-P} etwas
+schlechter performt, bleibt \textit{SVM-R} nahezu identisch und
+\textit{K-NN} kann sich sogar leicht steigern auf einen AUC-Wert von
+0.8. \textit{SVM-L} und \textit{LogR} können sich leicht verbessern
+(beispielsweise mit einer Genauigkeit nahe 0.6). Für \(p \gg n\) sind
+ebenfalls die beiden Gruppen zu differenzieren. Für \textit{SVM-L} und
+\textit{LogR} sind wie in Szenario 3 wieder Werte nahe 0.5 für die
+Genauigkeit erkennbar. \textit{SVM-P} und \textit{K-NN} performen in
+diesem Szenario am Besten. \textit{SVM-R} fällt insbesondere mit einer
+Genauigkeit von 0.66 im Vergleich zu 0.76 etwas hinter den anderen
+beiden Algorithmen zurück.\newline Abbildung \ref{fig:S3ROC} zeigt die
+ROC-Kurven für Szenario 3. Hieraus wird einerseits die Aufteilung in die
+zwei Gruppen deutlich. \textit{SVM-P}, \textit{SVM-R} und \textit{K-NN}
+bewegen sich näher an der oberen linken Kante, was für eine (nahezu)
+perfekte Klassifikation spricht. Andererseits ist eindeutig, dass sich
+\textit{SVM-P} nochmal von den anderen beiden Algorithmen absetzen kann.
 \textit{SVM-L} und \textit{LogR} orientieren sich nahe der diagonalen
 Linie, die eine ROC-Kurve einer reinen Zufallsauswahl beschreibt. Dies
 zeigt auf, dass sie kaum Fähigkeit aufweisen zwischen den Klassen zu
@@ -987,13 +1001,13 @@ unterscheiden.
 Zuletzt wird ein Vergleich der einzelnen Dimensionen über die drei
 Formen der Entscheidungsgrenze gezogen. So ist für \(p \ll n\)
 ersichtlich, dass insbesondere \textit{SVM-P} und \textit{SVM-R} über
-alle drei Szenarien gute Leistung (insbesondere für S1 und S3 mit
-mindestens 0.9 über alle Werte) zeigen. Das gleiche gilt, mit Ausnahme
-der polynomialen Form der Entscheidungsgrenze, auch für \(p \approx n\),
-wobei die Werte etwas niedriger bei 0.8 bis 0.9 liegen. In den
-hochdimensionalen Szenarien \(p \gg n\) ist einzig \textit{SVM-P}
-überzeugend, erneut ausgenommen der polynomialen Form der
-Entscheidungsgrenze. \newpage
+alle drei Szenarien gute Leistung (mit Werten mindestens nahe 0.8 über
+alle drei Szenarien) zeigen. Ähnliches gilt, mit Ausnahme der
+polynomialen Form der Entscheidungsgrenze, auch für \(p \approx n\),
+wobei hier auch \textit{K-NN} gute Werte zeigt (alle drei durchweg mit
+Werten über 0.7). In den hochdimensionalen Szenarien \(p \gg n\) ist
+einzig \textit{K-NN} überzeugend, welcher auch im polynomialen Szenario
+Werte über 0.7 aufweist. \newpage
 
 \addcontentsline{toc}{section}{Literatur}
 
