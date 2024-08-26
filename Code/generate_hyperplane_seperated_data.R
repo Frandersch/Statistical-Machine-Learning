@@ -58,12 +58,12 @@ df5 <- data.frame(x=c(df3$x,df4$x),y=c(df3$y,df4$y),z=c(df3$z,df4$z),group=c(rep
 plot3d(x=df5$x,y=df5$y,z=df5$z,col = df5$group)
 
 #sampling in n dimensions(intercept of hyperplain is zero)
-generate_subdatasets <- function(obs,variables,distance,jitter,seed,coef_min=-100,coef_max=100,center=0,range=3){
+coefficients <- runif(variables,)
+generate_subdatasets <- function(obs,variables,distance,coefficients,jitter,seed,center=0,range=5){
   set.seed(seed)
-  coefficients <- runif(variables,coef_min,coef_max)
-  set.seed(NULL)
   points_on_plane <- matrix(rnorm(obs,center,range),nrow = obs,ncol=1)
   for(i in 2:(length(coefficients)-1)){
+    set.seed(seed+i)
     points_on_plane <- cbind(points_on_plane,rnorm(obs,center,range))
   }
   helper1 <- apply(points_on_plane,1,function(x){x*coefficients[1:(variables-1)]})
@@ -76,11 +76,11 @@ generate_subdatasets <- function(obs,variables,distance,jitter,seed,coef_min=-10
   return(as.data.frame(points_next_to_plane)) 
 }
 
-generate_dataset <- function(obs,variables,distance,jitter,seed,coef_min=-100,coef_max=100,center=0,range=3){
-  group1 <- generate_subdatasets(obs = obs/2, variables = variables, distance = distance, jitter = jitter, seed = seed, coef_min=coef_min,coef_max=coef_max,center=center,range=range)
+generate_dataset <- function(obs,variables,distance,jitter,seed,center=0,range=3){
+  group1 <- generate_subdatasets(obs = obs/2, variables = variables, distance = distance, jitter = jitter, seed = seed,center=center,range=range)
   group1_y <- rep(1, times = obs/2)
   group1 <- cbind(group1, y = as.factor(group1_y))
-  group2 <- generate_subdatasets(obs = obs/2, variables = variables, distance = (-distance), jitter = jitter, seed = seed, coef_min=coef_min,coef_max=coef_max,center=center,range=range)
+  group2 <- generate_subdatasets(obs = obs/2, variables = variables, distance = (-distance), jitter = jitter, seed = seed, center=center,range=range)
   group2_y <- rep(2, times = obs/2)
   group2 <- cbind(group2, y = as.factor(group2_y))
   dataset <- rbind(group1, group2)
