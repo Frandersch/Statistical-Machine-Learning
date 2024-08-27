@@ -93,7 +93,7 @@
 
 \title{Hausarbeit}
 \author{Franz Andersch \& Niklas Münz}
-\date{2024-08-26}
+\date{2024-08-27}
 
 \begin{document}
 \maketitle
@@ -457,23 +457,25 @@ sehr flexibel und kann für spezielle Anwendungsbereiche angepasst werden
 stabil und reproduzierbar, was sie von anderen Methoden wie
 beispielsweise Neural Networks abhebt. Auch die Anwendung ist
 vergleichsweise einfach, da es eine überschaubare Anzahl an Parametern
-gibt (wie beispielsweise bei der SVM mit radialem Kern nur der gamma-
-und cost-Parameter festzulegen ist).\newline Durch die Möglichkeit der
-Nutzung verschiedener Kerne sind SVM´s überaus vielseitig. Die Auswahl
-des Kerns ermöglicht es äußerst flexible Entscheidungsgrenzen zu formen
-\parencite{kuhnAppliedPredictiveModeling2013}. Dadurch können SVM´s an
-verschiedene Datensituationen angepasst werden.\newline Ein weiterer
-Vorteil ist, dass die Methode weitgehend robust gegenüber overfitting
-ist \parencite{kuhnAppliedPredictiveModeling2013}. Dafür verantwortlich
-ist der Cost-Parameter, anhand dessen der Fit an die Daten kontrolliert
-werden kann. Jedoch birgt dies auch Probleme (Erläuterungen im folgenden
-Abschnitt).\newline Diese Vorteile resultieren in einer allgemein
-häufigen Nutzung von SVM´s in der Wissenschaft. Sie haben folglich
-bewiesen, dass sie für verschiedenste Aufgaben gut funktionieren
+gibt (wie beispielsweise bei der \textit{SVM} mit radialem Kern nur der
+gamma- und cost-Parameter festzulegen ist).\newline Durch die
+Möglichkeit der Nutzung verschiedener Kerne sind \textit{SVM} überaus
+vielseitig. Die Auswahl des Kerns ermöglicht es äußerst flexible
+Entscheidungsgrenzen zu formen
+\parencite{kuhnAppliedPredictiveModeling2013}. Dadurch können
+\textit{SVM} an verschiedene Datensituationen angepasst werden.\newline
+Ein weiterer Vorteil ist, dass die Methode weitgehend robust gegenüber
+overfitting ist \parencite{kuhnAppliedPredictiveModeling2013}. Dafür
+verantwortlich ist der Cost-Parameter, anhand dessen der Fit an die
+Daten kontrolliert werden kann. Jedoch birgt dies auch Probleme
+(Erläuterungen im folgenden Abschnitt).\newline Diese Vorteile
+resultieren in einer allgemein häufigen Nutzung von \textit{SVM} in der
+Wissenschaft. Sie haben folglich bewiesen, dass sie für verschiedenste
+Aufgaben gut funktionieren
 \parencite{kuhnAppliedPredictiveModeling2013}.
 
-Trotz der vielfachen Nutzung von SVM´s, bringen sie auch Nachteile mit
-sich. Das wohl größte Problem liegt in der Modellselektion
+Trotz der vielfachen Nutzung von \textit{SVM}, bringen sie auch
+Nachteile mit sich. Das wohl größte Problem liegt in der Modellselektion
 \parencite{bennettSupportVectorMachines2000}. Wie bereits im vorherigen
 Abschnitt erwähnt, ist die Auswahl der Parameter von hoher Bedeutung bei
 der Performance und dem Fit an die Daten. So kontrollieren die
@@ -484,24 +486,25 @@ Parameter sowohl zu einem underfit als auch zu einem overfit führen.
 Jedoch haben nicht nur die Parameter einen Einfluss auf die Performance
 sondern bereits die Wahl des Kerns kann entscheidend sein
 \parencite{burgesTutorialSupportVector1998}. Je nach Datensituation
-können SVM´s mit verschiedenen Kernen äußert unterschiedliche Ergebnisse
-liefern. Dies zeigt die Sensitivität der Methode gegenüber der Wahl des
-Kerns und der Parameterabstimmung.\newline Ein weiterer Nachteil ist,
-dass die Methode weniger intuitiv und aufwendiger anzuwenden ist als
-andere Algorithmen \parencite{bennettSupportVectorMachines2000}. So ist
-es zum Beispiel schwer Informationen aus Support Vektoren zu ziehen und
-es gibt keine Koeffizienten die interpretiert werden können.\newline
-Zuletzt ist zu erwähnen, dass die Methode bei einer hohen Anzahl an
-Beobachtungen besonders rechenintensiv ist. So konnte beispielsweise
-gezeigt werden, dass insbesondere die SVM mit polynomialem und radialem
-Kern eine hohe Rechenzeit aufweisen
+können \textit{SVM} mit verschiedenen Kernen äußerst unterschiedliche
+Ergebnisse liefern. Dies zeigt die Sensitivität der Methode gegenüber
+der Wahl des Kerns und der Parameterabstimmung.\newline Ein weiterer
+Nachteil ist, dass die Methode weniger intuitiv und aufwendiger
+anzuwenden ist als andere Algorithmen
+\parencite{bennettSupportVectorMachines2000}. So ist es zum Beispiel
+schwer Informationen aus Support Vektoren zu ziehen und es gibt keine
+Koeffizienten die interpretiert werden können.\newline Zuletzt ist zu
+erwähnen, dass die Methode bei einer hohen Anzahl an Beobachtungen
+besonders rechenintensiv ist. So konnte beispielsweise gezeigt werden,
+dass insbesondere die \textit{SVM} mit polynomialem und radialem Kern
+eine hohe Rechenzeit aufweisen
 \parencite{scholzComparisonClassificationMethods2021}. Dabei konnten
-andere Methoden wie die logistische Regression oder k-nearest Neighbour
-deutlich besser abschneiden. Dies liegt daran, dass die Lösung des
-SVM-Optimierungsproblems die Behebung eines quadratischen
-Programmierungsproblems erfordert. Da die Anzahl der zu optimierenden
-Parameter mit der Anzahl der Daten quadratisch zunimmt, führt dies zu
-einer hohen Rechenkomplexität
+andere Methoden wie die \textit{logistische Regression} oder
+\textit{k-nearest Neighbour} deutlich besser abschneiden. Dies liegt
+daran, dass die Lösung des \textit{SVM}-Optimierungsproblems die
+Behebung eines quadratischen Programmierungsproblems erfordert. Da die
+Anzahl der zu optimierenden Parameter mit der Anzahl der Daten
+quadratisch zunimmt, führt dies zu einer hohen Rechenkomplexität
 \parencite{kecmanSupportVectorMachines2005}.
 
 \section{Daten}
@@ -630,94 +633,90 @@ begrenzt ist. Da für diese Arbeit die Form der Entscheidungsgrenze
 entscheidend ist, werden dennoch auschließlich Arbeiten mit
 synthetischen Datensätzen zu Rate gezogen.\newline Aufgrund dessen, dass
 der Datengenerierende Prozess hier so ausgearbeitet wurde, dass er mit
-den Annahmen der SVMs arbeitet, erwarten wir zuerst einmal eine bessere
-Performance der SVM Classifier im Vergleich zu den anderen Methoden.
+den Annahmen der \textit{SVM} arbeitet, erwarten wir zuerst einmal eine
+bessere Performance der \textit{SVM} Classifier im Vergleich zu den
+anderen Methoden.
 
 \begin{minipage}{0.9\linewidth}
 \begin{itemize}[leftmargin=0.1\linewidth]
-\item[\textbf{H1:}] Die SVM Classifier Performen über alle Datensituationen im Durchschnitt besser als die anderen Classifier
+\item[\textbf{H1:}] Die \textit{SVM}-Classifier Performen über alle Datensituationen im Durchschnitt besser als die anderen Classifier
 \end{itemize}
 \end{minipage}
 
-Des Weiteren wurden in den einzelnen Kategorien des daten generierenden
+Des Weiteren wurden in den einzelnen Kategorien des Daten generierenden
 Prozesses die Entscheidungsgrenzen speziell auf verschiedene Kernels der
-SVMs zugeschnitten. Daher sollten SVMs mit linearem Kernel im Setting
-mit linearer Entscheidungsgrenze mindestens so gut oder besser als die
-restlichen Classifier performen. Gleiches gilt für SVMs mit polynomialen
-Kernel im Setting mit einer quadratischen Entscheidungsgrenze und
-radiale Kernel bei einer Hypershäre als Entscheidungsgrenze.
+\textit{SVM} zugeschnitten. Daher sollten \textit{SVM} mit linearem
+Kernel im Setting mit linearer Entscheidungsgrenze mindestens so gut
+oder besser als die restlichen Classifier performen. Gleiches gilt für
+\textit{SVM} mit polynomialen Kernel im Setting mit einer quadratischen
+Entscheidungsgrenze und radiale Kernel bei einer Hypershäre als
+Entscheidungsgrenze.
 
 \begin{minipage}{0.9\linewidth}
 \begin{itemize}[leftmargin=0.1\linewidth]
-\item[\textbf{H2:}] Die SVM Classifier mit dem Kernel, der für die jeweiligen DGP zugeschnitten ist sollten mindestens genauso gut oder besser Performen als die restlichen Classifier
+\item[\textbf{H2:}] Die \textit{SVM}-Classifier mit dem Kernel, der für den jeweiligen DGP zugeschnitten ist sollten mindestens genauso gut oder besser performen als die restlichen Classifier
 \end{itemize}
 \end{minipage}
 
 Es konnte weiterhin gezeigt werden, dass in einem Szenario, indem
 erheblich mehr Beobachtungen als Dimensionen und eine lineare
-Entscheidungsgrenze vorliegen (S1), deutliche Unterschiede zwischen SVM,
-k-NN und logistischer Regression bei der Diskriminationsfähigkeit
-auftreten
-\parencite{entezari-malekiComparisonClassificationMethods2009}. k-NN und
-lineare SVM zeigen AUC-Werte nahe 1 auf, was für eine nahezu perfekte
-Differenzierung der Klassen spricht. Die logistische Regression hingegen
-hat einen Wert knapp über 0.5, was nur etwas besser als eine
-Zufallsauswahl ist. Darüber hinaus ist festzustellen, dass die
-Unterschiede deutlicher werden, je höher die Anzahl an Beobachtungen
-ist.\newline Für den Fall einer radialen Entscheidungsgrenze (S3) sind
-die Ergebnisse ähnlich. So erreicht in diesem Beispiel eine SVM mit
-radialem Kernel im Vergleich zu einer logistischen Regression eine um
-34\% höhere Genauigkeit
+Entscheidungsgrenze vorliegen (S1), deutliche Unterschiede zwischen
+\textit{SVM}, \textit{K-NN} und \textit{logistischer Regression} bei der
+Diskriminationsfähigkeit auftreten
+\parencite{entezari-malekiComparisonClassificationMethods2009}.
+\textit{K-NN} und \textit{SVM} mit linearem Kernel zeigen AUC-Werte nahe
+1 auf, was für eine nahezu perfekte Differenzierung der Klassen spricht.
+Die \textit{logistische Regression} hingegen hat einen Wert knapp über
+0.5, was nur etwas besser als eine Zufallsauswahl ist. Darüber hinaus
+ist festzustellen, dass die Unterschiede deutlicher werden, je höher die
+Anzahl an Beobachtungen ist.\newline Für den Fall einer radialen
+Entscheidungsgrenze (S3) sind die Ergebnisse ähnlich. So erreicht in
+diesem Beispiel eine \textit{SVM} mit radialem Kernel im Vergleich zu
+einer logistischen Regression eine um 34\% höhere Genauigkeit
 \parencite{faveroClassificationPerformanceEvaluation2022}.
 
 Die Szenarien S4 bis S6 finden in der Literatur kaum Beachtung, weshalb
 hier keine Studien herangezogen werden können. Liegt jedoch ein Szenario
 vor, indem die Anzahl der Dimensionen erheblich größer ist, als die
 Anzahl der Beobachtungen, mit einer linearen Entscheidungsgrenze (S7),
-sind die Ergebnisse differenzierter zu betrachten. So schneidet die SVM
-mit polynomialem Kern am besten unter den genannten Algorithmen ab,
-jedoch die lineare SVM am schlechtesten (als Kriterium wurde die
-mittlere Performance über 100 Datensätze evaluiert)
-\parencite{scholzComparisonClassificationMethods2021}. Während k-NN auch
-in diesem Szenario eine gute Performance hat, schneiden logistische
-Regression und SVM mit radialem Kern mittelmäßig ab. Hierbei ist wichtig
-zu erwähnen, dass in der Studie keine Ergebnisse über die genaue
-Performance präsentiert wurden, sondern lediglich die Ränge der 25
-behandelten Klassifikationsmethoden. Somit können nur eingeschränkte
-Schlussfolgerungen gezogen werden.
+sind die Ergebnisse differenzierter zu betrachten. So schneidet die
+\textit{SVM} mit polynomialem Kernel am besten unter den genannten
+Algorithmen ab, jedoch die \textit{SVM} mit linearem Kernel am
+schlechtesten (als Kriterium wurde die mittlere Performance über 100
+Datensätze evaluiert)
+\parencite{scholzComparisonClassificationMethods2021}. Während
+\textit{K-NN} auch in diesem Szenario eine gute Performance hat,
+schneiden \textit{logistische Regression} und \textit{SVM} mit radialem
+Kern mittelmäßig ab. Hierbei ist wichtig zu erwähnen, dass in der Studie
+keine Ergebnisse über die genaue Performance präsentiert wurden, sondern
+lediglich die Ränge der 25 behandelten Klassifikationsmethoden. Somit
+können nur eingeschränkte Schlussfolgerungen gezogen werden.
 
 Basierend auf den Ergebnissen der genannten Studien können folgende
 Schlussfolgerungen gezogen werden.
 
 \begin{minipage}{0.9\linewidth}
 \begin{itemize}[leftmargin=0.1\linewidth]
-\item[\textbf{H3:}] In niedrigdimensionalen Szenarien performen k-NN und SVM´s besser als eine logistische Regression.
+\item[\textbf{H3:}] In niedrigdimensionalen Szenarien performen \textit{K-NN} und \textit{SVM} besser als eine \textit{logistische Regression}.
 \end{itemize}
 \end{minipage}
 
-Jedoch ist zu vermuten, dass die Wahl des Kerns bei SVM´s einen großen
-Einfluss auf die Performance hat. So ist, basierend auf den
-mathematischen Grundlagen, anzunehmen, dass die SVM mit dem jeweils
-passenden Kern zu der vorliegenden Datensituation am besten performt. Da
-die SVM mit polynomialem und radialem Kern weitaus flexibler sind,
-werden diese voraussichtlich insgesamt betrachtet besser abschneiden als
-die SVM mit linearem Kern.\newline
-
-In hochdimensionalen Szenarien zeigt vermutlich die SVM mit polynomialem
-oder radialem Kern eine gute Performance, unabhängig von der Form der
-Entscheidungsgrenze, während die lineare SVM voraussichtlich weniger gut
-abschneiden wird. Es scheint so, dass auch k-NN und logistische
-Regression in hochdimensionalen Szenarien zumindest mittelmäßig
-abschneiden. Es ist aber auch bekannt, dass gerade die k-NN Methode in
-hochdimensionalen Settings schlechter performt
-\parencite{jamesIntroductionStatisticalLearning2021}. Hier ist jedoch zu
+In hochdimensionalen Szenarien zeigt vermutlich die \textit{SVM} mit
+polynomialem oder radialem Kern eine gute Performance, unabhängig von
+der Form der Entscheidungsgrenze, während die linearen \textit{SVM}
+voraussichtlich weniger gut abschneiden wird. Es scheint so, dass auch
+\textit{K-NN} und \textit{logistische Regression} in hochdimensionalen
+Szenarien zumindest mittelmäßig abschneiden. Hier ist jedoch zu
 beachten, dass nur eine lineare Entscheidungsgrenze betrachtet wurde und
-in den Szenarien S8 und S9 andere Ergebnisse möglich sind. Wir schließen
+in den Szenarien S8 und S9 andere Ergebnisse möglich sind. Es ist aber
+auch bekannt, dass gerade die \textit{K-NN} Methode in hochdimensionalen
+Settings schlechter performt
+\parencite{jamesIntroductionStatisticalLearning2021}. Wir schließen
 Final daraus:
 
 \begin{minipage}{0.9\linewidth}
 \begin{itemize}[leftmargin=0.1\linewidth]
-\item[\textbf{H4:}] In hochdimensionalen Settings performen v.a. SVMs mit radialen und polynomialen Kernel besser als die anderen Klassifikationsmethoden
+\item[\textbf{H4:}] In hochdimensionalen Settings performen v.a. \textit{SVM} mit radialen und polynomialen Kernel besser als die anderen Klassifikationsmethoden
 \end{itemize}
 \end{minipage}
 \section{Ergebnisse}
@@ -793,7 +792,12 @@ jeweiligen Datensituation.
 Tabelle \ref{tab:TabVergleich} zeigt die Leistungsfähigkeit der fünf
 Klassifikationsalgorithmen über die neun verschiedenen Datensituationen
 anhand drei verschiedener Evaluationskriterien, sowie den Rang in der
-jeweiligen Datensituation.\newline \afterpage{
+jeweiligen Datensituation.\newline Betrachtet man den durchschnittlichen
+Rang über alle Szenarien hinweg, dann kann \textbf{H1} zumindest in
+Teilen bestätigt werden. Mit einem durchschnittl. Rang von 2.33 und 2.55
+belegen jeweils \textit{SVM-P} und \textit{SVM-R} die vordersten Plätze.
+Allerdings muss auch gesagt, dass \textit{SVM-L} nach den beiden anderen
+Klassifikationsmethoden den letzten Platz belegt. \afterpage{
 \clearpage
 \begin{landscape}
 
@@ -901,8 +905,7 @@ K-NN & 0.76 & 0.760 & 0.700 & 2\\
 
 \end{landscape}
 \clearpage
-} \textless\textless\textless\textless\textless\textless\textless{} HEAD
-In den Datensituationen mit linearer Form der Entscheidungsgrenze
+} In den Datensituationen mit linearer Form der Entscheidungsgrenze
 performt insbesondere \textit{logR} gut, da sie in allen drei Szenarien
 über alle Kriterien hinweg einen Wert von mindestens 0.72 aufweist und
 jeweils mindestens Rang 2 belegt. Im Falle von \(p \ll n\) und
@@ -910,42 +913,49 @@ jeweils mindestens Rang 2 belegt. Im Falle von \(p \ll n\) und
 \textit{SVM-R} eine gute Leistung mit Werten nahe 0.9 bzw. 0.8. In dem
 hochdimensionalen Setting \(p \gg n\) schneiden alle Drei, jedoch
 insbesondere \textit{SVM-R} schlechter ab, welche einen AUC-Wert von 0.5
-aufweist. \textit{K-NN} schneidet im linearen Kontext für \(p \ll n\)
-und \(p \approx n\) am schlechtesten ab, wobei der Unterschied im
+aufweist. \textit{K-NN} belegt im linearen Kontext für \(p \ll n\) und
+\(p \approx n\) jeweils den fünften Rang, wobei der Unterschied im
 niedrigdimensionalen Raum am deutlichsten ist (0.39 schlechtere
 Genauigkeit als der nächst schlechteste Algorithmus). Im
 hochdimensionalen Raum kann \textit{K-NN} allerdings als bester
 Algorithmus mit Werten über 0.8 überzeugen.\newline Die ROC-Kurven
 werden nur in den Datensituationen mit \(p \ll n\) genutzt, da die
-grafische Darstellung in Szenarien mit kleinem \(n\) nicht sinnvoll
-erscheint. Es ist dazu zu sagen, das SVM anders als beispielsweise
-logistische Regression, nicht direkt eine Wahrscheinlichkeit ausgeben,
-dass eine Beobachtung zu einer bestimmten Klasse gehört. Da diese
-Wahrscheinlichkeit aber für die ROC-Kurven benötigt wird, gibt es auch
-hier Möglichkeiten diese für die SVM zu berechnen (siehe
-\cite{plattProbabilisticOutputsSupport2000}). Abbildung \ref{fig:S1ROC}
-zeigt die ROC-Kurven für die Datensituation S1. Diese zeigt grafisch
-noch einmal den deutlichen Unterschied zwischen \textit{K-NN}, welcher
-nur etwas besser als eine reine Zufallsauswahl ist und den anderen vier
-Algorithmen, welche nahezu perfekt klassifizieren.
+grafische Darstellung in Szenarien mit kleinem \(n\) aufgrund der
+geringen Anzahl der Datenpunkte nicht sinnvoll erscheint. Des Weiteren
+ist es wichtig zu erwähnen, das für die Berechnung der ROC-Kurven die
+Wahrscheinlichkeit, dass eine Beobachtung zu einer bestimmten Klasse
+gehört, benötigt wird. Da SVM anders als beispielsweise logistische
+Regression, nicht direkt eine Wahrscheinlichkeit ausgeben, gibt es aber
+auch hierfür Möglichkeiten diese zu berechnen (siehe
+\cite{plattProbabilisticOutputsSupport2000}).\newline Abbildung
+\ref{fig:S1ROC} zeigt die ROC-Kurven für die Datensituation S1. Diese
+zeigt grafisch noch einmal den deutlichen Unterschied zwischen
+\textit{K-NN}, welcher nur etwas besser als eine reine Zufallsauswahl
+ist und den anderen vier Algorithmen, welche nahezu perfekt
+klassifizieren. Im Bezug auf \textbf{H2} sieht die Beweislage also eher
+dürftig aus, da \textit{SVM-L} durschschnittlich in den linearen
+Szenarien eher im Mittelfeld rangiert.
 
 In den Datensituationen mit polynomialer Form der Entscheidungsgrenze
 ist die Leistungsfähigkeit aller Algorithmen grundsätzlich schlechter
 als in den zuvor beschriebenen Szenarien. Im Fall von \(p \ll n\) sind
 die Ergebnisse ausschließlich für \textit{SVM-R} sehr gut mit Werten
-über 0.9. Die restlichen Algorithmen performen mittelmäßig mit Werten um
-0.7, wobei sich hier kein Algorithmus von den anderen absetzen kann. Bei
-\(p \approx n\) ist \textit{K-NN} den anderen Klassifikationsmethoden
-leicht überlegen, insbesondere beim AUC-Wert mit 0.729. Die anderen
-Algorithmen befinden sich durchweg über alle Werte hinweg nahe 0.5.
-Ähnlich ist es der Fall für \(p \gg n\) bei dem auch wieder
-\textit{K-NN} eine leicht bessere Leistung zeigt mit einer Genauigkeit
-von 0.7, gefolgt von \textit{LogR} mit 0.64. Dennoch ist für die letzten
-beiden Szenarien deutlich, dass kein Algorithmus gute Leistung
-zeigt.\newline Abbildung \ref{fig:S2ROC} zeigt die ROC-Kurven für
-Szenario 2. Hier ist gut ersichtlich, dass sich \textit{SVM-R} von den
-anderen Algorithmen abheben kann, welche alle eine mittelmäßige Leistung
-zeigen.
+über 0.9. Die restlichen Algorithmen performen mittelmäßig mit Werten
+zwischen 0.7 und 0.8, wobei sich hier kein Algorithmus von den anderen
+absetzen kann. Bei \(p \approx n\) ist \textit{K-NN} den anderen
+Klassifikationsmethoden leicht überlegen, insbesondere darin
+gleichzeitig falsch Positive und falsch Negative zu minimieren (AUC-Wert
+von 0.729). Die anderen Algorithmen befinden sich durchweg über alle
+Werte hinweg nahe 0.5. Ähnlich ist das der Fall für \(p \gg n\) bei dem
+auch wieder \textit{K-NN} eine leicht bessere Leistung zeigt mit einer
+Genauigkeit von 0.7, gefolgt von \textit{LogR} mit 0.64. Dennoch ist für
+die letzten beiden Szenarien deutlich, dass kein Algorithmus gute
+Leistung zeigt.\newline Abbildung \ref{fig:S2ROC} zeigt die ROC-Kurven
+für Szenario 2. Aus dieser Abbildung ist ersichtlich, dass sich
+\textit{SVM-R} deutlich von den anderen Algorithmen abheben kann, welche
+alle eine mittelmäßige Leistung zeigen. Wir können also hier keine
+bestätigung für \textbf{H2} finden, nach der wir eigentlich erwarten
+würden, dass \textit{SVM-P} hier besser Klassifiziert.
 
 In den Datensituationen mit radialer Form der Entscheidungsgrenze ist
 für den Fall \(p \ll n\) eine eindeutige Unterscheidung zu treffen.
@@ -954,26 +964,32 @@ klassifizieren, haben dabei \textit{SVM-L} und \textit{LogR} große
 Probleme und zeigen lediglich Werte nahe 0.5. Insbesondere
 \textit{SVM-P} zeigt mit einem AUC-Wert von 0.981 eine sehr gute
 Performance. Weniger drastisch aber dennoch mit dem gleichen Resultat
-ist dies für \(p \approx n\) der Fall. Während \textit{SVM-P} etwas
-schlechter performt, bleibt \textit{SVM-R} nahezu identisch und
-\textit{K-NN} kann sich sogar leicht steigern auf einen AUC-Wert von
-0.8. \textit{SVM-L} und \textit{LogR} können sich leicht verbessern
-(beispielsweise mit einer Genauigkeit nahe 0.6). Für \(p \gg n\) sind
+ist dies für \(p \approx n\) der Fall. Während \textit{SVM-P} im
+Vergleich zum vorherigen Szenario etwas schlechter performt, bleibt
+\textit{SVM-R} nahezu identisch und \textit{K-NN} kann sich sogar leicht
+steigern auf einen AUC-Wert von 0.8. \textit{SVM-L} und \textit{LogR}
+können sich leicht verbessern (beispielsweise mit einer Genauigkeit nahe
+0.6), belegen dennoch weiterhin Rang vier und fünf. Für \(p \gg n\) sind
 ebenfalls die beiden Gruppen zu differenzieren. Für \textit{SVM-L} und
 \textit{LogR} sind wie in Szenario 3 wieder Werte nahe 0.5 für die
 Genauigkeit erkennbar. \textit{SVM-P} und \textit{K-NN} performen in
 diesem Szenario am Besten. \textit{SVM-R} fällt insbesondere mit einer
 Genauigkeit von 0.66 im Vergleich zu 0.76 etwas hinter den anderen
 beiden Algorithmen zurück.\newline Abbildung \ref{fig:S3ROC} zeigt die
-ROC-Kurven für Szenario 3. Hieraus wird einerseits die Aufteilung in die
-zwei Gruppen deutlich. \textit{SVM-P}, \textit{SVM-R} und \textit{K-NN}
-bewegen sich näher an der oberen linken Kante, was für eine (nahezu)
-perfekte Klassifikation spricht. Andererseits ist eindeutig, dass sich
-\textit{SVM-P} nochmal von den anderen beiden Algorithmen absetzen kann.
-\textit{SVM-L} und \textit{LogR} orientieren sich nahe der diagonalen
-Linie, die eine ROC-Kurve einer reinen Zufallsauswahl beschreibt. Dies
-zeigt auf, dass sie kaum Fähigkeit aufweisen zwischen den Klassen zu
-unterscheiden.
+ROC-Kurven für Szenario 3. Hieraus wird deutlich, dass die Kurve von
+\textit{SVM-P} nahe an der oberen, linken Ecke verläuft, was für eine
+nahezu perfekte Klassifikation spricht. Der etwas flachere Verlauf von
+\textit{SVM-R} und \textit{K-NN} macht deutlich, dass diese beiden
+Algorithmen weniger gute Leistung zeigen. Dennoch können die beiden oben
+erwähnten Gruppen gut identifiziert werden, da sich \textit{SVM-L} und
+\textit{LogR} nahe der diagonalen Linie orientieren. Diese beschreibt
+eine ROC-Kurve einer reinen Zufallsauswahl, woraus gefolgert werden
+kann, dass sie kaum Fähigkeit aufweisen zwischen den Klassen zu
+unterscheiden. Diese Szenarien bestätigen die Vermutung aus \textbf{H2}
+zwar nicht direkt, da hier im Ranking über alle Szenarien mir radialer
+Entscheidungsgrenze hinweg interessanterweise \textit{SVM-P} am besten
+performt aber zumindest liegt hier \textit{SVM-R} auf dem zweiten Platz.
+Trotzdem müssen wir mit diesen Ergebnissen \textbf{H2} ablehnen.
 
 \begin{figure}[htb]
 \begin{minipage}{0.48\linewidth}
@@ -998,16 +1014,18 @@ unterscheiden.
 \end{minipage}
 \end{figure}
 
-Zuletzt wird ein Vergleich der einzelnen Dimensionen über die drei
+Zuletzt wird ein Vergleich der einzelnen Dimensionierungen über die drei
 Formen der Entscheidungsgrenze gezogen. So ist für \(p \ll n\)
 ersichtlich, dass insbesondere \textit{SVM-P} und \textit{SVM-R} über
-alle drei Szenarien gute Leistung (mit Werten mindestens nahe 0.8 über
-alle drei Szenarien) zeigen. Ähnliches gilt, mit Ausnahme der
-polynomialen Form der Entscheidungsgrenze, auch für \(p \approx n\),
-wobei hier auch \textit{K-NN} gute Werte zeigt (alle drei durchweg mit
-Werten über 0.7). In den hochdimensionalen Szenarien \(p \gg n\) ist
-einzig \textit{K-NN} überzeugend, welcher auch im polynomialen Szenario
-Werte über 0.7 aufweist. \newpage
+alle drei Szenarien gute Leistung (mit Werten mindestens nahe 0.8). Auch
+im durchschnittlichen Ranking für diese Szenarien über alle drei
+Szenarien zeigen die \textit{SVM}-Methoden die besten Ergebnisse.
+Überaschen ist nur die unerwartet schlechte Performance von
+\textit{K-NN}. Somit bestätigt sich \textbf{H3} hier nur teilweise. In
+den hochdimensionalen Szenarien \(p \gg n\) ist einzig \textit{K-NN}
+überzeugend, welcher auch im polynomialen Szenario Werte über 0.7
+aufweist. Dies deutet klar darauf hin, dass \textbf{H4} mit unseren
+Daten verworfen werden muss. \newpage
 
 \addcontentsline{toc}{section}{Literatur}
 

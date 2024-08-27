@@ -80,7 +80,7 @@
 \fi
 \usepackage[]{biblatex}
 \addbibresource{Literatur.bib}
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
@@ -167,7 +167,12 @@ jeweiligen Datensituation.
 Tabelle \ref{tab:TabVergleich} zeigt die Leistungsfähigkeit der fünf
 Klassifikationsalgorithmen über die neun verschiedenen Datensituationen
 anhand drei verschiedener Evaluationskriterien, sowie den Rang in der
-jeweiligen Datensituation.\newline \afterpage{
+jeweiligen Datensituation.\newline Betrachtet man den durchschnittlichen
+Rang über alle Szenarien hinweg, dann kann \textbf{H1} zumindest in
+Teilen bestätigt werden. Mit einem durchschnittl. Rang von 2.33 und 2.55
+belegen jeweils \textit{SVM-P} und \textit{SVM-R} die vordersten Plätze.
+Allerdings muss auch gesagt, dass \textit{SVM-L} nach den beiden anderen
+Klassifikationsmethoden den letzten Platz belegt. \afterpage{
 \clearpage
 \begin{landscape}
 
@@ -295,14 +300,16 @@ geringen Anzahl der Datenpunkte nicht sinnvoll erscheint. Des Weiteren
 ist es wichtig zu erwähnen, das für die Berechnung der ROC-Kurven die
 Wahrscheinlichkeit, dass eine Beobachtung zu einer bestimmten Klasse
 gehört, benötigt wird. Da SVM anders als beispielsweise logistische
-Regression, nicht direkt eine Wahrscheinlichkeit ausgeben, gibt es
-hierfür Möglichkeiten diese für die SVM zu berechnen (siehe
+Regression, nicht direkt eine Wahrscheinlichkeit ausgeben, gibt es aber
+auch hierfür Möglichkeiten diese zu berechnen (siehe
 \cite{plattProbabilisticOutputsSupport2000}).\newline Abbildung
 \ref{fig:S1ROC} zeigt die ROC-Kurven für die Datensituation S1. Diese
 zeigt grafisch noch einmal den deutlichen Unterschied zwischen
 \textit{K-NN}, welcher nur etwas besser als eine reine Zufallsauswahl
 ist und den anderen vier Algorithmen, welche nahezu perfekt
-klassifizieren.
+klassifizieren. Im Bezug auf \textbf{H2} sieht die Beweislage also eher
+dürftig aus, da \textit{SVM-L} durschschnittlich in den linearen
+Szenarien eher im Mittelfeld rangiert.
 
 In den Datensituationen mit polynomialer Form der Entscheidungsgrenze
 ist die Leistungsfähigkeit aller Algorithmen grundsätzlich schlechter
@@ -321,7 +328,9 @@ die letzten beiden Szenarien deutlich, dass kein Algorithmus gute
 Leistung zeigt.\newline Abbildung \ref{fig:S2ROC} zeigt die ROC-Kurven
 für Szenario 2. Aus dieser Abbildung ist ersichtlich, dass sich
 \textit{SVM-R} deutlich von den anderen Algorithmen abheben kann, welche
-alle eine mittelmäßige Leistung zeigen.
+alle eine mittelmäßige Leistung zeigen. Wir können also hier keine
+bestätigung für \textbf{H2} finden, nach der wir eigentlich erwarten
+würden, dass \textit{SVM-P} hier besser Klassifiziert.
 
 In den Datensituationen mit radialer Form der Entscheidungsgrenze ist
 für den Fall \(p \ll n\) eine eindeutige Unterscheidung zu treffen.
@@ -351,7 +360,11 @@ erwähnten Gruppen gut identifiziert werden, da sich \textit{SVM-L} und
 \textit{LogR} nahe der diagonalen Linie orientieren. Diese beschreibt
 eine ROC-Kurve einer reinen Zufallsauswahl, woraus gefolgert werden
 kann, dass sie kaum Fähigkeit aufweisen zwischen den Klassen zu
-unterscheiden.
+unterscheiden. Diese Szenarien bestätigen die Vermutung aus \textbf{H2}
+zwar nicht direkt, da hier im Ranking über alle Szenarien mir radialer
+Entscheidungsgrenze hinweg interessanterweise \textit{SVM-P} am besten
+performt aber zumindest liegt hier \textit{SVM-R} auf dem zweiten Platz.
+Trotzdem müssen wir mit diesen Ergebnissen \textbf{H2} ablehnen.
 
 \begin{figure}[htb]
 \begin{minipage}{0.48\linewidth}
@@ -376,16 +389,18 @@ unterscheiden.
 \end{minipage}
 \end{figure}
 
-Zuletzt wird ein Vergleich der einzelnen Dimensionen über die drei
+Zuletzt wird ein Vergleich der einzelnen Dimensionierungen über die drei
 Formen der Entscheidungsgrenze gezogen. So ist für \(p \ll n\)
 ersichtlich, dass insbesondere \textit{SVM-P} und \textit{SVM-R} über
-alle drei Szenarien gute Leistung (mit Werten mindestens nahe 0.8 über
-alle drei Szenarien) zeigen. Ähnliches gilt, mit Ausnahme der
-polynomialen Form der Entscheidungsgrenze, auch für \(p \approx n\),
-wobei hier auch \textit{K-NN} gute Werte zeigt (alle drei durchweg mit
-Werten über 0.7). In den hochdimensionalen Szenarien \(p \gg n\) ist
-einzig \textit{K-NN} überzeugend, welcher auch im polynomialen Szenario
-Werte über 0.7 aufweist.
+alle drei Szenarien gute Leistung (mit Werten mindestens nahe 0.8). Auch
+im durchschnittlichen Ranking für diese Szenarien über alle drei
+Szenarien zeigen die \textit{SVM}-Methoden die besten Ergebnisse.
+Überaschen ist nur die unerwartet schlechte Performance von
+\textit{K-NN}. Somit bestätigt sich \textbf{H3} hier nur teilweise. In
+den hochdimensionalen Szenarien \(p \gg n\) ist einzig \textit{K-NN}
+überzeugend, welcher auch im polynomialen Szenario Werte über 0.7
+aufweist. Dies deutet klar darauf hin, dass \textbf{H4} mit unseren
+Daten verworfen werden muss.
 
 \printbibliography
 
