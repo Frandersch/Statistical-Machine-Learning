@@ -673,7 +673,15 @@ Anzahl an Beobachtungen ist.\newline Für den Fall einer radialen
 Entscheidungsgrenze (S3) sind die Ergebnisse ähnlich. So erreicht in
 diesem Beispiel eine \textit{SVM} mit radialem Kernel im Vergleich zu
 einer logistischen Regression eine um 34\% höhere Genauigkeit
-\parencite{faveroClassificationPerformanceEvaluation2022}.
+\parencite{faveroClassificationPerformanceEvaluation2022}. Basierend auf
+den Ergebnissen der genannten Studien können folgende Schlussfolgerungen
+gezogen werden.
+
+\begin{minipage}{0.9\linewidth}
+\begin{itemize}[leftmargin=0.1\linewidth]
+\item[\textbf{H3:}] In niedrigdimensionalen Szenarien performen \textit{K-NN} und \textit{SVM} besser als eine \textit{logistische Regression}.
+\end{itemize}
+\end{minipage}
 
 Die Szenarien S4 bis S6 finden in der Literatur kaum Beachtung, weshalb
 hier keine Studien herangezogen werden können. Liegt jedoch ein Szenario
@@ -691,15 +699,6 @@ Kern mittelmäßig ab. Hierbei ist wichtig zu erwähnen, dass in der Studie
 keine Ergebnisse über die genaue Performance präsentiert wurden, sondern
 lediglich die Ränge der 25 behandelten Klassifikationsmethoden. Somit
 können nur eingeschränkte Schlussfolgerungen gezogen werden.
-
-Basierend auf den Ergebnissen der genannten Studien können folgende
-Schlussfolgerungen gezogen werden.
-
-\begin{minipage}{0.9\linewidth}
-\begin{itemize}[leftmargin=0.1\linewidth]
-\item[\textbf{H3:}] In niedrigdimensionalen Szenarien performen \textit{K-NN} und \textit{SVM} besser als eine \textit{logistische Regression}.
-\end{itemize}
-\end{minipage}
 
 In hochdimensionalen Szenarien zeigt vermutlich die \textit{SVM} mit
 polynomialem oder radialem Kern eine gute Performance, unabhängig von
@@ -1024,8 +1023,71 @@ Szenarien zeigen die \textit{SVM}-Methoden die besten Ergebnisse.
 \textit{K-NN}. Somit bestätigt sich \textbf{H3} hier nur teilweise. In
 den hochdimensionalen Szenarien \(p \gg n\) ist einzig \textit{K-NN}
 überzeugend, welcher auch im polynomialen Szenario Werte über 0.7
-aufweist. Dies deutet klar darauf hin, dass \textbf{H4} mit unseren
-Daten verworfen werden muss. \newpage
+aufweist. Hier belegen die \textit{SVM}-Methoden tatsächlich sogar die
+letzten Plätze im durschschnittlichen Ranking. Dies deutet klar darauf
+hin, dass \textbf{H4} mit unseren Daten verworfen werden muss.
+
+\section{Fazit}
+
+In unserer Arbeit haben wir zum einen die Funktionsweise der Support
+Vector Machines als binäre Klassifikationsmethode beleuchtet, als auch
+die Leistungsfähigkeit in Datenszenarien mit verschiedenen Eigenschaften
+verglichen. Diese Datensszenarien, wurden synthetisch von uns
+hergestellt und sind in ihrem datengenerierenden Prozess speziell auf
+\textit{SVM} zugeschnitten. Anschließend haben wir uns mit einschlägiger
+Literatur beschäftigt, bei der die Autoren bereits ähnliche Versuche
+durchgeführt haben und anhand dessen Hypothesen abgeleitet. Für die
+Durchführung unserer Versuche haben wir die Performance von \textit{SVM}
+mit verschiedenen Kernels sowie weiterer Klassifikationsmethoden über
+alle Szenarien mit verschiedenen Maßzahlen verglichen. \newline 
+Insgesammt mussten wir allerdings festellen, dass unsere ergebnisse die
+Hypothesn nur in Teilen bestätigen. \textit{SVM}-Methoden, haben im
+Durschnitt oft bessere Leistungen gezeigt, als die anderen Methoden. Wir
+schließen aufgrund der Rankings, dass, egal welche Dimesnionierung
+vorliegt und wenn keine Information über die Form der
+Entscheidungsgrenze vorliegt, \textit{SVM} mit radialen und polynomialen
+Kernel immer eine gute Entscheidung darstellen. Zumindest sollten diese
+beiden dem \textit{SVM} mit linearem Kernel vorgezogen werden. Wobei
+hier auch anzumerken ist, dass mit der höheren Flexibilität der
+\textit{SVM-P} und \textit{SVM-R} auch die Gefahr besteht, dass es zu
+Overfitting kommt. Dies könnte vor allem bei empirischen Daten zu
+höheren Klassifikationsfehlern führen.\newline Allerdings haben wider
+Erwarten die \text{SVM} mit dem Kernel der auf die Datenerzeugung
+eigentlich zugeschnitten ist nicht besser performt. Wir vermuten, dass
+es an einem zu niedrigen \(n\)-Wert in der Dimensionierung für die
+Szenarien 4 bis 9 liegen könnte und dass sich in einer etwaigen
+Simulationsstudie mit dem gleichen DGP und Dimensionierung die Hypothese
+vielleicht doch noch bestätigen könnte, da sich so zufällige
+Abweichungen aufheben. Was das Verhalten in den verschiedenen
+Dimensionalitäten angeht können wir zumindest sagen, dass in Fällen mit
+mehr Beobachtungen als Variablen \textit{SVM} eine gute Wahl darstellen.
+Schwieriger wird es bei den hochdimensionalen Szenarien, da hier
+\textit{K-NN} eindeutig besser performt hat. Uns fällt es schwer dies zu
+erklären, da wir eigentlich davon ausgingen, dass \textit{K-NN} bei
+vielen Variablen eher schlechter performt.
+
+Wir sehen daher noch einige Optimierungsmöglichkeiten für weitere
+Arbeiten dieser Art. So wäre es angebracht, wie bereits gesagt die
+Datengererierung für die einzelnen Szenarien wiederholt durchzuführen
+und die Ergebnisse zu mitteln. Die Dimesnionierung könnte auch so
+angepasst werden, dass die \(n\) Werte etwas höher sind auch für
+Szenarien mit \(p \gg n\).\\
+Auch könnte der Einfluss der Szenarien auf die Berechnungszeit für die
+\textit{SVM}-Algorithmen noch einbezogen werden. Ein Benchmark-Test
+könnte auch hier zu interessanten Ergebnissen führen. Zusätzlich haben
+wir hier lediglich eine handvoll Klassifikationsalgorithmen im Vergleich
+untersucht. Eine Erweiterung auf
+\textit{classification Trees},\textit{Discriminant Analyses} oder
+verschiedene Ensemble-Methoden ist denkbar. An der Datengenerierung
+liesen sich auch noch weitere Aspekte anpassen. So könnte die Anteile
+der Ausprägungen in der binären Zielvariable noch variiert, mehr als
+zwei Ausprägungen generiert oder auch noch komplexere
+Entscheidungsgrenzen modelliert werden. Diese Erweiterungen hätten
+allerdings den Rahmen dieser Arbeit überschritten. Trotzdem ergänzt
+unsere Arbeit die bisherigen Befundem zur Leistungs- und
+Anpassungsfähigkeit von Support-Vector Machines in verschiedenen
+Datensituation, sowie deren Bedeutung im Kontext von
+Klassifikationsaufgaben. \newpage
 
 \addcontentsline{toc}{section}{Literatur}
 

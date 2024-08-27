@@ -45,6 +45,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r child="Ergebnisse/Ergebnisse.Rmd"}
 
 ```
+\section{Fazit}
+```{r child="Fazit/Fazit.Rmd"}
+
+```
 \newpage
 \addcontentsline{toc}{section}{Literatur}
 

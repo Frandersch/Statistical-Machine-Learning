@@ -1,0 +1,163 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage[german]{babel}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage{pgf}
+\usepackage{csquotes}
+\AtBeginDocument{
+\renewcommand{\maketitle}{}
+}
+\PassOptionsToPackage{a4paper,margin = 2.5cm}{geometry}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{enumitem}
+\newcommand{\bcenter}{\begin{center}}
+\newcommand{\ecenter}{\end{center}}
+\renewcommand{\contentsname}{Inhalt}
+\usepackage{blindtext}
+\usepackage[backend=biber, style = apa]{biblatex}
+\addbibresource{Literatur.bib}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{pdflscape}
+\usepackage{afterpage}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{biblatex}
+\addbibresource{Literatur.bib}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Fazit},
+  pdfauthor={Franz Andersch \& Niklas Münz},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Fazit}
+\author{Franz Andersch \& Niklas Münz}
+\date{2024-08-27}
+
+\begin{document}
+\maketitle
+
+In unserer Arbeit haben wir zum einen die Funktionsweise der Support
+Vector Machines als binäre Klassifikationsmethode beleuchtet, als auch
+die Leistungsfähigkeit in Datenszenarien mit verschiedenen Eigenschaften
+verglichen. Diese Datensszenarien, wurden synthetisch von uns
+hergestellt und sind in ihrem datengenerierenden Prozess speziell auf
+\textit{SVM} zugeschnitten. Anschließend haben wir uns mit einschlägiger
+Literatur beschäftigt, bei der die Autoren bereits ähnliche Versuche
+durchgeführt haben und anhand dessen Hypothesen abgeleitet. Für die
+Durchführung unserer Versuche haben wir die Performance von \textit{SVM}
+mit verschiedenen Kernels sowie weiterer Klassifikationsmethoden über
+alle Szenarien mit verschiedenen Maßzahlen verglichen. \newline 
+Insgesammt mussten wir allerdings festellen, dass unsere ergebnisse die
+Hypothesn nur in Teilen bestätigen. \textit{SVM}-Methoden, haben im
+Durschnitt oft bessere Leistungen gezeigt, als die anderen Methoden. Wir
+schließen aufgrund der Rankings, dass, egal welche Dimesnionierung
+vorliegt und wenn keine Information über die Form der
+Entscheidungsgrenze vorliegt, \textit{SVM} mit radialen und polynomialen
+Kernel immer eine gute Entscheidung darstellen. Zumindest sollten diese
+beiden dem \textit{SVM} mit linearem Kernel vorgezogen werden. Wobei
+hier auch anzumerken ist, dass mit der höheren Flexibilität der
+\textit{SVM-P} und \textit{SVM-R} auch die Gefahr besteht, dass es zu
+Overfitting kommt. Dies könnte vor allem bei empirischen Daten zu
+höheren Klassifikationsfehlern führen.\newline Allerdings haben wider
+Erwarten die \text{SVM} mit dem Kernel der auf die Datenerzeugung
+eigentlich zugeschnitten ist nicht besser performt. Wir vermuten, dass
+es an einem zu niedrigen \(n\)-Wert in der Dimensionierung für die
+Szenarien 4 bis 9 liegen könnte und dass sich in einer etwaigen
+Simulationsstudie mit dem gleichen DGP und Dimensionierung die Hypothese
+vielleicht doch noch bestätigen könnte, da sich so zufällige
+Abweichungen aufheben. Was das Verhalten in den verschiedenen
+Dimensionalitäten angeht können wir zumindest sagen, dass in Fällen mit
+mehr Beobachtungen als Variablen \textit{SVM} eine gute Wahl darstellen.
+Schwieriger wird es bei den hochdimensionalen Szenarien, da hier
+\textit{K-NN} eindeutig besser performt hat. Uns fällt es schwer dies zu
+erklären, da wir eigentlich davon ausgingen, dass \textit{K-NN} bei
+vielen Variablen eher schlechter performt.
+
+Wir sehen daher noch einige Optimierungsmöglichkeiten für weitere
+Arbeiten dieser Art. So wäre es angebracht, wie bereits gesagt die
+Datengererierung für die einzelnen Szenarien wiederholt durchzuführen
+und die Ergebnisse zu mitteln. Die Dimesnionierung könnte auch so
+angepasst werden, dass die \(n\) Werte etwas höher sind auch für
+Szenarien mit \(p \gg n\).\\
+Auch könnte der Einfluss der Szenarien auf die Berechnungszeit für die
+\textit{SVM}-Algorithmen noch einbezogen werden. Ein Benchmark-Test
+könnte auch hier zu interessanten Ergebnissen führen. Zusätzlich haben
+wir hier lediglich eine handvoll Klassifikationsalgorithmen im Vergleich
+untersucht. Eine Erweiterung auf
+\textit{classification Trees},\textit{Discriminant Analyses} oder
+verschiedene Ensemble-Methoden ist denkbar. An der Datengenerierung
+liesen sich auch noch weitere Aspekte anpassen. So könnte die Anteile
+der Ausprägungen in der binären Zielvariable noch variiert, mehr als
+zwei Ausprägungen generiert oder auch noch komplexere
+Entscheidungsgrenzen modelliert werden. Diese Erweiterungen hätten
+allerdings den Rahmen dieser Arbeit überschritten. Trotzdem ergänzt
+unsere Arbeit die bisherigen Befundem zur Leistungs- und
+Anpassungsfähigkeit von Support-Vector Machines in verschiedenen
+Datensituation, sowie deren Bedeutung im Kontext von
+Klassifikationsaufgaben.
+
+\printbibliography
+
+\end{document}

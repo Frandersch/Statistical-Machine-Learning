@@ -141,7 +141,15 @@ Anzahl an Beobachtungen ist.\newline Für den Fall einer radialen
 Entscheidungsgrenze (S3) sind die Ergebnisse ähnlich. So erreicht in
 diesem Beispiel eine \textit{SVM} mit radialem Kernel im Vergleich zu
 einer logistischen Regression eine um 34\% höhere Genauigkeit
-\parencite{faveroClassificationPerformanceEvaluation2022}.
+\parencite{faveroClassificationPerformanceEvaluation2022}. Basierend auf
+den Ergebnissen der genannten Studien können folgende Schlussfolgerungen
+gezogen werden.
+
+\begin{minipage}{0.9\linewidth}
+\begin{itemize}[leftmargin=0.1\linewidth]
+\item[\textbf{H3:}] In niedrigdimensionalen Szenarien performen \textit{K-NN} und \textit{SVM} besser als eine \textit{logistische Regression}.
+\end{itemize}
+\end{minipage}
 
 Die Szenarien S4 bis S6 finden in der Literatur kaum Beachtung, weshalb
 hier keine Studien herangezogen werden können. Liegt jedoch ein Szenario
@@ -159,15 +167,6 @@ Kern mittelmäßig ab. Hierbei ist wichtig zu erwähnen, dass in der Studie
 keine Ergebnisse über die genaue Performance präsentiert wurden, sondern
 lediglich die Ränge der 25 behandelten Klassifikationsmethoden. Somit
 können nur eingeschränkte Schlussfolgerungen gezogen werden.
-
-Basierend auf den Ergebnissen der genannten Studien können folgende
-Schlussfolgerungen gezogen werden.
-
-\begin{minipage}{0.9\linewidth}
-\begin{itemize}[leftmargin=0.1\linewidth]
-\item[\textbf{H3:}] In niedrigdimensionalen Szenarien performen \textit{K-NN} und \textit{SVM} besser als eine \textit{logistische Regression}.
-\end{itemize}
-\end{minipage}
 
 In hochdimensionalen Szenarien zeigt vermutlich die \textit{SVM} mit
 polynomialem oder radialem Kern eine gute Performance, unabhängig von
