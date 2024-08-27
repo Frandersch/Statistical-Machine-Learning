@@ -10,12 +10,12 @@ library(pROC)
 
 # Datenimport
 
-load(file = "Code/Daten/Data_S2.RData")
+load(file = "Abgabe/Ergebnisse/Daten/Data_S2.RData")
 
 # Modelle tunen
 
 # Tuning durchgeführt. Parameter hier abrufbar:
-load(file = "Code/Parameter/Parameter_S2.RData")
+load(file = "Abgabe/Ergebnisse/Parameter/Parameter_S2.RData")
 
 S2_tune_linear <- function(cost) {
   model <- svm(y ~ ., data = S2_data_train, kernel = "linear", cost = cost)
@@ -106,7 +106,7 @@ S2_opt_param_k_NN <- BayesianOptimization(
   verbose = FALSE
 )
 
-save(S2_opt_param_linear, S2_opt_param_polynomial, S2_opt_param_radial, S2_opt_param_logR, S2_opt_param_k_NN, file = "Code/Parameter/Parameter_S2.RData")
+save(S2_opt_param_linear, S2_opt_param_polynomial, S2_opt_param_radial, S2_opt_param_logR, S2_opt_param_k_NN, file = "Abgabe/Ergebnisse/Parameter/Parameter_S2.RData")
 
 # Modelle fitten
 
@@ -183,29 +183,19 @@ S2_prediction_probs_k_NN <- attr(S2_k_NN_probs, "prob")
 S2_prediction_probs_k_NN <- ifelse(S2_k_NN_probs == levels(S2_data_train$y)[1], S2_prediction_probs_k_NN, 1 - S2_prediction_probs_k_NN)
 S2_roc_k_NN <- roc(S2_data_test$y, S2_prediction_probs_k_NN, levels = rev(levels(S2_data_test$y)))
 
-#speichern der roc-Daten um plot im Rmd ausführen zu können
-save(S2_roc_linear, S2_roc_polynomial, S2_roc_radial, S2_roc_logR, S2_roc_k_NN, file = "Code/ROC/S2_roc.RData")
-
-# plot(S2_roc_linear, col = "blue", main = "ROC-Kurven Szenario 2")
-# plot(S2_roc_polynomial, col = "red", add = TRUE)
-# plot(S2_roc_radial, col = "green", add = TRUE)
-# plot(S2_roc_logR, col = "violet", add = TRUE)
-# plot(S2_roc_k_NN, col = "orange", add = TRUE)
-# legend("bottomright",
-#        legend = c(paste("linear (AUC:", round(auc(S2_roc_linear), 3), ")"), paste("polynomial (AUC:", round(auc(S2_roc_polynomial), 3), ")"), paste("radial (AUC:", round(auc(S2_roc_radial), 3), ")"), paste("logR (AUC:", round(auc(S2_roc_logR), 3), ")"), paste("k_NN (AUC:", round(auc(S2_roc_k_NN), 3), ")")),
-#        col = c("blue", "red", "green", "violet", "orange"),
-#        lwd = 2)
+#speichern der ROC-Daten für ROC-Kurven
+save(S2_roc_linear, S2_roc_polynomial, S2_roc_radial, S2_roc_logR, S2_roc_k_NN, file = "Abgabe/Ergebnisse/ROC/S2_roc.RData")
 
 ## Szenario 5: p = n (p = 50, n = 50)
 
 # Datengenerierung
 
-load(file = "Code/Daten/Data_S5.RData")
+load(file = "Abgabe/Ergebnisse/Daten/Data_S5.RData")
 
 # Modelle tunen
 
 # Tuning durchgeführt. Parameter hier abrufbar:
-load(file = "Code/Parameter/Parameter_S5.RData")
+load(file = "Abgabe/Ergebnisse/Parameter/Parameter_S5.RData")
 
 S5_tune_linear <- function(cost) {
   model <- svm(y ~ ., data = S5_data_train, kernel = "linear", cost = cost)
@@ -298,7 +288,7 @@ S5_opt_param_k_NN <- BayesianOptimization(
   verbose = FALSE
 )
 
-save(S5_opt_param_linear, S5_opt_param_polynomial, S5_opt_param_radial, S5_opt_param_logR, S5_opt_param_k_NN, file = "Code/Parameter/Parameter_S5.RData")
+save(S5_opt_param_linear, S5_opt_param_polynomial, S5_opt_param_radial, S5_opt_param_logR, S5_opt_param_k_NN, file = "Abgabe/Ergebnisse/Parameter/Parameter_S5.RData")
 
 # Modelle fitten
 
@@ -375,26 +365,16 @@ S5_prediction_probs_k_NN <- attr(S5_k_NN_probs, "prob")
 S5_prediction_probs_k_NN <- ifelse(S5_k_NN_probs == levels(S5_data_train$y)[1], S5_prediction_probs_k_NN, 1 - S5_prediction_probs_k_NN)
 S5_roc_k_NN <- roc(S5_data_test$y, S5_prediction_probs_k_NN, levels = rev(levels(S5_data_test$y)))
 
-# plot(S5_roc_linear, col = "blue", main = "ROC-Kurven Szenario 5")
-# plot(S5_roc_polynomial, col = "red", add = TRUE)
-# plot(S5_roc_radial, col = "green", add = TRUE)
-# plot(S5_roc_logR, col = "violet", add = TRUE)
-# plot(S5_roc_k_NN, col = "orange", add = TRUE)
-# legend("bottomright",
-#        legend = c(paste("linear (AUC:", auc(S5_roc_linear), ")"), paste("polynomial (AUC:", auc(S5_roc_polynomial), ")"), paste("radial (AUC:", auc(S5_roc_radial), ")"), paste("logR (AUC:", auc(S5_roc_logR), ")"), paste("k_NN (AUC:", auc(S5_roc_k_NN), ")")),
-#        col = c("blue", "red", "green", "violet", "orange"),
-#        lwd = 2)
-
 ## Szenario 8: p >> n (p = 200, n = 50)
 
 # Datengenerierung
 
-load(file = "Code/Daten/Data_S8.RData")
+load(file = "Abgabe/Ergebnisse/Daten/Data_S8.RData")
 
 # Modelle tunen
 
 # Tuning durchgeführt. Parameter hier abrufbar:
-load(file = "Code/Parameter/Parameter_S8.RData")
+load(file = "Abgabe/Ergebnisse/Parameter/Parameter_S8.RData")
 
 S8_tune_linear <- function(cost) {
   model <- svm(y ~ ., data = S8_data_train, kernel = "linear", cost = cost)
@@ -487,7 +467,7 @@ S8_opt_param_k_NN <- BayesianOptimization(
   verbose = FALSE
 )
 
-save(S8_opt_param_linear, S8_opt_param_polynomial, S8_opt_param_radial, S8_opt_param_logR, S8_opt_param_k_NN, file = "Code/Parameter/Parameter_S8.RData")
+save(S8_opt_param_linear, S8_opt_param_polynomial, S8_opt_param_radial, S8_opt_param_logR, S8_opt_param_k_NN, file = "Abgabe/Ergebnisse/Parameter/Parameter_S8.RData")
 
 # Modelle fitten
 
@@ -565,16 +545,6 @@ S8_prediction_probs_k_NN <- attr(S8_k_NN_probs, "prob")
 S8_prediction_probs_k_NN <- ifelse(S8_k_NN_probs == levels(S8_data_train$y)[1], S8_prediction_probs_k_NN, 1 - S8_prediction_probs_k_NN)
 S8_roc_k_NN <- roc(S8_data_test$y, S8_prediction_probs_k_NN, levels = rev(levels(S8_data_test$y)))
 
-# plot(S8_roc_linear, col = "blue", main = "ROC-Kurven Szenario 8")
-# plot(S8_roc_polynomial, col = "red", add = TRUE)
-# plot(S8_roc_radial, col = "green", add = TRUE)
-# plot(S8_roc_logR, col = "violet", add = TRUE)
-# plot(S8_roc_k_NN, col = "orange", add = TRUE)
-# legend("bottomright",
-#        legend = c(paste("linear (AUC:", auc(S8_roc_linear), ")"), paste("polynomial (AUC:", auc(S8_roc_polynomial), ")"), paste("radial (AUC:", auc(S8_roc_radial), ")"), paste("logR (AUC:", auc(S8_roc_logR), ")"), paste("k_NN (AUC:", auc(S8_roc_k_NN), ")")),
-#        col = c("blue", "red", "green", "violet", "orange"),
-#        lwd = 2)
-
 # erstellen der Einzeltabellen
 
 S2_Tabelle <- data.frame(ACC = c(S2_accuracy_linear, S2_accuracy_polynomial, S2_accuracy_radial, S2_accuracy_logR, S2_accuracy_k_NN),
@@ -602,4 +572,4 @@ S8_index <- rowSums(S8_Tabelle)
 S8_rank <- data.frame(Rang = rank(-S8_index, ties.method = "min"))
 S8_Tabelle <- round(cbind(S8_Tabelle, S8_rank), 3)
 
-save(S2_Tabelle, S5_Tabelle, S8_Tabelle, file = "Code/Tabellen/Tabellen_S2_S5_S8.RData")
+save(S2_Tabelle, S5_Tabelle, S8_Tabelle, file = "Abgabe/Ergebnisse/Tabellen/Tabellen_S2_S5_S8.RData")

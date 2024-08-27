@@ -72,6 +72,6 @@ S6_data_test <- generate_dataset(obs = 50, variables = 50, distance = 3,jitter =
 S9_data_train <- generate_dataset(obs = 50, variables = 200, distance = 3,jitter = 1.5, radius = 10, seed1 = 100, seed2 = 200)
 S9_data_test <- generate_dataset(obs = 50, variables = 200, distance = 3,jitter = 1.5, radius = 10, seed1 = 300, seed2 = 400)
 
-save(S3_data_train, S3_data_test, file = "Code/Daten/Data_S3.RData")
-save(S6_data_train, S6_data_test, file = "Code/Daten/Data_S6.RData")
-save(S9_data_train, S9_data_test, file = "Code/Daten/Data_S9.RData")
+save(S3_data_train, S3_data_test, file = "Abgabe/Ergebnisse/Daten/Data_S3.RData")
+save(S6_data_train, S6_data_test, file = "Abgabe/Ergebnisse/Daten/Data_S6.RData")
+save(S9_data_train, S9_data_test, file = "Abgabe/Ergebnisse/Daten/Data_S9.RData")
