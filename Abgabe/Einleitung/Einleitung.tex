@@ -75,7 +75,7 @@
 \fi
 \usepackage[]{biblatex}
 \addbibresource{Literatur.bib}
-\usepackage{bookmark}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
@@ -86,45 +86,53 @@
 
 \title{Einleitung}
 \author{Franz Andersch \& Niklas Münz}
-\date{2024-08-26}
+\date{2024-08-27}
 
 \begin{document}
 \maketitle
 
-Warum eine gerade Ebene manchmal die beste Möglichkeit ist, um Daten in
-zwei klassen aufzuteilen? Darum soll es in dieser Arbeit gehen. Wir
-wollen hier die Methode der Support Vector Machines, die mit dieser
-Annahme arbeitet, erläutern und gleichzeitig auf den Prüfstand stellen.
-Denn auch wenn die Grundidee, vielleicht etwas zu simpel klingt, ist
-ihre Leistung was vor allem binäre Klassifikationprobleme angeht
-unumstritten. Die Grundlage für eine optimal seperierende Hyperebene
-wurde bereits 1964 von Alexej Chervonenkis und Vladimir Vapnik gelegt
-und die Methode wurde anschließend von mehrern Autoren stetig erweitert
-\parencite{vapnikEstimationDependencesBased2006}. Zuerst wollen wir die
-Funktionsweise der SVM näher beleuchten. Dazu wird zuerst gezeigt wie
-die Konstruktion dieser seperiernden Hypereben in dem Fall funktioniert,
-in dem die Daten tasächlich linear trennbar sind. Danach soll gezeigt
-werden wie eine Soft Margin Klassifier funktioniert, der auch
-funktioniert bei nicht perfekt linear trennbaren Daten und zuletzt soll
-es um die Anwendung von Kernels gehen, die es dann auch ermöglichen,
-nicht lineare Entscheidungsgrenzen herzustellen. im Kapitel 3 wollen wir
-dann die Vor und Nachteile der Methode uns anschauen. Anhand dieser
-Informationen konnten wir uns dann bereits einige Gedanken zur Leistung
-der SVM in unserem Datenexperiment machen. Wie wir dieses Experiment
-aufbauen soll im nachfolgenden Kapitel beschrieben werden. Wir
-generieren uns zum anschließenden Vergleich neun verschiedene
-Datenszenarien, welche in ihrer Dimensionalitäten und Kompleixität der
-Entscheidungsgrenze variieren. Für den Vergleich wollen wir dann
-Klassifikationsleistung von SVM uns anderen Klassifikationsmethoden
-vegleichen. Im Teil Hypothesen haben wir aufgrund von Literatur, die
-bereits ähnliche Versuche durchgeführt haben, Vermutungen aufgestellt,
-wie die einzelnen Classifier im Vergleich abschneiden werden. Im
-Ergebnis-Teil wollen wir dann das Experiment durchführen und mithilfe
-von verschiedenen Maßzahlen die Leistung evaluieren. Ebenfalls wollen
-wir üperprüfen, ob die Hypothesen die wir zuvor aufgestellt haben sich
-bewahrheiten. Im letzen Teil soll ein Fazit gezogen werden, in dem Wir
-die Ergebnisse noch einmal diskutieren und Defitite in unserer Arbeit
-aufarbeiten.
+Bei der Separierung von zwei Datenklassen scheint eine lineare
+Trennlinie zwischen die Klassen zu ziehen eine simple und intuitive
+Methode zu sein. Genau auf dieser Idee basieren Support Vector Machines
+(SVM). Jedoch sind Daten nicht immer perfekt trennbar oder es liegt
+keine lineare Trennlinie vor. Wie SVM funktionieren, wie sie mit solchen
+Situationen umgehen, wie sie unter vorgegebenen Bedingungen performen
+und welche Schlussfolgerungen für die praktische Anwendung gezogen
+werden können, soll in dieser Arbeit beleuchtet werden.
+
+Die Grundlage für eine optimal separierende Hyperebene wurde bereits
+1964 von Alexej Chervonenkis und Vladimir Vapnik gelegt und die Methode
+wurde anschließend von mehreren Autoren stetig erweitert
+\parencite{vapnikEstimationDependencesBased2006}. Seitdem ist ihre
+Leistung, trotz großer Fortschritte im Bereich neuronaler Netze, vor
+allem im Bereich binärer Klassifikationprobleme unumstritten und sie
+gelten hier als eine der meistgenutzten Methoden
+\parencite{soofiClassificationTechniquesMachine2017}.
+
+In dieser Arbeit wollen wir zuerst die Funktionsweise der SVM näher
+betrachten. Dazu wird zunächst gezeigt wie die Konstruktion dieser
+separierenden Hypereben im Falle linear trennbarer Daten funktioniert.
+Daraufhin wird die Idee eines Soft Margin Klassifier aufgegriffen, der
+sich dem Problem nicht trennbarer Daten annimmt. Zuletzt geht es um die
+Anwendung von Kernels, die es ermöglichen, nichtlineare
+Entscheidungsgrenzen herzustellen.\newline In Kapitel 3 werden dann die
+Vor und Nachteile der Methode betrachtet. Anhand dieser Informationen
+werden Schlussfolgerungen zur Leistung der SVM gezogen. Darauf aufbauend
+wird im folgenden Kapitel der Aufbau unseres Experiments beschrieben.
+Wir generieren uns zum anschließenden Vergleich neun verschiedene
+Datenszenarien, welche in ihrer Dimensionalität und Kompleixität der
+Entscheidungsgrenze variieren. Für die Evaluierung der
+Klassifikationsleistung werden neben den SVM weitere
+Klassifikationsmtehoden herangezogen.\newline Im Kapitel Hypothesen
+wurden auf Basis von Literatur, in der bereits ähnliche Versuche
+durchgeführt wurden, Vermutungen aufgestellt, wie die einzelnen
+Klassifikationsmethoden im Vergleich abschneiden werden.\newline Es
+folgen die Ergebnisse, in denen die Durchführung des Experiments
+beschrieben und die Leistungen anhand verschiedener Maßzahlen evaluiert
+werden. Darüber hinaus wird überprüft, ob sich die Hypothesen die wir
+zuvor aufgestellt haben bewahrheitet haben. Im letzten Abschnitt wird
+ein Fazit gezogen, indem die Ergebnisse noch einmal diskutiert und
+Defizite in unserer Arbeit aufgearbeitet werden.
 
 \printbibliography
 
