@@ -1,1 +1,4 @@
 schauen ob 50/50 verteilung erwähnt wurde
+duality beschreiben
+im soft margin Kapitel bezug zur Abbildung herstellen
+Mapping funktion Phi erklären
