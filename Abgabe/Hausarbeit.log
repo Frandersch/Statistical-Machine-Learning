@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.12.13)  27 AUG 2024 16:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.12.13)  27 AUG 2024 16:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1433,11 +1433,6 @@ ut line 1025.
 
  <./Ergebnisse_files/figure-latex/S1ROC-1.pdf> <./Ergebnisse_files/figure-latex
 /S2ROC-1.pdf> <./Ergebnisse_files/figure-latex/S3ROC-1.pdf>] [14]
-
-Package biblatex Warning: Bibliography string 'typeredactor' undefined
-(biblatex)                at entry 'kecmanSupportVectorMachines2005' on input l
-ine 1109.
-
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
 109.
 (C:\Users\49152\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
@@ -1452,10 +1447,10 @@ Package logreq Info: Writing requests to 'Hausarbeit.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 34770 strings out of 474586
- 661450 string characters out of 5745680
+ 34766 strings out of 474586
+ 661356 string characters out of 5745680
  1957558 words of memory out of 5000000
- 56088 multiletter control sequences out of 15000+600000
+ 56084 multiletter control sequences out of 15000+600000
  631477 words of font info for 184 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  84i,16n,87p,1743b,3227s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1481,9 +1476,9 @@ ocal/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/49152/AppData/L
 ocal/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/49152/AppData/L
 ocal/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/49152/AppData/Lo
 cal/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb>
-Output written on Hausarbeit.pdf (17 pages, 612477 bytes).
+Output written on Hausarbeit.pdf (17 pages, 612625 bytes).
 PDF statistics:
- 526 PDF objects out of 1000 (max. 8388607)
+ 527 PDF objects out of 1000 (max. 8388607)
  83 named destinations out of 1000 (max. 500000)
  39089 words of extra memory for PDF output out of 42996 (max. 10000000)
 
