@@ -87,7 +87,7 @@
 
 \title{Funktionsweise}
 \author{Franz Andersch \& Niklas Münz}
-\date{2024-08-22}
+\date{2024-08-28}
 
 \begin{document}
 \maketitle
@@ -127,14 +127,15 @@ Die blaue Linie soll die Hyperplain darstellen. Im zweidiemnsionalen
 handelt es sich hier um eine Linie. Der \(2 \times 1\) Vektor
 \(\overline{\beta}\) liegt immer senkrecht zur konstruierten Hyperplane.
 Würde man alle Vektoren, die auf der Hyperplane landen, auf den
-\(\overline{\beta}\)-Vektor Projezieren, dann hätten alle diese
-Projektionen die selbe Länge \(c\). Also gilt für alle Punkte, die auf
-der Ebene liegen. \begin{align}
+normierten \(\overline{\beta}\)-Vektor Projezieren, dann erhält man für
+alle diese Projektionen den selben Wert \(c\). Also gilt für alle
+Punkte, die auf der Ebene liegen. \begin{align}
 \frac{\overline \beta}{||\overline{\beta}||}\cdot \overline{x}=c \Leftrightarrow \overline{\beta}\cdot \overline{x}=c \cdot ||\overline{\beta}||\label{eq:betanull}
 \end{align} ersetzet man in \eqref{eq:betanull}
 \(c \cdot ||\overline{\beta}||\) mit \(-\beta_0\) und zieht dies dann
 auf die andere Seite, kommen man wieder bei der ursprünglichen Form aus
-Formel \eqref{eq:hyperplanevec} raus.
+Formel \eqref{eq:hyperplanevec} raus
+\parencite{mavroforakisGeometricApproachSupport2006}.
 
 Als nächstes stellt sich jetzt die Frage, welches \(\overline{\beta}\)
 und \(\beta_0\) die optimale Hyperplane darstellen. Betrachtet man die
@@ -164,7 +165,7 @@ Samples \(\overline{x}^-\) immer gilt
 einer weiteren Variable \(y\), welche die eigenschaft hat, dass die den
 Wert 1 bei einem positiven und den Wert -1 bei einem negativen Sample
 annimmt, können diese zwei Beschränkungen zu einer zusammengefasst
-werden \begin{align}
+werden \parencite{cortesSupportvectorNetworks1995}. \begin{align}
 y_i(\overline{\beta}\cdot \overline{x}_i+\beta_0)\ge 1\label{eq:Nebenbedingung}
 \end{align} Da das Verfahren auch maximum Margin Classifier gennant
 wird, gilt es jetzt noch eine Definition für den Margin also den Abstand
@@ -209,8 +210,11 @@ Dieses Optimierungsproblem mit der Nebenbedingung aus Formel
 \eqref{eq:Nebenbedingung} lässt sich am besten über Lagrange-Multiplier
 lösen \begin{align}
 \mathcal{L}(\overline\beta,\beta_0,\overline \alpha)=\frac{1}{2}\overline \beta ' \overline \beta-\sum \alpha_i[y_i(\overline \beta \cdot \overline{x_i}+\beta_0)-1]\label{eq:Lagrange}
-\end{align} Wird dieser Ausdruck partiell abgeleitet und gleich null
-gesetzt erhält man als zwischen ergebnis \begin{align}
+\end{align} wobei hier \(\overline{\beta}\) und \(\beta_0\) minimiert
+und \(\overline{\alpha}\) maximiert wird
+\parencite{vapnikEstimationDependencesBased2006}. Wird dieser Ausdruck
+partiell abgeleitet und gleich null gesetzt erhält man als zwischen
+Ergebnis \begin{align}
 \frac{\partial \mathcal{L}}{\partial \beta}=\beta-\sum \alpha_i y_i \overline{x_i}\overset{!}{=}0 \Rightarrow \beta=\sum \alpha_i y_i \overline{x_i}\label{eq:solutbeta}
 \end{align} somit zeigt sich, dass \(\overline{\beta}\) als
 linearkombination der Inputvektoren dargestellt werden kann. Weiterhin
@@ -242,10 +246,12 @@ Wenn \(k\) positiv ist, liegt der neue Datenpunkt oberhalb der
 Hyperplane liegt und somit als positives Sample gewertet wird. Wenn
 \(k\) negativ ist, dann liegt der Datenpunkt unterhalb der Hyperplane
 und wird als negativ gewertet. Mit der gleichen Umformung wie weiter
-oben schon beschrieben kommt man zu folgender Entscheidungsregel
-\begin{align}
-f(\overline{x}_u)=\begin{cases}\mathrm{positiv}&\text{wenn } \overline{\beta}\cdot \overline{x}_u+\beta_0 > 0\\
-\mathrm{negativ} & \text{wenn }\overline{\beta}\cdot \overline{x}_u+\beta_0<0
+oben schon beschrieben kommt man zu einer Entscheidungsfunktion
+\(f(\overline{x}_u)\) und einer daraus resultierenden Stufenfunktion
+\(g(\overline{x}_u)\), die dann die Kategorisierung der neuen
+Beobachtung vornimmt. \begin{align}
+g(\overline{x}_u)=\begin{cases}\mathrm{positiv}&\text{wenn } f(\overline{x}_u)=\overline{\beta}\cdot \overline{x}_u+\beta_0 > 0\\
+\mathrm{negativ} & \text{wenn }f(\overline{x}_u)=\overline{\beta}\cdot \overline{x}_u+\beta_0<0
 \end{cases}\label{eq:decisionf}
 \end{align}
 
@@ -262,16 +268,18 @@ Classifier erreicht wird. Die Vorgabe für die Konstruktion der Schranken
 ermöglicht es einzelnen Datenpunkten auf der falschen Seite der
 Schranke, ja sogar der Entscheidungsgrenzen zu liegen. Dafür wird für
 die Einschränkungen eine sogennannte Slackvariable \(\varepsilon\)
-eingeführt \parencite{jamesIntroductionStatisticalLearning2021}. Setzt
-man diese in diese in \eqref{eq:Nebenbedingung} lautet die neuen
-Nebenbedingung \begin{align}
+eingeführt. Wie dieser sich auswirkt ist in Abbildunt
+\ref{fig:slackvariable} aufgeführt.
+\parencite{jamesIntroductionStatisticalLearning2021}. Setzt man diese in
+diese in \eqref{eq:Nebenbedingung} lautet die neuen Nebenbedingung
+\begin{align}
 y_i(\beta \cdot \overline{x}_i-\beta_0)>1- \varepsilon_i \label{eq:nebbedsfm}
 \end{align}
 
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.5\textwidth,trim=0.5cm 0.5cm 0.5cm 0.5cm]{Images/slackvariable.pdf} 
-        \caption{Funktion der Slack Variable}
+        \caption{Bedeutung der Slack Variable}
         \label{fig:slackvariable}
 \end{figure}
 
@@ -288,9 +296,12 @@ Lagrangefunktion her erhält man \begin{align}
 \end{align} Wenn dieser Ausdruck wie beim Hardmargin Classifier gelöst
 wird und die Ergebnisse eingesetzt werden erhält man wieder den Ausruck
 aus \eqref{eq:dualproblem} mit der zusätzlichen Einschränkung
-\(0\le \alpha_i \le C\). Dieses Maximierungsproblem wird dann genauso
-aufgelöst wie bei dem Hard Margin Classifier und die Entscheidungsregel
-ist ebenfalls gleich.
+\(0\le \alpha_i \le C\) \parencite{bennettSupportVectorMachines2000}.
+Dieses Maximierungsproblem wird dann genauso aufgelöst wie bei dem Hard
+Margin Classifier und die Entscheidungsregel ist ebenfalls gleich. Erst
+durch den einsatz dieser Technik wurde von der Methode auch wirklich als
+Support Vector Machine gesprochen
+\parencite{vapnikEstimationDependencesBased2006}.
 
 \subsection{Der Kernel Trick}
 

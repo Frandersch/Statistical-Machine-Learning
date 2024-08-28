@@ -33,7 +33,7 @@ generate_subdatasets <- function(obs,variables,distance,jitter,seed,coefficients
  }
   combinations<- xses%*%coefficients[1:(variables-1)]
   quadcombinations <- xses^2%*%coefficients[variables:(2*variables-2)]
-  z <- combinations+quadcombinations+rep(coefficients[2+variables-1],obs)+rnorm(obs,distance,jitter)
+  z <- combinations+quadcombinations+rep(coefficients[2*variables-1],obs)+rnorm(obs,distance,jitter)
   as.data.frame(cbind(xses,z))
 }
 
