@@ -80,7 +80,7 @@
 \fi
 \usepackage[]{biblatex}
 \addbibresource{Literatur.bib}
-\usepackage{bookmark}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
@@ -91,7 +91,7 @@
 
 \title{Ergebnisse}
 \author{Franz Andersch \& Niklas Münz}
-\date{2024-08-27}
+\date{2024-08-29}
 
 \begin{document}
 \maketitle
@@ -146,10 +146,10 @@ bereits bei sehr hoher Spezifität (hohe Anzahl korrekt Negative) eine
 hohe Sensitivität (hohe Anzahl korrekt Positive) erreicht wird. Der
 AUC-Wert bezieht sich auf die Fläche unterhalb der Kurve und liegt somit
 im Intervall {[}0,1{]}, wobei ein Wert von 1 für eine perfekte
-Klassifikation spricht, während ein Wert von 0.5 glechbedeutend mit
+Klassifikation spricht, während ein Wert von 0.5 gleichbedeutend mit
 einer rein zufälligen Zuordnung der Klassen spricht.\newline Für den
 F1-Score ist außerdem die Präzision von Bedeutung, die sich wie folgt
-berechnet\parencite{fawcettIntroductionROCAnalysis2006}: \begin{align}
+berechnet \parencite{fawcettIntroductionROCAnalysis2006}: \begin{align}
 Präzision=\frac{korrekt~Positiv}{korrekt~Positiv~+~falsch~Positiv}
 \end{align} Der F1-Score beschreibt das harmonische Mittel zwischen
 Präzision und Sensitivität und drückt folglich die Fähigkeit des
@@ -280,18 +280,18 @@ K-NN & 0.76 & 0.760 & 0.700 & 2\\
 
 \end{landscape}
 \clearpage
-} In den Datensituationen mit linearer Form der Entscheidungsgrenze
-performt insbesondere \textit{logR} gut, da sie in allen drei Szenarien
-über alle Kriterien hinweg einen Wert von mindestens 0.72 aufweist und
-jeweils mindestens Rang 2 belegt. Im Falle von \(p \ll n\) und
-\(p \approx n\) zeigen auch \textit{SVM-L}, \textit{SVM-P} und
-\textit{SVM-R} eine gute Leistung mit Werten nahe 0.9 bzw. 0.8. In dem
-hochdimensionalen Setting \(p \gg n\) schneiden alle Drei, jedoch
-insbesondere \textit{SVM-R} schlechter ab, welche einen AUC-Wert von 0.5
-aufweist. \textit{K-NN} belegt im linearen Kontext für \(p \ll n\) und
-\(p \approx n\) jeweils den fünften Rang, wobei der Unterschied im
-niedrigdimensionalen Raum am deutlichsten ist (0.39 schlechtere
-Genauigkeit als der nächst schlechteste Algorithmus). Im
+} \newline In den Datensituationen mit linearer Form der
+Entscheidungsgrenze performt insbesondere \textit{logR} gut, da sie in
+allen drei Szenarien über alle Kriterien hinweg einen Wert von
+mindestens 0.72 aufweist und jeweils mindestens Rang 2 belegt. Im Falle
+von \(p \ll n\) und \(p \approx n\) zeigen auch \textit{SVM-L},
+\textit{SVM-P} und \textit{SVM-R} eine gute Leistung mit Werten nahe 0.9
+bzw. 0.8. In dem hochdimensionalen Setting \(p \gg n\) schneiden alle
+Drei, jedoch insbesondere \textit{SVM-R} schlechter ab, welche einen
+AUC-Wert von 0.5 aufweist. \textit{K-NN} belegt im linearen Kontext für
+\(p \ll n\) und \(p \approx n\) jeweils den fünften Rang, wobei der
+Unterschied im niedrigdimensionalen Raum am deutlichsten ist (0.39
+schlechtere Genauigkeit als der nächst schlechteste Algorithmus). Im
 hochdimensionalen Raum kann \textit{K-NN} allerdings als bester
 Algorithmus mit Werten über 0.8 überzeugen.\newline Die ROC-Kurven
 werden nur in den Datensituationen mit \(p \ll n\) genutzt, da die
@@ -318,19 +318,18 @@ die Ergebnisse ausschließlich für \textit{SVM-R} sehr gut mit Werten
 über 0.9. Die restlichen Algorithmen performen mittelmäßig mit Werten
 zwischen 0.7 und 0.8, wobei sich hier kein Algorithmus von den anderen
 absetzen kann. Bei \(p \approx n\) ist \textit{K-NN} den anderen
-Klassifikationsmethoden leicht überlegen, insbesondere darin
-gleichzeitig falsch Positive und falsch Negative zu minimieren (AUC-Wert
-von 0.729). Die anderen Algorithmen befinden sich durchweg über alle
-Werte hinweg nahe 0.5. Ähnlich ist das der Fall für \(p \gg n\) bei dem
-auch wieder \textit{K-NN} eine leicht bessere Leistung zeigt mit einer
-Genauigkeit von 0.7, gefolgt von \textit{LogR} mit 0.64. Dennoch ist für
-die letzten beiden Szenarien deutlich, dass kein Algorithmus gute
-Leistung zeigt.\newline Abbildung \ref{fig:S2ROC} zeigt die ROC-Kurven
-für Szenario 2. Aus dieser Abbildung ist ersichtlich, dass sich
-\textit{SVM-R} deutlich von den anderen Algorithmen abheben kann, welche
-alle eine mittelmäßige Leistung zeigen. Wir können also hier keine
-bestätigung für \textbf{H2} finden, nach der wir eigentlich erwarten
-würden, dass \textit{SVM-P} hier besser Klassifiziert.
+Klassifikationsmethoden leicht überlegen, insbesondere bei einem
+AUC-Wert von 0.729. Die anderen Algorithmen befinden sich durchweg über
+alle Werte hinweg nahe 0.5. Ähnlich ist das der Fall für \(p \gg n\) bei
+dem auch wieder \textit{K-NN} eine leicht bessere Leistung zeigt mit
+einer Genauigkeit von 0.7, gefolgt von \textit{LogR} mit 0.64. Dennoch
+ist für die letzten beiden Szenarien deutlich, dass kein Algorithmus
+gute Leistung zeigt.\newline Abbildung \ref{fig:S2ROC} zeigt die
+ROC-Kurven für Szenario 2. Aus dieser Abbildung ist ersichtlich, dass
+sich \textit{SVM-R} deutlich von den anderen Algorithmen abheben kann,
+welche alle eine mittelmäßige Leistung zeigen. Wir können also hier
+keine Bestätigung für \textbf{H2} finden, nach der wir eigentlich
+erwarten würden, dass \textit{SVM-P} hier besser Klassifiziert.
 
 In den Datensituationen mit radialer Form der Entscheidungsgrenze ist
 für den Fall \(p \ll n\) eine eindeutige Unterscheidung zu treffen.
@@ -361,7 +360,7 @@ erwähnten Gruppen gut identifiziert werden, da sich \textit{SVM-L} und
 eine ROC-Kurve einer reinen Zufallsauswahl, woraus gefolgert werden
 kann, dass sie kaum Fähigkeit aufweisen zwischen den Klassen zu
 unterscheiden. Diese Szenarien bestätigen die Vermutung aus \textbf{H2}
-zwar nicht direkt, da hier im Ranking über alle Szenarien mir radialer
+zwar nicht direkt, da hier im Ranking über alle Szenarien mit radialer
 Entscheidungsgrenze hinweg interessanterweise \textit{SVM-P} am besten
 performt aber zumindest liegt hier \textit{SVM-R} auf dem zweiten Platz.
 Trotzdem müssen wir mit diesen Ergebnissen \textbf{H2} ablehnen.
@@ -395,7 +394,7 @@ ersichtlich, dass insbesondere \textit{SVM-P} und \textit{SVM-R} über
 alle drei Szenarien gute Leistung (mit Werten mindestens nahe 0.8). Auch
 im durchschnittlichen Ranking für diese Szenarien über alle drei
 Szenarien zeigen die \textit{SVM}-Methoden die besten Ergebnisse.
-Überaschen ist nur die unerwartet schlechte Performance von
+Überaschend ist nur die unerwartet schlechte Performance von
 \textit{K-NN}. Somit bestätigt sich \textbf{H3} hier nur teilweise. In
 den hochdimensionalen Szenarien \(p \gg n\) ist einzig \textit{K-NN}
 überzeugend, welcher auch im polynomialen Szenario Werte über 0.7

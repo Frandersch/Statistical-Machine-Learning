@@ -76,7 +76,7 @@
 \fi
 \usepackage[]{biblatex}
 \addbibresource{Literatur.bib}
-\usepackage{bookmark}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
@@ -104,8 +104,8 @@ einer solchen Hyperplane lautet \begin{align}
 \end{align} oder in Vektorschreibweise \begin{align}
 \overline{\beta}\cdot\overline{x}+\beta_0=0 \label{eq:hyperplanevec}
 \end{align} Die geometrische Interpretation des Vektors \(\beta\) und
-des Skalars \(\beta_0\) wird in Abbildung \ref{fig:Ebene} im zwei
-dimensionalen Fall dargestellt.
+des Skalars \(\beta_0\) wird in Abbildung \ref{fig:Ebene} im
+zweidimensionalen Fall dargestellt.
 
 \begin{figure}[htb]
     \centering
@@ -131,9 +131,9 @@ normierten \(\overline{\beta}\)-Vektor projizieren, dann erhält man für
 alle diese Projektionen denselben Wert \(c\). Also gilt für alle Punkte,
 die auf der Ebene liegen. \begin{align}
 \frac{\overline \beta}{||\overline{\beta}||}\cdot \overline{x}=c \Leftrightarrow \overline{\beta}\cdot \overline{x}=c \cdot ||\overline{\beta}||\label{eq:betanull}
-\end{align} ersetzt man in \eqref{eq:betanull}
+\end{align} Ersetzt man in \eqref{eq:betanull}
 \(c \cdot ||\overline{\beta}||\) mit \(-\beta_0\) und zieht dies dann
-auf die andere Seite, kommen man wieder bei der ursprünglichen Form aus
+auf die andere Seite, kommt man wieder bei der ursprünglichen Form aus
 Formel \eqref{eq:hyperplanevec} raus
 \parencite{mavroforakisGeometricApproachSupport2006}.
 
@@ -147,13 +147,13 @@ eine eindeutige Lösung zu finden, wird zunächst ein Bereich um die
 Hyperplane abgesteckt. In Abbildung \ref{fig:Margin} dargestellt durch
 die gestrichelten schwarzen Linien, welche man als Schranken bezeichnen
 könnte. In diesem Bereich sollen keine Datenpunkte liegen, die Schranken
-sollen immer parallel zur Hyperplane seien und den gleichen Abstand zu
+sollen immer parallel zur Hyperplane sein und den gleichen Abstand zu
 ihr haben. Außerdem dürfen keine positiven Samples unterhalb der oberen
 Schranke liegen und keine negativen oberhalb. Das Gegenteil gilt
 dementsprechend für die untere Schranke. Als Definition für die beiden
 Schranken wird festgelegt \begin{align}
 \overline{\beta}\cdot \overline{x}+\beta_0=1\label{eq:posSV}
-\end{align} für die Schranke in richtung der grünen Datenpunkte und
+\end{align} für die Schranke in Richtung der grünen Datenpunkte und
 \begin{align}
 \overline{\beta}\cdot \overline{x}+\beta_0=-1\label{eq:negSV}
 \end{align} für die Schranke in Richtung der roten Datenpunkte. Aus
@@ -161,11 +161,12 @@ dieser Beschränkung für die Hyperplane können wir auch ableiten, dass
 für die positiven Samples \(\overline{x}^+\) immer gilt
 \(\overline{\beta}\cdot \overline{x}^++\beta_0\ge 1\) und für negative
 Samples \(\overline{x}^-\) immer gilt
-\(\overline{\beta}\cdot \overline{x}^-+\beta_0\le -1\). Durch Einführen
-einer weiteren Variable \(y\), welche die Eigenschaft hat, dass sie den
-Wert 1 bei einem positiven und den Wert -1 bei einem negativen Sample
-annimmt, können diese zwei Beschränkungen zu einer zusammengefasst
-werden \parencite{cortesSupportvectorNetworks1995}. \begin{align}
+\(\overline{\beta}\cdot \overline{x}^-+\beta_0\le -1\). Durch das
+Einführen einer weiteren Variable \(y\), welche die Eigenschaft hat,
+dass sie den Wert 1 bei einem positiven und den Wert -1 bei einem
+negativen Sample annimmt, können diese zwei Beschränkungen zu Einer
+zusammengefasst werden \parencite{cortesSupportvectorNetworks1995}.
+\begin{align}
 y_i(\overline{\beta}\cdot \overline{x}_i+\beta_0)\ge 1\label{eq:Nebenbedingung}
 \end{align} Da das Verfahren auch \textit{Maximal Margin Classifier}
 gennant wird, gilt es jetzt noch eine Definition für den Margin also den
@@ -213,10 +214,10 @@ lösen \begin{align}
 \end{align} wobei hier \(\overline{\beta}\) und \(\beta_0\) minimiert
 und \(\overline{\alpha}\) maximiert wird
 \parencite{vapnikEstimationDependencesBased2006}. Wird dieser Ausdruck
-partiell abgeleitet und gleich null gesetzt erhält man als zwischen
-Ergebnis \begin{align}
+partiell abgeleitet und gleich null gesetzt erhält man als
+Zwischenergebnis \begin{align}
 \frac{\partial \mathcal{L}}{\partial \beta}=\beta-\sum \alpha_i y_i \overline{x_i}\overset{!}{=}0 \Rightarrow \beta=\sum \alpha_i y_i \overline{x_i}\label{eq:solutbeta}
-\end{align} somit zeigt sich, dass \(\overline{\beta}\) als
+\end{align} Somit zeigt sich, dass \(\overline{\beta}\) als
 Linearkombination der Inputvektoren dargestellt werden kann. Weiterhin
 gilt für \(\beta_0\) \begin{align}
 \frac{\partial \mathcal{L}}{\partial \beta_0}=\sum \alpha_i y_i \overline{x_i}\overset{!}{=}0\label{eq:solutbeta0}
@@ -229,7 +230,7 @@ neuen Ausdruck, denn es gilt zu minimieren \begin{align}
 \(\overline \alpha\) gelöst wurde, kann dies in \eqref{eq:solutbeta}
 eingesetzt werden, um das optimale \(\overline{\beta}\) zu erhalten. Es
 kann gezeigt werden, dass die gelösten \(\alpha_i\) lediglich für die
-Support-Vektoren werte ungleich Null annehmen. Somit ist der
+Support-Vektoren Werte ungleich Null annehmen. Somit ist der
 Koeffizientenvektor \(\overline{\beta}\) sogar eine Linearkombination
 von nur den Support-Vektoren
 \parencite{boserTrainingAlgorithmOptimal1992}. Die letzte unbekannte
@@ -243,10 +244,10 @@ konstruiert werden. Bedenkt man also, wenn man einen Vektor, der nicht
 auf der Hypeplane liegt in \eqref{eq:betanull} einsetzt, erhält man also
 \(\frac{\overline \beta}{||\overline{\beta}||}\cdot \overline{x}_u=c+k\).
 Wenn \(k\) positiv ist, liegt der neue Datenpunkt oberhalb der
-Hyperplane liegt und somit als positives Sample gewertet wird. Wenn
-\(k\) negativ ist, dann liegt der Datenpunkt unterhalb der Hyperplane
-und wird als negativ gewertet. Mit der gleichen Umformung wie weiter
-oben schon beschrieben kommt man zu einer Entscheidungsfunktion
+Hyperplane und wird somit als positives Sample gewertet. Wenn \(k\)
+negativ ist, dann liegt der Datenpunkt unterhalb der Hyperplane und wird
+als negativ gewertet. Mit der gleichen Umformung wie weiter oben schon
+beschrieben kommt man zu einer Entscheidungsfunktion
 \(f(\overline{x}_u)\) und einer daraus resultierenden Stufenfunktion
 \(g(\overline{x}_u)\), die dann die Kategorisierung der neuen
 Beobachtung vornimmt. \begin{align}
@@ -271,7 +272,7 @@ zu liegen. Dafür wird für die Einschränkungen eine sogenannte
 \textit{Slack-Variable} \(\varepsilon\) eingeführt
 \parencite{jamesIntroductionStatisticalLearning2021}. Wie diese sich
 auswirkt, ist in Abbildung \ref{fig:slackvariable} aufgeführt. Setzt man
-diese in \eqref{eq:Nebenbedingung} ein, lautet die neuen Nebenbedingung
+diese in \eqref{eq:Nebenbedingung} ein, lautet die neue Nebenbedingung
 \begin{align}
 y_i(\beta \cdot \overline{x}_i-\beta_0)>1- \varepsilon_i \label{eq:nebbedsfm}
 \end{align}
@@ -288,9 +289,9 @@ zuvor angewandte Optimierungsverfahren einzufügen. Allerdings besteht
 hier das Problem, dass \(\varepsilon\) einfach immer maximal groß
 gewählt wird und so die Bedingung immer erfüllt wird. Um das Ausmaß der
 Verletzung der ursprünglichen Annahmen zu begrenzen, aber trotzdem noch
-gewisse Abweichung zuzulassen, wird ein weitere Parameter \(C\), als
+gewisse Abweichung zuzulassen, wird ein weiterer Parameter \(C\), als
 regularisierender Parameter für \(\varepsilon\) eingeführt. Leitet man
-daraus zusammen mit der Restriktion \(\varepsilon\ge0\) wieder einen
+daraus zusammen mit der Restriktion \(\varepsilon\ge0\) wieder eine
 Lagrangefunktion her erhält man \begin{align}
 \mathcal{L}(\overline\beta,\beta_0,\overline\alpha,\overline\varepsilon,\overline\lambda)=\frac{1}{2}\overline\beta'\cdot \overline\beta + C \sum_{i=1}^{n}\varepsilon_i-\underbrace{\sum \alpha_i[y_i(\overline\beta \cdot \overline{x_i}+\beta_0)-1+\varepsilon_i]}_{\text{für }y_i(\overline\beta \cdot \overline{x}_i-\beta_0)>1- \varepsilon_i}-\underbrace{\sum \lambda_i \varepsilon_i }_{\substack{\text{für}\\ \varepsilon_i \ge 0}}
 \end{align} Wenn dieser Ausdruck wie beim
@@ -310,7 +311,7 @@ Auch wenn eine lineare Entscheidungsgrenze Vorteile in Sachen
 Generalisierbarkeit bietet, ist sie doch nicht für jede Datensituation
 geeignet.In Abbildung \ref{fig:nonlinearsep} ist es sehr gut zu
 erkennen, dass in diesem Fall eine lineare Grenze zwischen den Klassen
-keinen Sinn Ergeben würde und eine elliptische Form wahrscheinlich
+keinen Sinn ergeben würde und eine elliptische Form wahrscheinlich
 besser geeignet wäre. Eine Lösung für dieses Problem, wäre den
 Merkmalsraum zu erweitern. So könnte die angenommene Formel für die
 lineare Hyperebene in \eqref{eq:hyperebene} durch Polynome der Merkmale
@@ -328,18 +329,18 @@ man die Entscheidungsfunktion \eqref{eq:decisionf} und setzt für
 \(\overline{\beta}\) die Gleichung aus \eqref{eq:solutbeta} erhält man
 \begin{align}
 f(x_u)= \sum \alpha_i y_i x_i \cdot x_u +\beta_0
-\end{align} Es zeigt sich also, dass die Entscheidungsfunktion im
-Wesentlichen sich aus einer Linearkombination von Punktprodukten aus dem
+\end{align} Es zeigt sich also, dass sich die Entscheidungsfunktion im
+Wesentlichen aus einer Linearkombination von Punktprodukten aus dem
 Vektor \(x_u\) mit allen Trainingsvektoren \(x_i\) ergibt. Dieses
 Punktprodukt kann als Ähnlichkeitsmaß zwischen dem neuen Datenpunkt und
 dem jeweiligen Trainingsdatenpunkt interpretiert werden. Es ist nun
-Möglich diese Produkte durch eine Funktion zu ersetzen, welche die
+möglich diese Produkte durch eine Funktion zu ersetzen, welche die
 Ähnlichkeiten von Datenpunkten anders bewertet. Diese sogenannte
 \textit{Kernel Funktion} \(K(x_i,x_j)\) ermöglicht es eine flexiblere
 Entscheidungsgrenze zu implementieren. Der Vorteil ist dabei, dass die
 Kernel Funktion nur auf alle Punktprodukte angewendet wird und es dabei
-nicht nötig ist den Merkmalsraum zu Erweitern, was wiederum Rechenzeit
-spart\parencite{jamesIntroductionStatisticalLearning2021}. Die
+nicht nötig ist den Merkmalsraum zu erweitern, was wiederum Rechenzeit
+spart \parencite{jamesIntroductionStatisticalLearning2021}. Die
 Entscheidungsfunktion wird dann mithilfe dieser
 \textit{Kernel Funktionen} berechnet: \begin{align}
   f(x_u)=\sum \alpha_i y_i K(x_i,x_u)+\beta_0
@@ -372,7 +373,7 @@ gibt es den \textit{Polynomial Kernel}. Dieser hat die Form
 Entscheidungsgrenze sich ähnlich Verhält, wie als würde man zu Beginn
 eine Merkmalserweiterung mit Polynomen vom Grad \(d\) durchführen (siehe
 Abbildung \ref{fig:polykernel}. Eine weitere Kernel Funktion ist der
-\textit{Radial Basis Function Kernel}(RBF) mit der Form \begin{align}
+\textit{Radial Basis Function Kernel} (RBF) mit der Form \begin{align}
 K(x_i,x_u)=\exp\left(-\gamma ||x_i-x_u||^2\right)
 \end{align} Für diesen Kernel wird die quadrierte euklidische Distanz
 als Ähnlichkeitsmaß verwendet, was dazu führt, dass diejenigen \(x_i\)
@@ -383,7 +384,8 @@ ist eine, in einen unendlich großen Merkmalsraum
 \parencite{jamesIntroductionStatisticalLearning2021}. Daher könnte man
 selbst durch vorheriges Erweitern des Merkmalsraums nicht das Ergebnis
 eines RBF Kernel replizieren, daher führt er auch zu einer sehr
-flexiblen Entscheidungsgrenze (siehe Abbildung \ref{fig:radialkernel})\\
+flexiblen Entscheidungsgrenze (siehe Abbildung
+\ref{fig:radialkernel}).\\
 
 \begin{figure}[htb]
     \centering
@@ -401,7 +403,7 @@ flexiblen Entscheidungsgrenze (siehe Abbildung \ref{fig:radialkernel})\\
     \end{minipage}
 \end{figure}
 
-Es gibt noch einen Reihe weitere Kernel, die auf unterschiedlichen
+Es gibt noch eine Reihe weiterer Kernel, die auf unterschiedlichen
 Ähnlichkeitsmaßen beruhen, aber eher seltener oder nur in speziellen
 Zusammenhänge angewendet werden. Wichtig ist anzumerken, dass die
 Verwendung von Kernels zwar die Flexibilität der Entscheidungsgrenze

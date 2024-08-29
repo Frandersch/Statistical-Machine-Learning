@@ -75,7 +75,7 @@
 \fi
 \usepackage[]{biblatex}
 \addbibresource{Literatur.bib}
-\usepackage{bookmark}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
@@ -86,7 +86,7 @@
 
 \title{Pros und Cons}
 \author{Franz Andersch \& Niklas Münz}
-\date{2024-08-27}
+\date{2024-08-29}
 
 \begin{document}
 \maketitle
@@ -95,7 +95,7 @@ Support Vector Machines haben ein hohes Ansehen unter den Machine
 Learning Algorithmen, da sie einige Vorteile mit sich bringen. Aufgrund
 der Idee einer Soft Margin und des ``Kernel Tricks'' ist die Methode
 sehr flexibel und kann für spezielle Anwendungsbereiche angepasst werden
-\parencite{bennettSupportVectorMachines2000}.Dazu sind die Ergebnisse
+\parencite{bennettSupportVectorMachines2000}. Dazu sind die Ergebnisse
 stabil und reproduzierbar, was sie von anderen Methoden wie
 beispielsweise Neural Networks abhebt. Auch die Anwendung ist
 vergleichsweise einfach, da es eine überschaubare Anzahl an Parametern
@@ -112,8 +112,8 @@ verantwortlich ist der Cost-Parameter, anhand dessen der Fit an die
 Daten kontrolliert werden kann. Jedoch birgt dies auch Probleme
 (Erläuterungen im folgenden Abschnitt).\newline Diese Vorteile
 resultieren in einer allgemein häufigen Nutzung von \textit{SVM} in der
-Wissenschaft. Sie haben folglich bewiesen, dass sie für verschiedenste
-Aufgaben gut funktionieren
+Wissenschaft, wobei sie schon oft bewiesen haben, dass sie für
+verschiedenste Aufgaben gut funktionieren
 \parencite{kuhnAppliedPredictiveModeling2013}.
 
 Trotz der vielfachen Nutzung von \textit{SVM}, bringen sie auch
@@ -143,7 +143,7 @@ eine hohe Rechenzeit aufweisen
 \parencite{scholzComparisonClassificationMethods2021}. Dabei konnten
 andere Methoden wie die \textit{logistische Regression} oder
 \textit{k-nearest Neighbour} deutlich besser abschneiden. Dies liegt
-daran, dass die Lösung des \textit{SVM}-Optimierungsproblems die
+daran, dass die Lösung des \textit{SVM}-Optimierungsproblems, die
 Behebung eines quadratischen Programmierungsproblems erfordert. Da die
 Anzahl der zu optimierenden Parameter mit der Anzahl der Daten
 quadratisch zunimmt, führt dies zu einer hohen Rechenkomplexität
