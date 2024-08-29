@@ -1,3 +1,31 @@
-Der Ordner "Code" enthält den Code für die Datengenerierung sowie die Analyse, jeweils aufgeteilt in die drei Formen der Entscheidungsgrenzen (linear = hyperplane, polynomial = quadratic hyperplane, radial = hypersphere).
+Projekt
+Diese Arbeit evaluiert die Performance von SVM-Algorithmen für die binäre Klassifikation unter verschiedenen Datensituationen. Der Code generiert synthetische Datensätze und führt Analysen durch, um die Effizienz von SVM in  verschiedenen Szenarien zu bewerten.
 
-Der Ordner "Abgabe" enthält die Hausarbeit im RMarkdown- und im PDF-Format. Darüber hinaus sind die Literatur, die Titelseite, der Header für das RMarkdown sowie die einzelnen Kapitel der Hausarbeit in weiteren Unterordnern enthalten.
+Ordnerstruktur
+Code/: Enthält den Code für die Datengenerierung und Analyse, unterteilt nach den drei Arten von Entscheidungsgrenzen:
+- hyperplane = Code für die lineare Form der Entscheidungsgrenze
+- quadratic hyperplane = Code für die polynomiale Form der Entscheidungsgrenze
+- hypersphere = Code für die radiale Form der Entscheidungsgrenze
+
+Abgabe/: Enthält die Hausarbeit und zugehörige Dokumente:
+- Hausarbeit.Rmd: das RMarkdown-Dokument der Hausarbeit
+- Hausarbeit.pdf: die Hausarbeit in PDF-Format
+- Literatur.bib: die Literatur in BibTeX-Format
+- titlepage.tex: die Titelseite als TeX-Datei
+- header.tex: der Header für das RMarkdown als TeX-Datei
+- Ordner: einzelne Kapitel der Hausarbeit
+
+Benötigte Pakete
+- class
+- e1071
+- glmnet
+- gridExtra
+- knitr
+- pROC
+- rBayesianOptimization
+- rgl
+- xtable
+
+Reproduktion der Analyse
+Die Daten wurden abgespeichert und können im "Datenimport"-Kapitel geladen werden.
+Aufgrund der hohen Rechenzeit wurden die Hyperparameter, die durch die Bayesian Optimization ermittelt wurden abgespeichert und können zu Beginn des "Modelle tunen"-Abschnitts geladen werden.
