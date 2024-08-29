@@ -1,0 +1,3 @@
+Der Ordner "Code" enthält den Code für die Datengenerierung sowie die Analyse, jeweils aufgeteilt in die drei Formen der Entscheidungsgrenzen (linear = hyperplane, polynomial = quadratic hyperplane, radial = hypersphere).
+
+Der Ordner "Abgabe" enthält die Hausarbeit im RMarkdown- und im PDF-Format. Darüber hinaus sind die Literatur, die Titelseite, der Header für das RMarkdown sowie die einzelnen Kapitel der Hausarbeit in weiteren Unterordnern enthalten.
