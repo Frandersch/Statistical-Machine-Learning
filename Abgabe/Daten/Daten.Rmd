@@ -17,7 +17,7 @@ Die zweite Charakteristik ist der Datengenerierende Prozess. Da in dieser Arbeit
 
 Insgesamt gibt es auch hier wieder 3 Kategorien. Die erste sind linear getrennte Daten. Dafür wird eine lineare Hyperplane der Form
 \begin{align*}
-\beta_0+\beta_1 X_1+\beta_2 X_2 +...+\beta_{1-p} = \beta_p X_p
+\beta_1 X_1+\beta_2 X_2 +...+\beta_{1-p} = \beta_p X_p
 \end{align*}
 mit zufälligen Koeffizienten erzeugt. Diese Daten sollen also den Annahmen entsprechend, die für SVMs mit linearem Kernel gelten. Nachem für eine Beobachtung $j$ zufällig ein Punkt auf der Ebene gesampelt wurde, wurde dieser anschließend verschoben. Die Verschiebung erfolgte über eine Skalierung des normierten Normalenvektors $k\left(\frac{\overline{\beta}}{||\overline{\beta}||}\right)$. $k$ ist dabei eine normalverteilte Zufallszahl mit Mittelwert $\mu_k$ und Varianz $\sigma^2_k$. Dieser Prozess wird $n/2$ mal wiederholt für die eine Ausprägung der Zielvariable ($y_i=1$) und dementsprechend $n/2$ mal für die andere Ausprägung ($y_i=-1$), dann aber mit $-\mu_k$ als Mittelwert für $k$.  \newline
 In der zweiten Situation hat die Hyperplane eine quadratische Form:

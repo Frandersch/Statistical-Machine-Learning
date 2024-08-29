@@ -1,16 +1,20 @@
-##radial structured data
-#vorgehensweise in 3 dimensionen
-#äußerere sphäre
-azimutalw <- runif(500,0,2*pi)
-polarw <- runif(500,0,2*pi)
+##radial strukturierte daten in 3 dimensionen
+#äußerere sphäre, wobei die eine ausprägung nur in
+# einer Kugel vom radius 2 gesampelt wird und die andere
+#ausprägunge ausßerhalb davon
+
+#winkel ziehen
+azimutalwinkel <- runif(500,0,2*pi)
+polarwinkel <- runif(500,0,2*pi)
+#radien zuweisen
 r <- 2+rgamma(500,scale= 1,shape=2)
 x1 <- r*sin(polarw)*cos(azimutalw)
 y1 <- r*sin(polarw)*sin(azimutalw)
 z1 <- r*cos(polarw)
 
 #innerer sphäre
-azimutalw <- runif(500,0,2*pi)
-polarw <- runif(500,0,2*pi)
+azimutalwinkel2 <- runif(500,0,2*pi)
+polarwinkel2 <- runif(500,0,2*pi)
 r2 <- runif(500,0,2)
 x2 <- r2*sin(polarw)*cos(azimutalw)
 y2 <- r2*sin(polarw)*sin(azimutalw)
@@ -24,12 +28,13 @@ plot3d(df$x,df$y,df$z,col = group)
 
 #erweiterung in mehrere Dimensionen
 
+#generiere eine Boebachtung
 generate_observation <- function(n, distance, jitter, radius, seed) {
   set.seed(seed)
   winkel <- runif(n - 1, 0, pi)
   winkel[n - 1] <- runif(1, 0, 2 * pi)
   x <- vector(mode = "numeric", length = n)
-  
+  #berechnung der sphärenkoordinaten
   for (i in 1:(n-1)) {
     if (i == 1) {
       x[i] <- radius * cos(winkel[i])
@@ -38,10 +43,11 @@ generate_observation <- function(n, distance, jitter, radius, seed) {
     }
   }
   x[n] <- radius * prod(sin(winkel))
+  #verschiebung der x in die richtung des sklaierten normierten x-Vektors
   x <- x+rnorm(1,distance,jitter)*(x/sqrt(sum(x^2)))
   return(x)
 }
-
+#füge mehrer beobachtungen zu einem datensatz zusammen
 generate_subdatasets <- function(obs,variables,distance,jitter,radius,seed){
   
   dat <- matrix(0,nrow = obs,ncol = variables)
@@ -50,7 +56,7 @@ generate_subdatasets <- function(obs,variables,distance,jitter,radius,seed){
   }
   return(as.data.frame(dat))
 }
-
+#erstelle einen datensatz, der für die klassifikation verwertet werden kann
 generate_dataset <- function(obs,variables,distance,jitter,radius, seed1, seed2){
   group1 <- generate_subdatasets(obs = obs/2, variables = variables, distance = distance, jitter = jitter,radius = radius, seed = seed1)
   group1_y <- rep(1, times = obs/2)
@@ -62,7 +68,7 @@ generate_dataset <- function(obs,variables,distance,jitter,radius, seed1, seed2)
   dataset
 }
 
-
+#für die jeweiligen situationen
 S3_data_train <- generate_dataset(obs = 1000, variables = 10, distance = 0.5,jitter = 0.3, radius = 10, seed1 = 1000, seed2 = 2000)
 S3_data_test <- generate_dataset(obs = 1000, variables = 10, distance = 0.5,jitter = 0.3, radius = 10, seed1 = 3000, seed2 = 4000)
 

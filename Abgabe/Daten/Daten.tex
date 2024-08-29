@@ -76,7 +76,7 @@
 \fi
 \usepackage[]{biblatex}
 \addbibresource{Literatur.bib}
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
@@ -129,7 +129,7 @@ angenommen.
 Insgesamt gibt es auch hier wieder 3 Kategorien. Die erste sind linear
 getrennte Daten. Dafür wird eine lineare Hyperplane der Form
 \begin{align*}
-\beta_0+\beta_1 X_1+\beta_2 X_2 +...+\beta_{1-p} = \beta_p X_p
+\beta_1 X_1+\beta_2 X_2 +...+\beta_{1-p} = \beta_p X_p
 \end{align*} mit zufälligen Koeffizienten erzeugt. Diese Daten sollen
 also den Annahmen entsprechend, die für SVMs mit linearem Kernel gelten.
 Nachem für eine Beobachtung \(j\) zufällig ein Punkt auf der Ebene
