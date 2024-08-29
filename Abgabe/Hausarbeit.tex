@@ -194,11 +194,7 @@ normierten \(\overline{\beta}\)-Vektor projizieren, dann erhält man für
 alle diese Projektionen denselben Wert \(c\). Also gilt für alle Punkte,
 die auf der Ebene liegen. \begin{align}
 \frac{\overline \beta}{||\overline{\beta}||}\cdot \overline{x}=c \Leftrightarrow \overline{\beta}\cdot \overline{x}=c \cdot ||\overline{\beta}||\label{eq:betanull}
-<<<<<<< HEAD
 \end{align} Ersetzt man in \eqref{eq:betanull}
-=======
-\end{align} ersetzt man in \eqref{eq:betanull}
->>>>>>> 843fcb0c14cb8bcca83483bbacd8fe46b0e6a467
 \(c \cdot ||\overline{\beta}||\) mit \(-\beta_0\) und zieht dies dann
 auf die andere Seite, kommt man wieder bei der ursprünglichen Form aus
 Formel \eqref{eq:hyperplanevec} raus
@@ -214,11 +210,7 @@ eine eindeutige Lösung zu finden, wird zunächst ein Bereich um die
 Hyperplane abgesteckt. In Abbildung \ref{fig:Margin} dargestellt durch
 die gestrichelten schwarzen Linien, welche man als Schranken bezeichnen
 könnte. In diesem Bereich sollen keine Datenpunkte liegen, die Schranken
-<<<<<<< HEAD
 sollen immer parallel zur Hyperplane sein und den gleichen Abstand zu
-=======
-sollen immer parallel zur Hyperplane seien und den gleichen Abstand zu
->>>>>>> 843fcb0c14cb8bcca83483bbacd8fe46b0e6a467
 ihr haben. Außerdem dürfen keine positiven Samples unterhalb der oberen
 Schranke liegen und keine negativen oberhalb. Das Gegenteil gilt
 dementsprechend für die untere Schranke. Als Definition für die beiden
@@ -232,20 +224,12 @@ dieser Beschränkung für die Hyperplane können wir auch ableiten, dass
 für die positiven Samples \(\overline{x}^+\) immer gilt
 \(\overline{\beta}\cdot \overline{x}^++\beta_0\ge 1\) und für negative
 Samples \(\overline{x}^-\) immer gilt
-<<<<<<< HEAD
 \(\overline{\beta}\cdot \overline{x}^-+\beta_0\le -1\). Durch das
 Einführen einer weiteren Variable \(y\), welche die Eigenschaft hat,
 dass sie den Wert 1 bei einem positiven und den Wert -1 bei einem
 negativen Sample annimmt, können diese zwei Beschränkungen zu Einer
 zusammengefasst werden \parencite{cortesSupportvectorNetworks1995}.
 \begin{align}
-=======
-\(\overline{\beta}\cdot \overline{x}^-+\beta_0\le -1\). Durch Einführen
-einer weiteren Variable \(y\), welche die Eigenschaft hat, dass sie den
-Wert 1 bei einem positiven und den Wert -1 bei einem negativen Sample
-annimmt, können diese zwei Beschränkungen zu einer zusammengefasst
-werden \parencite{cortesSupportvectorNetworks1995}. \begin{align}
->>>>>>> 843fcb0c14cb8bcca83483bbacd8fe46b0e6a467
 y_i(\overline{\beta}\cdot \overline{x}_i+\beta_0)\ge 1\label{eq:Nebenbedingung}
 \end{align} Da das Verfahren auch \textit{Maximal Margin Classifier}
 gennant wird, gilt es jetzt noch eine Definition für den Margin also den
@@ -296,11 +280,7 @@ und \(\overline{\alpha}\) maximiert wird
 partiell abgeleitet und gleich null gesetzt erhält man als
 Zwischenergebnis \begin{align}
 \frac{\partial \mathcal{L}}{\partial \beta}=\beta-\sum \alpha_i y_i \overline{x_i}\overset{!}{=}0 \Rightarrow \beta=\sum \alpha_i y_i \overline{x_i}\label{eq:solutbeta}
-<<<<<<< HEAD
 \end{align} Somit zeigt sich, dass \(\overline{\beta}\) als
-=======
-\end{align} somit zeigt sich, dass \(\overline{\beta}\) als
->>>>>>> 843fcb0c14cb8bcca83483bbacd8fe46b0e6a467
 Linearkombination der Inputvektoren dargestellt werden kann. Weiterhin
 gilt für \(\beta_0\) \begin{align}
 \frac{\partial \mathcal{L}}{\partial \beta_0}=\sum \alpha_i y_i \overline{x_i}\overset{!}{=}0\label{eq:solutbeta0}
@@ -313,11 +293,7 @@ neuen Ausdruck, denn es gilt zu minimieren \begin{align}
 \(\overline \alpha\) gelöst wurde, kann dies in \eqref{eq:solutbeta}
 eingesetzt werden, um das optimale \(\overline{\beta}\) zu erhalten. Es
 kann gezeigt werden, dass die gelösten \(\alpha_i\) lediglich für die
-<<<<<<< HEAD
 Support-Vektoren Werte ungleich Null annehmen. Somit ist der
-=======
-Support-Vektoren werte ungleich Null annehmen. Somit ist der
->>>>>>> 843fcb0c14cb8bcca83483bbacd8fe46b0e6a467
 Koeffizientenvektor \(\overline{\beta}\) sogar eine Linearkombination
 von nur den Support-Vektoren
 \parencite{boserTrainingAlgorithmOptimal1992}. Die letzte unbekannte
@@ -359,11 +335,7 @@ zu liegen. Dafür wird für die Einschränkungen eine sogenannte
 \textit{Slack-Variable} \(\varepsilon\) eingeführt
 \parencite{jamesIntroductionStatisticalLearning2021}. Wie diese sich
 auswirkt, ist in Abbildung \ref{fig:slackvariable} aufgeführt. Setzt man
-<<<<<<< HEAD
 diese in \eqref{eq:Nebenbedingung} ein, lautet die neue Nebenbedingung
-=======
-diese in \eqref{eq:Nebenbedingung} ein, lautet die neuen Nebenbedingung
->>>>>>> 843fcb0c14cb8bcca83483bbacd8fe46b0e6a467
 \begin{align}
 y_i(\beta \cdot \overline{x}_i-\beta_0)>1- \varepsilon_i \label{eq:nebbedsfm}
 \end{align}
@@ -380,15 +352,9 @@ zuvor angewandte Optimierungsverfahren einzufügen. Allerdings besteht
 hier das Problem, dass \(\varepsilon\) einfach immer maximal groß
 gewählt wird und so die Bedingung immer erfüllt wird. Um das Ausmaß der
 Verletzung der ursprünglichen Annahmen zu begrenzen, aber trotzdem noch
-<<<<<<< HEAD
 gewisse Abweichung zuzulassen, wird ein weiterer Parameter \(C\), als
 regularisierender Parameter für \(\varepsilon\) eingeführt. Leitet man
 daraus zusammen mit der Restriktion \(\varepsilon\ge0\) wieder eine
-=======
-gewisse Abweichung zuzulassen, wird ein weitere Parameter \(C\), als
-regularisierender Parameter für \(\varepsilon\) eingeführt. Leitet man
-daraus zusammen mit der Restriktion \(\varepsilon\ge0\) wieder einen
->>>>>>> 843fcb0c14cb8bcca83483bbacd8fe46b0e6a467
 Lagrangefunktion her erhält man \begin{align}
 \mathcal{L}(\overline\beta,\beta_0,\overline\alpha,\overline\varepsilon,\overline\lambda)=\frac{1}{2}\overline\beta'\cdot \overline\beta + C \sum_{i=1}^{n}\varepsilon_i-\underbrace{\sum \alpha_i[y_i(\overline\beta \cdot \overline{x_i}+\beta_0)-1+\varepsilon_i]}_{\text{für }y_i(\overline\beta \cdot \overline{x}_i-\beta_0)>1- \varepsilon_i}-\underbrace{\sum \lambda_i \varepsilon_i }_{\substack{\text{für}\\ \varepsilon_i \ge 0}}
 \end{align} Wenn dieser Ausdruck wie beim
@@ -426,32 +392,18 @@ man die Entscheidungsfunktion \eqref{eq:decisionf} und setzt für
 \(\overline{\beta}\) die Gleichung aus \eqref{eq:solutbeta} erhält man
 \begin{align}
 f(x_u)= \sum \alpha_i y_i x_i \cdot x_u +\beta_0
-<<<<<<< HEAD
 \end{align} Es zeigt sich also, dass sich die Entscheidungsfunktion im
 Wesentlichen aus einer Linearkombination von Punktprodukten aus dem
 Vektor \(x_u\) mit allen Trainingsvektoren \(x_i\) ergibt. Dieses
 Punktprodukt kann als Ähnlichkeitsmaß zwischen dem neuen Datenpunkt und
 dem jeweiligen Trainingsdatenpunkt interpretiert werden. Es ist nun
 möglich diese Produkte durch eine Funktion zu ersetzen, welche die
-=======
-\end{align} Es zeigt sich also, dass die Entscheidungsfunktion im
-Wesentlichen sich aus einer Linearkombination von Punktprodukten aus dem
-Vektor \(x_u\) mit allen Trainingsvektoren \(x_i\) ergibt. Dieses
-Punktprodukt kann als Ähnlichkeitsmaß zwischen dem neuen Datenpunkt und
-dem jeweiligen Trainingsdatenpunkt interpretiert werden. Es ist nun
-Möglich diese Produkte durch eine Funktion zu ersetzen, welche die
->>>>>>> 843fcb0c14cb8bcca83483bbacd8fe46b0e6a467
 Ähnlichkeiten von Datenpunkten anders bewertet. Diese sogenannte
 \textit{Kernel Funktion} \(K(x_i,x_j)\) ermöglicht es eine flexiblere
 Entscheidungsgrenze zu implementieren. Der Vorteil ist dabei, dass die
 Kernel Funktion nur auf alle Punktprodukte angewendet wird und es dabei
-<<<<<<< HEAD
 nicht nötig ist den Merkmalsraum zu erweitern, was wiederum Rechenzeit
 spart \parencite{jamesIntroductionStatisticalLearning2021}. Die
-=======
-nicht nötig ist den Merkmalsraum zu Erweitern, was wiederum Rechenzeit
-spart\parencite{jamesIntroductionStatisticalLearning2021}. Die
->>>>>>> 843fcb0c14cb8bcca83483bbacd8fe46b0e6a467
 Entscheidungsfunktion wird dann mithilfe dieser
 \textit{Kernel Funktionen} berechnet: \begin{align}
   f(x_u)=\sum \alpha_i y_i K(x_i,x_u)+\beta_0
@@ -484,11 +436,7 @@ gibt es den \textit{Polynomial Kernel}. Dieser hat die Form
 Entscheidungsgrenze sich ähnlich Verhält, wie als würde man zu Beginn
 eine Merkmalserweiterung mit Polynomen vom Grad \(d\) durchführen (siehe
 Abbildung \ref{fig:polykernel}. Eine weitere Kernel Funktion ist der
-<<<<<<< HEAD
 \textit{Radial Basis Function Kernel} (RBF) mit der Form \begin{align}
-=======
-\textit{Radial Basis Function Kernel}(RBF) mit der Form \begin{align}
->>>>>>> 843fcb0c14cb8bcca83483bbacd8fe46b0e6a467
 K(x_i,x_u)=\exp\left(-\gamma ||x_i-x_u||^2\right)
 \end{align} Für diesen Kernel wird die quadrierte euklidische Distanz
 als Ähnlichkeitsmaß verwendet, was dazu führt, dass diejenigen \(x_i\)
@@ -499,12 +447,8 @@ ist eine, in einen unendlich großen Merkmalsraum
 \parencite{jamesIntroductionStatisticalLearning2021}. Daher könnte man
 selbst durch vorheriges Erweitern des Merkmalsraums nicht das Ergebnis
 eines RBF Kernel replizieren, daher führt er auch zu einer sehr
-<<<<<<< HEAD
 flexiblen Entscheidungsgrenze (siehe Abbildung
 \ref{fig:radialkernel}).\\
-=======
-flexiblen Entscheidungsgrenze (siehe Abbildung \ref{fig:radialkernel})\\
->>>>>>> 843fcb0c14cb8bcca83483bbacd8fe46b0e6a467
 
 \begin{figure}[htb]
     \centering
@@ -522,59 +466,40 @@ flexiblen Entscheidungsgrenze (siehe Abbildung \ref{fig:radialkernel})\\
     \end{minipage}
 \end{figure}
 
-<<<<<<< HEAD
-Es gibt noch eine Reihe weiterer Kernel, die auf unterschiedlichen
-=======
 Es gibt noch einen Reihe weitere Kernel, die auf unterschiedlichen
->>>>>>> 843fcb0c14cb8bcca83483bbacd8fe46b0e6a467
 Ähnlichkeitsmaßen beruhen, aber eher seltener oder nur in speziellen
 Zusammenhänge angewendet werden. Wichtig ist anzumerken, dass die
 Verwendung von Kernels zwar die Flexibilität der Entscheidungsgrenze
 erhöht, damit aber auch die Gefahr von \textit{Overfitting} einhergeht.
 Zusätzlich werden mit den Kernels auch neue Hyperparameter wie \(d\)
-<<<<<<< HEAD
-oder \(\gamma\) eingeführt, die bei der Model-Selektion ebenfalls
-beachtet werden müssen.\\
-=======
 oder \(\gamma\) eingeführt, die bei der Modellauswahl ebenfalls beachtet
-werden müssen.\\
->>>>>>> 843fcb0c14cb8bcca83483bbacd8fe46b0e6a467
+werden müssen.
 
 \section{Vor- und Nachteile der Methode}
 
 Support Vector Machines haben ein hohes Ansehen unter den Machine
 Learning Algorithmen, da sie einige Vorteile mit sich bringen. Aufgrund
-<<<<<<< HEAD
 der Idee einer Soft Margin und des ``Kernel Tricks'' ist die Methode
 sehr flexibel und kann für spezielle Anwendungsbereiche angepasst werden
-=======
-der Idee eines Soft Margin und des Kernel-Tricks ist die Methode sehr
-flexibel und kann für spezielle Anwendungsbereiche angepasst werden
->>>>>>> 843fcb0c14cb8bcca83483bbacd8fe46b0e6a467
 \parencite{bennettSupportVectorMachines2000}. Dazu sind die Ergebnisse
 stabil und reproduzierbar, was sie von anderen Methoden wie
-beispielsweise neuronale Netze abhebt. Auch die Anwendung ist
+beispielsweise Neural Networks abhebt. Auch die Anwendung ist
 vergleichsweise einfach, da es eine überschaubare Anzahl an Parametern
-gibt (wie beispielsweise bei der SVM mit radialem Kern nur der gamma-
-und cost-Parameter festzulegen ist).\newline Die Möglichkeiten der
-Nutzung verschiedener Kernel sind \textit{SVM} überaus vielseitig. Die
-Auswahl des Kerns ermöglicht es, äußerst flexible Entscheidungsgrenzen
-zu formen \parencite{kuhnAppliedPredictiveModeling2013}. Dadurch können
-SVM an verschiedene Datensituationen angepasst werden.\newline Ein
-weiterer Vorteil ist, dass die Methode weitgehend robust gegenüber
-Overfitting ist \parencite{kuhnAppliedPredictiveModeling2013}. Dafür
+gibt (wie beispielsweise bei der \textit{SVM} mit radialem Kern nur der
+gamma- und cost-Parameter festzulegen ist).\newline Durch die
+Möglichkeit der Nutzung verschiedener Kerne sind \textit{SVM} überaus
+vielseitig. Die Auswahl des Kerns ermöglicht es äußerst flexible
+Entscheidungsgrenzen zu formen
+\parencite{kuhnAppliedPredictiveModeling2013}. Dadurch können
+\textit{SVM} an verschiedene Datensituationen angepasst werden.\newline
+Ein weiterer Vorteil ist, dass die Methode weitgehend robust gegenüber
+overfitting ist \parencite{kuhnAppliedPredictiveModeling2013}. Dafür
 verantwortlich ist der Cost-Parameter, anhand dessen der Fit an die
 Daten kontrolliert werden kann. Jedoch birgt dies auch Probleme
 (Erläuterungen im folgenden Abschnitt).\newline Diese Vorteile
-<<<<<<< HEAD
 resultieren in einer allgemein häufigen Nutzung von \textit{SVM} in der
 Wissenschaft, wobei sie schon oft bewiesen haben, dass sie für
 verschiedenste Aufgaben gut funktionieren
-=======
-resultieren in einer allgemein häufigen Nutzung von SVM in der
-Wissenschaft. Sie haben folglich bewiesen, dass sie für verschiedenste
-Aufgaben gut funktionieren
->>>>>>> 843fcb0c14cb8bcca83483bbacd8fe46b0e6a467
 \parencite{kuhnAppliedPredictiveModeling2013}.
 
 Trotz der vielfachen Nutzung von \textit{SVM}, bringen sie auch
@@ -598,22 +523,15 @@ es zum Beispiel schwer Informationen aus Support Vektoren zu ziehen und
 es gibt keine Koeffizienten die interpretiert werden können.\newline
 Zuletzt ist zu erwähnen, dass die Methode bei einer hohen Anzahl an
 Beobachtungen besonders rechenintensiv ist. So konnte beispielsweise
-gezeigt werden, dass insbesondere die SVM mit polynomialem und radialem
-Kern eine hohe Rechenzeit aufweisen
+gezeigt werden, dass insbesondere die \textit{SVM} mit polynomialem und
+radialem Kern eine hohe Rechenzeit aufweisen
 \parencite{scholzComparisonClassificationMethods2021}. Dabei konnten
 andere Methoden wie die \textit{logistische Regression} oder
 \textit{k-nearest Neighbour} deutlich besser abschneiden. Dies liegt
-<<<<<<< HEAD
 daran, dass die Lösung des \textit{SVM}-Optimierungsproblems, die
 Behebung eines quadratischen Programmierungsproblems erfordert. Da die
 Anzahl der zu optimierenden Parameter mit der Anzahl der Daten
 quadratisch zunimmt, führt dies zu einer hohen Rechenkomplexität
-=======
-daran, dass die Lösung des SVM-Optimierungsproblems die Behebung eines
-quadratischen Programmierungsproblems erfordert. Da die Anzahl der zu
-optimierenden Parameter mit der Anzahl der Daten quadratisch zunimmt,
-führt dies zu einer hohen Rechenkomplexität
->>>>>>> 843fcb0c14cb8bcca83483bbacd8fe46b0e6a467
 \parencite{kecmanSupportVectorMachines2005}.
 
 \section{Daten}
@@ -621,13 +539,8 @@ führt dies zu einer hohen Rechenkomplexität
 Das Ziel dieser Arbeit ist es, in verschiedenen Datensituationen die
 Performance von SVM Algorithmen für die binäre Klassifikation zu
 evaluieren. Dafür wollen wir eine Reihe von Datensätzen mit
-<<<<<<< HEAD
 verschiedenen Charakteristiken synthetisch erstellen und entsprechend
-als Trainigsdaten verwenden. Die Datensätze unterscheiden sich in zwei
-=======
-verschiedenen Charakteristiken synthetisch erstellen und entsprechen als
-Trainingsdaten verwenden. Die Datensätze unterscheiden sich in zwei
->>>>>>> 843fcb0c14cb8bcca83483bbacd8fe46b0e6a467
+als Trainingsdaten verwenden. Die Datensätze unterscheiden sich in zwei
 zentralen Eigenschaften. Das erste sind die Dimensionen. Es soll
 unterschieden werden in drei Kategorien. Die erste ist, dass es deutlich
 mehr Beobachtungen als Variablen gibt, also \(n \gg p\). Ein solches
@@ -646,11 +559,7 @@ Natural Language Processing sind solche Datensätze häufiger anzutreffen
 \parencite{scholzComparisonClassificationMethods2021}. Die Werte die
 dafür angenommen wurden sind \(p=200\) und \(n=50\).
 
-<<<<<<< HEAD
 Die zweite Charakteristik ist der Datengenerierende Prozess. Da in
-=======
-Die zweite Charakteristik ist der datengenerierende Prozess. Da in
->>>>>>> 843fcb0c14cb8bcca83483bbacd8fe46b0e6a467
 dieser Arbeit SVM im Vordergrund stehen und wir hier vor allem zeigen
 wollen, wie SVM funktionieren, wird der DGP so aufgebaut, dass er der
 grundlegenden Idee der SVM am ehesten entspricht. Die Vorgehensweise
@@ -663,17 +572,11 @@ angenommen.
 
 Insgesamt gibt es auch hier wieder 3 Kategorien. Die erste sind linear
 getrennte Daten. Dafür wird eine lineare Hyperplane der Form
-\begin{align}
+\begin{align*}
 \beta_0+\beta_1 X_1+\beta_2 X_2 +...+\beta_{1-p} = \beta_p X_p
-<<<<<<< HEAD
 \end{align*} mit zufälligen Koeffizienten erzeugt. Diese Daten sollen
-also den Annahmen entsprechen, die für SVMs mit linearem Kernel gelten.
+also den Annahmen entsprechend, die für SVMs mit linearem Kernel gelten.
 Nachem für eine Beobachtung \(j\) zufällig ein Punkt auf der Ebene
-=======
-\end{align} mit zufälligen Koeffizienten erzeugt. Diese Daten sollen
-also den Annahmen entsprechen, die für SVM mit linearem Kernel gelten.
-Nachdem für eine Beobachtung \(j\) zufällig ein Punkt auf der Ebene
->>>>>>> 843fcb0c14cb8bcca83483bbacd8fe46b0e6a467
 gesampelt wurde, wurde dieser anschließend verschoben. Die Verschiebung
 erfolgte über eine Skalierung des normierten Normalenvektors
 \(k\left(\frac{\overline{\beta}}{||\overline{\beta}||}\right)\). \(k\)
@@ -682,57 +585,35 @@ Varianz \(\sigma^2_k\). Dieser Prozess wird \(n/2\) mal wiederholt für
 die eine Ausprägung der Zielvariable (\(y_i=1\)) und dementsprechend
 \(n/2\) mal für die andere Ausprägung (\(y_i=-1\)), dann aber mit
 \(-\mu_k\) als Mittelwert für \(k\). \newline In der zweiten Situation
-hat die Hyperplane eine quadratische Form: \begin{align}
+hat die Hyperplane eine quadratische Form: \begin{align*}
 \beta_0+\beta_1 X_1 + \beta_2 X_1^2+\beta_3 X_2+\beta_4 X_2^2+...+\beta_{2p-2}X_{p-1}+\beta_{2p-1}X_{p-1}^2=\beta_{2p} X_p
-<<<<<<< HEAD
 \end{align*} diese Form der Trennung stellt also eine
 Merkmalserweiterung um quadratische Terme dar und funktioniert damit
 ähnlich wie eine SVM mit polynomialen Kernel mit \(d=2\). Die
 Verschiebung erfolgte hier nur durch Skalierung der Werte von \(X_p\)
 ebenfalls mit \(k\sim\mathcal{N}(\mu_k,\sigma^2_k)\) für die eine
 Ausprägung und \(k\sim\mathcal{N}(-\mu_k,\sigma^2)\) für die andere
-=======
-\end{align} diese Form der Trennung stellt also eine Merkmalserweiterung
-um quadratische Terme dar und funktioniert damit ähnlich wie eine SVM
-mit polynomialen Kernel mit \(d=2\).Die Verschiebung erfolgte hier nur
-durch Skalierung der Werte von \(X_p\) ebenfalls mit
-\(k\sim\mathcal{N}(\mu_k,\sigma^2_k)\) für die eine Ausprägung und
-\(k\sim\mathcal{N}(-\mu_k,\sigma^2)\) für die andere
->>>>>>> 843fcb0c14cb8bcca83483bbacd8fe46b0e6a467
 Ausprägung.\newline  Der letzte DGP geht von einer noch komplexeren
 Entscheidungsgrenzen aus. Es wird hier ein Hypershpäre im \(p\)
 dimensionalen Raum erstellt und einmal innerhalb und einmal außerhalb
 dieser gesampelt. Dafür wurde für eine Beobachtung \(j\), \(p-1\) Winkel
-<<<<<<< HEAD
 \(\theta\) zufällig erstellt, ein Radius \(r\) festgelegt und
 anschließend die einzelnen Werte \(X_{1,j},X_{2,j},...,X_{p,j}\)
 berechnet. Die Berechnung erfolgt dabei über die Definition von
 sphärischen Koordinaten: \begin{align*}
-=======
-\(\overline{\theta}\) zufällig erstellt, ein Radius \(r\) für die
-Hypersphäre festgelegt und anschließend die einzelnen Werte
-\(X_{1,j},X_{2,j},...,X_{p,j}\) berechnet. Die Berechnung erfolgt dabei
-über die Definition von sphärischen Koordinaten: \begin{align}
-\begin{aligned}
->>>>>>> 843fcb0c14cb8bcca83483bbacd8fe46b0e6a467
         X_{1,j} &= r \cos(\theta_1)\\
         X_{2,j} &= r \sin(\theta_1)\cos(\theta_2)\\
         X_{3,j} &= r \sin(\theta_1)\sin(\theta_2)\cos(\theta_3)\\
         &\quad \vdots\\
         X_{p-1,j}&=r \sin(\theta_1)\ldots \sin(\theta_{p-2})\cos(\theta_{p-1})\\
         X_{p,j}&=r \sin(\theta_1)\ldots \sin(\theta_{p-2})\sin(\theta_{p-1})
-    \end{aligned}
-    \end{align} Dieser Vorgang wird dann \(n/2\) mal, wiederholt und
+    \end{align*} Dieser Vorgang wird dann \(n/2\) mal, wiederholt und
 anschließend erfolgt die Verschiebung durch eine Skalierung des
 jeweiligen normalisierten Datenvektors
 \(k\left(\frac{\overline{x}}{||x||}\right)\). \(k\) ist auch hier wieder
 eine Zufallsvariable mit \(\mu_k\) für die eine Ausprägung der
 Zielvariable und \(-\mu_k\) für die andere Ausprägung. Die Streuung
-<<<<<<< HEAD
 bleibt bei beiden bei einem konstanten Wert \(\sigma^2_k\). Je nachdem
-=======
-bleibt bei beiden bei einem konstanten Werte \(\sigma^2_k\). Je nachdem,
->>>>>>> 843fcb0c14cb8bcca83483bbacd8fe46b0e6a467
 wie \(\mu_k\) und \(\sigma^2_r\) gewählt werden kann die Trennbarkeit
 der Daten angepasst werden. Für alle Szenarien wurde ein Wert für
 \(\mu_k\) und \(\sigma^2_k\) festgelegt, der für eine moderate
@@ -1122,7 +1003,6 @@ ebenfalls die beiden Gruppen zu differenzieren. Für \textit{SVM-L} und
 Genauigkeit erkennbar. \textit{SVM-P} und \textit{K-NN} performen in
 diesem Szenario am Besten. \textit{SVM-R} fällt insbesondere mit einer
 Genauigkeit von 0.66 im Vergleich zu 0.76 etwas hinter den anderen
-<<<<<<< HEAD
 beiden Algorithmen zurück.\newline Abbildung \ref{fig:S3ROC} zeigt die
 ROC-Kurven für Szenario 3. Hieraus wird deutlich, dass die Kurve von
 \textit{SVM-P} nahe an der oberen, linken Ecke verläuft, was für eine
@@ -1138,9 +1018,6 @@ zwar nicht direkt, da hier im Ranking über alle Szenarien mit radialer
 Entscheidungsgrenze hinweg interessanterweise \textit{SVM-P} am besten
 performt aber zumindest liegt hier \textit{SVM-R} auf dem zweiten Platz.
 Trotzdem müssen wir mit diesen Ergebnissen \textbf{H2} ablehnen.
-=======
-beiden Algorithmen zurück.\newline
->>>>>>> 843fcb0c14cb8bcca83483bbacd8fe46b0e6a467
 
 \begin{figure}[htb]
 \begin{minipage}{0.48\linewidth}
@@ -1165,41 +1042,18 @@ beiden Algorithmen zurück.\newline
 \end{minipage}
 \end{figure}
 
-Abbildung \ref{fig:S3ROC} zeigt die ROC-Kurven für Szenario 3. Hieraus
-wird deutlich, dass die Kurve von \textit{SVM-P} nahe an der oberen,
-linken Ecke verläuft, was für eine nahezu perfekte Klassifikation
-spricht. Der etwas flachere Verlauf von \textit{SVM-R} und \textit{K-NN}
-macht deutlich, dass diese beiden Algorithmen weniger gute Leistung
-zeigen. Dennoch können die beiden oben erwähnten Gruppen gut
-identifiziert werden, da sich \textit{SVM-L} und \textit{LogR} nahe der
-diagonalen Linie orientieren. Diese beschreibt eine ROC-Kurve einer
-reinen Zufallsauswahl, woraus gefolgert werden kann, dass sie kaum
-Fähigkeit aufweisen zwischen den Klassen zu unterscheiden. Diese
-Szenarien bestätigen die Vermutung aus \textbf{H2} zwar nicht direkt, da
-hier im Ranking über alle Szenarien mir radialer Entscheidungsgrenze
-hinweg interessanterweise \textit{SVM-P} am besten performt aber
-zumindest liegt hier \textit{SVM-R} auf dem zweiten Platz. Trotzdem
-müssen wir mit diesen Ergebnissen \textbf{H2} ablehnen.
-
 Zuletzt wird ein Vergleich der einzelnen Dimensionierungen über die drei
 Formen der Entscheidungsgrenze gezogen. So ist für \(p \ll n\)
 ersichtlich, dass insbesondere \textit{SVM-P} und \textit{SVM-R} über
-<<<<<<< HEAD
 alle drei Szenarien gute Leistung (mit Werten mindestens nahe 0.8). Auch
 im durchschnittlichen Ranking für diese Szenarien über alle drei
 Szenarien zeigen die \textit{SVM}-Methoden die besten Ergebnisse.
 Überaschend ist nur die unerwartet schlechte Performance von
-=======
-alle drei Szenarien gute Leistung (mit Werten mindestens nahe 0.8)
-erzielen. Auch im durchschnittlichen Ranking über alle drei Szenarien
-hinweg zeigen die \textit{SVM}-Methoden die besten Ergebnisse.
-Überaschen ist nur die unerwartet schlechte Performance von
->>>>>>> 843fcb0c14cb8bcca83483bbacd8fe46b0e6a467
 \textit{K-NN}. Somit bestätigt sich \textbf{H3} hier nur teilweise. In
 den hochdimensionalen Szenarien \(p \gg n\) ist einzig \textit{K-NN}
 überzeugend, welcher auch im polynomialen Szenario Werte über 0.7
 aufweist. Hier belegen die \textit{SVM}-Methoden tatsächlich sogar die
-letzten Plätze im durchschnittlichen Ranking. Dies deutet klar darauf
+letzten Plätze im durschschnittlichen Ranking. Dies deutet klar darauf
 hin, dass \textbf{H4} mit unseren Daten verworfen werden muss.
 
 \section{Fazit}
