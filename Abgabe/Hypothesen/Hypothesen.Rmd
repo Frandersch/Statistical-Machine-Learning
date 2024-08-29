@@ -12,21 +12,21 @@ output:
 bibliography: Literatur.bib
 ---
 Im Folgenden werden Studien hinzugezogen, um eine Einschätzung der Performance in den verschiedenen Szenarien vorzunehmen und Hypothesen abzuleiten. Vorab ist zu erwähnen, dass die Evaluation von Klassifikationsmethoden anhand synthetischer Datensätze in der Literatur begrenzt ist. Da für diese Arbeit die Form der Entscheidungsgrenze entscheidend ist, werden dennoch ausschließlich Arbeiten mit synthetischen Datensätzen zu Rate gezogen.\newline
-Aufgrund dessen, dass der datengenerierende Prozess hier so ausgearbeitet wurde, dass er mit den Annahmen der SVM arbeitet, erwarten wir zuerst einmal eine durchschnittlich bessere Performance der SVM Classifier im Vergleich zu den anderen Methoden.
+Aufgrund dessen, dass der datengenerierende Prozess hier so ausgearbeitet wurde, dass er mit den Annahmen der \textit{SVM} arbeitet, erwarten wir zuerst einmal eine durchschnittlich bessere Performance der \textit{SVM-Classifier} im Vergleich zu den anderen Methoden.
 
 \begin{minipage}{0.9\linewidth}
 \begin{itemize}[leftmargin=0.1\linewidth]
-\item[\textbf{H1:}] Die SVM-Classifier Performen über alle Datensituationen im Durchschnitt besser als die anderen Classifier.
+\item[\textbf{H1:}] Die \textit{SVM-Classifier} performen über alle Datensituationen im Durchschnitt besser als die anderen Classifier.
 \end{itemize}
 \end{minipage}
-Des Weiteren wurden in den einzelnen Kategorien des datengenerierenden Prozesses die Entscheidungsgrenzen speziell auf verschiedene Kernels zugeschnitten. Daher sollten SVM mit linearem Kernel im Setting mit linearer Entscheidungsgrenze mindestens so gut oder besser als die restlichen Classifier performen. Gleiches gilt für SVM mit polynomialen Kernel im Setting mit einer quadratischen Entscheidungsgrenze und radiale Kernel bei einer Hypershäre als Entscheidungsgrenze.
+Des Weiteren wurden in den einzelnen Kategorien des datengenerierenden Prozesses die Entscheidungsgrenzen speziell auf verschiedene Kernels zugeschnitten. Daher sollten \textit{SVM} mit linearem Kernel im Setting mit linearer Entscheidungsgrenze mindestens so gut oder besser als die restlichen Classifier performen. Gleiches gilt für \textit{SVM} mit polynomialen Kernel im Setting mit einer quadratischen Entscheidungsgrenze und radiale Kernel bei einer Hypershäre als Entscheidungsgrenze.
 \begin{minipage}{0.9\linewidth}
 \begin{itemize}[leftmargin=0.1\linewidth]
-\item[\textbf{H2:}] Die SVM-Classifier mit dem Kernel, der für den jeweiligen DGP zugeschnitten ist sollten mindestens genauso gut oder besser performen als die restlichen Classifier.
+\item[\textbf{H2:}] Die \textit{SVM-Classifier} mit dem Kernel, der für den jeweiligen DGP zugeschnitten ist sollten mindestens genauso gut oder besser performen als die restlichen Classifier.
 \end{itemize}
 \end{minipage}
 Es konnte weiterhin gezeigt werden, dass in einem Szenario, indem erheblich mehr Beobachtungen als Dimensionen und eine lineare Entscheidungsgrenze vorliegen (S1), deutliche Unterschiede zwischen \textit{SVM}, \textit{K-NN} und \textit{logistischer Regression} bei der Diskriminationsfähigkeit auftreten \parencite{entezari-malekiComparisonClassificationMethods2009}. \textit{K-NN} und \textit{SVM} mit linearem Kernel zeigen AUC-Werte nahe 1 auf, was für eine nahezu perfekte Differenzierung der Klassen spricht. Die \textit{logistische Regression} hingegen hat einen Wert knapp über 0.5, was nur etwas besser als eine Zufallsauswahl ist. Darüber hinaus ist festzustellen, dass die Unterschiede deutlicher werden, je höher die Anzahl an Beobachtungen ist.\newline
-Für den Fall einer radialen Entscheidungsgrenze (S3) sind die Ergebnisse ähnlich. So erreicht in diesem Beispiel eine \textit{SVM} mit radialem Kernel im Vergleich zu einer logistischen Regression eine um 34% höhere Genauigkeit \parencite{faveroClassificationPerformanceEvaluation2022}.
+Für den Fall einer radialen Entscheidungsgrenze (S3) sind die Ergebnisse ähnlich. So erreicht in diesem Beispiel eine \textit{SVM} mit radialem Kernel im Vergleich zu einer \textit{logistischen Regression} eine um 34% höhere Genauigkeit \parencite{faveroClassificationPerformanceEvaluation2022}.
 Basierend auf den Ergebnissen der genannten Studien kann folgende Schlussfolgerung gezogen werden. 
 
 \begin{minipage}{0.9\linewidth}

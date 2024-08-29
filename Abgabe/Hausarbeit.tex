@@ -82,7 +82,7 @@
 \fi
 \usepackage[]{biblatex}
 \addbibresource{Literatur.bib}
-\usepackage{bookmark}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
@@ -108,12 +108,13 @@
 
 Bei der Separierung von zwei Datenklassen scheint eine lineare
 Trennlinie zwischen die Klassen zu ziehen eine simple und intuitive
-Methode zu sein. Genau auf dieser Idee basieren Support Vector Machines
-(SVM). Jedoch sind Daten nicht immer perfekt trennbar oder es liegt
-keine lineare Trennlinie vor. Wie SVM funktionieren, wie sie mit solchen
-Situationen umgehen, wie sie unter vorgegebenen Bedingungen performen
-und welche Schlussfolgerungen für die praktische Anwendung gezogen
-werden können, soll in dieser Arbeit beleuchtet werden.
+Methode zu sein. Genau auf dieser Idee basieren
+\textit{Support Vector Machines} (\textit{SVM}). Jedoch sind Daten nicht
+immer perfekt trennbar oder es liegt keine lineare Trennlinie vor. Wie
+\textit{SVM} funktionieren, wie sie mit solchen Situationen umgehen, wie
+sie unter vorgegebenen Bedingungen performen und welche
+Schlussfolgerungen für die praktische Anwendung gezogen werden können,
+soll in dieser Arbeit beleuchtet werden.
 
 Die Grundlage für eine optimal separierende Hyperebene wurde bereits
 1964 von Alexej Chervonenkis und Vladimir Vapnik gelegt und die Methode
@@ -122,26 +123,26 @@ wurde anschließend von mehreren Autoren stetig erweitert
 Leistung, trotz großer Fortschritte im Bereich neuronaler Netze, vor
 allem im Bereich binärer Klassifikationsprobleme unumstritten und sie
 gelten dabei als eine der meistgenutzten Methoden
-\parencite{soofiClassificationTechniquesMachine2017}. Dabei bieten SVM
-eine große Anzahl an Anwendungsmöglichkeiten, wie beispielsweise, in der
-Bildklassifikation, in der Bioinformatik (Krebsklassifikation) oder im
-Aufdecken von Kreditkartenbetrug
+\parencite{soofiClassificationTechniquesMachine2017}. Dabei bieten
+\textit{SVM} eine große Anzahl an Anwendungsmöglichkeiten, wie
+beispielsweise, in der Bildklassifikation, in der Bioinformatik
+(Krebsklassifikation) oder im Aufdecken von Kreditkartenbetrug
 \parencite{cervantesComprehensiveSurveySupport2020}.
 
-In dieser Arbeit wollen wir zuerst die Funktionsweise der SVM näher
-betrachten. Dazu wird zunächst gezeigt wie die Konstruktion dieser
+In dieser Arbeit wollen wir zuerst die Funktionsweise der \textit{SVM}
+näher betrachten. Dazu wird zunächst gezeigt wie die Konstruktion dieser
 separierenden Hypereben im Falle linear trennbarer Daten funktioniert.
 Daraufhin wird die Idee eines Soft Margin Classifier aufgegriffen, der
 sich dem Problem nicht trennbarer Daten annimmt. Zuletzt geht es um die
 Anwendung von Kernels, die es ermöglichen, nicht lineare
 Entscheidungsgrenzen herzustellen.\newline In Kapitel 3 werden dann die
 Vor- und Nachteile der Methode betrachtet. Anhand dieser Informationen
-werden Schlussfolgerungen zur Leistung der SVM gezogen. Darauf aufbauend
-wird im folgenden Kapitel der Aufbau unseres Experiments beschrieben.
-Wir generieren uns zum anschließenden Vergleich neun verschiedene
-Datenszenarien, welche in ihrer Dimensionalität und Komplexität der
-Entscheidungsgrenze variieren. Für die Evaluierung der
-Klassifikationsleistung werden neben den SVM weitere
+werden Schlussfolgerungen zur Leistung der \textit{SVM} gezogen. Darauf
+aufbauend wird im folgenden Kapitel der Aufbau unseres Experiments
+beschrieben. Wir generieren uns zum anschließenden Vergleich neun
+verschiedene Datenszenarien, welche in ihrer Dimensionalität und
+Komplexität der Entscheidungsgrenze variieren. Für die Evaluierung der
+Klassifikationsleistung werden neben den \textit{SVM} weitere
 Klassifikationsmethoden herangezogen.\newline Im Kapitel Hypothesen
 wurden auf Basis von Literatur, in der bereits ähnliche Versuche
 durchgeführt wurden, Vermutungen aufgestellt, wie die einzelnen
@@ -157,12 +158,12 @@ Weiterentwicklungsmöglichkeiten für unsere Arbeit aufgearbeitet werden.
 
 \subsection{Hard Margin Classifier}
 
-Um das grundlegende Prinzip der SVM darzustellen, gehen wir zuerst von
-einer Datensituation aus, in der sich zwei Gruppen optimal durch eine
-lineare Entscheidungsgrenze trennen lassen. Das endgültige Ziel ist es
-eine sogenannte Hyperplane zu finden die diese Daten möglichst gut
-separiert und als Entscheidungsgrenze funktioniert. Die allgemeine Form
-einer solchen Hyperplane lautet \begin{align}
+Um das grundlegende Prinzip der \textit{SVM} darzustellen, gehen wir
+zuerst von einer Datensituation aus, in der sich zwei Gruppen optimal
+durch eine lineare Entscheidungsgrenze trennen lassen. Das endgültige
+Ziel ist es eine sogenannte Hyperplane zu finden die diese Daten
+möglichst gut separiert und als Entscheidungsgrenze funktioniert. Die
+allgemeine Form einer solchen Hyperplane lautet \begin{align}
 \beta_0+ \beta_1 X_1+\beta_2 X_2+...+\beta_n X_n=0\label{eq:hyperebene}
 \end{align} oder in Vektorschreibweise \begin{align}
 \overline{\beta}\cdot\overline{x}+\beta_0=0 \label{eq:hyperplanevec}
@@ -240,7 +241,7 @@ Schranken liegen. Diese Datenpunkte haben eine wichtige Rolle für die
 Konstruktion des Margins. Es sind ausschließlich diese Datenpunkte, die
 einen Einfluss auf die finalen Werte von \(\overline{\beta}\) und
 \(\beta_0\) haben werden. Sie werden \textit{Support-Vektoren} genannt
-und geben den SVM ihren Namen.
+und geben den \textit{SVM} ihren Namen.
 
 \begin{figure}[htb]
 \centering
@@ -425,11 +426,11 @@ Entscheidungsfunktion wird dann mithilfe dieser
     \end{minipage}
 \end{figure}
 
-Es gibt eine ganze Reihe an \textit{Kernel Funktionen}, die bei SVM
-Anwendung finden. Die Grundlage ist der lineare Kernel, wobei dieser
-lediglich das Punktprodukt beschreibt, also praktisch genau das macht,
-was bei einer linearen Entscheidungsgrenze gemacht wird. Des Weiteren
-gibt es den \textit{Polynomial Kernel}. Dieser hat die Form
+Es gibt eine ganze Reihe an \textit{Kernel Funktionen}, die bei
+\textit{SVM} Anwendung finden. Die Grundlage ist der lineare Kernel,
+wobei dieser lediglich das Punktprodukt beschreibt, also praktisch genau
+das macht, was bei einer linearen Entscheidungsgrenze gemacht wird. Des
+Weiteren gibt es den \textit{Polynomial Kernel}. Dieser hat die Form
 \begin{align}
  K(x_i,x_u)=(1+x_i\cdot x_u)^d
 \end{align} Die Verwendung von diesem Kernel führt dazu, dass die
@@ -477,13 +478,13 @@ werden müssen.
 
 \section{Vor- und Nachteile der Methode}
 
-Support Vector Machines haben ein hohes Ansehen unter den Machine
-Learning Algorithmen, da sie einige Vorteile mit sich bringen. Aufgrund
-der Idee einer Soft Margin und des ``Kernel Tricks'' ist die Methode
-sehr flexibel und kann für spezielle Anwendungsbereiche angepasst werden
-\parencite{bennettSupportVectorMachines2000}. Dazu sind die Ergebnisse
-stabil und reproduzierbar, was sie von anderen Methoden wie
-beispielsweise Neural Networks abhebt. Auch die Anwendung ist
+\textit{Support Vector Machines} haben ein hohes Ansehen unter den
+Machine Learning Algorithmen, da sie einige Vorteile mit sich bringen.
+Aufgrund der Idee einer Soft Margin und des ``Kernel Tricks'' ist die
+Methode sehr flexibel und kann für spezielle Anwendungsbereiche
+angepasst werden \parencite{bennettSupportVectorMachines2000}. Dazu sind
+die Ergebnisse stabil und reproduzierbar, was sie von anderen Methoden
+wie beispielsweise Neural Networks abhebt. Auch die Anwendung ist
 vergleichsweise einfach, da es eine überschaubare Anzahl an Parametern
 gibt (wie beispielsweise bei der \textit{SVM} mit radialem Kern nur der
 gamma- und cost-Parameter festzulegen ist).\newline Durch die
@@ -537,8 +538,8 @@ quadratisch zunimmt, führt dies zu einer hohen Rechenkomplexität
 \section{Daten}
 
 Das Ziel dieser Arbeit ist es, in verschiedenen Datensituationen die
-Performance von SVM Algorithmen für die binäre Klassifikation zu
-evaluieren. Dafür wollen wir eine Reihe von Datensätzen mit
+Performance von \textit{SVM} Algorithmen für die binäre Klassifikation
+zu evaluieren. Dafür wollen wir eine Reihe von Datensätzen mit
 verschiedenen Charakteristiken synthetisch erstellen und entsprechend
 als Trainingsdaten verwenden. Die Datensätze unterscheiden sich in zwei
 zentralen Eigenschaften. Das erste sind die Dimensionen. Es soll
@@ -560,25 +561,26 @@ Natural Language Processing sind solche Datensätze häufiger anzutreffen
 dafür angenommen wurden sind \(p=200\) und \(n=50\).
 
 Die zweite Charakteristik ist der Datengenerierende Prozess. Da in
-dieser Arbeit SVM im Vordergrund stehen und wir hier vor allem zeigen
-wollen, wie SVM funktionieren, wird der DGP so aufgebaut, dass er der
-grundlegenden Idee der SVM am ehesten entspricht. Die Vorgehensweise
-ist, im ersten Schritt eine Hyperplane, im \(p\)-Dimensionalen Raum, in
-einer bestimmte Form zu erstellen und anschließend auf jeweils einer
-Seite dieser Hyperplane \(n/2\) zufällige Punkte zu samplen, die die
-jeweilige Ausprägung in der Zielvariable repräsentieren. Wir haben also
-für die Zielvariable eine 50/50 Verteilung für die binären Ausprägungen
-angenommen.
+dieser Arbeit \textit{SVM} im Vordergrund stehen und wir hier vor allem
+zeigen wollen, wie \textit{SVM} funktionieren, wird der DGP so
+aufgebaut, dass er der grundlegenden Idee der \textit{SVM} am ehesten
+entspricht. Die Vorgehensweise ist, im ersten Schritt eine Hyperplane,
+im \(p\)-Dimensionalen Raum, in einer bestimmte Form zu erstellen und
+anschließend auf jeweils einer Seite dieser Hyperplane \(n/2\) zufällige
+Punkte zu samplen, die die jeweilige Ausprägung in der Zielvariable
+repräsentieren. Wir haben also für die Zielvariable eine 50/50
+Verteilung für die binären Ausprägungen angenommen.
 
 Insgesamt gibt es auch hier wieder 3 Kategorien. Die erste sind linear
 getrennte Daten. Dafür wird eine lineare Hyperplane der Form
 \begin{align*}
 \beta_1 X_1+\beta_2 X_2 +...+\beta_{1-p} = \beta_p X_p
 \end{align*} mit zufälligen Koeffizienten erzeugt. Diese Daten sollen
-also den Annahmen entsprechend, die für SVMs mit linearem Kernel gelten.
-Nachem für eine Beobachtung \(j\) zufällig ein Punkt auf der Ebene
-gesampelt wurde, wurde dieser anschließend verschoben. Die Verschiebung
-erfolgte über eine Skalierung des normierten Normalenvektors
+also den Annahmen entsprechend, die für \textit{SVM} mit linearem Kernel
+gelten. Nachem für eine Beobachtung \(j\) zufällig ein Punkt auf der
+Ebene gesampelt wurde, wurde dieser anschließend verschoben. Die
+Verschiebung erfolgte über eine Skalierung des normierten
+Normalenvektors
 \(k\left(\frac{\overline{\beta}}{||\overline{\beta}||}\right)\). \(k\)
 ist dabei eine normalverteilte Zufallszahl mit Mittelwert \(\mu_k\) und
 Varianz \(\sigma^2_k\). Dieser Prozess wird \(n/2\) mal wiederholt für
@@ -589,7 +591,7 @@ hat die Hyperplane eine quadratische Form: \begin{align*}
 \beta_0+\beta_1 X_1 + \beta_2 X_1^2+\beta_3 X_2+\beta_4 X_2^2+...+\beta_{2p-2}X_{p-1}+\beta_{2p-1}X_{p-1}^2=\beta_{2p} X_p
 \end{align*} diese Form der Trennung stellt also eine
 Merkmalserweiterung um quadratische Terme dar und funktioniert damit
-ähnlich wie eine SVM mit polynomialen Kernel mit \(d=2\). Die
+ähnlich wie eine \textit{SVM} mit polynomialen Kernel mit \(d=2\). Die
 Verschiebung erfolgte hier nur durch Skalierung der Werte von \(X_p\)
 ebenfalls mit \(k\sim\mathcal{N}(\mu_k,\sigma^2_k)\) für die eine
 Ausprägung und \(k\sim\mathcal{N}(-\mu_k,\sigma^2)\) für die andere
@@ -645,12 +647,12 @@ abgetragen
 \label{tab:datensituationen}
 \end{table}
 
-Zusätzlich soll nicht nur ein Vergleich zwischen der Performance der SVM
-mit verschiedenen Kernels gemacht werden, sondern auch die Unterschiede
-in der Klassifikationsgüte der SVM zu anderen gängigen
-Klassifikationsmethoden gezeigt werden. Dafür werden regularized
-Logistic Regression und k-nearest Neighbour als Vergleichsalgorithmen
-hinzugezogen.
+Zusätzlich soll nicht nur ein Vergleich zwischen der Performance der
+\textit{SVM} mit verschiedenen Kernels gemacht werden, sondern auch die
+Unterschiede in der Klassifikationsgüte der \textit{SVM} zu anderen
+gängigen Klassifikationsmethoden gezeigt werden. Dafür werden
+\textit{regularized Logistic Regression} und
+\textit{k-nearest Neighbour} als Vergleichsalgorithmen hinzugezogen.
 
 \section{Hypothesen}
 
@@ -662,27 +664,28 @@ begrenzt ist. Da für diese Arbeit die Form der Entscheidungsgrenze
 entscheidend ist, werden dennoch ausschließlich Arbeiten mit
 synthetischen Datensätzen zu Rate gezogen.\newline Aufgrund dessen, dass
 der datengenerierende Prozess hier so ausgearbeitet wurde, dass er mit
-den Annahmen der SVM arbeitet, erwarten wir zuerst einmal eine
-durchschnittlich bessere Performance der SVM Classifier im Vergleich zu
-den anderen Methoden.
+den Annahmen der \textit{SVM} arbeitet, erwarten wir zuerst einmal eine
+durchschnittlich bessere Performance der \textit{SVM-Classifier} im
+Vergleich zu den anderen Methoden.
 
 \begin{minipage}{0.9\linewidth}
 \begin{itemize}[leftmargin=0.1\linewidth]
-\item[\textbf{H1:}] Die SVM-Classifier Performen über alle Datensituationen im Durchschnitt besser als die anderen Classifier.
+\item[\textbf{H1:}] Die \textit{SVM-Classifier} performen über alle Datensituationen im Durchschnitt besser als die anderen Classifier.
 \end{itemize}
 \end{minipage}
 
 Des Weiteren wurden in den einzelnen Kategorien des datengenerierenden
 Prozesses die Entscheidungsgrenzen speziell auf verschiedene Kernels
-zugeschnitten. Daher sollten SVM mit linearem Kernel im Setting mit
-linearer Entscheidungsgrenze mindestens so gut oder besser als die
-restlichen Classifier performen. Gleiches gilt für SVM mit polynomialen
-Kernel im Setting mit einer quadratischen Entscheidungsgrenze und
-radiale Kernel bei einer Hypershäre als Entscheidungsgrenze.
+zugeschnitten. Daher sollten \textit{SVM} mit linearem Kernel im Setting
+mit linearer Entscheidungsgrenze mindestens so gut oder besser als die
+restlichen Classifier performen. Gleiches gilt für \textit{SVM} mit
+polynomialen Kernel im Setting mit einer quadratischen
+Entscheidungsgrenze und radiale Kernel bei einer Hypershäre als
+Entscheidungsgrenze.
 
 \begin{minipage}{0.9\linewidth}
 \begin{itemize}[leftmargin=0.1\linewidth]
-\item[\textbf{H2:}] Die SVM-Classifier mit dem Kernel, der für den jeweiligen DGP zugeschnitten ist sollten mindestens genauso gut oder besser performen als die restlichen Classifier.
+\item[\textbf{H2:}] Die \textit{SVM-Classifier} mit dem Kernel, der für den jeweiligen DGP zugeschnitten ist sollten mindestens genauso gut oder besser performen als die restlichen Classifier.
 \end{itemize}
 \end{minipage}
 
@@ -700,7 +703,7 @@ ist festzustellen, dass die Unterschiede deutlicher werden, je höher die
 Anzahl an Beobachtungen ist.\newline Für den Fall einer radialen
 Entscheidungsgrenze (S3) sind die Ergebnisse ähnlich. So erreicht in
 diesem Beispiel eine \textit{SVM} mit radialem Kernel im Vergleich zu
-einer logistischen Regression eine um 34\% höhere Genauigkeit
+einer \textit{logistischen Regression} eine um 34\% höhere Genauigkeit
 \parencite{faveroClassificationPerformanceEvaluation2022}. Basierend auf
 den Ergebnissen der genannten Studien kann folgende Schlussfolgerung
 gezogen werden.
@@ -754,22 +757,23 @@ daraus:
 
 Bevor die Ergebnisse erläutert werden, wird kurz auf die Vorgehensweise
 bei der Analyse eingegangen. In die Analyse werden fünf Modelle
-einbezogen: SVM mit linearem, polynomialem und radialem Kernel, sowie
-regularisierte logistische Regression und k-nearest neighbours.\newline
-Vor dem erstellen der Modelle wird ein Tuning der Hyperparameter je
-Modell durchgeführt. Dafür wird die Bayesian Optimization Methode
-genutzt, welche ein iterativer Algorithmus ist. Hierbei werden die
-nächsten Evaluierungspunkte basierend auf zuvor beobachteten Ergebnissen
-bestimmt \parencite{yangHyperparameterOptimizationMachine2020}. Der
-Algorithmus basiert auf zwei Hauptkomponenten: einem Surrogatmodell und
-einer Akqusitionsfunktion. Das Surrogatmodell, wofür hier ein Gaussian
-Process genutzt wird, passt die bisher beobachteten Punkte an die
-Zielfunktion an. Die Akquisitionsfunktion wählt dann die nächsten Punkte
-aus, wobei ein Gleichgewicht zwischen der Erkundung neuer Bereiche und
-der Nutzung vielversprechender Regionen angestrebt wird. Dafür wird hier
-der Ansatz des Upper-Confidence-Bound genutzt, welcher obere
-Konfidenzgrenzen nutzt um den Verlust gegenüber der besten möglichen
-Entscheidung, während der Optimierung zu minimieren
+einbezogen: \textit{SVM} mit linearem, polynomialem und radialem Kernel,
+sowie \textit{regularisierte logistische Regression} und
+\textit{k-nearest neighbours}.\newline Vor dem erstellen der Modelle
+wird ein Tuning der Hyperparameter je Modell durchgeführt. Dafür wird
+die Bayesian Optimization Methode genutzt, welche ein iterativer
+Algorithmus ist. Hierbei werden die nächsten Evaluierungspunkte
+basierend auf zuvor beobachteten Ergebnissen bestimmt
+\parencite{yangHyperparameterOptimizationMachine2020}. Der Algorithmus
+basiert auf zwei Hauptkomponenten: einem Surrogatmodell und einer
+Akqusitionsfunktion. Das Surrogatmodell, wofür hier ein Gaussian Process
+genutzt wird, passt die bisher beobachteten Punkte an die Zielfunktion
+an. Die Akquisitionsfunktion wählt dann die nächsten Punkte aus, wobei
+ein Gleichgewicht zwischen der Erkundung neuer Bereiche und der Nutzung
+vielversprechender Regionen angestrebt wird. Dafür wird hier der Ansatz
+des Upper-Confidence-Bound genutzt, welcher obere Konfidenzgrenzen nutzt
+um den Verlust gegenüber der besten möglichen Entscheidung, während der
+Optimierung zu minimieren
 \parencite{snoekPracticalBayesianOptimization2012}. \begin{align}
 a_{UCB}(\mathbf{x};~\left\{\mathbf{x}_n,y_n\right\},\theta) = \mu(\mathbf{x};~\left\{\mathbf{x}_n,y_n\right\},\theta) + k \sigma(\mathbf{x};~\left\{\mathbf{x}_n,y_n\right\},\theta)
 \end{align} Die Bayesian Optimization wird genutzt, da sie eine schnelle
@@ -953,10 +957,10 @@ grafische Darstellung in Szenarien mit kleinem \(n\) aufgrund der
 geringen Anzahl der Datenpunkte nicht sinnvoll erscheint. Des Weiteren
 ist es wichtig zu erwähnen, das für die Berechnung der ROC-Kurven die
 Wahrscheinlichkeit, dass eine Beobachtung zu einer bestimmten Klasse
-gehört, benötigt wird. Da SVM anders als beispielsweise logistische
-Regression, nicht direkt eine Wahrscheinlichkeit ausgeben, gibt es aber
-auch hierfür Möglichkeiten diese zu berechnen (siehe
-\cite{plattProbabilisticOutputsSupport2000}).\newline Abbildung
+gehört, benötigt wird. Da \textit{SVM} anders als beispielsweise
+\textit{logistische Regression}, nicht direkt eine Wahrscheinlichkeit
+ausgeben, gibt es aber auch hierfür Möglichkeiten diese zu berechnen
+(siehe \cite{plattProbabilisticOutputsSupport2000}).\newline Abbildung
 \ref{fig:S1ROC} zeigt die ROC-Kurven für die Datensituation S1. Diese
 zeigt grafisch noch einmal den deutlichen Unterschied zwischen
 \textit{K-NN}, welcher nur etwas besser als eine reine Zufallsauswahl
@@ -972,15 +976,14 @@ die Ergebnisse ausschließlich für \textit{SVM-R} sehr gut mit Werten
 über 0.9. Die restlichen Algorithmen performen mittelmäßig mit Werten
 zwischen 0.7 und 0.8, wobei sich hier kein Algorithmus von den anderen
 absetzen kann. Bei \(p \approx n\) ist \textit{K-NN} den anderen
-Klassifikationsmethoden leicht überlegen, insbesondere darin
-gleichzeitig falsch Positive und falsch Negative zu minimieren (AUC-Wert
-von 0.729). Die anderen Algorithmen befinden sich durchweg über alle
-Werte hinweg nahe 0.5. Ähnlich ist das der Fall für \(p \gg n\) bei dem
-auch wieder \textit{K-NN} eine leicht bessere Leistung zeigt mit einer
-Genauigkeit von 0.7, gefolgt von \textit{LogR} mit 0.64. Dennoch ist für
-die letzten beiden Szenarien deutlich, dass kein Algorithmus gute
-Leistung zeigt.\newline Abbildung \ref{fig:S2ROC} zeigt die ROC-Kurven
-für Szenario 2. Aus dieser Abbildung ist ersichtlich, dass sich
+Klassifikationsmethoden leicht überlegen, bei einem AUC-Wert von 0.729.
+Die anderen Algorithmen befinden sich durchweg über alle Werte hinweg
+nahe 0.5. Ähnlich ist das der Fall für \(p \gg n\) bei dem auch wieder
+\textit{K-NN} eine leicht bessere Leistung zeigt mit einer Genauigkeit
+von 0.7, gefolgt von \textit{LogR} mit 0.64. Dennoch ist für die letzten
+beiden Szenarien deutlich, dass kein Algorithmus gute Leistung
+zeigt.\newline Abbildung \ref{fig:S2ROC} zeigt die ROC-Kurven für
+Szenario 2. Aus dieser Abbildung ist ersichtlich, dass sich
 \textit{SVM-R} deutlich von den anderen Algorithmen abheben kann, welche
 alle eine mittelmäßige Leistung zeigen. Wir können also hier keine
 bestätigung für \textbf{H2} finden, nach der wir eigentlich erwarten
@@ -1050,53 +1053,53 @@ Formen der Entscheidungsgrenze gezogen. So ist für \(p \ll n\)
 ersichtlich, dass insbesondere \textit{SVM-P} und \textit{SVM-R} über
 alle drei Szenarien gute Leistung (mit Werten mindestens nahe 0.8)
 erzielen. Auch im durchschnittlichen Ranking über alle drei Szenarien
-hinweg zeigen die \textit{SVM}-Methoden die besten Ergebnisse.
+hinweg zeigen die \textit{SVM-Methoden} die besten Ergebnisse.
 Überaschen ist nur die unerwartet schlechte Performance von
 \textit{K-NN}. Somit bestätigt sich \textbf{H3} hier nur teilweise. In
 den hochdimensionalen Szenarien \(p \gg n\) ist einzig \textit{K-NN}
 überzeugend, welcher auch im polynomialen Szenario Werte über 0.7
-aufweist. Hier belegen die \textit{SVM}-Methoden tatsächlich sogar die
+aufweist. Hier belegen die \textit{SVM-Methoden} tatsächlich sogar die
 letzten Plätze im durchschnittlichen Ranking. Dies deutet klar darauf
 hin, dass \textbf{H4} mit unseren Daten verworfen werden muss.
 
 \section{Fazit}
 
-In unserer Arbeit haben wir zum einen die Funktionsweise der Support
-Vector Machines als binäre Klassifikationsmethode beleuchtet, als auch
-die Leistungsfähigkeit in Datenszenarien mit verschiedenen Eigenschaften
-verglichen. Diese Datensszenarien, wurden synthetisch von uns
-hergestellt und sind in ihrem datengenerierenden Prozess speziell auf
-\textit{SVM} zugeschnitten. Anschließend haben wir uns mit einschlägiger
-Literatur beschäftigt, bei der die Autoren bereits ähnliche Versuche
-durchgeführt haben und anhand dessen Hypothesen abgeleitet. Für die
-Durchführung unserer Versuche haben wir die Performance von \textit{SVM}
-mit verschiedenen Kernels sowie weiterer Klassifikationsmethoden über
-alle Szenarien mit verschiedenen Maßzahlen verglichen. \newline 
-Insgesamt mussten wir allerdings festellen, dass unsere Ergebnisse die
-Hypothesen nur in Teilen bestätigen. \textit{SVM}-Methoden, haben im
-Durschnitt oft bessere Leistungen gezeigt, als die anderen Methoden. Wir
-schließen aufgrund der Rankings, dass, egal welche Dimensionierung
-vorliegt und wenn keine Information über die Form der
-Entscheidungsgrenze vorliegt, \textit{SVM} mit radialen und polynomialen
-Kernel immer eine gute Entscheidung darstellen. Zumindest sollten diese
-beiden dem \textit{SVM} mit linearem Kernel vorgezogen werden. Wobei
-hier auch anzumerken ist, dass mit der höheren Flexibilität der
-\textit{SVM-P} und \textit{SVM-R} auch die Gefahr besteht, dass es zu
-Overfitting kommt. Dies könnte vor allem bei empirischen Daten zu
-höheren Klassifikationsfehlern führen.\newline Allerdings haben wider
-Erwarten die \text{SVM} mit dem Kernel der auf die Datenerzeugung
-eigentlich zugeschnitten ist nicht besser performt. Wir vermuten, dass
-es an einem zu niedrigen \(n\)-Wert in der Dimensionierung für die
-Szenarien 4 bis 9 liegen könnte und dass sich in einer etwaigen
-Simulationsstudie mit dem gleichen DGP und Dimensionierung die Hypothese
-vielleicht doch noch bestätigen könnte, da sich so zufällige
-Abweichungen aufheben. Was das Verhalten in den verschiedenen
-Dimensionalitäten angeht können wir zumindest sagen, dass in Fällen mit
-mehr Beobachtungen als Variablen \textit{SVM} eine gute Wahl darstellen.
-Schwieriger wird es bei den hochdimensionalen Szenarien, da hier
-\textit{K-NN} eindeutig besser performt hat. Uns fällt es schwer dies zu
-erklären, da wir eigentlich davon ausgingen, dass \textit{K-NN} bei
-vielen Variablen eher schlechter performt.
+In unserer Arbeit haben wir zum einen die Funktionsweise der
+\textit{Support Vector Machines} als binäre Klassifikationsmethode
+beleuchtet, als auch die Leistungsfähigkeit in Datenszenarien mit
+verschiedenen Eigenschaften verglichen. Diese Datensszenarien, wurden
+synthetisch von uns hergestellt und sind in ihrem datengenerierenden
+Prozess speziell auf \textit{SVM} zugeschnitten. Anschließend haben wir
+uns mit einschlägiger Literatur beschäftigt, bei der die Autoren bereits
+ähnliche Versuche durchgeführt haben und anhand dessen Hypothesen
+abgeleitet. Für die Durchführung unserer Versuche haben wir die
+Performance von \textit{SVM} mit verschiedenen Kernels sowie weiterer
+Klassifikationsmethoden über alle Szenarien mit verschiedenen Maßzahlen
+verglichen. \newline  Insgesamt mussten wir allerdings festellen, dass
+unsere Ergebnisse die Hypothesen nur in Teilen bestätigen.
+\textit{SVM}-Methoden, haben im Durschnitt oft bessere Leistungen
+gezeigt, als die anderen Methoden. Wir schließen aufgrund der Rankings,
+dass, egal welche Dimensionierung vorliegt und wenn keine Information
+über die Form der Entscheidungsgrenze vorliegt, \textit{SVM} mit
+radialen und polynomialen Kernel immer eine gute Entscheidung
+darstellen. Zumindest sollten diese beiden dem \textit{SVM} mit linearem
+Kernel vorgezogen werden. Wobei hier auch anzumerken ist, dass mit der
+höheren Flexibilität der \textit{SVM-P} und \textit{SVM-R} auch die
+Gefahr besteht, dass es zu Overfitting kommt. Dies könnte vor allem bei
+empirischen Daten zu höheren Klassifikationsfehlern führen.\newline
+Allerdings haben wider Erwarten die \textit{SVM} mit dem Kernel der auf
+die Datenerzeugung eigentlich zugeschnitten ist nicht besser performt.
+Wir vermuten, dass es an einem zu niedrigen \(n\)-Wert in der
+Dimensionierung für die Szenarien 4 bis 9 liegen könnte und dass sich in
+einer etwaigen Simulationsstudie mit dem gleichen DGP und
+Dimensionierung die Hypothese vielleicht doch noch bestätigen könnte, da
+sich so zufällige Abweichungen aufheben. Was das Verhalten in den
+verschiedenen Dimensionalitäten angeht können wir zumindest sagen, dass
+in Fällen mit mehr Beobachtungen als Variablen \textit{SVM} eine gute
+Wahl darstellen. Schwieriger wird es bei den hochdimensionalen
+Szenarien, da hier \textit{K-NN} eindeutig besser performt hat. Uns
+fällt es schwer dies zu erklären, da wir eigentlich davon ausgingen,
+dass \textit{K-NN} bei vielen Variablen eher schlechter performt.
 
 Wir sehen daher Optimierungsmöglichkeiten für weitere Arbeiten dieser
 Art. So wäre es angebracht, wie bereits erwähnt die Datengererierung für
@@ -1116,8 +1119,8 @@ variiert, mehr als zwei Ausprägungen generiert oder auch komplexere
 Entscheidungsgrenzen modelliert werden. Diese Erweiterungen hätten
 allerdings den Rahmen dieser Arbeit überschritten. Trotzdem ergänzt
 unsere Arbeit die bisherigen Befunde zur Leistungs- und
-Anpassungsfähigkeit von Support-Vector Machines in verschiedenen
-Datensituation, sowie deren Bedeutung im Kontext von
+Anpassungsfähigkeit von \textit{Support-Vector Machines} in
+verschiedenen Datensituation, sowie deren Bedeutung im Kontext von
 Klassifikationsaufgaben. \newpage
 
 \addcontentsline{toc}{section}{Literatur}

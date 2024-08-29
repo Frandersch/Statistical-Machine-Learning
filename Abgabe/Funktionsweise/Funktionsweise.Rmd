@@ -14,7 +14,7 @@ bibliography: Literatur.bib
 
 \subsection{Hard Margin Classifier}
 
-Um das grundlegende Prinzip der SVM darzustellen, gehen wir zuerst von einer Datensituation aus, in der sich zwei Gruppen optimal durch eine lineare Entscheidungsgrenze trennen lassen. Das endgültige Ziel ist es eine sogenannte Hyperplane zu finden die diese Daten möglichst gut separiert und als Entscheidungsgrenze funktioniert. Die allgemeine Form einer solchen Hyperplane lautet
+Um das grundlegende Prinzip der \textit{SVM} darzustellen, gehen wir zuerst von einer Datensituation aus, in der sich zwei Gruppen optimal durch eine lineare Entscheidungsgrenze trennen lassen. Das endgültige Ziel ist es eine sogenannte Hyperplane zu finden die diese Daten möglichst gut separiert und als Entscheidungsgrenze funktioniert. Die allgemeine Form einer solchen Hyperplane lautet
 \begin{align}
 \beta_0+ \beta_1 X_1+\beta_2 X_2+...+\beta_n X_n=0\label{eq:hyperebene}
 \end{align}
@@ -58,7 +58,7 @@ für die Schranke in Richtung der roten Datenpunkte. Aus dieser Beschränkung f�
 \begin{align}
 y_i(\overline{\beta}\cdot \overline{x}_i+\beta_0)\ge 1\label{eq:Nebenbedingung}
 \end{align}
-Da das Verfahren auch \textit{Maximal Margin Classifier} gennant wird, gilt es jetzt noch eine Definition für den Margin also den Abstand zwischen den zwei Schranken zu finden, der letztendlich maximiert werden soll. Damit diese Schranken, maximal weit auseinander liegen, muss es zwangsläufig Datenpunkte geben, die genau auf den Schranken liegen. Diese Datenpunkte haben eine wichtige Rolle für die Konstruktion des Margins. Es sind ausschließlich diese Datenpunkte, die einen Einfluss auf die finalen Werte von $\overline{\beta}$ und $\beta_0$ haben werden. Sie werden \textit{Support-Vektoren} genannt und geben den SVM ihren Namen.
+Da das Verfahren auch \textit{Maximal Margin Classifier} gennant wird, gilt es jetzt noch eine Definition für den Margin also den Abstand zwischen den zwei Schranken zu finden, der letztendlich maximiert werden soll. Damit diese Schranken, maximal weit auseinander liegen, muss es zwangsläufig Datenpunkte geben, die genau auf den Schranken liegen. Diese Datenpunkte haben eine wichtige Rolle für die Konstruktion des Margins. Es sind ausschließlich diese Datenpunkte, die einen Einfluss auf die finalen Werte von $\overline{\beta}$ und $\beta_0$ haben werden. Sie werden \textit{Support-Vektoren} genannt und geben den \textit{SVM} ihren Namen.
 \begin{figure}[htb]
 \centering
  \includegraphics[width=0.5\textwidth,trim=0.5cm 0.5cm 0.5cm 0.5cm]{Images/margin.pdf} 
@@ -143,7 +143,7 @@ Es zeigt sich also, dass sich die Entscheidungsfunktion im Wesentlichen aus eine
         \label{fig:featurexten}
     \end{minipage}
 \end{figure}
-Es gibt eine ganze Reihe an \textit{Kernel Funktionen}, die bei SVM Anwendung finden. Die Grundlage ist der lineare Kernel, wobei dieser lediglich das Punktprodukt beschreibt, also praktisch genau das macht, was bei einer linearen Entscheidungsgrenze gemacht wird. Des Weiteren gibt es den \textit{Polynomial Kernel}. Dieser hat die Form
+Es gibt eine ganze Reihe an \textit{Kernel Funktionen}, die bei \textit{SVM} Anwendung finden. Die Grundlage ist der lineare Kernel, wobei dieser lediglich das Punktprodukt beschreibt, also praktisch genau das macht, was bei einer linearen Entscheidungsgrenze gemacht wird. Des Weiteren gibt es den \textit{Polynomial Kernel}. Dieser hat die Form
 \begin{align}
  K(x_i,x_u)=(1+x_i\cdot x_u)^d
 \end{align}
