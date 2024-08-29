@@ -76,7 +76,7 @@
 \fi
 \usepackage[]{biblatex}
 \addbibresource{Literatur.bib}
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
@@ -153,12 +153,12 @@ Schranke liegen und keine negativen oberhalb. Das Gegenteil gilt
 dementsprechend für die untere Schranke. Als Definition für die beiden
 Schranken wird festgelegt \begin{align}
 \overline{\beta}\cdot \overline{x}+\beta_0=1\label{eq:posSV}
-\end{align} für die Schranke in Richtung der grünen Datenpunkte und
-\begin{align}
+\end{align} für die Schranke in Richtung der grünen (positiven)
+Datenpunkte und \begin{align}
 \overline{\beta}\cdot \overline{x}+\beta_0=-1\label{eq:negSV}
-\end{align} für die Schranke in Richtung der roten Datenpunkte. Aus
-dieser Beschränkung für die Hyperplane können wir auch ableiten, dass
-für die positiven Samples \(\overline{x}^+\) immer gilt
+\end{align} für die Schranke in Richtung der roten (negativen)
+Datenpunkte. Aus dieser Beschränkung für die Hyperplane können wir auch
+ableiten, dass für die positiven Samples \(\overline{x}^+\) immer gilt
 \(\overline{\beta}\cdot \overline{x}^++\beta_0\ge 1\) und für negative
 Samples \(\overline{x}^-\) immer gilt
 \(\overline{\beta}\cdot \overline{x}^-+\beta_0\le -1\). Durch das
@@ -216,7 +216,7 @@ und \(\overline{\alpha}\) maximiert wird
 \parencite{vapnikEstimationDependencesBased2006}. Wird dieser Ausdruck
 partiell abgeleitet und gleich null gesetzt erhält man als
 Zwischenergebnis \begin{align}
-\frac{\partial \mathcal{L}}{\partial \beta}=\beta-\sum \alpha_i y_i \overline{x_i}\overset{!}{=}0 \Rightarrow \beta=\sum \alpha_i y_i \overline{x_i}\label{eq:solutbeta}
+\frac{\partial \mathcal{L}}{\partial \overline{\beta}}=\overline{\beta}-\sum \alpha_i y_i \overline{x_i}\overset{!}{=}0 \Rightarrow \overline{\beta}=\sum \alpha_i y_i \overline{x_i}\label{eq:solutbeta}
 \end{align} Somit zeigt sich, dass \(\overline{\beta}\) als
 Linearkombination der Inputvektoren dargestellt werden kann. Weiterhin
 gilt für \(\beta_0\) \begin{align}
@@ -274,7 +274,7 @@ zu liegen. Dafür wird für die Einschränkungen eine sogenannte
 auswirkt, ist in Abbildung \ref{fig:slackvariable} aufgeführt. Setzt man
 diese in \eqref{eq:Nebenbedingung} ein, lautet die neue Nebenbedingung
 \begin{align}
-y_i(\beta \cdot \overline{x}_i-\beta_0)>1- \varepsilon_i \label{eq:nebbedsfm}
+y_i(\overline{\beta} \cdot \overline{x}_i-\beta_0)>1- \varepsilon_i \label{eq:nebbedsfm}
 \end{align}
 
 \begin{figure}[htb]

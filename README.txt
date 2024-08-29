@@ -12,7 +12,7 @@ Abgabe/: Enthält die Hausarbeit und zugehörige Dokumente:
 - Hausarbeit.pdf: die Hausarbeit in PDF-Format
 - Literatur.bib: die Literatur in BibTeX-Format
 - titlepage.tex: die Titelseite als TeX-Datei
-- header.tex: der Header für das RMarkdown als TeX-Datei
+- header.tex: die Präambel mit weiteren Latex Packages
 - Ordner: einzelne Kapitel der Hausarbeit
 
 BENÖTIGTE PAKETE

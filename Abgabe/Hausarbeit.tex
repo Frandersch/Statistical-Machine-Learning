@@ -82,7 +82,7 @@
 \fi
 \usepackage[]{biblatex}
 \addbibresource{Literatur.bib}
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
@@ -217,12 +217,12 @@ Schranke liegen und keine negativen oberhalb. Das Gegenteil gilt
 dementsprechend für die untere Schranke. Als Definition für die beiden
 Schranken wird festgelegt \begin{align}
 \overline{\beta}\cdot \overline{x}+\beta_0=1\label{eq:posSV}
-\end{align} für die Schranke in Richtung der grünen Datenpunkte und
-\begin{align}
+\end{align} für die Schranke in Richtung der grünen (positiven)
+Datenpunkte und \begin{align}
 \overline{\beta}\cdot \overline{x}+\beta_0=-1\label{eq:negSV}
-\end{align} für die Schranke in Richtung der roten Datenpunkte. Aus
-dieser Beschränkung für die Hyperplane können wir auch ableiten, dass
-für die positiven Samples \(\overline{x}^+\) immer gilt
+\end{align} für die Schranke in Richtung der roten (negativen)
+Datenpunkte. Aus dieser Beschränkung für die Hyperplane können wir auch
+ableiten, dass für die positiven Samples \(\overline{x}^+\) immer gilt
 \(\overline{\beta}\cdot \overline{x}^++\beta_0\ge 1\) und für negative
 Samples \(\overline{x}^-\) immer gilt
 \(\overline{\beta}\cdot \overline{x}^-+\beta_0\le -1\). Durch das
@@ -280,7 +280,7 @@ und \(\overline{\alpha}\) maximiert wird
 \parencite{vapnikEstimationDependencesBased2006}. Wird dieser Ausdruck
 partiell abgeleitet und gleich null gesetzt erhält man als
 Zwischenergebnis \begin{align}
-\frac{\partial \mathcal{L}}{\partial \beta}=\beta-\sum \alpha_i y_i \overline{x_i}\overset{!}{=}0 \Rightarrow \beta=\sum \alpha_i y_i \overline{x_i}\label{eq:solutbeta}
+\frac{\partial \mathcal{L}}{\partial \overline{\beta}}=\overline{\beta}-\sum \alpha_i y_i \overline{x_i}\overset{!}{=}0 \Rightarrow \overline{\beta}=\sum \alpha_i y_i \overline{x_i}\label{eq:solutbeta}
 \end{align} Somit zeigt sich, dass \(\overline{\beta}\) als
 Linearkombination der Inputvektoren dargestellt werden kann. Weiterhin
 gilt für \(\beta_0\) \begin{align}
@@ -338,7 +338,7 @@ zu liegen. Dafür wird für die Einschränkungen eine sogenannte
 auswirkt, ist in Abbildung \ref{fig:slackvariable} aufgeführt. Setzt man
 diese in \eqref{eq:Nebenbedingung} ein, lautet die neue Nebenbedingung
 \begin{align}
-y_i(\beta \cdot \overline{x}_i-\beta_0)>1- \varepsilon_i \label{eq:nebbedsfm}
+y_i(\overline{\beta} \cdot \overline{x}_i-\beta_0)>1- \varepsilon_i \label{eq:nebbedsfm}
 \end{align}
 
 \begin{figure}[htb]
@@ -573,9 +573,9 @@ Verteilung für die binären Ausprägungen angenommen.
 
 Insgesamt gibt es auch hier wieder 3 Kategorien. Die erste sind linear
 getrennte Daten. Dafür wird eine lineare Hyperplane der Form
-\begin{align*}
-\beta_1 X_1+\beta_2 X_2 +...+\beta_{1-p} = \beta_p X_p
-\end{align*} mit zufälligen Koeffizienten erzeugt. Diese Daten sollen
+\begin{align}
+\beta_1 X_1+\beta_2 X_2 +...+\beta_{1-p} X_{p-1}= \beta_p X_p
+\end{align} mit zufälligen Koeffizienten erzeugt. Diese Daten sollen
 also den Annahmen entsprechend, die für \textit{SVM} mit linearem Kernel
 gelten. Nachem für eine Beobachtung \(j\) zufällig ein Punkt auf der
 Ebene gesampelt wurde, wurde dieser anschließend verschoben. Die
@@ -587,14 +587,14 @@ Varianz \(\sigma^2_k\). Dieser Prozess wird \(n/2\) mal wiederholt für
 die eine Ausprägung der Zielvariable (\(y_i=1\)) und dementsprechend
 \(n/2\) mal für die andere Ausprägung (\(y_i=-1\)), dann aber mit
 \(-\mu_k\) als Mittelwert für \(k\). \newline In der zweiten Situation
-hat die Hyperplane eine quadratische Form: \begin{align*}
+hat die Hyperplane eine quadratische Form: \begin{align}
 \beta_0+\beta_1 X_1 + \beta_2 X_1^2+\beta_3 X_2+\beta_4 X_2^2+...+\beta_{2p-2}X_{p-1}+\beta_{2p-1}X_{p-1}^2=\beta_{2p} X_p
-\end{align*} diese Form der Trennung stellt also eine
-Merkmalserweiterung um quadratische Terme dar und funktioniert damit
-ähnlich wie eine \textit{SVM} mit polynomialen Kernel mit \(d=2\). Die
-Verschiebung erfolgte hier nur durch Skalierung der Werte von \(X_p\)
-ebenfalls mit \(k\sim\mathcal{N}(\mu_k,\sigma^2_k)\) für die eine
-Ausprägung und \(k\sim\mathcal{N}(-\mu_k,\sigma^2)\) für die andere
+\end{align} diese Form der Trennung stellt also eine Merkmalserweiterung
+um quadratische Terme dar und funktioniert damit ähnlich wie eine
+\textit{SVM} mit polynomialen Kernel mit \(d=2\). Die Verschiebung
+erfolgte hier nur durch Skalierung der Werte von \(X_p\) ebenfalls mit
+\(k\sim\mathcal{N}(\mu_k,\sigma^2_k)\) für die eine Ausprägung und
+\(k\sim\mathcal{N}(-\mu_k,\sigma^2)\) für die andere
 Ausprägung.\newline  Der letzte DGP geht von einer noch komplexeren
 Entscheidungsgrenzen aus. Es wird hier ein Hypershpäre im \(p\)
 dimensionalen Raum erstellt und einmal innerhalb und einmal außerhalb
@@ -602,14 +602,16 @@ dieser gesampelt. Dafür wurde für eine Beobachtung \(j\), \(p-1\) Winkel
 \(\theta\) zufällig erstellt, ein Radius \(r\) festgelegt und
 anschließend die einzelnen Werte \(X_{1,j},X_{2,j},...,X_{p,j}\)
 berechnet. Die Berechnung erfolgt dabei über die Definition von
-sphärischen Koordinaten: \begin{align*}
+sphärischen Koordinaten: \begin{align}
+\begin{aligned}
         X_{1,j} &= r \cos(\theta_1)\\
         X_{2,j} &= r \sin(\theta_1)\cos(\theta_2)\\
         X_{3,j} &= r \sin(\theta_1)\sin(\theta_2)\cos(\theta_3)\\
         &\quad \vdots\\
         X_{p-1,j}&=r \sin(\theta_1)\ldots \sin(\theta_{p-2})\cos(\theta_{p-1})\\
         X_{p,j}&=r \sin(\theta_1)\ldots \sin(\theta_{p-2})\sin(\theta_{p-1})
-    \end{align*} Dieser Vorgang wird dann \(n/2\) mal, wiederholt und
+    \end{aligned}
+    \end{align} Dieser Vorgang wird dann \(n/2\) mal, wiederholt und
 anschließend erfolgt die Verschiebung durch eine Skalierung des
 jeweiligen normalisierten Datenvektors
 \(k\left(\frac{\overline{x}}{||x||}\right)\). \(k\) ist auch hier wieder

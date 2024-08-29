@@ -50,11 +50,11 @@ Als Nächstes stellt sich jetzt die Frage, welches $\overline{\beta}$ und $\beta
 \begin{align}
 \overline{\beta}\cdot \overline{x}+\beta_0=1\label{eq:posSV}
 \end{align}
-für die Schranke in Richtung der grünen Datenpunkte und
+für die Schranke in Richtung der grünen (positiven) Datenpunkte und
 \begin{align}
 \overline{\beta}\cdot \overline{x}+\beta_0=-1\label{eq:negSV}
 \end{align}
-für die Schranke in Richtung der roten Datenpunkte. Aus dieser Beschränkung für die Hyperplane können wir auch ableiten, dass für die positiven Samples $\overline{x}^+$ immer gilt $\overline{\beta}\cdot \overline{x}^++\beta_0\ge 1$ und für negative Samples $\overline{x}^-$ immer gilt $\overline{\beta}\cdot \overline{x}^-+\beta_0\le -1$. Durch das Einführen einer weiteren Variable $y$, welche die Eigenschaft hat, dass sie den Wert 1 bei einem positiven und den Wert -1 bei einem negativen Sample annimmt, können diese zwei Beschränkungen zu Einer zusammengefasst werden \parencite{cortesSupportvectorNetworks1995}.
+für die Schranke in Richtung der roten (negativen) Datenpunkte. Aus dieser Beschränkung für die Hyperplane können wir auch ableiten, dass für die positiven Samples $\overline{x}^+$ immer gilt $\overline{\beta}\cdot \overline{x}^++\beta_0\ge 1$ und für negative Samples $\overline{x}^-$ immer gilt $\overline{\beta}\cdot \overline{x}^-+\beta_0\le -1$. Durch das Einführen einer weiteren Variable $y$, welche die Eigenschaft hat, dass sie den Wert 1 bei einem positiven und den Wert -1 bei einem negativen Sample annimmt, können diese zwei Beschränkungen zu Einer zusammengefasst werden \parencite{cortesSupportvectorNetworks1995}.
 \begin{align}
 y_i(\overline{\beta}\cdot \overline{x}_i+\beta_0)\ge 1\label{eq:Nebenbedingung}
 \end{align}
@@ -81,7 +81,7 @@ Dieses Optimierungsproblem mit der Nebenbedingung aus Formel \eqref{eq:Nebenbedi
 \end{align}
 wobei hier $\overline{\beta}$ und $\beta_0$ minimiert und $\overline{\alpha}$ maximiert wird \parencite{vapnikEstimationDependencesBased2006}.
 Wird dieser Ausdruck partiell abgeleitet und gleich null gesetzt erhält man als Zwischenergebnis \begin{align}
-\frac{\partial \mathcal{L}}{\partial \beta}=\beta-\sum \alpha_i y_i \overline{x_i}\overset{!}{=}0 \Rightarrow \beta=\sum \alpha_i y_i \overline{x_i}\label{eq:solutbeta}
+\frac{\partial \mathcal{L}}{\partial \overline{\beta}}=\overline{\beta}-\sum \alpha_i y_i \overline{x_i}\overset{!}{=}0 \Rightarrow \overline{\beta}=\sum \alpha_i y_i \overline{x_i}\label{eq:solutbeta}
 \end{align}
 Somit zeigt sich, dass $\overline{\beta}$ als Linearkombination der Inputvektoren dargestellt werden kann. Weiterhin gilt für $\beta_0$
 \begin{align}
@@ -103,7 +103,7 @@ g(\overline{x}_u)=\begin{cases}\mathrm{positiv}&\text{wenn } f(\overline{x}_u)=\
 \subsection{Soft Margin Classifier}
 Dass die Daten sich perfekt linear trennen lassen ist zwar praktisch, um die Vorgehensweise zu veranschaulichen, tritt aber in realen Situationen so gut wie nie auf. Falls sich positive und negative Samples im Raum überlappen, ist die Konstruktion einer Hyperplane wie beim \textit{Hard Margin Classifier} unmöglich. Man müsste also entweder auf eine nicht lineare Hyperplane ausweichen oder man weicht die Vorgaben für die Konstruktion der Hyperplane etwas auf. Zweiteres ist genau das, was durch die \textit{Soft Margin Classifier} erreicht wird. Die Vorgabe für die Konstruktion der Schranken ermöglicht es, einzelnen Datenpunkten auf der falschen Seite der Schranke, ja sogar der Entscheidungsgrenzen zu liegen. Dafür wird für die Einschränkungen eine sogenannte \textit{Slack-Variable} $\varepsilon$ eingeführt \parencite{jamesIntroductionStatisticalLearning2021}. Wie diese sich auswirkt, ist in Abbildung \ref{fig:slackvariable} aufgeführt. Setzt man diese in \eqref{eq:Nebenbedingung} ein, lautet die neue Nebenbedingung
 \begin{align}
-y_i(\beta \cdot \overline{x}_i-\beta_0)>1- \varepsilon_i \label{eq:nebbedsfm}
+y_i(\overline{\beta} \cdot \overline{x}_i-\beta_0)>1- \varepsilon_i \label{eq:nebbedsfm}
 \end{align}
 \begin{figure}[htb]
 \centering
