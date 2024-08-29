@@ -64,6 +64,7 @@
 }
 \PassOptionsToPackage{a4paper,margin = 2.5cm}{geometry}
 \usepackage{geometry}
+\usepackage{float}
 \newcommand{\bcenter}{\begin{center}}
 \newcommand{\ecenter}{\end{center}}
 \renewcommand{\contentsname}{Inhalt}
@@ -100,7 +101,7 @@
 
 Bevor die Ergebnisse erläutert werden, wird kurz auf die Vorgehensweise
 bei der Analyse eingegangen. In die Analyse werden fünf Modelle
-einbezogen: SVM mit linearem, polynomialem und radialem Kern, sowie
+einbezogen: SVM mit linearem, polynomialem und radialem Kernel, sowie
 regularisierte logistische Regression und k-nearest neighbours.\newline
 Vor dem erstellen der Modelle wird ein Tuning der Hyperparameter je
 Modell durchgeführt. Dafür wird die Bayesian Optimization Methode

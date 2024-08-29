@@ -96,7 +96,7 @@ Das Ziel dieser Arbeit ist es, in verschiedenen Datensituationen die
 Performance von SVM Algorithmen für die binäre Klassifikation zu
 evaluieren. Dafür wollen wir eine Reihe von Datensätzen mit
 verschiedenen Charakteristiken synthetisch erstellen und entsprechend
-als Trainigsdaten verwenden. Die Datensätze unterscheiden sich in zwei
+als Trainingsdaten verwenden. Die Datensätze unterscheiden sich in zwei
 zentralen Eigenschaften. Das erste sind die Dimensionen. Es soll
 unterschieden werden in drei Kategorien. Die erste ist, dass es deutlich
 mehr Beobachtungen als Variablen gibt, also \(n \gg p\). Ein solches
@@ -131,7 +131,7 @@ getrennte Daten. Dafür wird eine lineare Hyperplane der Form
 \begin{align*}
 \beta_0+\beta_1 X_1+\beta_2 X_2 +...+\beta_{1-p} = \beta_p X_p
 \end{align*} mit zufälligen Koeffizienten erzeugt. Diese Daten sollen
-also den Annahmen entsprechen, die für SVMs mit linearem Kernel gelten.
+also den Annahmen entsprechend, die für SVMs mit linearem Kernel gelten.
 Nachem für eine Beobachtung \(j\) zufällig ein Punkt auf der Ebene
 gesampelt wurde, wurde dieser anschließend verschoben. Die Verschiebung
 erfolgte über eine Skalierung des normierten Normalenvektors
@@ -201,12 +201,12 @@ abgetragen
 \label{tab:datensituationen}
 \end{table}
 
-Zusätzlich soll nicht nur ein Vergleich zwischen der Performance der
-\textit{SVM} mit verschiedenen Kernel gemacht werden, sondern auch die
-Unterschiede in der Klassifikationsgüte der \textit{SVM} zu anderen
-gängigen Klassifikationsmethoden gezeigt werden. Dafür werden
-\textit{regularized Logistic Regression} und
-\textit{k-nearest Neighbour} als Vergleichsalgorithmen hinzugezogen.
+Zusätzlich soll nicht nur ein Vergleich zwischen der Performance der SVM
+mit verschiedenen Kernels gemacht werden, sondern auch die Unterschiede
+in der Klassifikationsgüte der SVM zu anderen gängigen
+Klassifikationsmethoden gezeigt werden. Dafür werden regularized
+Logistic Regression und k-nearest Neighbour als Vergleichsalgorithmen
+hinzugezogen.
 
 \printbibliography
 

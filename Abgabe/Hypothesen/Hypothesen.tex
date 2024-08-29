@@ -98,31 +98,30 @@ Performance in den verschiedenen Szenarien vorzunehmen und Hypothesen
 abzuleiten. Vorab ist zu erwähnen, dass die Evaluation von
 Klassifikationsmethoden anhand synthetischer Datensätze in der Literatur
 begrenzt ist. Da für diese Arbeit die Form der Entscheidungsgrenze
-entscheidend ist, werden dennoch auschließlich Arbeiten mit
+entscheidend ist, werden dennoch ausschließlich Arbeiten mit
 synthetischen Datensätzen zu Rate gezogen.\newline Aufgrund dessen, dass
-der Datengenerierende Prozess hier so ausgearbeitet wurde, dass er mit
-den Annahmen der \textit{SVM} arbeitet, erwarten wir zuerst einmal eine
-bessere Performance der \textit{SVM} Classifier im Vergleich zu den
-anderen Methoden.
+der datengenerierende Prozess hier so ausgearbeitet wurde, dass er mit
+den Annahmen der SVM arbeitet, erwarten wir zuerst einmal eine
+durchschnittlich bessere Performance der SVM Classifier im Vergleich zu
+den anderen Methoden.
 
 \begin{minipage}{0.9\linewidth}
 \begin{itemize}[leftmargin=0.1\linewidth]
-\item[\textbf{H1:}] Die \textit{SVM}-Classifier Performen über alle Datensituationen im Durchschnitt besser als die anderen Classifier
+\item[\textbf{H1:}] Die SVM-Classifier Performen über alle Datensituationen im Durchschnitt besser als die anderen Classifier.
 \end{itemize}
 \end{minipage}
 
-Des Weiteren wurden in den einzelnen Kategorien des Daten generierenden
-Prozesses die Entscheidungsgrenzen speziell auf verschiedene Kernels der
-\textit{SVM} zugeschnitten. Daher sollten \textit{SVM} mit linearem
-Kernel im Setting mit linearer Entscheidungsgrenze mindestens so gut
-oder besser als die restlichen Classifier performen. Gleiches gilt für
-\textit{SVM} mit polynomialen Kernel im Setting mit einer quadratischen
-Entscheidungsgrenze und radiale Kernel bei einer Hypershäre als
-Entscheidungsgrenze.
+Des Weiteren wurden in den einzelnen Kategorien des datengenerierenden
+Prozesses die Entscheidungsgrenzen speziell auf verschiedene Kernels
+zugeschnitten. Daher sollten SVM mit linearem Kernel im Setting mit
+linearer Entscheidungsgrenze mindestens so gut oder besser als die
+restlichen Classifier performen. Gleiches gilt für SVM mit polynomialen
+Kernel im Setting mit einer quadratischen Entscheidungsgrenze und
+radiale Kernel bei einer Hypershäre als Entscheidungsgrenze.
 
 \begin{minipage}{0.9\linewidth}
 \begin{itemize}[leftmargin=0.1\linewidth]
-\item[\textbf{H2:}] Die \textit{SVM}-Classifier mit dem Kernel, der für den jeweiligen DGP zugeschnitten ist sollten mindestens genauso gut oder besser performen als die restlichen Classifier
+\item[\textbf{H2:}] Die SVM-Classifier mit dem Kernel, der für den jeweiligen DGP zugeschnitten ist sollten mindestens genauso gut oder besser performen als die restlichen Classifier.
 \end{itemize}
 \end{minipage}
 
@@ -169,7 +168,7 @@ lediglich die Ränge der 25 behandelten Klassifikationsmethoden. Somit
 können nur eingeschränkte Schlussfolgerungen gezogen werden.
 
 In hochdimensionalen Szenarien zeigt vermutlich die \textit{SVM} mit
-polynomialem oder radialem Kern eine gute Performance, unabhängig von
+polynomialem oder radialem Kernel eine gute Performance, unabhängig von
 der Form der Entscheidungsgrenze, während die linearen \textit{SVM}
 voraussichtlich weniger gut abschneiden wird. Es scheint so, dass auch
 \textit{K-NN} und \textit{logistische Regression} in hochdimensionalen
@@ -177,7 +176,7 @@ Szenarien zumindest mittelmäßig abschneiden. Hier ist jedoch zu
 beachten, dass nur eine lineare Entscheidungsgrenze betrachtet wurde und
 in den Szenarien S8 und S9 andere Ergebnisse möglich sind. Es ist aber
 auch bekannt, dass gerade die \textit{K-NN} Methode in hochdimensionalen
-Settings schlechter performt
+Szenarien schlechter performt
 \parencite{jamesIntroductionStatisticalLearning2021}, während
 \textit{SVM} für solche Fälle sehr oft Verwendung finden
 \parencite{moguerzaSupportVectorMachines2006}. Wir schließen Final
