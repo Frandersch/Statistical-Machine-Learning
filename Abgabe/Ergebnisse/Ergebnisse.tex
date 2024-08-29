@@ -64,6 +64,7 @@
 }
 \PassOptionsToPackage{a4paper,margin = 2.5cm}{geometry}
 \usepackage{geometry}
+\usepackage{float}
 \newcommand{\bcenter}{\begin{center}}
 \newcommand{\ecenter}{\end{center}}
 \renewcommand{\contentsname}{Inhalt}
@@ -91,7 +92,7 @@
 
 \title{Ergebnisse}
 \author{Franz Andersch \& Niklas Münz}
-\date{2024-08-27}
+\date{2024-08-29}
 
 \begin{document}
 \maketitle
@@ -100,7 +101,7 @@
 
 Bevor die Ergebnisse erläutert werden, wird kurz auf die Vorgehensweise
 bei der Analyse eingegangen. In die Analyse werden fünf Modelle
-einbezogen: SVM mit linearem, polynomialem und radialem Kern, sowie
+einbezogen: SVM mit linearem, polynomialem und radialem Kernel, sowie
 regularisierte logistische Regression und k-nearest neighbours.\newline
 Vor dem erstellen der Modelle wird ein Tuning der Hyperparameter je
 Modell durchgeführt. Dafür wird die Bayesian Optimization Methode
@@ -146,7 +147,7 @@ bereits bei sehr hoher Spezifität (hohe Anzahl korrekt Negative) eine
 hohe Sensitivität (hohe Anzahl korrekt Positive) erreicht wird. Der
 AUC-Wert bezieht sich auf die Fläche unterhalb der Kurve und liegt somit
 im Intervall {[}0,1{]}, wobei ein Wert von 1 für eine perfekte
-Klassifikation spricht, während ein Wert von 0.5 glechbedeutend mit
+Klassifikation spricht, während ein Wert von 0.5 gleichbedeutend mit
 einer rein zufälligen Zuordnung der Klassen spricht.\newline Für den
 F1-Score ist außerdem die Präzision von Bedeutung, die sich wie folgt
 berechnet\parencite{fawcettIntroductionROCAnalysis2006}: \begin{align}
@@ -350,21 +351,7 @@ ebenfalls die beiden Gruppen zu differenzieren. Für \textit{SVM-L} und
 Genauigkeit erkennbar. \textit{SVM-P} und \textit{K-NN} performen in
 diesem Szenario am Besten. \textit{SVM-R} fällt insbesondere mit einer
 Genauigkeit von 0.66 im Vergleich zu 0.76 etwas hinter den anderen
-beiden Algorithmen zurück.\newline Abbildung \ref{fig:S3ROC} zeigt die
-ROC-Kurven für Szenario 3. Hieraus wird deutlich, dass die Kurve von
-\textit{SVM-P} nahe an der oberen, linken Ecke verläuft, was für eine
-nahezu perfekte Klassifikation spricht. Der etwas flachere Verlauf von
-\textit{SVM-R} und \textit{K-NN} macht deutlich, dass diese beiden
-Algorithmen weniger gute Leistung zeigen. Dennoch können die beiden oben
-erwähnten Gruppen gut identifiziert werden, da sich \textit{SVM-L} und
-\textit{LogR} nahe der diagonalen Linie orientieren. Diese beschreibt
-eine ROC-Kurve einer reinen Zufallsauswahl, woraus gefolgert werden
-kann, dass sie kaum Fähigkeit aufweisen zwischen den Klassen zu
-unterscheiden. Diese Szenarien bestätigen die Vermutung aus \textbf{H2}
-zwar nicht direkt, da hier im Ranking über alle Szenarien mir radialer
-Entscheidungsgrenze hinweg interessanterweise \textit{SVM-P} am besten
-performt aber zumindest liegt hier \textit{SVM-R} auf dem zweiten Platz.
-Trotzdem müssen wir mit diesen Ergebnissen \textbf{H2} ablehnen.
+beiden Algorithmen zurück.\newline
 
 \begin{figure}[htb]
 \begin{minipage}{0.48\linewidth}
@@ -389,18 +376,34 @@ Trotzdem müssen wir mit diesen Ergebnissen \textbf{H2} ablehnen.
 \end{minipage}
 \end{figure}
 
+Abbildung \ref{fig:S3ROC} zeigt die ROC-Kurven für Szenario 3. Hieraus
+wird deutlich, dass die Kurve von \textit{SVM-P} nahe an der oberen,
+linken Ecke verläuft, was für eine nahezu perfekte Klassifikation
+spricht. Der etwas flachere Verlauf von \textit{SVM-R} und \textit{K-NN}
+macht deutlich, dass diese beiden Algorithmen weniger gute Leistung
+zeigen. Dennoch können die beiden oben erwähnten Gruppen gut
+identifiziert werden, da sich \textit{SVM-L} und \textit{LogR} nahe der
+diagonalen Linie orientieren. Diese beschreibt eine ROC-Kurve einer
+reinen Zufallsauswahl, woraus gefolgert werden kann, dass sie kaum
+Fähigkeit aufweisen zwischen den Klassen zu unterscheiden. Diese
+Szenarien bestätigen die Vermutung aus \textbf{H2} zwar nicht direkt, da
+hier im Ranking über alle Szenarien mir radialer Entscheidungsgrenze
+hinweg interessanterweise \textit{SVM-P} am besten performt aber
+zumindest liegt hier \textit{SVM-R} auf dem zweiten Platz. Trotzdem
+müssen wir mit diesen Ergebnissen \textbf{H2} ablehnen.
+
 Zuletzt wird ein Vergleich der einzelnen Dimensionierungen über die drei
 Formen der Entscheidungsgrenze gezogen. So ist für \(p \ll n\)
 ersichtlich, dass insbesondere \textit{SVM-P} und \textit{SVM-R} über
-alle drei Szenarien gute Leistung (mit Werten mindestens nahe 0.8). Auch
-im durchschnittlichen Ranking für diese Szenarien über alle drei
-Szenarien zeigen die \textit{SVM}-Methoden die besten Ergebnisse.
+alle drei Szenarien gute Leistung (mit Werten mindestens nahe 0.8)
+erzielen. Auch im durchschnittlichen Ranking über alle drei Szenarien
+hinweg zeigen die \textit{SVM}-Methoden die besten Ergebnisse.
 Überaschen ist nur die unerwartet schlechte Performance von
 \textit{K-NN}. Somit bestätigt sich \textbf{H3} hier nur teilweise. In
 den hochdimensionalen Szenarien \(p \gg n\) ist einzig \textit{K-NN}
 überzeugend, welcher auch im polynomialen Szenario Werte über 0.7
 aufweist. Hier belegen die \textit{SVM}-Methoden tatsächlich sogar die
-letzten Plätze im durschschnittlichen Ranking. Dies deutet klar darauf
+letzten Plätze im durchschnittlichen Ranking. Dies deutet klar darauf
 hin, dass \textbf{H4} mit unseren Daten verworfen werden muss.
 
 \printbibliography

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.12.13)  28 AUG 2024 12:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.12.13)  29 AUG 2024 12:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1324,7 +1324,7 @@ been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.197 \end{align}
-                  ersetzet man in \eqref{eq:betanull} [1
+                  ersetzt man in \eqref{eq:betanull} [1
 
 {C:/Users/49152/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}
 {C:/Users/49152/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/
@@ -1337,105 +1337,109 @@ Package pdftex.def Info: Images/margin.pdf  used on input line 246.
 [2 <./Images/decision_boundary.pdf> <./Images/guttes.pdf>] [3{C:/Users/49152/Ap
 pData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc} <./Images/margin.
 pdf>]
-<Images/slackvariable.pdf, id=155, 444.45247pt x 377.12291pt>
+<Images/slackvariable.pdf, id=156, 444.45247pt x 377.12291pt>
 File: Images/slackvariable.pdf Graphic file (type pdf)
 <use Images/slackvariable.pdf>
 Package pdftex.def Info: Images/slackvariable.pdf  used on input line 344.
 (pdftex.def)             Requested size: 234.8816pt x 196.86601pt.
 [4]
-<Images/nonlinearseperable.pdf, id=181, 444.45247pt x 377.12291pt>
+<Images/nonlinearseperable.pdf, id=182, 444.45247pt x 377.12291pt>
 File: Images/nonlinearseperable.pdf Graphic file (type pdf)
 <use Images/nonlinearseperable.pdf>
-Package pdftex.def Info: Images/nonlinearseperable.pdf  used on input line 414.
+Package pdftex.def Info: Images/nonlinearseperable.pdf  used on input line 415.
 
 (pdftex.def)             Requested size: 211.39536pt x 177.18102pt.
-<Images/featurexpansion.pdf, id=182, 325.5914pt x 253.59743pt>
+<Images/featurexpansion.pdf, id=183, 325.5914pt x 253.59743pt>
 File: Images/featurexpansion.pdf Graphic file (type pdf)
 <use Images/featurexpansion.pdf>
-Package pdftex.def Info: Images/featurexpansion.pdf  used on input line 420.
+Package pdftex.def Info: Images/featurexpansion.pdf  used on input line 421.
 (pdftex.def)             Requested size: 211.39613pt x 160.17677pt.
 [5 <./Images/slackvariable.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 438--447
+Underfull \hbox (badness 10000) in paragraph at lines 440--450
 
  []
 
-<Images/ploynomial kernel.pdf, id=210, 444.45247pt x 377.12291pt>
+<Images/ploynomial kernel.pdf, id=212, 444.45247pt x 377.12291pt>
 File: Images/ploynomial kernel.pdf Graphic file (type pdf)
 <use Images/ploynomial kernel.pdf>
-Package pdftex.def Info: Images/ploynomial kernel.pdf  used on input line 452.
+Package pdftex.def Info: Images/ploynomial kernel.pdf  used on input line 455.
 (pdftex.def)             Requested size: 211.39536pt x 177.18102pt.
-<Images/radial_kernel.pdf, id=211, 444.42737pt x 377.11992pt>
+<Images/radial_kernel.pdf, id=213, 444.42737pt x 377.11992pt>
 File: Images/radial_kernel.pdf Graphic file (type pdf)
 <use Images/radial_kernel.pdf>
-Package pdftex.def Info: Images/radial_kernel.pdf  used on input line 458.
+Package pdftex.def Info: Images/radial_kernel.pdf  used on input line 461.
 (pdftex.def)             Requested size: 211.38893pt x 177.18481pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 464--472
+Underfull \hbox (badness 10000) in paragraph at lines 467--475
 
  []
 
 [6 <./Images/nonlinearseperable.pdf> <./Images/featurexpansion.pdf> <./Images/p
 loynomial kernel.pdf> <./Images/radial_kernel.pdf>] [7] [8] [9]
 
-LaTeX Warning: Command \" invalid in math mode on input line 790.
-
-
-LaTeX Warning: Command \" invalid in math mode on input line 790.
-
-
 LaTeX Warning: Command \" invalid in math mode on input line 792.
 
 
 LaTeX Warning: Command \" invalid in math mode on input line 792.
+
+
+LaTeX Warning: Command \" invalid in math mode on input line 794.
+
+
+LaTeX Warning: Command \" invalid in math mode on input line 794.
 
 [10]
 
-LaTeX Warning: Command \" invalid in math mode on input line 805.
+LaTeX Warning: Command \" invalid in math mode on input line 807.
 
 
-LaTeX Warning: Command \" invalid in math mode on input line 805.
+LaTeX Warning: Command \" invalid in math mode on input line 807.
 
 
-LaTeX Warning: Command \" invalid in math mode on input line 810.
+LaTeX Warning: Command \" invalid in math mode on input line 812.
 
 
-LaTeX Warning: Command \" invalid in math mode on input line 810.
+LaTeX Warning: Command \" invalid in math mode on input line 812.
 
 
-LaTeX Warning: Command \" invalid in math mode on input line 810.
+LaTeX Warning: Command \" invalid in math mode on input line 812.
 
 
-LaTeX Warning: Command \" invalid in math mode on input line 810.
+LaTeX Warning: Command \" invalid in math mode on input line 812.
 
 [11] [12
 
 
 ]
-<Ergebnisse_files/figure-latex/S1ROC-1.pdf, id=337, 429.605pt x 288.07625pt>
+Underfull \hbox (badness 10000) in paragraph at lines 988--1007
+
+ []
+
+<Ergebnisse_files/figure-latex/S1ROC-1.pdf, id=340, 429.605pt x 288.07625pt>
 File: Ergebnisse_files/figure-latex/S1ROC-1.pdf Graphic file (type pdf)
 <use Ergebnisse_files/figure-latex/S1ROC-1.pdf>
 Package pdftex.def Info: Ergebnisse_files/figure-latex/S1ROC-1.pdf  used on inp
-ut line 1023.
+ut line 1011.
 (pdftex.def)             Requested size: 225.48044pt x 151.19833pt.
-<Ergebnisse_files/figure-latex/S2ROC-1.pdf, id=338, 429.605pt x 288.07625pt>
+<Ergebnisse_files/figure-latex/S2ROC-1.pdf, id=341, 429.605pt x 288.07625pt>
 File: Ergebnisse_files/figure-latex/S2ROC-1.pdf Graphic file (type pdf)
 <use Ergebnisse_files/figure-latex/S2ROC-1.pdf>
 Package pdftex.def Info: Ergebnisse_files/figure-latex/S2ROC-1.pdf  used on inp
-ut line 1030.
+ut line 1018.
 (pdftex.def)             Requested size: 225.48044pt x 151.19833pt.
-<Ergebnisse_files/figure-latex/S3ROC-1.pdf, id=339, 465.74pt x 324.21124pt>
+<Ergebnisse_files/figure-latex/S3ROC-1.pdf, id=342, 465.74pt x 324.21124pt>
 File: Ergebnisse_files/figure-latex/S3ROC-1.pdf Graphic file (type pdf)
 <use Ergebnisse_files/figure-latex/S3ROC-1.pdf>
 Package pdftex.def Info: Ergebnisse_files/figure-latex/S3ROC-1.pdf  used on inp
-ut line 1037.
+ut line 1025.
 (pdftex.def)             Requested size: 225.47855pt x 156.96028pt.
 [13
 
 
-] [14 <./Ergebnisse_files/figure-latex/S1ROC-1.pdf> <./Ergebnisse_files/figure-
-latex/S2ROC-1.pdf> <./Ergebnisse_files/figure-latex/S3ROC-1.pdf>]
+ <./Ergebnisse_files/figure-latex/S1ROC-1.pdf> <./Ergebnisse_files/figure-latex
+/S2ROC-1.pdf> <./Ergebnisse_files/figure-latex/S3ROC-1.pdf>] [14]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-121.
+125.
 (C:\Users\49152\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) [15] (Hausarbeit.aux (titlepage.aux))
@@ -1448,11 +1452,11 @@ Package logreq Info: Writing requests to 'Hausarbeit.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 34790 strings out of 474586
- 662460 string characters out of 5745680
+ 34796 strings out of 474586
+ 662534 string characters out of 5745680
  1962558 words of memory out of 5000000
- 56107 multiletter control sequences out of 15000+600000
- 631394 words of font info for 183 fonts, out of 8000000 for 9000
+ 56108 multiletter control sequences out of 15000+600000
+ 631383 words of font info for 184 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  84i,16n,87p,1743b,3227s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/49152/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
@@ -1477,9 +1481,9 @@ ocal/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/49152/AppData/L
 ocal/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/49152/AppData/L
 ocal/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/49152/AppData/Lo
 cal/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb>
-Output written on Hausarbeit.pdf (17 pages, 617434 bytes).
+Output written on Hausarbeit.pdf (17 pages, 618084 bytes).
 PDF statistics:
- 542 PDF objects out of 1000 (max. 8388607)
- 86 named destinations out of 1000 (max. 500000)
+ 546 PDF objects out of 1000 (max. 8388607)
+ 89 named destinations out of 1000 (max. 500000)
  39089 words of extra memory for PDF output out of 42996 (max. 10000000)
 
