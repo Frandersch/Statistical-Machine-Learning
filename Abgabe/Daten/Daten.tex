@@ -87,7 +87,7 @@
 
 \title{Zielsetzung und Datengenerierung}
 \author{Franz Andersch \& Niklas Münz}
-\date{2024-08-28}
+\date{2024-08-29}
 
 \begin{document}
 \maketitle
@@ -96,7 +96,7 @@ Das Ziel dieser Arbeit ist es, in verschiedenen Datensituationen die
 performance von SVM Algorithmen für die binäre Klassifikation zu
 evaluieren. Dafür wollen wir eine Reihe von Datensätzen mit
 verschiedenen Charakteristiken synthetisch erstellen und entsprechen als
-Trainigsdaten verwenden. Die Datensätze unterscheiden sich in zwei
+Trainingsdaten verwenden. Die Datensätze unterscheiden sich in zwei
 zentralen Eigenschaften. Das erste sind die Dimensionen. Es soll
 unterschieden werden in drei Kategorien. Die erste ist, dass es deutlich
 mehr Beobachtungen als Variablen gibt, also \(n \gg p\). Ein solches
@@ -115,8 +115,8 @@ Natural Language Processing sind solche Datensätze häufiger anzutreffen
 \parencite{scholzComparisonClassificationMethods2021}. Die Werte die
 dafür angenommen wurden sind \(p=200\) und \(n=50\).
 
-Die zweite Charakteristik ist der Datengenerierende Prozess. Da in
-dieser Arbeit SVMs im Vordergrund stehen und wir hier vor allem zeigen
+Die zweite Charakteristik ist der datengenerierende Prozess. Da in
+dieser Arbeit SVM im Vordergrund stehen und wir hier vor allem zeigen
 wollen, wie SVM funktionieren, wird der DGP so aufgebaut, dass er der
 grundlegenden Idee der SVM am ehesten entspricht. Die Vorgehensweise
 ist, im ersten Schritt eine Hyperplane, im \(p\)-Dimensionalen Raum, in
@@ -128,48 +128,50 @@ angenommen.
 
 Insgesammt gibt es auch hier wieder 3 Kategorien. Die erste sind linear
 getrennte Daten. Dafür wird eine lineare Hyperplane der Form
-\begin{align*}
+\begin{align}
 \beta_0+\beta_1 X_1+\beta_2 X_2 +...+\beta_{1-p} = \beta_p X_p
-\end{align*} mit zufälligen Koeffizienten erzeugt. Diese Daten sollen
-also den Annahmen entsprechen, die für SVMs mit linearem Kernel gelten.
-Nachem für eine Beobachtung \(j\) zufällig ein Punkt auf der Ebene
-gesampelt wurde, wurde dieser andschließend verschoben. Die Verschiebung
+\end{align} mit zufälligen Koeffizienten erzeugt. Diese Daten sollen
+also den Annahmen entsprechen, die für SVM mit linearem Kernel gelten.
+Nachdem für eine Beobachtung \(j\) zufällig ein Punkt auf der Ebene
+gesampelt wurde, wurde dieser anschließend verschoben. Die Verschiebung
 erfolgte über eine Skalierung des normierten Normalenvektors
 \(k\left(\frac{\overline{\beta}}{||\overline{\beta}||}\right)\). \(k\)
 ist dabei eine normalverteilte Zufallszahl mit Mittelwert \(\mu_k\) und
 Varianz \(\sigma^2_k\). Dieser Prozess wird \(n/2\) mal wiederholt für
-die eine Ausprägung der Zielvariable (\(y_i=1\)) und dementsprechen
+die eine Ausprägung der Zielvariable (\(y_i=1\)) und dementsprechend
 \(n/2\) mal für die andere Ausprägung (\(y_i=-1\)), dann aber mit
 \(-\mu_k\) als Mittelwert für \(k\). \newline In der zweiten Situation
-hat die Hyperplane eine quadratische Form: \begin{align*}
+hat die Hyperplane eine quadratische Form: \begin{align}
 \beta_0+\beta_1 X_1 + \beta_2 X_1^2+\beta_3 X_2+\beta_4 X_2^2+...+\beta_{2p-2}X_{p-1}+\beta_{2p-1}X_{p-1}^2=\beta_{2p} X_p
-\end{align*} diese Form der Trennung stellt also eine
-Merkmalserweiterung um quadratische Terme dar und funktioniert damit
-ähnlich wie eine SVM mit polynomialen Kernel mit \(d=2\).Die
-Verschiebung erfolgte hier nur durch skalierung der Werte von \(X_p\)
-ebenfalls mit \(k\sim\mathcal{N}(\mu_k,\sigma^2_k)\) für die eine
-Ausprägung und \(k\sim\mathcal{N}(-\mu_k,\sigma^2)\) für die andere
-Ausprägung.\newline  Der letzte DGP geht von einer noch Komplexeren
+\end{align} diese Form der Trennung stellt also eine Merkmalserweiterung
+um quadratische Terme dar und funktioniert damit ähnlich wie eine SVM
+mit polynomialen Kernel mit \(d=2\).Die Verschiebung erfolgte hier nur
+durch Skalierung der Werte von \(X_p\) ebenfalls mit
+\(k\sim\mathcal{N}(\mu_k,\sigma^2_k)\) für die eine Ausprägung und
+\(k\sim\mathcal{N}(-\mu_k,\sigma^2)\) für die andere
+Ausprägung.\newline  Der letzte DGP geht von einer noch komplexeren
 Entscheidungsgrenzen aus. Es wird hier ein Hypershpäre im \(p\)
 dimensionalen Raum erstellt und einmal innerhalb und einmal außerhalb
 dieser gesampelt. Dafür wurde für eine Beobachtung \(j\), \(p-1\) Winkel
-\(\theta\) zufällig erstellt, ein Radius \(r\) festgelegt und
-anschließend die einzelnen Werte \(X_{1,j},X_{2,j},...,X_{p,j}\)
-berechnet. Die berechnung erfolgt dabei über die Definition von
-sphärischen Koordinaten: \begin{align*}
+\(\overline{\theta}\) zufällig erstellt, ein Radius \(r\) für die
+Hypersphäre festgelegt und anschließend die einzelnen Werte
+\(X_{1,j},X_{2,j},...,X_{p,j}\) berechnet. Die Berechnung erfolgt dabei
+über die Definition von sphärischen Koordinaten: \begin{align}
+\begin{aligned}
         X_{1,j} &= r \cos(\theta_1)\\
         X_{2,j} &= r \sin(\theta_1)\cos(\theta_2)\\
         X_{3,j} &= r \sin(\theta_1)\sin(\theta_2)\cos(\theta_3)\\
         &\quad \vdots\\
         X_{p-1,j}&=r \sin(\theta_1)\ldots \sin(\theta_{p-2})\cos(\theta_{p-1})\\
         X_{p,j}&=r \sin(\theta_1)\ldots \sin(\theta_{p-2})\sin(\theta_{p-1})
-    \end{align*} Dieser Vorgang wird dann \(n/2\) mal, wiederholt und
+    \end{aligned}
+    \end{align} Dieser Vorgang wird dann \(n/2\) mal, wiederholt und
 anschließend erfolgt die Verschiebung durch eine Skalierung des
 jeweiligen normalisierten Datenvektors
 \(k\left(\frac{\overline{x}}{||x||}\right)\). \(k\) ist auch hier wieder
 eine Zufallsvariable mit \(\mu_k\) für die eine Ausprägung der
 Zielvariable und \(-\mu_k\) für die andere Ausprägung. Die Streuung
-bleibt bei beiden bei einem konstanten Werte \(\sigma^2_k\). Je nachdem
+bleibt bei beiden bei einem konstanten Werte \(\sigma^2_k\). Je nachdem,
 wie \(\mu_k\) und \(\sigma^2_r\) gewählt werden kann die Trennbarkeit
 der Daten angepasst werden. Für alle Szenarien wurde ein Wert für
 \(\mu_k\) und \(\sigma^2_k\) festgelegt, der für eine moderate
@@ -201,12 +203,12 @@ abgetragen
 \label{tab:datensituationen}
 \end{table}
 
-Zusätzlich soll nicht nur ein Vergleich zwischen der Performance der
-\textit{SVM} mit verschiedenen Kernel gemacht werden, sondern auch die
-Unterschiede in der Klassifikationsgüte der \textit{SVM} zu anderen
-gängigen Klassifikationsmethoden gezeigt werden. Dafür werden
-\textit{regularized Logistic Regression} und
-\textit{k-nearest Neighbour} als Vergleichsalgorithmen hinzugezogen.
+Zusätzlich soll nicht nur ein Vergleich zwischen der Performance der SVM
+mit verschiedenen Kernels gemacht werden, sondern auch die Unterschiede
+in der Klassifikationsgüte der SVM zu anderen gängigen
+Klassifikationsmethoden gezeigt werden. Dafür werden regularized
+Logistic Regression und k-nearest Neighbour als Vergleichsalgorithmen
+hinzugezogen.
 
 \printbibliography
 

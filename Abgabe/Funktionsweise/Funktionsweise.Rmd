@@ -169,4 +169,4 @@ Für diesen Kernel wird die quadrierte euklidische Distanz als Ähnlichkeitsmaß
     \end{minipage}
 \end{figure}
 
-Es gibt noch einen Reihe weitere Kernel, die auf unterschiedlichen Ähnlichkeitsmaßen beruhen, aber eher seltener oder nur in speziellen Zusammenhänge angewendet werden. Wichtig ist anzumerken, dass die Verwendung von Kernels zwar die Flexibilität der Entscheidungsgrenze erhöht, damit aber auch die Gefahr von \textit{Overfitting} einhergeht. Zusätzlich werden mit den Kernels auch neue Hyperparameter wie $d$ oder $\gamma$ eingeführt, die bei der Model-Selektion ebenfalls beachtet werden müssen.  
+Es gibt noch einen Reihe weitere Kernel, die auf unterschiedlichen Ähnlichkeitsmaßen beruhen, aber eher seltener oder nur in speziellen Zusammenhänge angewendet werden. Wichtig ist anzumerken, dass die Verwendung von Kernels zwar die Flexibilität der Entscheidungsgrenze erhöht, damit aber auch die Gefahr von \textit{Overfitting} einhergeht. Zusätzlich werden mit den Kernels auch neue Hyperparameter wie $d$ oder $\gamma$ eingeführt, die bei der Modellauswahl ebenfalls beachtet werden müssen.  
