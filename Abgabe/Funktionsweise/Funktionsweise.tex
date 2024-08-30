@@ -87,7 +87,7 @@
 
 \title{Funktionsweise}
 \author{Franz Andersch \& Niklas Münz}
-\date{2024-08-29}
+\date{2024-08-30}
 
 \begin{document}
 \maketitle
@@ -103,9 +103,9 @@ allgemeine Form einer solchen Hyperplane lautet \begin{align}
 \beta_0+ \beta_1 X_1+\beta_2 X_2+...+\beta_n X_n=0\label{eq:hyperebene}
 \end{align} oder in Vektorschreibweise \begin{align}
 \overline{\beta}\cdot\overline{x}+\beta_0=0 \label{eq:hyperplanevec}
-\end{align} Die geometrische Interpretation des Vektors \(\beta\) und
-des Skalars \(\beta_0\) wird in Abbildung \ref{fig:Ebene} im
-zweidimensionalen Fall dargestellt.
+\end{align} Die geometrische Interpretation des Vektors
+\(\overline{\beta}\) und des Skalars \(\beta_0\) wird in Abbildung
+\ref{fig:Ebene} im zweidimensionalen Fall dargestellt.
 
 \begin{figure}[htb]
     \centering
@@ -123,8 +123,8 @@ zweidimensionalen Fall dargestellt.
     \end{minipage}
 \end{figure}
 
-Die blaue Linie soll die Hyperplane darstellen. Im zweidimensionalen
-handelt es sich hier um eine Linie. Der \(2 \times 1\) Vektor
+Die blaue Linie soll die Hyperplane darstellen. Um eine solche handelt
+es sich natürlich nur im zweidimensionalen Raum. Der Vektor
 \(\overline{\beta}\) liegt immer senkrecht zur konstruierten Hyperplane.
 Würde man alle Vektoren, die auf der Hyperplane landen, auf den
 normierten \(\overline{\beta}\)-Vektor projizieren, dann erhält man für
@@ -144,7 +144,7 @@ durch die blaue Linie getrennt werden. Allerdings könnte man theoretisch
 unendlich viele andere Hyperplanes durch Rotation oder Verschiebung
 konstruieren, die trotzdem die Daten in ihren Ausprägungen trennen. Um
 eine eindeutige Lösung zu finden, wird zunächst ein Bereich um die
-Hyperplane abgesteckt. In Abbildung \ref{fig:Margin} dargestellt durch
+Hyperplane abgesteckt; in Abbildung \ref{fig:Margin} dargestellt durch
 die gestrichelten schwarzen Linien, welche man als Schranken bezeichnen
 könnte. In diesem Bereich sollen keine Datenpunkte liegen, die Schranken
 sollen immer parallel zur Hyperplane sein und den gleichen Abstand zu
@@ -241,7 +241,8 @@ nach \(\beta_0\) löst.
 Mit den gelösten Werten zur optimalen Hyperplane kann jetzt auch eine
 Entscheidungsregel für ungelabelte Datenvektoren \(\overline{x}_u\)
 konstruiert werden. Bedenkt man also, wenn man einen Vektor, der nicht
-auf der Hypeplane liegt in \eqref{eq:betanull} einsetzt, erhält man also
+auf der Hyperplane liegt in \eqref{eq:betanull} einsetzt, erhält man
+also
 \(\frac{\overline \beta}{||\overline{\beta}||}\cdot \overline{x}_u=c+k\).
 Wenn \(k\) positiv ist, liegt der neue Datenpunkt oberhalb der
 Hyperplane und wird somit als positives Sample gewertet. Wenn \(k\)
@@ -258,10 +259,10 @@ g(\overline{x}_u)=\begin{cases}\mathrm{positiv}&\text{wenn } f(\overline{x}_u)=\
 
 \subsection{Soft Margin Classifier}
 
-Dass die Daten sich perfekt linear trennen lassen ist zwar praktisch, um
-die Vorgehensweise zu veranschaulichen, tritt aber in realen Situationen
-so gut wie nie auf. Falls sich positive und negative Samples im Raum
-überlappen, ist die Konstruktion einer Hyperplane wie beim
+Dass die Daten sich perfekt linear trennen lassen, ist zwar praktisch,
+um die Vorgehensweise zu veranschaulichen, tritt aber in realen
+Situationen so gut wie nie auf. Falls sich positive und negative Samples
+im Raum überlappen, ist die Konstruktion einer Hyperplane wie beim
 \textit{Hard Margin Classifier} unmöglich. Man müsste also entweder auf
 eine nicht lineare Hyperplane ausweichen oder man weicht die Vorgaben
 für die Konstruktion der Hyperplane etwas auf. Zweiteres ist genau das,
@@ -290,9 +291,10 @@ hier das Problem, dass \(\varepsilon\) einfach immer maximal groß
 gewählt wird und so die Bedingung immer erfüllt wird. Um das Ausmaß der
 Verletzung der ursprünglichen Annahmen zu begrenzen, aber trotzdem noch
 gewisse Abweichung zuzulassen, wird ein weiterer Parameter \(C\), als
-regularisierender Parameter für \(\varepsilon\) eingeführt. Leitet man
-daraus zusammen mit der Restriktion \(\varepsilon\ge0\) wieder eine
-Lagrangefunktion her erhält man \begin{align}
+regularisierender Parameter für \(\varepsilon\) eingeführt (auch als
+Cost-Parameter bezeichnet). Leitet man daraus zusammen mit der
+Restriktion \(\varepsilon\ge0\) wieder eine Lagrangefunktion her erhält
+man \begin{align}
 \mathcal{L}(\overline\beta,\beta_0,\overline\alpha,\overline\varepsilon,\overline\lambda)=\frac{1}{2}\overline\beta'\cdot \overline\beta + C \sum_{i=1}^{n}\varepsilon_i-\underbrace{\sum \alpha_i[y_i(\overline\beta \cdot \overline{x_i}+\beta_0)-1+\varepsilon_i]}_{\text{für }y_i(\overline\beta \cdot \overline{x}_i-\beta_0)>1- \varepsilon_i}-\underbrace{\sum \lambda_i \varepsilon_i }_{\substack{\text{für}\\ \varepsilon_i \ge 0}}
 \end{align} Wenn dieser Ausdruck wie beim
 \textit{Hard Margin Classifier} gelöst wird und die Ergebnisse
@@ -372,18 +374,18 @@ Weiteren gibt es den \textit{Polynomial Kernel}. Dieser hat die Form
 \end{align} Die Verwendung von diesem Kernel führt dazu, dass die
 Entscheidungsgrenze sich ähnlich Verhält, wie als würde man zu Beginn
 eine Merkmalserweiterung mit Polynomen vom Grad \(d\) durchführen (siehe
-Abbildung \ref{fig:polykernel}. Eine weitere Kernel Funktion ist der
+Abbildung \ref{fig:polykernel}). Eine weitere Kernel Funktion ist der
 \textit{Radial Basis Function Kernel} (RBF) mit der Form \begin{align}
 K(x_i,x_u)=\exp\left(-\gamma ||x_i-x_u||^2\right)
 \end{align} Für diesen Kernel wird die quadrierte euklidische Distanz
 als Ähnlichkeitsmaß verwendet, was dazu führt, dass diejenigen \(x_i\)
 die näher an \(x_u\) liegen, in der Entscheidungsfunktion einen größeren
 Einfluss haben. Der Parameter \(\gamma\) legt dann fest, wie stark der
-Einfluss der Distanz sein soll. Die Projektion die der Kernel hier macht
-ist eine, in einen unendlich großen Merkmalsraum
+Einfluss der Distanz sein soll. Die Projektion, die der Kernel hier
+macht ist eine, in einen unendlich großen Merkmalsraum
 \parencite{jamesIntroductionStatisticalLearning2021}. Daher könnte man
 selbst durch vorheriges Erweitern des Merkmalsraums nicht das Ergebnis
-eines RBF Kernel replizieren, daher führt er auch zu einer sehr
+eines RBF Kernel replizieren und daher führt er auch zu einer sehr
 flexiblen Entscheidungsgrenze (siehe Abbildung
 \ref{fig:radialkernel}).\\
 
@@ -409,8 +411,8 @@ Zusammenhänge angewendet werden. Wichtig ist anzumerken, dass die
 Verwendung von Kernels zwar die Flexibilität der Entscheidungsgrenze
 erhöht, damit aber auch die Gefahr von \textit{Overfitting} einhergeht.
 Zusätzlich werden mit den Kernels auch neue Hyperparameter wie \(d\)
-oder \(\gamma\) eingeführt, die bei der Modellauswahl ebenfalls beachtet
-werden müssen.
+oder \(\gamma\) eingeführt, die beim Tuningprozess beachtet werden
+müssen.
 
 \printbibliography
 

@@ -93,7 +93,7 @@
 
 \title{Hausarbeit}
 \author{Franz Andersch \& Niklas Münz}
-\date{2024-08-29}
+\date{2024-08-30}
 
 \begin{document}
 \maketitle
@@ -121,7 +121,7 @@ Die Grundlage für eine optimal separierende Hyperebene wurde bereits
 wurde anschließend von mehreren Autoren stetig erweitert
 \parencite{vapnikEstimationDependencesBased2006}. Seitdem ist ihre
 Leistung, trotz großer Fortschritte im Bereich neuronaler Netze, vor
-allem im Bereich binärer Klassifikationsprobleme unumstritten und sie
+allem was binärer Klassifikationsprobleme angeht unumstritten und sie
 gelten dabei als eine der meistgenutzten Methoden
 \parencite{soofiClassificationTechniquesMachine2017}. Dabei bieten
 \textit{SVM} eine große Anzahl an Anwendungsmöglichkeiten, wie
@@ -149,10 +149,10 @@ durchgeführt wurden, Vermutungen aufgestellt, wie die einzelnen
 Klassifikationsmethoden im Vergleich abschneiden werden.\newline Es
 folgen die Ergebnisse, in denen die Durchführung des Experiments
 beschrieben und die Leistungen anhand verschiedener Maßzahlen evaluiert
-werden. Darüber hinaus wird überprüft, ob sich die Hypothesen die wir
+werden. Darüber hinaus wird überprüft, ob sich die Hypothesen, die wir
 zuvor aufgestellt haben bewahrheitet haben. Im letzten Abschnitt wird
-ein Fazit gezogen, indem die Ergebnisse diskutiert und
-Weiterentwicklungsmöglichkeiten für unsere Arbeit aufgearbeitet werden.
+ein Fazit gezogen, indem die Ergebnisse diskutiert und mögliche Ansätze
+zur Verbesserung unserer Arbeit vorgeschlagen werden.
 
 \section{Funktionsweise}
 
@@ -167,9 +167,9 @@ allgemeine Form einer solchen Hyperplane lautet \begin{align}
 \beta_0+ \beta_1 X_1+\beta_2 X_2+...+\beta_n X_n=0\label{eq:hyperebene}
 \end{align} oder in Vektorschreibweise \begin{align}
 \overline{\beta}\cdot\overline{x}+\beta_0=0 \label{eq:hyperplanevec}
-\end{align} Die geometrische Interpretation des Vektors \(\beta\) und
-des Skalars \(\beta_0\) wird in Abbildung \ref{fig:Ebene} im
-zweidimensionalen Fall dargestellt.
+\end{align} Die geometrische Interpretation des Vektors
+\(\overline{\beta}\) und des Skalars \(\beta_0\) wird in Abbildung
+\ref{fig:Ebene} im zweidimensionalen Fall dargestellt.
 
 \begin{figure}[htb]
     \centering
@@ -187,8 +187,8 @@ zweidimensionalen Fall dargestellt.
     \end{minipage}
 \end{figure}
 
-Die blaue Linie soll die Hyperplane darstellen. Im zweidimensionalen
-handelt es sich hier um eine Linie. Der \(2 \times 1\) Vektor
+Die blaue Linie soll die Hyperplane darstellen. Um eine solche handelt
+es sich natürlich nur im zweidimensionalen Raum. Der Vektor
 \(\overline{\beta}\) liegt immer senkrecht zur konstruierten Hyperplane.
 Würde man alle Vektoren, die auf der Hyperplane landen, auf den
 normierten \(\overline{\beta}\)-Vektor projizieren, dann erhält man für
@@ -208,7 +208,7 @@ durch die blaue Linie getrennt werden. Allerdings könnte man theoretisch
 unendlich viele andere Hyperplanes durch Rotation oder Verschiebung
 konstruieren, die trotzdem die Daten in ihren Ausprägungen trennen. Um
 eine eindeutige Lösung zu finden, wird zunächst ein Bereich um die
-Hyperplane abgesteckt. In Abbildung \ref{fig:Margin} dargestellt durch
+Hyperplane abgesteckt; in Abbildung \ref{fig:Margin} dargestellt durch
 die gestrichelten schwarzen Linien, welche man als Schranken bezeichnen
 könnte. In diesem Bereich sollen keine Datenpunkte liegen, die Schranken
 sollen immer parallel zur Hyperplane sein und den gleichen Abstand zu
@@ -305,7 +305,8 @@ nach \(\beta_0\) löst.
 Mit den gelösten Werten zur optimalen Hyperplane kann jetzt auch eine
 Entscheidungsregel für ungelabelte Datenvektoren \(\overline{x}_u\)
 konstruiert werden. Bedenkt man also, wenn man einen Vektor, der nicht
-auf der Hypeplane liegt in \eqref{eq:betanull} einsetzt, erhält man also
+auf der Hyperplane liegt in \eqref{eq:betanull} einsetzt, erhält man
+also
 \(\frac{\overline \beta}{||\overline{\beta}||}\cdot \overline{x}_u=c+k\).
 Wenn \(k\) positiv ist, liegt der neue Datenpunkt oberhalb der
 Hyperplane und wird somit als positives Sample gewertet. Wenn \(k\)
@@ -322,10 +323,10 @@ g(\overline{x}_u)=\begin{cases}\mathrm{positiv}&\text{wenn } f(\overline{x}_u)=\
 
 \subsection{Soft Margin Classifier}
 
-Dass die Daten sich perfekt linear trennen lassen ist zwar praktisch, um
-die Vorgehensweise zu veranschaulichen, tritt aber in realen Situationen
-so gut wie nie auf. Falls sich positive und negative Samples im Raum
-überlappen, ist die Konstruktion einer Hyperplane wie beim
+Dass die Daten sich perfekt linear trennen lassen, ist zwar praktisch,
+um die Vorgehensweise zu veranschaulichen, tritt aber in realen
+Situationen so gut wie nie auf. Falls sich positive und negative Samples
+im Raum überlappen, ist die Konstruktion einer Hyperplane wie beim
 \textit{Hard Margin Classifier} unmöglich. Man müsste also entweder auf
 eine nicht lineare Hyperplane ausweichen oder man weicht die Vorgaben
 für die Konstruktion der Hyperplane etwas auf. Zweiteres ist genau das,
@@ -354,9 +355,10 @@ hier das Problem, dass \(\varepsilon\) einfach immer maximal groß
 gewählt wird und so die Bedingung immer erfüllt wird. Um das Ausmaß der
 Verletzung der ursprünglichen Annahmen zu begrenzen, aber trotzdem noch
 gewisse Abweichung zuzulassen, wird ein weiterer Parameter \(C\), als
-regularisierender Parameter für \(\varepsilon\) eingeführt. Leitet man
-daraus zusammen mit der Restriktion \(\varepsilon\ge0\) wieder eine
-Lagrangefunktion her erhält man \begin{align}
+regularisierender Parameter für \(\varepsilon\) eingeführt (auch als
+Cost-Parameter bezeichnet). Leitet man daraus zusammen mit der
+Restriktion \(\varepsilon\ge0\) wieder eine Lagrangefunktion her erhält
+man \begin{align}
 \mathcal{L}(\overline\beta,\beta_0,\overline\alpha,\overline\varepsilon,\overline\lambda)=\frac{1}{2}\overline\beta'\cdot \overline\beta + C \sum_{i=1}^{n}\varepsilon_i-\underbrace{\sum \alpha_i[y_i(\overline\beta \cdot \overline{x_i}+\beta_0)-1+\varepsilon_i]}_{\text{für }y_i(\overline\beta \cdot \overline{x}_i-\beta_0)>1- \varepsilon_i}-\underbrace{\sum \lambda_i \varepsilon_i }_{\substack{\text{für}\\ \varepsilon_i \ge 0}}
 \end{align} Wenn dieser Ausdruck wie beim
 \textit{Hard Margin Classifier} gelöst wird und die Ergebnisse
@@ -436,18 +438,18 @@ Weiteren gibt es den \textit{Polynomial Kernel}. Dieser hat die Form
 \end{align} Die Verwendung von diesem Kernel führt dazu, dass die
 Entscheidungsgrenze sich ähnlich Verhält, wie als würde man zu Beginn
 eine Merkmalserweiterung mit Polynomen vom Grad \(d\) durchführen (siehe
-Abbildung \ref{fig:polykernel}. Eine weitere Kernel Funktion ist der
+Abbildung \ref{fig:polykernel}). Eine weitere Kernel Funktion ist der
 \textit{Radial Basis Function Kernel} (RBF) mit der Form \begin{align}
 K(x_i,x_u)=\exp\left(-\gamma ||x_i-x_u||^2\right)
 \end{align} Für diesen Kernel wird die quadrierte euklidische Distanz
 als Ähnlichkeitsmaß verwendet, was dazu führt, dass diejenigen \(x_i\)
 die näher an \(x_u\) liegen, in der Entscheidungsfunktion einen größeren
 Einfluss haben. Der Parameter \(\gamma\) legt dann fest, wie stark der
-Einfluss der Distanz sein soll. Die Projektion die der Kernel hier macht
-ist eine, in einen unendlich großen Merkmalsraum
+Einfluss der Distanz sein soll. Die Projektion, die der Kernel hier
+macht ist eine, in einen unendlich großen Merkmalsraum
 \parencite{jamesIntroductionStatisticalLearning2021}. Daher könnte man
 selbst durch vorheriges Erweitern des Merkmalsraums nicht das Ergebnis
-eines RBF Kernel replizieren, daher führt er auch zu einer sehr
+eines RBF Kernel replizieren und daher führt er auch zu einer sehr
 flexiblen Entscheidungsgrenze (siehe Abbildung
 \ref{fig:radialkernel}).\\
 
@@ -473,35 +475,33 @@ Zusammenhänge angewendet werden. Wichtig ist anzumerken, dass die
 Verwendung von Kernels zwar die Flexibilität der Entscheidungsgrenze
 erhöht, damit aber auch die Gefahr von \textit{Overfitting} einhergeht.
 Zusätzlich werden mit den Kernels auch neue Hyperparameter wie \(d\)
-oder \(\gamma\) eingeführt, die bei der Modellauswahl ebenfalls beachtet
-werden müssen.
+oder \(\gamma\) eingeführt, die beim Tuningprozess beachtet werden
+müssen.
 
 \section{Vor- und Nachteile der Methode}
 
-\textit{Support Vector Machines} haben ein hohes Ansehen unter den
-Machine Learning Algorithmen, da sie einige Vorteile mit sich bringen.
-Aufgrund der Idee einer Soft Margin und des ``Kernel Tricks'' ist die
-Methode sehr flexibel und kann für spezielle Anwendungsbereiche
-angepasst werden \parencite{bennettSupportVectorMachines2000}. Dazu sind
-die Ergebnisse stabil und reproduzierbar, was sie von anderen Methoden
-wie beispielsweise Neural Networks abhebt. Auch die Anwendung ist
+Support Vector Machines haben ein hohes Ansehen unter den Machine
+Learning Algorithmen, da sie einige Vorteile mit sich bringen. Aufgrund
+der Idee eines Soft Margin und des Kernel-Tricks ist die Methode sehr
+flexibel und kann für spezielle Anwendungsbereiche angepasst werden
+\parencite{bennettSupportVectorMachines2000}. Dazu sind die Ergebnisse
+stabil und reproduzierbar, was sie von anderen Methoden wie
+beispielsweise neuronale Netze abhebt. Auch die Anwendung ist
 vergleichsweise einfach, da es eine überschaubare Anzahl an Parametern
-gibt (wie beispielsweise bei der \textit{SVM} mit radialem Kern nur der
-gamma- und cost-Parameter festzulegen ist).\newline Durch die
-Möglichkeit der Nutzung verschiedener Kerne sind \textit{SVM} überaus
-vielseitig. Die Auswahl des Kerns ermöglicht es äußerst flexible
-Entscheidungsgrenzen zu formen
-\parencite{kuhnAppliedPredictiveModeling2013}. Dadurch können
-\textit{SVM} an verschiedene Datensituationen angepasst werden.\newline
-Ein weiterer Vorteil ist, dass die Methode weitgehend robust gegenüber
-overfitting ist \parencite{kuhnAppliedPredictiveModeling2013}. Dafür
+gibt (wie beispielsweise bei der SVM mit radialem Kern nur der gamma-
+und cost-Parameter festzulegen ist).\newline Die Möglichkeiten der
+Nutzung verschiedener Kernel sind \textit{SVM} überaus vielseitig. Die
+Auswahl des Kerns ermöglicht es, äußerst flexible Entscheidungsgrenzen
+zu formen \parencite{kuhnAppliedPredictiveModeling2013}. Dadurch können
+SVM an verschiedene Datensituationen angepasst werden.\newline Ein
+weiterer Vorteil ist, dass die Methode weitgehend robust gegenüber
+Overfitting ist \parencite{kuhnAppliedPredictiveModeling2013}. Dafür
 verantwortlich ist der Cost-Parameter, anhand dessen der Fit an die
 Daten kontrolliert werden kann. Jedoch birgt dies auch Probleme
-(Erläuterungen im folgenden Abschnitt).\newline Diese Vorteile
-resultieren in einer allgemein häufigen Nutzung von \textit{SVM} in der
-Wissenschaft, wobei sie schon oft bewiesen haben, dass sie für
-verschiedenste Aufgaben gut funktionieren
-\parencite{kuhnAppliedPredictiveModeling2013}.
+(Erläuterungen im folgenden Abschnitt). Diese Vorteile resultieren in
+einer allgemein häufigen Nutzung von SVM in der Wissenschaft. Sie haben
+folglich bewiesen, dass sie für verschiedenste Aufgaben gut
+funktionieren \parencite{kuhnAppliedPredictiveModeling2013}.
 
 Trotz der vielfachen Nutzung von \textit{SVM}, bringen sie auch
 Nachteile mit sich. Das wohl größte Problem liegt in der Modellselektion
@@ -520,19 +520,19 @@ liefern. Dies zeigt die Sensibilität der Methode gegenüber der Wahl des
 Kerns und der Parameterabstimmung.\newline Ein weiterer Nachteil ist,
 dass die Methode weniger intuitiv und aufwendiger anzuwenden ist als
 andere Algorithmen \parencite{bennettSupportVectorMachines2000}. So ist
-es zum Beispiel schwer Informationen aus Support Vektoren zu ziehen und
+es zum Beispiel schwer, Informationen aus Support-Vektoren zu ziehen und
 es gibt keine Koeffizienten die interpretiert werden können.\newline
 Zuletzt ist zu erwähnen, dass die Methode bei einer hohen Anzahl an
 Beobachtungen besonders rechenintensiv ist. So konnte beispielsweise
-gezeigt werden, dass insbesondere die \textit{SVM} mit polynomialem und
-radialem Kern eine hohe Rechenzeit aufweisen
+gezeigt werden, dass insbesondere die SVM mit polynomialem und radialem
+Kern eine hohe Rechenzeit aufweisen
 \parencite{scholzComparisonClassificationMethods2021}. Dabei konnten
 andere Methoden wie die \textit{logistische Regression} oder
 \textit{k-nearest Neighbour} deutlich besser abschneiden. Dies liegt
-daran, dass die Lösung des \textit{SVM}-Optimierungsproblems, die
-Behebung eines quadratischen Programmierungsproblems erfordert. Da die
-Anzahl der zu optimierenden Parameter mit der Anzahl der Daten
-quadratisch zunimmt, führt dies zu einer hohen Rechenkomplexität
+daran, dass die Lösung des SVM-Optimierungsproblems die Behebung eines
+quadratischen Programmierungsproblems erfordert. Da die Anzahl der zu
+optimierenden Parameter mit der Anzahl der Daten quadratisch zunimmt,
+führt dies zu einer hohen Rechenkomplexität
 \parencite{kecmanSupportVectorMachines2005}.
 
 \section{Daten}
@@ -560,7 +560,7 @@ Natural Language Processing sind solche Datensätze häufiger anzutreffen
 \parencite{scholzComparisonClassificationMethods2021}. Die Werte die
 dafür angenommen wurden sind \(p=200\) und \(n=50\).
 
-Die zweite Charakteristik ist der Datengenerierende Prozess. Da in
+Die zweite Charakteristik ist der datengenerierende Prozess. Da in
 dieser Arbeit \textit{SVM} im Vordergrund stehen und wir hier vor allem
 zeigen wollen, wie \textit{SVM} funktionieren, wird der DGP so
 aufgebaut, dass er der grundlegenden Idee der \textit{SVM} am ehesten
@@ -599,7 +599,7 @@ Ausprägung.\newline  Der letzte DGP geht von einer noch komplexeren
 Entscheidungsgrenzen aus. Es wird hier ein Hypershpäre im \(p\)
 dimensionalen Raum erstellt und einmal innerhalb und einmal außerhalb
 dieser gesampelt. Dafür wurde für eine Beobachtung \(j\), \(p-1\) Winkel
-\(\theta\) zufällig erstellt, ein Radius \(r\) festgelegt und
+\(\overline{\theta}\) zufällig erstellt, ein Radius \(r\) festgelegt und
 anschließend die einzelnen Werte \(X_{1,j},X_{2,j},...,X_{p,j}\)
 berechnet. Die Berechnung erfolgt dabei über die Definition von
 sphärischen Koordinaten: \begin{align}
@@ -783,8 +783,8 @@ Konvergenz für stetige Hyperparameter aufweist
 \parencite{yangHyperparameterOptimizationMachine2020}. Als
 Evaluierungskriterium wird die Genauigkeit der Modelle, welche durch den
 Anteil der korrekt klassifizierten Beobachtungen wiedergegeben wird,
-verwendet. Zur Bestimmung dieser werden die erzeugten Testdaten
-herangezogen.
+verwendet. Zur Bestimmung dieser wurden mit dem gleichen DGP erzeugte
+Testdaten herangezogen.
 
 Basierend auf den Ergebnissen des Tuning werden die oben genannten
 Modelle erstellt. Daraufhin werden die Genauigkeit, die Receiver
@@ -816,7 +816,7 @@ Präzision und Sensitivität und drückt folglich die Fähigkeit des
 Modells, gleichzeitig falsch Positive und falsch Negative zu minimieren,
 aus. \begin{align}
 F1\text{-}Score=\frac{2}{1/Präzision~+~1/Sensitivität}
-\end{align}\newline Zuletzt wird innerhalb jeder Datensituation, für
+\end{align}\newline Zuletzt wird innerhalb jeder Datensituation für
 jeden Algorithmus ein Rang vergeben, der sich aus der Summe der drei
 Auswertungskriterien Genauigkeit, AUC-Wert sowie F1-Score ergibt. Dabei
 steht Rang 1 für den am besten abschneidenden Algorithmus in der
@@ -827,12 +827,12 @@ jeweiligen Datensituation.
 Tabelle \ref{tab:TabVergleich} zeigt die Leistungsfähigkeit der fünf
 Klassifikationsalgorithmen über die neun verschiedenen Datensituationen
 anhand drei verschiedener Evaluationskriterien, sowie den Rang in der
-jeweiligen Datensituation.\newline Betrachtet man den durchschnittlichen
-Rang über alle Szenarien hinweg, dann kann \textbf{H1} zumindest in
-Teilen bestätigt werden. Mit einem durchschnittl. Rang von 2.33 und 2.55
+jeweiligen Datensituation. Betrachtet man den durchschnittlichen Rang
+über alle Szenarien hinweg, dann kann \textbf{H1} zumindest in Teilen
+bestätigt werden. Mit einem durchschnittl. Rang von 2.33 und 2.55
 belegen jeweils \textit{SVM-P} und \textit{SVM-R} die vordersten Plätze.
 Allerdings muss auch gesagt, dass \textit{SVM-L} nach den beiden anderen
-Klassifikationsmethoden den letzten Platz belegt. \afterpage{
+Klassifikationsmethoden den letzten Platz belegt.\newline \afterpage{
 \clearpage
 \begin{landscape}
 
@@ -988,7 +988,7 @@ zeigt.\newline Abbildung \ref{fig:S2ROC} zeigt die ROC-Kurven für
 Szenario 2. Aus dieser Abbildung ist ersichtlich, dass sich
 \textit{SVM-R} deutlich von den anderen Algorithmen abheben kann, welche
 alle eine mittelmäßige Leistung zeigen. Wir können also hier keine
-bestätigung für \textbf{H2} finden, nach der wir eigentlich erwarten
+Bestätigung für \textbf{H2} finden, nach der wir eigentlich erwarten
 würden, dass \textit{SVM-P} hier besser Klassifiziert.
 
 In den Datensituationen mit radialer Form der Entscheidungsgrenze ist

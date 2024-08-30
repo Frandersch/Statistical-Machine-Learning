@@ -17,7 +17,7 @@ Vor dem erstellen der Modelle wird ein Tuning der Hyperparameter je Modell durch
 \begin{align}
 a_{UCB}(\mathbf{x};~\left\{\mathbf{x}_n,y_n\right\},\theta) = \mu(\mathbf{x};~\left\{\mathbf{x}_n,y_n\right\},\theta) + k \sigma(\mathbf{x};~\left\{\mathbf{x}_n,y_n\right\},\theta)
 \end{align}
-Die Bayesian Optimization wird genutzt, da sie eine schnelle Konvergenz für stetige Hyperparameter aufweist \parencite{yangHyperparameterOptimizationMachine2020}. Als Evaluierungskriterium wird die Genauigkeit der Modelle, welche durch den Anteil der korrekt klassifizierten Beobachtungen wiedergegeben wird, verwendet. Zur Bestimmung dieser werden die erzeugten Testdaten herangezogen.
+Die Bayesian Optimization wird genutzt, da sie eine schnelle Konvergenz für stetige Hyperparameter aufweist \parencite{yangHyperparameterOptimizationMachine2020}. Als Evaluierungskriterium wird die Genauigkeit der Modelle, welche durch den Anteil der korrekt klassifizierten Beobachtungen wiedergegeben wird, verwendet. Zur Bestimmung dieser wurden mit dem gleichen DGP erzeugte Testdaten herangezogen.
 
 Basierend auf den Ergebnissen des Tuning werden die oben genannten Modelle erstellt. Daraufhin werden die Genauigkeit, die Receiver Operating Characteristic Kurve (ROC-Kurve) bzw. der Area Under The Curve Wert (AUC-Wert) und der F1-Score für jedes Modell bestimmt.\newline
 Die ROC-Kurve ist eine grafische Darstellung der Leistungsfähigkeit eines Klassifikationsmodells, wobei die Sensitivität auf der y-Achse von 0 bis 1 gegen die Spezifität auf der x-Achse von 1 bis 0 abgetragen wird \parencite{fawcettIntroductionROCAnalysis2006}. Sensitivität und Spezifität ergeben sich aus:
@@ -36,11 +36,11 @@ Der F1-Score beschreibt das harmonische Mittel zwischen Präzision und Sensitivi
 \begin{align}
 F1\text{-}Score=\frac{2}{1/Präzision~+~1/Sensitivität}
 \end{align}\newline
-Zuletzt wird innerhalb jeder Datensituation, für jeden Algorithmus ein Rang vergeben, der sich aus der Summe der drei Auswertungskriterien Genauigkeit, AUC-Wert sowie F1-Score ergibt. Dabei steht Rang 1 für den am besten abschneidenden Algorithmus in der jeweiligen Datensituation.
+Zuletzt wird innerhalb jeder Datensituation für jeden Algorithmus ein Rang vergeben, der sich aus der Summe der drei Auswertungskriterien Genauigkeit, AUC-Wert sowie F1-Score ergibt. Dabei steht Rang 1 für den am besten abschneidenden Algorithmus in der jeweiligen Datensituation.
 
 \subsection{Darstellung der Ergebnisse}
-Tabelle \ref{tab:TabVergleich} zeigt die Leistungsfähigkeit der fünf Klassifikationsalgorithmen über die neun verschiedenen Datensituationen anhand drei verschiedener Evaluationskriterien, sowie den Rang in der jeweiligen Datensituation.\newline
-Betrachtet man den durchschnittlichen Rang über alle Szenarien hinweg, dann kann \textbf{H1} zumindest in Teilen bestätigt werden. Mit einem durchschnittl. Rang von 2.33 und 2.55 belegen jeweils \textit{SVM-P} und \textit{SVM-R} die vordersten Plätze. Allerdings muss auch gesagt, dass \textit{SVM-L} nach den beiden anderen Klassifikationsmethoden den letzten Platz belegt.
+Tabelle \ref{tab:TabVergleich} zeigt die Leistungsfähigkeit der fünf Klassifikationsalgorithmen über die neun verschiedenen Datensituationen anhand drei verschiedener Evaluationskriterien, sowie den Rang in der jeweiligen Datensituation.
+Betrachtet man den durchschnittlichen Rang über alle Szenarien hinweg, dann kann \textbf{H1} zumindest in Teilen bestätigt werden. Mit einem durchschnittl. Rang von 2.33 und 2.55 belegen jeweils \textit{SVM-P} und \textit{SVM-R} die vordersten Plätze. Allerdings muss auch gesagt, dass \textit{SVM-L} nach den beiden anderen Klassifikationsmethoden den letzten Platz belegt.\newline
 \afterpage{
 \clearpage
 \begin{landscape}
@@ -109,7 +109,7 @@ legend("bottomright",
 ```
 
 In den Datensituationen mit polynomialer Form der Entscheidungsgrenze ist die Leistungsfähigkeit aller Algorithmen grundsätzlich schlechter als in den zuvor beschriebenen Szenarien. Im Fall von $p \ll n$ sind die Ergebnisse ausschließlich für \textit{SVM-R} sehr gut mit Werten über 0.9. Die restlichen Algorithmen performen mittelmäßig mit Werten zwischen 0.7 und 0.8, wobei sich hier kein Algorithmus von den anderen absetzen kann. Bei $p \approx n$ ist \textit{K-NN} den anderen Klassifikationsmethoden leicht überlegen, bei einem AUC-Wert von 0.729. Die anderen Algorithmen befinden sich durchweg über alle Werte hinweg nahe 0.5. Ähnlich ist das der Fall für $p \gg n$ bei dem auch wieder \textit{K-NN} eine leicht bessere Leistung zeigt mit einer Genauigkeit von 0.7, gefolgt von \textit{LogR} mit 0.64. Dennoch ist für die letzten beiden Szenarien deutlich, dass kein Algorithmus gute Leistung zeigt.\newline
-Abbildung \ref{fig:S2ROC} zeigt die ROC-Kurven für Szenario 2. Aus dieser Abbildung ist ersichtlich, dass sich \textit{SVM-R} deutlich von den anderen Algorithmen abheben kann, welche alle eine mittelmäßige Leistung zeigen. Wir können also hier keine bestätigung für \textbf{H2} finden, nach der wir eigentlich erwarten würden, dass \textit{SVM-P} hier besser Klassifiziert. 
+Abbildung \ref{fig:S2ROC} zeigt die ROC-Kurven für Szenario 2. Aus dieser Abbildung ist ersichtlich, dass sich \textit{SVM-R} deutlich von den anderen Algorithmen abheben kann, welche alle eine mittelmäßige Leistung zeigen. Wir können also hier keine Bestätigung für \textbf{H2} finden, nach der wir eigentlich erwarten würden, dass \textit{SVM-P} hier besser Klassifiziert. 
 
 ```{r S2ROC, echo=FALSE, warning=FALSE, message=FALSE,fig.show='hide',fig.cap="ROC-Kurven Szenario 2",fig.align='center'}
 library(pROC)

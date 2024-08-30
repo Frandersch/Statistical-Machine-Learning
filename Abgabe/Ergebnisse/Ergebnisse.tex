@@ -81,7 +81,7 @@
 \fi
 \usepackage[]{biblatex}
 \addbibresource{Literatur.bib}
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
@@ -92,7 +92,7 @@
 
 \title{Ergebnisse}
 \author{Franz Andersch \& Niklas Münz}
-\date{2024-08-29}
+\date{2024-08-30}
 
 \begin{document}
 \maketitle
@@ -125,8 +125,8 @@ Konvergenz für stetige Hyperparameter aufweist
 \parencite{yangHyperparameterOptimizationMachine2020}. Als
 Evaluierungskriterium wird die Genauigkeit der Modelle, welche durch den
 Anteil der korrekt klassifizierten Beobachtungen wiedergegeben wird,
-verwendet. Zur Bestimmung dieser werden die erzeugten Testdaten
-herangezogen.
+verwendet. Zur Bestimmung dieser wurden mit dem gleichen DGP erzeugte
+Testdaten herangezogen.
 
 Basierend auf den Ergebnissen des Tuning werden die oben genannten
 Modelle erstellt. Daraufhin werden die Genauigkeit, die Receiver
@@ -158,7 +158,7 @@ Präzision und Sensitivität und drückt folglich die Fähigkeit des
 Modells, gleichzeitig falsch Positive und falsch Negative zu minimieren,
 aus. \begin{align}
 F1\text{-}Score=\frac{2}{1/Präzision~+~1/Sensitivität}
-\end{align}\newline Zuletzt wird innerhalb jeder Datensituation, für
+\end{align}\newline Zuletzt wird innerhalb jeder Datensituation für
 jeden Algorithmus ein Rang vergeben, der sich aus der Summe der drei
 Auswertungskriterien Genauigkeit, AUC-Wert sowie F1-Score ergibt. Dabei
 steht Rang 1 für den am besten abschneidenden Algorithmus in der
@@ -169,12 +169,12 @@ jeweiligen Datensituation.
 Tabelle \ref{tab:TabVergleich} zeigt die Leistungsfähigkeit der fünf
 Klassifikationsalgorithmen über die neun verschiedenen Datensituationen
 anhand drei verschiedener Evaluationskriterien, sowie den Rang in der
-jeweiligen Datensituation.\newline Betrachtet man den durchschnittlichen
-Rang über alle Szenarien hinweg, dann kann \textbf{H1} zumindest in
-Teilen bestätigt werden. Mit einem durchschnittl. Rang von 2.33 und 2.55
+jeweiligen Datensituation. Betrachtet man den durchschnittlichen Rang
+über alle Szenarien hinweg, dann kann \textbf{H1} zumindest in Teilen
+bestätigt werden. Mit einem durchschnittl. Rang von 2.33 und 2.55
 belegen jeweils \textit{SVM-P} und \textit{SVM-R} die vordersten Plätze.
 Allerdings muss auch gesagt, dass \textit{SVM-L} nach den beiden anderen
-Klassifikationsmethoden den letzten Platz belegt. \afterpage{
+Klassifikationsmethoden den letzten Platz belegt.\newline \afterpage{
 \clearpage
 \begin{landscape}
 
@@ -330,7 +330,7 @@ zeigt.\newline Abbildung \ref{fig:S2ROC} zeigt die ROC-Kurven für
 Szenario 2. Aus dieser Abbildung ist ersichtlich, dass sich
 \textit{SVM-R} deutlich von den anderen Algorithmen abheben kann, welche
 alle eine mittelmäßige Leistung zeigen. Wir können also hier keine
-bestätigung für \textbf{H2} finden, nach der wir eigentlich erwarten
+Bestätigung für \textbf{H2} finden, nach der wir eigentlich erwarten
 würden, dass \textit{SVM-P} hier besser Klassifiziert.
 
 In den Datensituationen mit radialer Form der Entscheidungsgrenze ist

@@ -22,7 +22,7 @@ oder in Vektorschreibweise
 \begin{align}
 \overline{\beta}\cdot\overline{x}+\beta_0=0 \label{eq:hyperplanevec}
 \end{align}
-Die geometrische Interpretation des Vektors $\beta$ und des Skalars $\beta_0$ wird in Abbildung \ref{fig:Ebene} im zweidimensionalen Fall dargestellt.
+Die geometrische Interpretation des Vektors $\overline{\beta}$ und des Skalars $\beta_0$ wird in Abbildung \ref{fig:Ebene} im zweidimensionalen Fall dargestellt.
 
 \begin{figure}[htb]
     \centering
@@ -40,13 +40,13 @@ Die geometrische Interpretation des Vektors $\beta$ und des Skalars $\beta_0$ wi
     \end{minipage}
 \end{figure}
 
-Die blaue Linie soll die Hyperplane darstellen. Im zweidimensionalen handelt es sich hier um eine Linie. Der $2 \times 1$ Vektor $\overline{\beta}$ liegt immer senkrecht zur konstruierten Hyperplane. Würde man alle Vektoren, die auf der Hyperplane landen, auf den normierten $\overline{\beta}$-Vektor projizieren, dann erhält man für alle diese Projektionen denselben Wert $c$. Also gilt für alle Punkte, die auf der Ebene liegen.
+Die blaue Linie soll die Hyperplane darstellen. Um eine solche handelt es sich natürlich nur im zweidimensionalen Raum. Der Vektor $\overline{\beta}$ liegt immer senkrecht zur konstruierten Hyperplane. Würde man alle Vektoren, die auf der Hyperplane landen, auf den normierten $\overline{\beta}$-Vektor projizieren, dann erhält man für alle diese Projektionen denselben Wert $c$. Also gilt für alle Punkte, die auf der Ebene liegen.
 \begin{align}
 \frac{\overline \beta}{||\overline{\beta}||}\cdot \overline{x}=c \Leftrightarrow \overline{\beta}\cdot \overline{x}=c \cdot ||\overline{\beta}||\label{eq:betanull}
 \end{align}
 Ersetzt man in \eqref{eq:betanull} $c \cdot ||\overline{\beta}||$ mit $-\beta_0$ und zieht dies dann auf die andere Seite, kommt man wieder bei der ursprünglichen Form aus Formel \eqref{eq:hyperplanevec} raus \parencite{mavroforakisGeometricApproachSupport2006}.
 
-Als Nächstes stellt sich jetzt die Frage, welches $\overline{\beta}$ und $\beta_0$ die optimale Hyperplane darstellen. Betrachtet man die Abbildung \ref{fig:Margin}, dann ist zu erkennen, dass die Datenpunkte durch die blaue Linie getrennt werden. Allerdings könnte man theoretisch unendlich viele andere Hyperplanes durch Rotation oder Verschiebung konstruieren, die trotzdem die Daten in ihren Ausprägungen trennen. Um eine eindeutige Lösung zu finden, wird zunächst ein Bereich um die Hyperplane abgesteckt. In Abbildung \ref{fig:Margin} dargestellt durch die gestrichelten schwarzen Linien, welche man als Schranken bezeichnen könnte. In diesem Bereich sollen keine Datenpunkte liegen, die Schranken sollen immer parallel zur Hyperplane sein und den gleichen Abstand zu ihr haben. Außerdem dürfen keine positiven Samples unterhalb der oberen Schranke liegen und keine negativen oberhalb. Das Gegenteil gilt dementsprechend für die untere Schranke. Als Definition für die beiden Schranken wird festgelegt
+Als Nächstes stellt sich jetzt die Frage, welches $\overline{\beta}$ und $\beta_0$ die optimale Hyperplane darstellen. Betrachtet man die Abbildung \ref{fig:Margin}, dann ist zu erkennen, dass die Datenpunkte durch die blaue Linie getrennt werden. Allerdings könnte man theoretisch unendlich viele andere Hyperplanes durch Rotation oder Verschiebung konstruieren, die trotzdem die Daten in ihren Ausprägungen trennen. Um eine eindeutige Lösung zu finden, wird zunächst ein Bereich um die Hyperplane abgesteckt; in Abbildung \ref{fig:Margin} dargestellt durch die gestrichelten schwarzen Linien, welche man als Schranken bezeichnen könnte. In diesem Bereich sollen keine Datenpunkte liegen, die Schranken sollen immer parallel zur Hyperplane sein und den gleichen Abstand zu ihr haben. Außerdem dürfen keine positiven Samples unterhalb der oberen Schranke liegen und keine negativen oberhalb. Das Gegenteil gilt dementsprechend für die untere Schranke. Als Definition für die beiden Schranken wird festgelegt
 \begin{align}
 \overline{\beta}\cdot \overline{x}+\beta_0=1\label{eq:posSV}
 \end{align}
@@ -93,7 +93,7 @@ Setzt man dies in \eqref{eq:Lagrange} ein erhält man einen neuen Ausdruck, denn
 \end{align}
 Die Lösung für diesen Ausdruck erfolgt dann über sogenannte \enquote{standard non linear optimization algorithms for quadratic forms} \parencite{boserTrainingAlgorithmOptimal1992}. Nachdem für $\overline \alpha$ gelöst wurde, kann dies in \eqref{eq:solutbeta} eingesetzt werden, um das optimale $\overline{\beta}$ zu erhalten. Es kann gezeigt werden, dass die gelösten $\alpha_i$ lediglich für die Support-Vektoren Werte ungleich Null annehmen. Somit ist der Koeffizientenvektor $\overline{\beta}$ sogar eine Linearkombination von nur den Support-Vektoren \parencite{boserTrainingAlgorithmOptimal1992}. Die letzte unbekannte $\beta_0$ kann gelöst werden, indem man mithilfe von einem positiven/negativen Support Vektor \eqref{eq:posSV}/ \eqref{eq:negSV} nach $\beta_0$ löst.
 
-Mit den gelösten Werten zur optimalen Hyperplane kann jetzt auch eine Entscheidungsregel für ungelabelte Datenvektoren $\overline{x}_u$ konstruiert werden. Bedenkt man also, wenn man einen Vektor, der nicht auf der Hypeplane liegt in \eqref{eq:betanull} einsetzt, erhält man also $\frac{\overline \beta}{||\overline{\beta}||}\cdot \overline{x}_u=c+k$. Wenn $k$ positiv ist, liegt der neue Datenpunkt oberhalb der Hyperplane und wird somit als positives Sample gewertet. Wenn $k$ negativ ist, dann liegt der Datenpunkt unterhalb der Hyperplane und wird als negativ gewertet. Mit der gleichen Umformung wie weiter oben schon beschrieben kommt man zu einer Entscheidungsfunktion $f(\overline{x}_u)$ und einer daraus resultierenden Stufenfunktion $g(\overline{x}_u)$, die dann die Kategorisierung der neuen Beobachtung vornimmt.
+Mit den gelösten Werten zur optimalen Hyperplane kann jetzt auch eine Entscheidungsregel für ungelabelte Datenvektoren $\overline{x}_u$ konstruiert werden. Bedenkt man also, wenn man einen Vektor, der nicht auf der Hyperplane liegt in \eqref{eq:betanull} einsetzt, erhält man also $\frac{\overline \beta}{||\overline{\beta}||}\cdot \overline{x}_u=c+k$. Wenn $k$ positiv ist, liegt der neue Datenpunkt oberhalb der Hyperplane und wird somit als positives Sample gewertet. Wenn $k$ negativ ist, dann liegt der Datenpunkt unterhalb der Hyperplane und wird als negativ gewertet. Mit der gleichen Umformung wie weiter oben schon beschrieben kommt man zu einer Entscheidungsfunktion $f(\overline{x}_u)$ und einer daraus resultierenden Stufenfunktion $g(\overline{x}_u)$, die dann die Kategorisierung der neuen Beobachtung vornimmt.
 \begin{align}
 g(\overline{x}_u)=\begin{cases}\mathrm{positiv}&\text{wenn } f(\overline{x}_u)=\overline{\beta}\cdot \overline{x}_u+\beta_0 > 0\\
 \mathrm{negativ} & \text{wenn }f(\overline{x}_u)=\overline{\beta}\cdot \overline{x}_u+\beta_0<0
@@ -101,7 +101,7 @@ g(\overline{x}_u)=\begin{cases}\mathrm{positiv}&\text{wenn } f(\overline{x}_u)=\
 \end{align}
 
 \subsection{Soft Margin Classifier}
-Dass die Daten sich perfekt linear trennen lassen ist zwar praktisch, um die Vorgehensweise zu veranschaulichen, tritt aber in realen Situationen so gut wie nie auf. Falls sich positive und negative Samples im Raum überlappen, ist die Konstruktion einer Hyperplane wie beim \textit{Hard Margin Classifier} unmöglich. Man müsste also entweder auf eine nicht lineare Hyperplane ausweichen oder man weicht die Vorgaben für die Konstruktion der Hyperplane etwas auf. Zweiteres ist genau das, was durch die \textit{Soft Margin Classifier} erreicht wird. Die Vorgabe für die Konstruktion der Schranken ermöglicht es, einzelnen Datenpunkten auf der falschen Seite der Schranke, ja sogar der Entscheidungsgrenzen zu liegen. Dafür wird für die Einschränkungen eine sogenannte \textit{Slack-Variable} $\varepsilon$ eingeführt \parencite{jamesIntroductionStatisticalLearning2021}. Wie diese sich auswirkt, ist in Abbildung \ref{fig:slackvariable} aufgeführt. Setzt man diese in \eqref{eq:Nebenbedingung} ein, lautet die neue Nebenbedingung
+Dass die Daten sich perfekt linear trennen lassen, ist zwar praktisch, um die Vorgehensweise zu veranschaulichen, tritt aber in realen Situationen so gut wie nie auf. Falls sich positive und negative Samples im Raum überlappen, ist die Konstruktion einer Hyperplane wie beim \textit{Hard Margin Classifier} unmöglich. Man müsste also entweder auf eine nicht lineare Hyperplane ausweichen oder man weicht die Vorgaben für die Konstruktion der Hyperplane etwas auf. Zweiteres ist genau das, was durch die \textit{Soft Margin Classifier} erreicht wird. Die Vorgabe für die Konstruktion der Schranken ermöglicht es, einzelnen Datenpunkten auf der falschen Seite der Schranke, ja sogar der Entscheidungsgrenzen zu liegen. Dafür wird für die Einschränkungen eine sogenannte \textit{Slack-Variable} $\varepsilon$ eingeführt \parencite{jamesIntroductionStatisticalLearning2021}. Wie diese sich auswirkt, ist in Abbildung \ref{fig:slackvariable} aufgeführt. Setzt man diese in \eqref{eq:Nebenbedingung} ein, lautet die neue Nebenbedingung
 \begin{align}
 y_i(\overline{\beta} \cdot \overline{x}_i-\beta_0)>1- \varepsilon_i \label{eq:nebbedsfm}
 \end{align}
@@ -111,7 +111,7 @@ y_i(\overline{\beta} \cdot \overline{x}_i-\beta_0)>1- \varepsilon_i \label{eq:ne
         \caption{Bedeutung der Slack Variable}
         \label{fig:slackvariable}
 \end{figure}
-Jetzt könnte man versuchen, diese neue Nebenbedingung einfach in das zuvor angewandte Optimierungsverfahren einzufügen. Allerdings besteht hier das Problem, dass $\varepsilon$ einfach immer maximal groß gewählt wird und so die Bedingung immer erfüllt wird. Um das Ausmaß der Verletzung der ursprünglichen Annahmen zu begrenzen, aber trotzdem noch gewisse Abweichung zuzulassen, wird ein weiterer Parameter $C$, als regularisierender Parameter für $\varepsilon$ eingeführt. Leitet man daraus zusammen mit der Restriktion $\varepsilon\ge0$ wieder eine Lagrangefunktion her erhält man
+Jetzt könnte man versuchen, diese neue Nebenbedingung einfach in das zuvor angewandte Optimierungsverfahren einzufügen. Allerdings besteht hier das Problem, dass $\varepsilon$ einfach immer maximal groß gewählt wird und so die Bedingung immer erfüllt wird. Um das Ausmaß der Verletzung der ursprünglichen Annahmen zu begrenzen, aber trotzdem noch gewisse Abweichung zuzulassen, wird ein weiterer Parameter $C$, als regularisierender Parameter für $\varepsilon$ eingeführt (auch als Cost-Parameter bezeichnet). Leitet man daraus zusammen mit der Restriktion $\varepsilon\ge0$ wieder eine Lagrangefunktion her erhält man
 \begin{align}
 \mathcal{L}(\overline\beta,\beta_0,\overline\alpha,\overline\varepsilon,\overline\lambda)=\frac{1}{2}\overline\beta'\cdot \overline\beta + C \sum_{i=1}^{n}\varepsilon_i-\underbrace{\sum \alpha_i[y_i(\overline\beta \cdot \overline{x_i}+\beta_0)-1+\varepsilon_i]}_{\text{für }y_i(\overline\beta \cdot \overline{x}_i-\beta_0)>1- \varepsilon_i}-\underbrace{\sum \lambda_i \varepsilon_i }_{\substack{\text{für}\\ \varepsilon_i \ge 0}}
 \end{align}
@@ -147,12 +147,12 @@ Es gibt eine ganze Reihe an \textit{Kernel Funktionen}, die bei \textit{SVM} Anw
 \begin{align}
  K(x_i,x_u)=(1+x_i\cdot x_u)^d
 \end{align}
-Die Verwendung von diesem Kernel führt dazu, dass die Entscheidungsgrenze sich ähnlich Verhält, wie als würde man zu Beginn eine Merkmalserweiterung mit Polynomen vom Grad $d$ durchführen (siehe Abbildung \ref{fig:polykernel}.
+Die Verwendung von diesem Kernel führt dazu, dass die Entscheidungsgrenze sich ähnlich Verhält, wie als würde man zu Beginn eine Merkmalserweiterung mit Polynomen vom Grad $d$ durchführen (siehe Abbildung \ref{fig:polykernel}).
 Eine weitere Kernel Funktion ist der \textit{Radial Basis Function Kernel} (RBF) mit der Form
 \begin{align}
 K(x_i,x_u)=\exp\left(-\gamma ||x_i-x_u||^2\right)
 \end{align}
-Für diesen Kernel wird die quadrierte euklidische Distanz als Ähnlichkeitsmaß verwendet, was dazu führt, dass diejenigen $x_i$ die näher an $x_u$ liegen, in der Entscheidungsfunktion einen größeren Einfluss haben. Der Parameter $\gamma$ legt dann fest, wie stark der Einfluss der Distanz sein soll. Die Projektion die der Kernel hier macht ist eine, in einen unendlich großen Merkmalsraum \parencite{jamesIntroductionStatisticalLearning2021}. Daher könnte man selbst durch vorheriges Erweitern des Merkmalsraums nicht das Ergebnis eines RBF Kernel replizieren, daher führt er auch zu einer sehr flexiblen Entscheidungsgrenze (siehe Abbildung \ref{fig:radialkernel}).  
+Für diesen Kernel wird die quadrierte euklidische Distanz als Ähnlichkeitsmaß verwendet, was dazu führt, dass diejenigen $x_i$ die näher an $x_u$ liegen, in der Entscheidungsfunktion einen größeren Einfluss haben. Der Parameter $\gamma$ legt dann fest, wie stark der Einfluss der Distanz sein soll. Die Projektion, die der Kernel hier macht ist eine, in einen unendlich großen Merkmalsraum \parencite{jamesIntroductionStatisticalLearning2021}. Daher könnte man selbst durch vorheriges Erweitern des Merkmalsraums nicht das Ergebnis eines RBF Kernel replizieren und daher führt er auch zu einer sehr flexiblen Entscheidungsgrenze (siehe Abbildung \ref{fig:radialkernel}).  
 \begin{figure}[htb]
     \centering
     \begin{minipage}{0.45\textwidth} 
@@ -169,4 +169,4 @@ Für diesen Kernel wird die quadrierte euklidische Distanz als Ähnlichkeitsmaß
     \end{minipage}
 \end{figure}
 
-Es gibt noch einen Reihe weitere Kernel, die auf unterschiedlichen Ähnlichkeitsmaßen beruhen, aber eher seltener oder nur in speziellen Zusammenhänge angewendet werden. Wichtig ist anzumerken, dass die Verwendung von Kernels zwar die Flexibilität der Entscheidungsgrenze erhöht, damit aber auch die Gefahr von \textit{Overfitting} einhergeht. Zusätzlich werden mit den Kernels auch neue Hyperparameter wie $d$ oder $\gamma$ eingeführt, die bei der Modellauswahl ebenfalls beachtet werden müssen.
+Es gibt noch einen Reihe weitere Kernel, die auf unterschiedlichen Ähnlichkeitsmaßen beruhen, aber eher seltener oder nur in speziellen Zusammenhänge angewendet werden. Wichtig ist anzumerken, dass die Verwendung von Kernels zwar die Flexibilität der Entscheidungsgrenze erhöht, damit aber auch die Gefahr von \textit{Overfitting} einhergeht. Zusätzlich werden mit den Kernels auch neue Hyperparameter wie $d$ oder $\gamma$ eingeführt, die beim Tuningprozess beachtet werden müssen.
